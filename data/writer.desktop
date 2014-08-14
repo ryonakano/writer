@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=writer
+Comment=A super-simple word processor for elementary
+GenericName=writer
+Exec=writer %U
+Icon=application-default-icon
+Terminal=false
+Categories=development;Office;
