@@ -60,6 +60,8 @@ namespace Writer {
             this.set_titlebar (title_bar);
             
             // Add main box to window
+            // TODO: Add ToolBar to the EditorView (not present yet) and not to the main box
+            // Now, it appears above the WelcomeView, which is definitely not what we want
             box.pack_start (tool_bar, false, false, 0);
             box.pack_start (welcome, true, true, 0);
             this.add (box);
