@@ -81,31 +81,31 @@ namespace Writer {
         
         //the application was requested to open some files
         public void new_file () {
-        
+            print ("new file\n");
         }
         
         public void open_file (File file) {
-            
+            print ("open file\n");
         }
         
         public void open_file_dialog () {
-        
+            print ("open file dialog\n");
         }
         
         public void undo () {
-        
+            print ("undo\n");
         }
         
         public void redo () {
-        
+            print ("redo\n");
         }
         
-        public void save_file () {
-        
+        public void save () {
+            print ("save\n");
         }
         
         public void print_file () {
-        
+            print ("print\n");
         }
         
         

@@ -37,6 +37,15 @@ namespace Writer.Widgets {
             
             this.append ("document-new", "New File", "Create a new empty file");
             this.append ("document-open", "Open File", "Open a saved file");
+            
+            this.activated.connect ((index) => {
+                if(index == 0) {
+                    app.new_file ();
+                }
+                else {
+                    app.open_file_dialog ();
+                }
+            });
         }
     
     }

@@ -94,7 +94,7 @@ namespace Writer.Widgets {
         }
         
         public void save_file () {
-            app.save_file ();
+            app.save ();
         }
         
         public void print_file () {
