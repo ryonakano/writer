@@ -27,9 +27,11 @@ namespace Writer {
     public class MainWindow : Gtk.Window {
         
         private WriterApp app;
+        private Editor editor;
         
-        public MainWindow (WriterApp app) {
+        public MainWindow (WriterApp app, Editor editor) {
             this.app = app;
+            this.editor = editor;
             this.set_application (app);
             
             this.set_size_request (850, 850);
@@ -46,6 +48,9 @@ namespace Writer {
             //TitleBar
             var title_bar = new Widgets.TitleBar (app);
             
+            //ToolBar
+            var tool_bar = new Widgets.ToolBar (editor);
+            
             
             // Create a new Welcome widget
             var welcome = new Widgets.WelcomeView ("Welcome to Writer", "Open a saved file or create a new one to begin!", app);
@@ -55,6 +60,7 @@ namespace Writer {
             this.set_titlebar (title_bar);
             
             // Add main box to window
+            box.pack_start (tool_bar, false, false, 0);
             box.pack_start (welcome, true, true, 0);
             this.add (box);
         }

@@ -28,7 +28,8 @@ namespace Writer {
     
     public class WriterApp : Granite.Application {
         
-        private MainWindow window = null;
+        private MainWindow window;
+        private Editor editor;
         
         construct {
             program_name = "Writer";
@@ -72,7 +73,8 @@ namespace Writer {
         //the application started
         public override void activate () {
             if (get_windows () == null) {
-                window = new MainWindow (this);
+                editor = new Editor ();
+                window = new MainWindow (this, editor);
                 window.show_all ();
             } else {
                 window.present ();
