@@ -47,7 +47,7 @@ namespace Writer {
         
         private void setup_ui () {
             stack = new Gtk.Stack ();
-            stack.transition_duration = 350;
+            stack.transition_duration = 300;
             stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
             
             //TitleBar
@@ -61,7 +61,7 @@ namespace Writer {
             
             
             // Create a new Welcome widget
-            welcome_view = new Widgets.WelcomeView ("Welcome to Writer", "Open a saved file or create a new one to begin!", app);
+            welcome_view = new Widgets.WelcomeView (app);
             
             
             //Attach headerbar
