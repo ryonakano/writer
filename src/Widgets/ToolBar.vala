@@ -30,7 +30,6 @@ namespace Writer.Widgets {
     public class ToolBar : Gtk.HeaderBar {
     
         private Editor editor;
-        private string styles = "GtkButton {margin-left:20px; margin-right:20px}";
     
         public ToolBar (Editor editor) {
             this.editor = editor;

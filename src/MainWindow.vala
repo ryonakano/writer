@@ -28,6 +28,9 @@ namespace Writer {
         
         private WriterApp app;
         private Editor editor;
+        private Gtk.Box editor_view;
+        private Widgets.WelcomeView welcome_view;
+        private Gtk.Stack stack;
         
         public MainWindow (WriterApp app, Editor editor) {
             this.app = app;
@@ -43,29 +46,39 @@ namespace Writer {
         }
         
         private void setup_ui () {
-            var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+            stack = new Gtk.Stack ();
+            stack.transition_duration = 350;
+            stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
             
             //TitleBar
             var title_bar = new Widgets.TitleBar (app);
             
             
             //EditorView
-            var editor_view = new Widgets.EditorView (editor);
+            editor_view = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+            editor_view.pack_start (new Widgets.ToolBar (editor), false, false, 0);
+            editor_view.pack_start (editor.text_view, true, true, 0);
             
             
             // Create a new Welcome widget
-            var welcome = new Widgets.WelcomeView ("Welcome to Writer", "Open a saved file or create a new one to begin!", app);
+            welcome_view = new Widgets.WelcomeView ("Welcome to Writer", "Open a saved file or create a new one to begin!", app);
             
             
             //Attach headerbar
             this.set_titlebar (title_bar);
             
             // Add main box to window
-            // TODO: Add ToolBar to the EditorView (not present yet) and not to the main box
-            // Now, it appears above the WelcomeView, which is definitely not what we want
-            box.pack_start (welcome, true, true, 0);
-            box.pack_end (editor_view, true, true, 0);
-            this.add (box);
+            stack.add_named (welcome_view, "welcome");
+            stack.add_named (editor_view, "editor");
+            this.add (stack);
+        }
+        
+        public void show_editor () {
+            stack.visible_child_name = "editor";
+        }
+        
+        public void show_welcome () {
+            stack.visible_child_name = "welcome";
         }
     }
 }

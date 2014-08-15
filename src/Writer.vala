@@ -84,14 +84,17 @@ namespace Writer {
         //the application was requested to open some files
         public void new_file () {
             print ("new file\n");
+            window.show_editor ();
         }
         
         public void open_file (File file) {
             print ("open file\n");
+            window.show_welcome ();
         }
         
         public void open_file_dialog () {
             print ("open file dialog\n");
+            window.show_welcome ();
         }
         
         public void undo () {
