@@ -43,13 +43,14 @@ namespace Writer {
         }
         
         private void setup_ui () {
-            var box = new Gtk.Box (Gtk.Orientation.VERTICAL, 0);
+            var box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
             
             //TitleBar
             var title_bar = new Widgets.TitleBar (app);
             
-            //ToolBar
-            var tool_bar = new Widgets.ToolBar (editor);
+            
+            //EditorView
+            var editor_view = new Widgets.EditorView (editor);
             
             
             // Create a new Welcome widget
@@ -62,8 +63,8 @@ namespace Writer {
             // Add main box to window
             // TODO: Add ToolBar to the EditorView (not present yet) and not to the main box
             // Now, it appears above the WelcomeView, which is definitely not what we want
-            box.pack_start (tool_bar, false, false, 0);
             box.pack_start (welcome, true, true, 0);
+            box.pack_end (editor_view, true, true, 0);
             this.add (box);
         }
     }
