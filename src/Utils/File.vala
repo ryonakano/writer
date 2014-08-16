@@ -37,10 +37,16 @@ namespace Writer.Utils {
         }
         
         public string read_all () {
-            string content;
-            FileUtils.get_contents (path, out content);
-            
-            return content;
+            try {
+                string content;
+                FileUtils.get_contents (path, out content);
+                
+                return content;
+            }
+            catch (Error err) {
+                print ("Error: " + err.message);
+                return "";
+            }
         }
     
     }

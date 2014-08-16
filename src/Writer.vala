@@ -87,7 +87,7 @@ namespace Writer {
         }
         
         public void open_file (Utils.File file) {
-            editor.text = file.read_all ();
+            editor.set_text (file.read_all (), -1);
             window.show_editor ();
         }
         

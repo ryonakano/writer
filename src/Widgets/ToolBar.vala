@@ -27,14 +27,14 @@ using Gtk;
 using Granite.Widgets;
 
 namespace Writer.Widgets {
-    public class ToolBar : Gtk.HeaderBar {
+    public class ToolBar : Gtk.Toolbar {
     
         private Editor editor;
     
         public ToolBar (Editor editor) {
             this.editor = editor;
             
-            this.get_style_context ().add_class ("primary-toolbar");
+            //this.get_style_context ().add_class ("primary-toolbar");
             
             var paragraph_item = new ToolItem ();
                 var paragraph_button = new Button.with_label ("Paragraph");
