@@ -13,7 +13,7 @@ if [ $? -eq 0 ]; then
     echo "================="
     echo
     
-    ../Writer
+    ../writer
 else
     echo
     echo 'Compilation Failed!'

@@ -24,6 +24,7 @@ SOFTWARE.
 
 
 using Gtk;
+using Pango;
 
 namespace Writer {
     public class Editor : TextBuffer {
@@ -31,15 +32,22 @@ namespace Writer {
         public TextView text_view;
     
         public Editor () {
+            // Add default tags to this TextBuffer's TextTagTable
+            setup_tagtable (this);
             text_view = new TextView.with_buffer (this);
         }
         
-        public TextView get_text_view () {
-            return text_view;
-        }
         
-        public void set_text_view (TextView text_view) {
-            this.text_view = text_view;
+        /*
+         * STYLES
+         */
+         
+        public void apply_style (string name) {
+            if(this.has_selection) {
+                TextIter start; TextIter end;
+                this.get_selection_bounds (out start, out end);
+                this.apply_tag_by_name (name, start, end);
+            }
         }
         
         public void set_font_size (int size) {
@@ -48,14 +56,17 @@ namespace Writer {
         
         public void make_bold () {
             print ("make selection bold\n");
+            apply_style ("bold");
         }
         
         public void make_italic () {
             print ("make selection italic\n");
+            apply_style ("italic");
         }
         
         public void make_underline () {
             print ("make selection underlined\n");
+            apply_style ("underline");
         }
         
         public void make_strikethrough () {
@@ -76,6 +87,18 @@ namespace Writer {
         
         public void justify_fill () {
             print ("justify text to fill\n");
+        }
+        
+        
+        
+        
+        // Get a TextTagTable with all the default tags
+        private void setup_tagtable (TextBuffer buffer) {
+            
+            buffer.create_tag ("bold", "weight", 700);
+            buffer.create_tag ("italic", "style", Pango.Style.ITALIC);
+            buffer.create_tag ("underline", "underline", Pango.Underline.SINGLE);
+            
         }
     
     }
