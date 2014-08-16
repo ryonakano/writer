@@ -34,8 +34,6 @@ namespace Writer.Widgets {
         public ToolBar (Editor editor) {
             this.editor = editor;
             
-            //this.get_style_context ().add_class ("primary-toolbar");
-            
             var paragraph_item = new ToolItem ();
                 var paragraph_button = new Button.with_label ("Paragraph");
                 paragraph_item.add (paragraph_button);
