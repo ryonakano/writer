@@ -93,8 +93,20 @@ namespace Writer {
         }
         
         public void open_file_dialog () {
-            print ("open file dialog\n");
-            window.show_welcome ();
+            var filech = Utils.file_chooser_dialog (Gtk.FileChooserAction.OPEN, "Choose a file to open", window, false);
+            
+            if (filech.run () == Gtk.ResponseType.ACCEPT) {
+                var uri = filech.get_uris ().nth_data (0);
+                
+                //Update last visited path
+                Utils.last_path = Path.get_dirname (uri);
+                
+                //Open the file
+                var file = File.new_for_uri (uri);
+                open_file (file);
+            }
+            
+            filech.close ();
         }
         
         public void undo () {
