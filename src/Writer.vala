@@ -84,12 +84,11 @@ namespace Writer {
         //the application was requested to open some files
         public void new_file () {
             print ("new file\n");
-            window.show_editor ();
         }
         
-        public void open_file (File file) {
-            print ("open file\n");
-            window.show_welcome ();
+        public void open_file (Utils.File file) {
+            editor.text = file.read_all ();
+            window.show_editor ();
         }
         
         public void open_file_dialog () {
@@ -102,7 +101,7 @@ namespace Writer {
                 Utils.last_path = Path.get_dirname (uri);
                 
                 //Open the file
-                var file = File.new_for_uri (uri);
+                var file = new Utils.File (uri);
                 open_file (file);
             }
             
@@ -111,10 +110,12 @@ namespace Writer {
         
         public void undo () {
             print ("undo\n");
+            window.show_welcome ();
         }
         
         public void redo () {
             print ("redo\n");
+            window.show_editor ();
         }
         
         public void save () {
