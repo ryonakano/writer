@@ -50,43 +50,45 @@ namespace Writer {
             }
         }
         
+        public void remove_style (string name) {
+            // TODO
+            // Remove the tag with name <name> from the current selection
+        }
+        
+        public void toggle_style (string name) {
+            if (has_style (name))
+                remove_style (name);
+            else
+                apply_style (name);
+        }
+        
+        public bool has_style (string name) {
+            // TODO
+            // Check if the tag with name <name> is applied to the current selection
+            /*
+            TextTag tag = this.tag_table.lookup (name);
+            TextIter start; TextIter end;
+            this.get_selection_bounds (out start, out end);
+            
+            if (tag) {
+                
+            } else {
+                return false;
+            }
+            */
+            return false;
+        }
+        
         public void set_font_size (int size) {
+            // TODO
+            // Set the font size of the current selection to <size>
             print ("set font size to %d\n", size);
         }
         
-        public void make_bold () {
-            print ("make selection bold\n");
-            apply_style ("bold");
-        }
-        
-        public void make_italic () {
-            print ("make selection italic\n");
-            apply_style ("italic");
-        }
-        
-        public void make_underline () {
-            print ("make selection underlined\n");
-            apply_style ("underline");
-        }
-        
-        public void make_strikethrough () {
-            print ("make selection strikethrough\n");
-        }
-        
-        public void justify_left () {
-            print ("justify text to the left\n");
-        }
-        
-        public void justify_center () {
-            print ("justify text to the center\n");
-        }
-        
-        public void justify_right () {
-            print ("justify text to the right\n");
-        }
-        
-        public void justify_fill () {
-            print ("justify text to fill\n");
+        public void justify (string align) {
+            // TODO
+            // Check if no other justification is already set
+            apply_style ("align-" + align);
         }
         
         
@@ -98,6 +100,12 @@ namespace Writer {
             buffer.create_tag ("bold", "weight", 700);
             buffer.create_tag ("italic", "style", Pango.Style.ITALIC);
             buffer.create_tag ("underline", "underline", Pango.Underline.SINGLE);
+            buffer.create_tag ("strikethrough", "strikethrough", true);
+            
+            buffer.create_tag ("align-left", "justification", Gtk.Justification.LEFT);
+            buffer.create_tag ("align-center", "justification", Gtk.Justification.CENTER);
+            buffer.create_tag ("align-right", "justification", Gtk.Justification.RIGHT);
+            buffer.create_tag ("align-fill", "justification", Gtk.Justification.FILL);
             
         }
     

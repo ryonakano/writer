@@ -90,16 +90,16 @@ namespace Writer.Widgets {
             });
             
             bold_button.clicked.connect (() => {
-                editor.apply_style ("bold");
+                editor.toggle_style ("bold");
             });
             italic_button.clicked.connect (() => {
-                editor.apply_style ("italic");
+                editor.toggle_style ("italic");
             });
             underline_button.clicked.connect (() => {
-                editor.apply_style ("underline");
+                editor.toggle_style ("underline");
             });
             strikethrough_button.clicked.connect (() => {
-                editor.apply_style ("strikehtough");
+                editor.toggle_style ("strikethrough");
             });
             
         }
@@ -108,27 +108,15 @@ namespace Writer.Widgets {
             editor.set_font_size (size);
         }
         
-        public void change_style (int index) {
-            if(index == 0) {
-                editor.make_bold ();
-            } else if (index == 1) {
-                editor.make_italic ();
-            } else if (index == 2) {
-                editor.make_underline ();
-            } else {
-                editor.make_strikethrough ();
-            }
-        }
-        
         public void change_align (int index) {
             if(index == 0) {
-                editor.justify_left ();
+                editor.justify ("left");
             } else if (index == 1) {
-                editor.justify_center ();
+                editor.justify ("center");
             } else if (index == 2) {
-                editor.justify_right ();
+                editor.justify ("right");
             } else {
-                editor.justify_fill ();
+                editor.justify ("fill");
             }
         }
     

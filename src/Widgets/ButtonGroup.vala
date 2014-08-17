@@ -33,7 +33,7 @@ namespace Writer.Widgets {
             try {
                 provider.load_from_data (styles, -1);
             } catch (Error err) {
-                print ("Error: " + err.message);
+                print ("Provider Error: " + err.message + "\n");
             }
             
             this.get_style_context ().add_provider (provider, 10);
@@ -42,7 +42,7 @@ namespace Writer.Widgets {
         public string styles = """
             GtkButton {
                 border-radius: 0;
-                border-left-width: none;
+                border-left-width: 0;
                 margin-left: 1px;
             }
             GtkButton:first-child {
