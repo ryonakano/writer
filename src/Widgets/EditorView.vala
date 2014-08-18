@@ -33,16 +33,17 @@ namespace Writer.Widgets {
         
         public EditorView (Editor editor) {
             Object (orientation: Gtk.Orientation.VERTICAL, spacing: 0);
+            
             this.editor = editor;
-                editor.text_view.set_border_width (20);
+            editor.text_view.set_border_width (20);
             
             toolbar = new Widgets.ToolBar (editor);
             
             var scrolled_window = new Gtk.ScrolledWindow (null, null);
-                scrolled_window.add (editor.text_view);
-                editor.notify["cursor-position"].connect ((s, p) => {
-                    print ("cursor position changed\n");
-                });
+            scrolled_window.add (editor.text_view);
+            editor.notify["cursor-position"].connect ((s, p) => {
+                print ("cursor position changed\n");
+            });
             
             this.pack_start (toolbar, false, false, 0);
             this.pack_start (scrolled_window, true, true, 0);

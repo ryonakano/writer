@@ -69,37 +69,12 @@ namespace Writer.Widgets {
             this.pack_end (save_button);
             
             //Connect events
-            new_button.clicked.connect (new_file);
-            open_button.clicked.connect (open_file);
-            undo_button.clicked.connect (undo);
-            redo_button.clicked.connect (redo);
-            save_button.clicked.connect (save_file);
-            print_item.activate.connect (print_file);
-        }
-        
-        public void new_file () {
-            app.new_file ();
-        }
-        
-        public void open_file () {
-            app.open_file_dialog ();
-        }
-        
-        public void undo () {
-            app.undo ();
-        }
-        
-        public void redo () {
-            app.redo ();
-        }
-        
-        public void save_file () {
-            app.save ();
-        }
-        
-        public void print_file () {
-            app.print_file ();
-        }
-        
+            new_button.clicked.connect (app.new_file);
+            open_button.clicked.connect (app.open_file_dialog);
+            undo_button.clicked.connect (app.undo);
+            redo_button.clicked.connect (app.redo);
+            save_button.clicked.connect (app.save);
+            print_item.activate.connect (app.print_file);
+        }        
     }
 }

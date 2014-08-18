@@ -83,7 +83,7 @@ namespace Writer.Widgets {
             this.add (insert_item);
             
             font_size_button.value_changed.connect (() => {
-                change_font_size (font_size_button.get_value_as_int());
+                change_font_size (font_size_button);
             });
             align_button.mode_changed.connect (() => {
                 change_align (align_button.selected);
@@ -104,8 +104,8 @@ namespace Writer.Widgets {
             
         }
         
-        public void change_font_size (int size) {
-            editor.set_font_size (size);
+        public void change_font_size (SpinButton button) {
+            editor.set_font_size (button.get_value_as_int ());
         }
         
         public void change_align (int index) {

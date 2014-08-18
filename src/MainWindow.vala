@@ -50,15 +50,15 @@ namespace Writer {
             stack.transition_duration = 200;
             stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
             
-            //TitleBar
+            // TitleBar
             var title_bar = new Widgets.TitleBar (app);
             
             
-            //EditorView
+            // EditorView
             editor_view = new Widgets.EditorView (editor);
             
             
-            // Create a new Welcome widget
+            // WelcomeView
             welcome_view = new Widgets.WelcomeView (app);
             
             

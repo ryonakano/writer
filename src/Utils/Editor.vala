@@ -43,16 +43,20 @@ namespace Writer {
          */
          
         public void apply_style (string name) {
-            if(this.has_selection) {
+            if (has_selection) {
                 TextIter start; TextIter end;
-                this.get_selection_bounds (out start, out end);
-                this.apply_tag_by_name (name, start, end);
+                get_selection_bounds (out start, out end);
+                apply_tag_by_name (name, start, end);
             }
         }
         
         public void remove_style (string name) {
-            // TODO
-            // Remove the tag with name <name> from the current selection
+            if (has_selection) {
+                TextIter start; TextIter end;
+                get_selection_bounds (out start, out end);
+                var tag = tag_table.lookup (name);
+                remove_tag (tag, start, end);
+            }
         }
         
         public void toggle_style (string name) {
@@ -63,20 +67,8 @@ namespace Writer {
         }
         
         public bool has_style (string name) {
-            // TODO
-            // Check if the tag with name <name> is applied to the current selection
-            /*
-            TextTag tag = this.tag_table.lookup (name);
-            TextIter start; TextIter end;
-            this.get_selection_bounds (out start, out end);
-            
-            if (tag) {
-                
-            } else {
-                return false;
-            }
-            */
-            return false;
+            var tag = tag_table.lookup (name);
+            return get_selection_range ().has_tag (tag);
         }
         
         public void set_font_size (int size) {
@@ -92,6 +84,12 @@ namespace Writer {
         }
         
         
+        
+        private Writer.Utils.TextRange get_selection_range () {
+            TextIter start; TextIter end;
+            get_selection_bounds (out start, out end);
+            return new Writer.Utils.TextRange (this, start, end);
+        }
         
         
         // Get a TextTagTable with all the default tags

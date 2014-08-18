@@ -41,6 +41,7 @@ namespace Writer {
             build_version = Constants.VERSION;
             build_version_info = Constants.VERSION_INFO;
             
+            app_copyright = "2014";
             app_years = "2014";
             app_icon = "writer";
             app_launcher = "writer.desktop";
@@ -58,11 +59,6 @@ namespace Writer {
             about_translators = "Tuur Dutoit";
             about_license = "MIT";
             about_license_type = Gtk.License.MIT_X11;
-            
-            app_copyright = "2014";
-            app_years = "2014";
-            app_icon = "application-default-icon";
-            app_launcher = "writer.desktop";
         }
         
         public WriterApp () {
@@ -86,8 +82,8 @@ namespace Writer {
             print ("new file\n");
         }
         
-        public void open_file (Utils.File file) {
-            editor.set_text (file.read_all (), -1);
+        public void open_file (Utils.Document doc) {
+            editor.set_text (doc.read_all (), -1);
             window.show_editor ();
         }
         
@@ -101,8 +97,8 @@ namespace Writer {
                 Utils.last_path = Path.get_dirname (uri);
                 
                 //Open the file
-                var file = new Utils.File (uri);
-                open_file (file);
+                var doc = new Utils.Document (uri);
+                open_file (doc);
             }
             
             filech.close ();
