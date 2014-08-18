@@ -22,13 +22,17 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ***/
 
+
+using Gtk;
+
 namespace Writer {
     
     public class MainWindow : Gtk.Window {
         
         private WriterApp app;
         private Editor editor;
-        private Gtk.Box editor_view;
+        private Widgets.TitleBar title_bar;
+        private Widgets.EditorView editor_view;
         private Widgets.WelcomeView welcome_view;
         private Gtk.Stack stack;
         
@@ -51,7 +55,7 @@ namespace Writer {
             stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
             
             // TitleBar
-            var title_bar = new Widgets.TitleBar (app);
+            title_bar = new Widgets.TitleBar (app);
             
             
             // EditorView
@@ -77,6 +81,18 @@ namespace Writer {
         
         public void show_welcome () {
             stack.visible_child_name = "welcome";
+        }
+        
+        public void set_title_for_document (Utils.Document doc) {
+            var home_dir = Environment.get_home_dir ();
+            var path = Path.get_dirname (doc.file.get_uri ()).replace (home_dir, "~");
+            path = path.replace ("file://", "");
+
+            if ("trash://" in path)
+                path = "Trash";
+
+            path = Uri.unescape_string (path);
+            title_bar.title = doc.file.get_basename () + " (%s)".printf(path);
         }
     }
 }

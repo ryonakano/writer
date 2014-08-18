@@ -84,6 +84,7 @@ namespace Writer {
         
         public void open_file (Utils.Document doc) {
             editor.set_text (doc.read_all (), -1);
+            window.set_title_for_document (doc);
             window.show_editor ();
         }
         

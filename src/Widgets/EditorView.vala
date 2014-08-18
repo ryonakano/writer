@@ -37,7 +37,7 @@ namespace Writer.Widgets {
             this.editor = editor;
             editor.text_view.set_border_width (20);
             
-            toolbar = new Widgets.ToolBar (editor);
+            this.toolbar = new Widgets.ToolBar (editor);
             
             var scrolled_window = new Gtk.ScrolledWindow (null, null);
             scrolled_window.add (editor.text_view);
