@@ -31,7 +31,7 @@ namespace Writer.Widgets {
         private WriterApp app;
         
         public WelcomeView (WriterApp app) {
-            base ("Welcome to Writer", "Open a saved file or create a new one to begin!");
+            base ("No Documents Open", "Open a saved file or create a new one to begin!");
             
             this.app = app;
             
