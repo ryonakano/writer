@@ -41,9 +41,6 @@ namespace Writer.Widgets {
             
             var scrolled_window = new Gtk.ScrolledWindow (null, null);
             scrolled_window.add (editor.text_view);
-            editor.notify["cursor-position"].connect ((s, p) => {
-                print ("cursor position changed\n");
-            });
             
             this.pack_start (toolbar, false, false, 0);
             this.pack_start (scrolled_window, true, true, 0);

@@ -52,13 +52,17 @@ namespace Writer.Widgets {
                 
             var styles_item = new ToolItem ();
                 var styles_buttons = new ButtonGroup ();
-                    var bold_button = new Button.from_stock (Stock.BOLD);
+                    var bold_button = new ToggleButton ();
+                        bold_button.add (new Image.from_stock (Stock.BOLD, IconSize.BUTTON));
                         styles_buttons.pack_start (bold_button);
-                    var italic_button = new Button.from_stock (Stock.ITALIC);
+                    var italic_button = new ToggleButton ();
+                        italic_button.add (new Image.from_stock (Stock.ITALIC, IconSize.BUTTON));
                         styles_buttons.pack_start (italic_button);
-                    var underline_button = new Button.from_stock (Stock.UNDERLINE);
+                    var underline_button = new ToggleButton ();
+                        underline_button.add (new Image.from_stock (Stock.UNDERLINE, IconSize.BUTTON));
                         styles_buttons.pack_start (underline_button);
-                    var strikethrough_button = new Button.from_stock (Stock.STRIKETHROUGH);
+                    var strikethrough_button = new ToggleButton ();
+                        strikethrough_button.add (new Image.from_stock (Stock.STRIKETHROUGH, IconSize.BUTTON));
                         styles_buttons.pack_start (strikethrough_button);
                 styles_item.add (styles_buttons);
                 

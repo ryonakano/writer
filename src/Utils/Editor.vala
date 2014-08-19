@@ -35,6 +35,8 @@ namespace Writer {
             // Add default tags to this TextBuffer's TextTagTable
             setup_tagtable (this);
             text_view = new TextView.with_buffer (this);
+            
+            this.notify["cursor-position"].connect (cursor_position_changed);
         }
         
         
@@ -105,6 +107,11 @@ namespace Writer {
             buffer.create_tag ("align-right", "justification", Gtk.Justification.RIGHT);
             buffer.create_tag ("align-fill", "justification", Gtk.Justification.FILL);
             
+        }
+        
+        private void cursor_position_changed (s, p) {
+            print (s);
+            print (p);
         }
     
     }

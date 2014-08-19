@@ -36,24 +36,27 @@ namespace Writer.Widgets {
                 print ("CSS Provider Error: " + err.message + "\n");
             }
             
-            this.get_style_context ().add_provider (provider, 10);
+            get_style_context ().add_provider (provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
         }
         
         public string styles = """
-            GtkButton {
+            GtkButton, GtkToggleButton {
                 border-radius: 0;
                 border-left-width: 0;
                 margin-left: 1px;
             }
-            GtkButton:first-child {
+            GtkButton:first-child, GtkToggleButton:first-child {
                 border-radius: 2px 0 0 2px;
                 border-left-width: 1px;
                 margin-left: 0;
             }
-            GtkButton:last-child {
+            GtkButton:last-child, GtkToggleButton:last-child {
                 border-radius: 0 2px 2px 0;
             }
-            GtkButton:hover + GtkButton {
+            GtkButton:hover + GtkButton,
+            GtkButton:hover + GtkToggleButton,
+            GtkToggleButton:hover + GtkButton,
+            GtkToggleButton:hover + GtkToggleButton {
                 border-left-width: 1px;
                 margin-left: 1px;
             }
