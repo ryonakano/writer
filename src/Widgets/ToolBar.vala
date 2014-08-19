@@ -52,22 +52,22 @@ namespace Writer.Widgets {
                 
             var styles_item = new ToolItem ();
                 var styles_buttons = new ButtonGroup ();
-                    var bold_button = new Button.from_stock (Stock.BOLD);
+                    var bold_button = new Gtk.Button.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.BUTTON);
                         styles_buttons.pack_start (bold_button);
-                    var italic_button = new Button.from_stock (Stock.ITALIC);
+                    var italic_button = new Gtk.Button.from_icon_name ("format-text-italic-symbolic", Gtk.IconSize.BUTTON);
                         styles_buttons.pack_start (italic_button);
-                    var underline_button = new Button.from_stock (Stock.UNDERLINE);
+                    var underline_button = new Gtk.Button.from_icon_name ("format-text-underline-symbolic", Gtk.IconSize.BUTTON);
                         styles_buttons.pack_start (underline_button);
-                    var strikethrough_button = new Button.from_stock (Stock.STRIKETHROUGH);
+                    var strikethrough_button = new Gtk.Button.from_icon_name ("format-text-strikethrough-symbolic", Gtk.IconSize.BUTTON);
                         styles_buttons.pack_start (strikethrough_button);
                 styles_item.add (styles_buttons);
                 
             var align_item = new ToolItem ();
                 var align_button = new ModeButton ();
-                    align_button.append (new Image.from_stock (Stock.JUSTIFY_LEFT, IconSize.BUTTON));
-                    align_button.append (new Image.from_stock (Stock.JUSTIFY_CENTER, IconSize.BUTTON));
-                    align_button.append (new Image.from_stock (Stock.JUSTIFY_RIGHT, IconSize.BUTTON));
-                    align_button.append (new Image.from_stock (Stock.JUSTIFY_FILL, IconSize.BUTTON));
+                    align_button.append (new Gtk.Button.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
+                    align_button.append (new Gtk.Button.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
+                    align_button.append (new Gtk.Button.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
+                    align_button.append (new Gtk.Button.from_icon_name ("format-justify-fill-symbolic", Gtk.IconSize.BUTTON));
                 align_item.add (align_button);
                 
             var insert_item = new ToolItem ();
