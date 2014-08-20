@@ -30,15 +30,16 @@ namespace Writer {
     public class Editor : TextBuffer {
     
         public TextView text_view;
+        public Widgets.EditorToolBar toolbar;
     
         public Editor () {
             // Add default tags to this TextBuffer's TextTagTable
             setup_tagtable (this);
             text_view = new TextView.with_buffer (this);
             
-            this.notify["cursor-position"].connect (() => {
-                print ("cursor position changed");
-            });
+            toolbar = new Widgets.EditorToolBar (this);
+            
+            this.notify["cursor-position"].connect (() => {cursor_moved ();});
         }
         
         
@@ -75,6 +76,8 @@ namespace Writer {
             return get_selection_range ().has_tag (tag);
         }
         
+        
+        
         public void set_font_size (int size) {
             // TODO
             // Set the font size of the current selection to <size>
@@ -84,6 +87,11 @@ namespace Writer {
         public void justify (string align) {
             // TODO
             // Check if no other justification is already set
+            remove_style ("align-left");
+            remove_style ("align-center");
+            remove_style ("align-right");
+            remove_style ("align-fill");
+            
             apply_style ("align-" + align);
         }
         
@@ -109,6 +117,27 @@ namespace Writer {
             buffer.create_tag ("align-right", "justification", Gtk.Justification.RIGHT);
             buffer.create_tag ("align-fill", "justification", Gtk.Justification.FILL);
             
+        }
+        
+        private void cursor_moved () {
+        /*
+            var range = get_selection_range ();
+            toolbar.bold_button.active = range.has_style ("bold");
+            toolbar.italic_button.active = range.has_style ("italic");
+            toolbar.underline_button.active = range.has_style ("underline");
+            toolbar.strikethrough_button.active = range.has_style ("strikethrough");
+            
+            if (range.has_style ("align-left"))
+                toolbar.align_button.selected = 0;
+            else if (range.has_style ("align-right"))
+                toolbar.align_button.selected = 2;
+            else if (range.has_style ("align-center"))
+                toolbar.align_button.selected = 1;
+            else if (range.has_style ("align-fill"))
+                toolbar.align_button.selected = 3;
+            else
+                toolbar.align_button.selected = 0;
+        */
         }
     
     }

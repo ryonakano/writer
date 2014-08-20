@@ -24,100 +24,16 @@ SOFTWARE.
 
 
 using Gtk;
-using Granite.Widgets;
 
 namespace Writer.Widgets {
-    public class ToolBar : Gtk.HeaderBar {
+    public class ToolBar : Gtk.Stack {
     
-        private Editor editor;
-    
-        public ToolBar (Editor editor) {
-            this.editor = editor;
-            
-            this.get_style_context ().add_class ("primary-toolbar");
-            
-            
-            var paragraph_item = new ToolItem ();
-                var paragraph_button = new Button.with_label ("Paragraph");
-                paragraph_item.add (paragraph_button);
-                
-            var font_item = new ToolItem ();
-                var font_button = new Button.with_label ("Open Sans");
-                font_item.add (font_button);
-                
-            var font_size_item = new ToolItem ();
-                var font_size_adjustment = new Adjustment (12, 8, 120, 1, 5, 5);
-                var font_size_button = new SpinButton (font_size_adjustment, 1, 0);
-                font_size_item.add (font_size_button);
-                
-            var styles_item = new ToolItem ();
-                var styles_buttons = new ButtonGroup ();
-                    var bold_button = new Gtk.Button.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.BUTTON);
-                        styles_buttons.pack_start (bold_button);
-                    var italic_button = new Gtk.Button.from_icon_name ("format-text-italic-symbolic", Gtk.IconSize.BUTTON);
-                        styles_buttons.pack_start (italic_button);
-                    var underline_button = new Gtk.Button.from_icon_name ("format-text-underline-symbolic", Gtk.IconSize.BUTTON);
-                        styles_buttons.pack_start (underline_button);
-                    var strikethrough_button = new Gtk.Button.from_icon_name ("format-text-strikethrough-symbolic", Gtk.IconSize.BUTTON);
-                        styles_buttons.pack_start (strikethrough_button);
-                styles_item.add (styles_buttons);
-                
-            var align_item = new ToolItem ();
-                var align_button = new ModeButton ();
-                    align_button.append (new Gtk.Button.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
-                    align_button.append (new Gtk.Button.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
-                    align_button.append (new Gtk.Button.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
-                    align_button.append (new Gtk.Button.from_icon_name ("format-justify-fill-symbolic", Gtk.IconSize.BUTTON));
-                align_item.add (align_button);
-                
-            var insert_item = new ToolItem ();
-                var insert_button = new Button.with_label ("Insert");
-                insert_item.add (insert_button);
-            
-            
-            this.add (paragraph_item);
-            this.add (font_item);
-            this.add (font_size_item);
-            this.add (styles_item);
-            this.add (align_item);
-            this.add (insert_item);
-            
-            font_size_button.value_changed.connect (() => {
-                change_font_size (font_size_button);
-            });
-            align_button.mode_changed.connect (() => {
-                change_align (align_button.selected);
-            });
-            
-            bold_button.clicked.connect (() => {
-                editor.toggle_style ("bold");
-            });
-            italic_button.clicked.connect (() => {
-                editor.toggle_style ("italic");
-            });
-            underline_button.clicked.connect (() => {
-                editor.toggle_style ("underline");
-            });
-            strikethrough_button.clicked.connect (() => {
-                editor.toggle_style ("strikethrough");
-            });
-            
+        public ToolBar () {
+            this.transition_type = Gtk.StackTransitionType.NONE;
         }
         
-        public void change_font_size (SpinButton button) {
-            editor.set_font_size (button.get_value_as_int ());
-        }
-        
-        public void change_align (int index) {
-            if(index == 0) {
-                editor.justify ("left");
-            } else if (index == 1) {
-                editor.justify ("center");
-            } else if (index == 2) {
-                editor.justify ("right");
-            } else {
-                editor.justify ("fill");
-            }
+        public void show_editor_toolbar () {
+            this.visible_child_name = "editor";
         }
     
     }

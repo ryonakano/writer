@@ -56,6 +56,11 @@ namespace Writer.Utils {
             return true;
         }
         
+        public bool has_style (string name) {
+            var tag = buffer.tag_table.lookup (name);
+            return this.has_tag (tag);
+        }
+        
         // Check if at least one Iter in the range has the given tag
         public bool contains_tag (TextTag tag) {
             TextIter temp;
