@@ -41,7 +41,7 @@ namespace Writer {
             this.editor = editor;
             this.set_application (app);
             
-            this.set_size_request (850, 850);
+            this.set_size_request (850, 750);
             this.window_position = Gtk.WindowPosition.CENTER;
             
             // Build UI
