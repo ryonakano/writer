@@ -79,7 +79,7 @@ namespace Writer {
         
         //the application was requested to open some files
         public void new_file () {
-            print ("new file\n");
+            window.show_editor ();
         }
         
         public void open_file (Utils.Document doc) {
