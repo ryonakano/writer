@@ -2,8 +2,8 @@
 Type=Application
 Name=writer
 Comment=A super-simple word processor for elementary
-GenericName=writer
+GenericName=Word Processor
 Exec=/usr/bin/writer %U
-Icon=application-default-icon
+Icon=office-document
 Terminal=false
-Categories=development;Office;
+Categories=development;Office;WordProcessor;
