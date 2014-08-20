@@ -43,6 +43,7 @@ namespace Writer {
             
             this.set_size_request (850, 850);
             this.window_position = Gtk.WindowPosition.CENTER;
+            this.add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
             
             // Build UI
             setup_ui ();

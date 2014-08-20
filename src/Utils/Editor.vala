@@ -73,7 +73,14 @@ namespace Writer {
         
         public bool has_style (string name) {
             var tag = tag_table.lookup (name);
-            return get_selection_range ().has_tag (tag);
+            
+            if (has_selection) {
+                return get_selection_range ().has_tag (tag);
+            } else {
+                TextIter iter;
+                get_iter_at_mark (out iter, get_insert());
+                return iter.has_tag (tag);
+            }
         }
         
         
@@ -120,24 +127,21 @@ namespace Writer {
         }
         
         private void cursor_moved () {
-        /*
-            var range = get_selection_range ();
-            toolbar.bold_button.active = range.has_style ("bold");
-            toolbar.italic_button.active = range.has_style ("italic");
-            toolbar.underline_button.active = range.has_style ("underline");
-            toolbar.strikethrough_button.active = range.has_style ("strikethrough");
+            toolbar.bold_button.active = has_style ("bold");
+            toolbar.italic_button.active = has_style ("italic");
+            toolbar.underline_button.active = has_style ("underline");
+            toolbar.strikethrough_button.active = has_style ("strikethrough");
             
-            if (range.has_style ("align-left"))
+            if (has_style ("align-left"))
                 toolbar.align_button.selected = 0;
-            else if (range.has_style ("align-right"))
-                toolbar.align_button.selected = 2;
-            else if (range.has_style ("align-center"))
+            else if (has_style ("align-center"))
                 toolbar.align_button.selected = 1;
-            else if (range.has_style ("align-fill"))
+            else if (has_style ("align-right"))
+                toolbar.align_button.selected = 2;
+            else if (has_style ("align-fill"))
                 toolbar.align_button.selected = 3;
             else
                 toolbar.align_button.selected = 0;
-        */
         }
     
     }
