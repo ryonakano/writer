@@ -163,6 +163,9 @@ namespace Writer {
             toolbar.strikethrough_button.active = has_style ("strikethrough");
             
             toolbar.align_button.selected = get_align_type (get_cursor ());
+            
+            // TODO
+            // Update font button
         }
         
         private void text_inserted (TextIter cursor, string new_text, int length) {
@@ -178,6 +181,8 @@ namespace Writer {
                     apply_tag_by_name ("underline", previous, cursor);
                 if (iter_has_style (previous, "strikethrough"))
                     apply_tag_by_name ("strikethrough", previous, cursor);
+                
+                cursor_moved ();
             }
         }
         
