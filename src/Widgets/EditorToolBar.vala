@@ -81,9 +81,13 @@ namespace Writer.Widgets {
                     align_button.append (new Gtk.Button.from_icon_name ("format-justify-fill-symbolic", Gtk.IconSize.BUTTON));
                 align_item.add (align_button);
                 
-            var insert_item = new ToolItem ();
-                var insert_button = new Button.with_label ("Insert");
-                insert_item.add (insert_button);
+            var insert_combobox = new Gtk.ComboBoxText ();
+                insert_combobox.append ("Insert", ("Insert"));
+                insert_combobox.append ("Comment", ("Comment"));
+                insert_combobox.append ("Hyperlink", ("Hyperlink"));
+                insert_combobox.append ("Picture", ("Picture"));
+                insert_combobox.append ("Table", ("Table"));
+                insert_combobox.set_active_id ("Insert");
             
             
             this.add (paragraph_item);
@@ -91,7 +95,7 @@ namespace Writer.Widgets {
             this.add (font_size_item);
             this.add (styles_item);
             this.add (align_item);
-            this.add (insert_item);
+            this.add (insert_combobox);
             
             font_size_button.value_changed.connect (() => {
                 change_font_size (font_size_button);
