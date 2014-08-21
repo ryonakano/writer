@@ -41,11 +41,15 @@ namespace Writer.Widgets {
             this.editor = editor;
             
             this.get_style_context ().add_class ("primary-toolbar");
-            
-            
-            var paragraph_item = new ToolItem ();
-                var paragraph_button = new Button.with_label ("Paragraph");
-                paragraph_item.add (paragraph_button);
+
+            var paragraph_combobox = new Gtk.ComboBoxText ();
+                paragraph_combobox.append ("Paragraph", ("Paragraph"));
+                paragraph_combobox.append ("Heading 1", ("Heading 1"));
+                paragraph_combobox.append ("Heading 2", ("Heading 2"));
+                paragraph_combobox.append ("Bullet List", ("Bullet List"));
+                paragraph_combobox.append ("Dashed List", ("Dashed List"));
+                paragraph_combobox.append ("Numbered List", ("Numbered List"));
+                paragraph_combobox.set_active_id ("Paragraph");
                 
             var font_item = new ToolItem ();
                 var font_button = new Button.with_label ("Open Sans");
@@ -86,7 +90,7 @@ namespace Writer.Widgets {
                 insert_item.add (insert_button);
             
             
-            this.add (paragraph_item);
+            this.add (paragraph_combobox);
             this.add (font_item);
             this.add (font_size_item);
             this.add (styles_item);
@@ -139,6 +143,5 @@ namespace Writer.Widgets {
                     editor.justify ("left"); break;
             }
         }
-    
     }
 }
