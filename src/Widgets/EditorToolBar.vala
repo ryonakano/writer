@@ -141,11 +141,5 @@ namespace Writer.Widgets {
             }
         }
 
-        private bool FontFilterFunc (Pango.FontFamily family, Pango.FontFace face) {
-            if (face.get_face_name () != "Regular")
-                return false;
-            return true;
-        }
-
     }
 }
