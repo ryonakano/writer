@@ -60,11 +60,6 @@ namespace Writer.Widgets {
                     stdout.printf ("Selected font: %s\n", name);
                 });
                 font_item.add (font_button);
-                
-            var font_size_item = new ToolItem ();
-                var font_size_adjustment = new Adjustment (12, 8, 120, 1, 5, 5);
-                var font_size_button = new SpinButton (font_size_adjustment, 1, 0);
-                font_size_item.add (font_size_button);
 
             var font_color_item = new Gtk.ColorButton ();
                 font_color_item.use_alpha = false;
@@ -101,7 +96,6 @@ namespace Writer.Widgets {
             
             this.add (paragraph_combobox);
             this.add (font_item);
-            this.add (font_size_item);
             this.add (font_color_item);
             this.add (styles_item);
             this.add (align_item);
@@ -132,10 +126,6 @@ namespace Writer.Widgets {
                 return false;
             });
             
-        }
-        
-        public void change_font_size (SpinButton button) {
-            editor.set_font_size (button.get_value_as_int ());
         }
         
         public void change_align (int index) {
