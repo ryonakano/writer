@@ -38,6 +38,7 @@ namespace Writer {
             text_view = new TextView.with_buffer (this);
             
             toolbar = new Widgets.EditorToolBar (this);
+            toolbar.font_button.font_set.connect (font_changed);
             
             this.notify["cursor-position"].connect (() => {cursor_moved ();});
             this.insert_text.connect_after (text_inserted);
@@ -103,11 +104,6 @@ namespace Writer {
         
         
         
-        public void set_font_size (int size) {
-            // TODO
-            // Set the font size of the current selection to <size>
-            print ("set font size to %d\n", size);
-        }
         
         public void justify (string align) {
             // TODO
@@ -183,6 +179,14 @@ namespace Writer {
                 if (iter_has_style (previous, "strikethrough"))
                     apply_tag_by_name ("strikethrough", previous, cursor);
             }
+        }
+        
+        private void font_changed () {
+            var name = toolbar.font_button.get_font_name ();
+            if (tag_table.lookup (name) == null)
+                create_tag (name, "font", name);
+            
+            apply_style (name);
         }
     
     }

@@ -31,6 +31,7 @@ namespace Writer.Widgets {
     public class EditorToolBar : Gtk.HeaderBar {
     
         private Editor editor;
+        public FontButton font_button;
         public ToggleButton bold_button;
         public ToggleButton italic_button;
         public ToggleButton underline_button;
@@ -52,7 +53,7 @@ namespace Writer.Widgets {
                 paragraph_combobox.set_active_id ("Paragraph");
                 
             var font_item = new ToolItem ();
-                var font_button = new Gtk.FontButton ();
+                font_button = new Gtk.FontButton ();
                 font_button.use_font = true;
                 font_button.use_size = true;
                 font_button.font_set.connect (() => {
