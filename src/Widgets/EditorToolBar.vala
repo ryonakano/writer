@@ -52,13 +52,14 @@ namespace Writer.Widgets {
                 paragraph_combobox.set_active_id ("Paragraph");
                 
             var font_item = new ToolItem ();
-                var font_button = new Button.with_label ("Open Sans");
+                var font_button = new Gtk.FontButton ();
+                font_button.use_font = true;
+                font_button.use_size = true;
+                font_button.font_set.connect (() => {
+                    unowned string name = font_button.get_font_name ();
+                    stdout.printf ("Selected font: %s\n", name);
+                });
                 font_item.add (font_button);
-                
-            var font_size_item = new ToolItem ();
-                var font_size_adjustment = new Adjustment (12, 8, 120, 1, 5, 5);
-                var font_size_button = new SpinButton (font_size_adjustment, 1, 0);
-                font_size_item.add (font_size_button);
                 
             var styles_item = new ToolItem ();
                 var styles_buttons = new ButtonGroup ();
@@ -92,14 +93,10 @@ namespace Writer.Widgets {
             
             this.add (paragraph_combobox);
             this.add (font_item);
-            this.add (font_size_item);
             this.add (styles_item);
             this.add (align_item);
             this.add (insert_item);
             
-            font_size_button.value_changed.connect (() => {
-                change_font_size (font_size_button);
-            });
             align_button.mode_changed.connect (() => {
                 change_align (align_button.selected);
             });
@@ -143,5 +140,12 @@ namespace Writer.Widgets {
                     editor.justify ("left"); break;
             }
         }
+
+        private bool FontFilterFunc (Pango.FontFamily family, Pango.FontFace face) {
+            if (face.get_face_name () != "Regular")
+                return false;
+            return true;
+        }
+
     }
 }
