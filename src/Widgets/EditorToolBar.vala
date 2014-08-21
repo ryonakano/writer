@@ -55,6 +55,9 @@ namespace Writer.Widgets {
                 var font_size_adjustment = new Adjustment (12, 8, 120, 1, 5, 5);
                 var font_size_button = new SpinButton (font_size_adjustment, 1, 0);
                 font_size_item.add (font_size_button);
+
+            var font_color_item = new Gtk.ColorButton ();
+                font_color_item.use_alpha = false;
                 
             var styles_item = new ToolItem ();
                 var styles_buttons = new ButtonGroup ();
@@ -89,6 +92,7 @@ namespace Writer.Widgets {
             this.add (paragraph_item);
             this.add (font_item);
             this.add (font_size_item);
+            this.add (font_color_item);
             this.add (styles_item);
             this.add (align_item);
             this.add (insert_item);
