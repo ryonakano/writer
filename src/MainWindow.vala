@@ -25,6 +25,10 @@ SOFTWARE.
 
 using Gtk;
 
+#if HAVE_ZEITGEIST
+using Zeitgeist;
+#endif
+
 namespace Writer {
     
     public class MainWindow : Gtk.Window {
@@ -35,6 +39,11 @@ namespace Writer {
         private Widgets.EditorView editor_view;
         private Widgets.WelcomeView welcome_view;
         private Gtk.Stack stack;
+
+#if HAVE_ZEITGEIST
+        // Zeitgeist integration
+        private Zeitgeist.DataSourceRegistry registry;
+#endif
         
         public MainWindow (WriterApp app, Editor editor) {
             this.app = app;
@@ -48,6 +57,28 @@ namespace Writer {
             // Build UI
             setup_ui ();
             this.show_all ();
+
+#if HAVE_ZEITGEIST
+            // Set up the Data Source Registry for Zeitgeist
+            registry = new DataSourceRegistry ();
+
+            var ds_event = new Zeitgeist.Event ();
+            ds_event.actor = "application://writer.desktop";
+            ds_event.add_subject (new Zeitgeist.Subject ());
+            GenericArray<Zeitgeist.Event> ds_events = new GenericArray<Zeitgeist.Event>();
+            ds_events.add(ds_event);
+            var ds = new DataSource.full ("writer-logger",
+                                          _("Zeitgeist Datasource for Writer"),
+                                          "A data source which logs Open, Close, Save and Move Events",
+                                          ds_events); // FIXME: templates!
+            registry.register_data_source.begin (ds, null, (obj, res) => {
+                try {
+                    registry.register_data_source.end (res);
+                } catch (GLib.Error reg_err) {
+                    warning ("%s", reg_err.message);
+                }
+            });
+#endif
         }
         
         private void setup_ui () {
