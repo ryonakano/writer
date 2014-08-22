@@ -35,10 +35,13 @@ namespace Writer.Widgets {
             
             this.app = app;
             
-            this.append ("document-new", "New File", "Create a new empty file");
-            this.append ("document-open", "Open File", "Open a saved file");
+            this.append ("document-new", "New File", "Create a new empty file.");
+            this.append ("document-open", "Open File", "Open a saved file.");
+            this.append ("document-open-recent", "Open Recent", "Open a recently opened file.");
             
             this.activated.connect ((index) => {
+                // TODO
+                // Open recent
                 if(index == 0) {
                     app.new_file ();
                 }
