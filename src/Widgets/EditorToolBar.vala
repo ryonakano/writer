@@ -32,6 +32,7 @@ namespace Writer.Widgets {
     
         private Editor editor;
         public FontButton font_button;
+        public ColorButton font_color_button;
         public ToggleButton bold_button;
         public ToggleButton italic_button;
         public ToggleButton underline_button;
@@ -62,8 +63,8 @@ namespace Writer.Widgets {
                 });
                 font_item.add (font_button);
 
-            var font_color_item = new Gtk.ColorButton ();
-                font_color_item.use_alpha = false;
+            var font_color_button = new Gtk.ColorButton ();
+                font_color_button.use_alpha = false;
                 
             var styles_item = new ToolItem ();
                 var styles_buttons = new ButtonGroup ();
@@ -101,7 +102,7 @@ namespace Writer.Widgets {
             
             this.add (paragraph_combobox);
             this.add (font_item);
-            this.add (font_color_item);
+            this.add (font_color_button);
             this.add (styles_item);
             this.add (align_item);
             this.add (insert_combobox);
@@ -109,6 +110,9 @@ namespace Writer.Widgets {
             align_button.mode_changed.connect (() => {
                 change_align (align_button.selected);
             });
+            
+            font_button.font_set.connect (editor.update_font);
+            font_color_button.color_set.connect (editor.update_color);
             
             bold_button.button_press_event.connect ((event) => {
                 if (event.type == EventType.BUTTON_PRESS)

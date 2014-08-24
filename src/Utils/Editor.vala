@@ -24,6 +24,7 @@ SOFTWARE.
 
 
 using Gtk;
+using Gdk;
 using Pango;
 
 namespace Writer {
@@ -38,7 +39,6 @@ namespace Writer {
             text_view = new TextView.with_buffer (this);
             
             toolbar = new Widgets.EditorToolBar (this);
-            toolbar.font_button.font_set.connect (font_changed);
             
             this.notify["cursor-position"].connect (() => {cursor_moved ();});
             this.insert_text.connect_after (text_inserted);
@@ -186,10 +186,21 @@ namespace Writer {
             }
         }
         
-        private void font_changed () {
+        public void update_font () {
             var name = toolbar.font_button.get_font_name ();
             if (tag_table.lookup (name) == null)
                 create_tag (name, "font", name);
+            
+            apply_style (name);
+        }
+        
+        public void update_color () {
+            Gdk.Color color;
+            toolbar.font_color_button.get_color (out color);
+            
+            var name = color.to_string ();
+            if (tag_table.lookup (name) == null)
+                create_tag (name, "foreground", name);
             
             apply_style (name);
         }
