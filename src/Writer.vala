@@ -119,6 +119,14 @@ namespace Writer {
             print ("save\n");
         }
         
+        public void save_as () {
+            print ("save as\n");
+        }
+        
+        public void revert () {
+            print ("revert\n");
+        }
+        
         public void print_file () {
             print ("print\n");
         }
