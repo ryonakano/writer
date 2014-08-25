@@ -195,12 +195,11 @@ namespace Writer {
         }
         
         public void update_color () {
-            Gdk.Color color;
-            toolbar.font_color_button.get_color (out color);
-            
+            var color = toolbar.font_color_button.rgba;
             var name = color.to_string ();
+            
             if (tag_table.lookup (name) == null)
-                create_tag (name, "foreground", name);
+                create_tag (name, "foreground_rgba", color);
             
             apply_style (name);
         }

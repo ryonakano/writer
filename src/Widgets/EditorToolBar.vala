@@ -63,7 +63,7 @@ namespace Writer.Widgets {
                 });
                 font_item.add (font_button);
 
-            var font_color_button = new Gtk.ColorButton ();
+            font_color_button = new Gtk.ColorButton ();
                 font_color_button.use_alpha = false;
                 
             var styles_item = new ToolItem ();
