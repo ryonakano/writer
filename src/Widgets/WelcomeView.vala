@@ -37,7 +37,6 @@ namespace Writer.Widgets {
             
             this.append ("document-new", "New File", "Create a new empty file.");
             this.append ("document-open", "Open File", "Open a saved file.");
-            this.append ("document-open-recent", "Open Recent", "Open a recently opened file.");
             
             this.activated.connect ((index) => {
                 // TODO
