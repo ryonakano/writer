@@ -38,12 +38,21 @@ namespace Writer.Widgets {
         public ToggleButton underline_button;
         public ToggleButton strikethrough_button;
         public ModeButton align_button;
+        public Popover insert_popover;
     
         public EditorToolBar (Editor editor) {
             this.editor = editor;
+            editor.cursor_moved.connect (cursor_moved);
             
             this.get_style_context ().add_class ("primary-toolbar");
-
+    
+            setup_ui ();
+        }
+        
+        public void setup_ui () {
+        
+            // Make Widgets
+            
             var paragraph_combobox = new Gtk.ComboBoxText ();
                 paragraph_combobox.append ("Paragraph", ("Paragraph"));
                 paragraph_combobox.append ("Heading 1", ("Heading 1"));
@@ -57,10 +66,6 @@ namespace Writer.Widgets {
                 font_button = new Gtk.FontButton ();
                 font_button.use_font = true;
                 font_button.use_size = true;
-                font_button.font_set.connect (() => {
-                    unowned string name = font_button.get_font_name ();
-                    stdout.printf ("Selected font: %s\n", name);
-                });
                 font_item.add (font_button);
 
             var font_color_button = new Gtk.ColorButton ();
@@ -90,29 +95,71 @@ namespace Writer.Widgets {
                     align_button.append (new Gtk.Button.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
                     align_button.append (new Gtk.Button.from_icon_name ("format-justify-fill-symbolic", Gtk.IconSize.BUTTON));
                 align_item.add (align_button);
-                
-            var insert_combobox = new Gtk.ComboBoxText ();
-                insert_combobox.append ("Insert", ("Insert"));
-                insert_combobox.append ("Comment", ("Comment"));
-                insert_combobox.append ("Hyperlink", ("Hyperlink"));
-                insert_combobox.append ("Picture", ("Picture"));
-                insert_combobox.append ("Table", ("Table"));
-                insert_combobox.set_active_id ("Insert");
             
+            var insert_button = new Gtk.Button.with_label ("Insert");
+            insert_popover = new Gtk.Popover (insert_button);
+            var insert_popover_content = new Gtk.Box (Orientation.VERTICAL, 0);
+                insert_popover_content.spacing = 12;
+                var button_area = new Gtk.Box (Orientation.HORIZONTAL, 0);
+                    var comment_button = new Gtk.Button.with_label ("Comment");
+                        button_area.pack_start (comment_button, true, false, 6);
+                    var picture_button = new Gtk.Button.with_label ("Picture");
+                        button_area.pack_start (picture_button, true, false, 6);
+                    var link_button = new Gtk.Button.with_label ("Link");
+                        button_area.pack_start (link_button, true, false, 6);
+                    insert_popover_content.pack_start (button_area, false, false);
+                var table_chooser = new TableChooser ();
+                    insert_popover_content.pack_start (table_chooser, true, true);
+                    
+                insert_popover.set_position (Gtk.PositionType.BOTTOM);
+                insert_popover.set_border_width (12);
+                insert_popover.add (insert_popover_content);
+                insert_popover.show_all ();
+                insert_popover.hide ();
+            
+            
+            // Add Widgets
             
             this.add (paragraph_combobox);
             this.add (font_item);
             this.add (font_color_button);
             this.add (styles_item);
             this.add (align_item);
-            this.add (insert_combobox);
+            this.add (insert_button);
+            
+            
+            
+            // Connect signals
+            
+            insert_button.clicked.connect (() => {
+                insert_popover.show ();
+            });
+            
+            comment_button.clicked.connect (() => {
+                print ("Insert Comment\n");
+            });
+            picture_button.clicked.connect (() => {
+                print ("Insert Picture\n");
+            });
+            link_button.clicked.connect (() => {
+                print ("Insert Link\n");
+            });
+            table_chooser.selected.connect ((columns, rows) => {
+                print ("Insert Table of %d columns by %d rows\n", columns, rows);
+            });
             
             align_button.mode_changed.connect (() => {
                 change_align (align_button.selected);
             });
             
-            font_button.font_set.connect (editor.update_font);
-            font_color_button.color_set.connect (editor.update_color);
+            font_button.font_set.connect (() => {
+                editor.set_font_from_string (font_button.get_font_name ());
+            });
+            font_color_button.color_set.connect (() => {
+                Gdk.Color color;
+                font_color_button.get_color (out color);
+                editor.set_font_color (color);
+            });
             
             bold_button.button_press_event.connect ((event) => {
                 if (event.type == EventType.BUTTON_PRESS)
@@ -137,17 +184,36 @@ namespace Writer.Widgets {
             
         }
         
+        
+        
+        
+        /*
+         * Signal callbacks
+         */
+        
         public void change_align (int index) {
             switch (index) {
                 case 1:
-                    editor.justify ("center"); break;
+                    editor.set_justification ("center"); break;
                 case 2:
-                    editor.justify ("right"); break;
+                    editor.set_justification ("right"); break;
                 case 3:
-                    editor.justify ("fill"); break;
+                    editor.set_justification ("fill"); break;
                 default:
-                    editor.justify ("left"); break;
+                    editor.set_justification ("left"); break;
             }
+        }
+         
+        public void cursor_moved () {
+            bold_button.active = editor.has_style ("bold");
+            italic_button.active = editor.has_style ("italic");
+            underline_button.active = editor.has_style ("underline");
+            strikethrough_button.active = editor.has_style ("strikethrough");
+            
+            align_button.selected = editor.get_justification_as_int ();
+            
+            //TODO
+            // Update font and color buttons
         }
 
     }

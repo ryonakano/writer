@@ -29,7 +29,7 @@ namespace Writer.Widgets {
     public class EditorView : Box {
         
         private Editor editor;
-        private Widgets.ToolBar toolbar;
+        public Widgets.ToolBar toolbar;
         
         public EditorView (Editor editor) {
             Object (orientation: Gtk.Orientation.VERTICAL, spacing: 0);
@@ -38,8 +38,7 @@ namespace Writer.Widgets {
             editor.text_view.set_border_width (20);
             editor.text_view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
             
-            this.toolbar = new Widgets.ToolBar ();
-            toolbar.add_named (editor.toolbar, "editor");
+            this.toolbar = new Widgets.ToolBar (editor);
             
             var scrolled_window = new Gtk.ScrolledWindow (null, null);
             scrolled_window.add (editor.text_view);
