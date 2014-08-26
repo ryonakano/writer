@@ -98,18 +98,17 @@ namespace Writer.Widgets {
             
             var insert_button = new Gtk.Button.with_label ("Insert");
             insert_popover = new Gtk.Popover (insert_button);
-            var insert_popover_content = new Gtk.Box (Orientation.VERTICAL, 0);
-                insert_popover_content.spacing = 12;
-                var button_area = new Gtk.Box (Orientation.HORIZONTAL, 0);
-                    var comment_button = new Gtk.Button.with_label ("Comment");
-                        button_area.pack_start (comment_button, true, false, 6);
-                    var picture_button = new Gtk.Button.with_label ("Picture");
-                        button_area.pack_start (picture_button, true, false, 6);
-                    var link_button = new Gtk.Button.with_label ("Link");
-                        button_area.pack_start (link_button, true, false, 6);
-                    insert_popover_content.pack_start (button_area, false, false);
+            var insert_popover_content = new Gtk.Grid ();
+                insert_popover_content.column_spacing = 6;
+                insert_popover_content.row_spacing = 12;
+                var comment_button = new Gtk.Button.with_label ("Comment");
+                    insert_popover_content.attach (comment_button, 0, 0, 1, 1);
+                var picture_button = new Gtk.Button.with_label ("Picture");
+                    insert_popover_content.attach  (picture_button, 1, 0, 1, 1);
+                var link_button = new Gtk.Button.with_label ("Link");
+                    insert_popover_content.attach  (link_button, 2, 0, 1, 1);
                 var table_chooser = new TableChooser ();
-                    insert_popover_content.pack_start (table_chooser, true, true);
+                    insert_popover_content.attach  (table_chooser, 0, 1, 3, 1);
                     
                 insert_popover.set_position (Gtk.PositionType.BOTTOM);
                 insert_popover.set_border_width (12);
@@ -135,18 +134,10 @@ namespace Writer.Widgets {
                 insert_popover.show ();
             });
             
-            comment_button.clicked.connect (() => {
-                print ("Insert Comment\n");
-            });
-            picture_button.clicked.connect (() => {
-                print ("Insert Picture\n");
-            });
-            link_button.clicked.connect (() => {
-                print ("Insert Link\n");
-            });
-            table_chooser.selected.connect ((columns, rows) => {
-                print ("Insert Table of %d columns by %d rows\n", columns, rows);
-            });
+            comment_button.clicked.connect (editor.insert_comment);
+            picture_button.clicked.connect (editor.insert_image);
+            link_button.clicked.connect (editor.insert_link);
+            table_chooser.selected.connect (editor.insert_table);
             
             align_button.mode_changed.connect (() => {
                 change_align (align_button.selected);

@@ -148,6 +148,28 @@ namespace Writer {
         
         
         /*
+         * Inserts
+         */
+        
+        public void insert_comment () {
+            print ("Insert Comment\n");
+        }
+        
+        public void insert_image () {
+            print ("Insert Image\n");
+        }
+        
+        public void insert_link () {
+            print ("Insert Link\n");
+        }
+        
+        public void insert_table (int cols, int rows) {
+            print ("Insert Table of %d columns by %d rows\n", cols, rows);
+        }
+        
+        
+        
+        /*
          * Utilities
          */
         
