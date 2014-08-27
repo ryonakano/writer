@@ -127,13 +127,13 @@ namespace Writer.Widgets {
         public void change_align (int index) {
             switch (index) {
                 case 1:
-                    editor.justify ("center"); break;
+                    editor.set_justification ("center"); break;
                 case 2:
-                    editor.justify ("right"); break;
+                    editor.set_justification ("right"); break;
                 case 3:
-                    editor.justify ("fill"); break;
+                    editor.set_justification ("fill"); break;
                 default:
-                    editor.justify ("left"); break;
+                    editor.set_justification ("left"); break;
             }
         }
 

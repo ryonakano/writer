@@ -36,7 +36,7 @@ namespace Writer {
         private WriterApp app;
         private Editor editor;
         private Widgets.TitleBar title_bar;
-        private Widgets.EditorView editor_view;
+        public Widgets.EditorView editor_view;
         private Widgets.WelcomeView welcome_view;
         private Gtk.Stack stack;
 

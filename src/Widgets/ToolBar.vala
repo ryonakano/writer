@@ -28,12 +28,32 @@ using Gtk;
 namespace Writer.Widgets {
     public class ToolBar : Gtk.Stack {
     
-        public ToolBar () {
+        public EditorToolBar editor_toolbar;
+        public ImageToolBar image_toolbar;
+        public TableToolBar table_toolbar;
+    
+        public ToolBar (Editor editor) {
             this.transition_type = Gtk.StackTransitionType.NONE;
+            
+            editor_toolbar = new EditorToolBar (editor);
+            image_toolbar = new ImageToolBar (editor);
+            table_toolbar = new TableToolBar (editor);
+            
+            add_named (editor_toolbar, "editor");
+            add_named (image_toolbar, "image");
+            add_named (table_toolbar, "table");
         }
         
         public void show_editor_toolbar () {
             this.visible_child_name = "editor";
+        }
+        
+        public void show_image_toolbar () {
+            this.visible_child_name = "image";
+        }
+        
+        public void show_table_toolbar () {
+            this.visible_child_name = "table";
         }
     
     }

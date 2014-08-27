@@ -26,114 +26,23 @@ SOFTWARE.
 using Gtk;
 using Gdk;
 using Pango;
+using Writer.Utils;
 
 namespace Writer {
     public class Editor : TextBuffer {
     
         public TextView text_view;
-        public Widgets.EditorToolBar toolbar;
+        
+        public signal void cursor_moved ();
+        public signal void text_inserted ();
     
         public Editor () {
-            // Add default tags to this TextBuffer's TextTagTable
             setup_tagtable (this);
             text_view = new TextView.with_buffer (this);
             
-            toolbar = new Widgets.EditorToolBar (this);
-            
-            this.notify["cursor-position"].connect (() => {cursor_moved ();});
-            this.insert_text.connect_after (text_inserted);
+            this.notify["cursor-position"].connect (cursor_moved_callback);
+            this.insert_text.connect_after (text_inserted_callback);
         }
-        
-        
-        /*
-         * STYLES (apply, remove, check)
-         */
-         
-        public void apply_style (string name) {
-            if (has_selection) {
-                TextIter start; TextIter end;
-                get_selection_bounds (out start, out end);
-                apply_tag_by_name (name, start, end);
-            }
-        }
-        
-        public void remove_style (string name) {
-            if (has_selection) {
-                TextIter start; TextIter end;
-                get_selection_bounds (out start, out end);
-                var tag = tag_table.lookup (name);
-                remove_tag (tag, start, end);
-            }
-        }
-        
-        public void toggle_style (string name) {
-            if (has_style (name))
-                remove_style (name);
-            else
-                apply_style (name);
-        }
-        
-        public bool has_style (string name) {
-            var tag = tag_table.lookup (name);
-            
-            if (has_selection) {
-                return get_selection_range ().has_tag (tag);
-            } else {
-                var cursor = get_cursor ();
-                return cursor.has_tag (tag) || cursor.begins_tag (tag) || cursor.ends_tag (tag);
-            }
-        }
-        
-        public bool iter_has_style (TextIter iter, string name) {
-            var tag = tag_table.lookup (name);
-            return iter.has_tag (tag) || iter.begins_tag (tag) || iter.ends_tag (tag);
-        }
-        
-        public int get_align_type (TextIter iter) {
-            //0=left, 1=center, 2=right, 3=fill
-            if (iter_has_style (iter, "align-center"))
-                return 1;
-            else if (iter_has_style (iter, "align-right"))
-                return 2;
-            else if (iter_has_style (iter, "align-fill"))
-                return 3;
-            else
-                return 0;
-                
-        }
-        
-        
-        
-        
-        public void justify (string align) {
-            // TODO
-            // Check if no other justification is already set
-            remove_style ("align-left");
-            remove_style ("align-center");
-            remove_style ("align-right");
-            remove_style ("align-fill");
-            
-            apply_style ("align-" + align);
-        }
-        
-        
-        
-        /*
-         * Utilities
-         */
-        
-        private Writer.Utils.TextRange get_selection_range () {
-            TextIter start; TextIter end;
-            get_selection_bounds (out start, out end);
-            return new Writer.Utils.TextRange (this, start, end);
-        }
-        
-        private TextIter get_cursor () {
-            TextIter iter;
-            get_iter_at_mark (out iter, get_insert ());
-            return iter;
-        }
-        
         
         // Get a TextTagTable with all the default tags
         private void setup_tagtable (TextBuffer buffer) {
@@ -151,24 +60,162 @@ namespace Writer {
         }
         
         
+        /*
+         * Styles (apply, remove, check)
+         */
+         
+        public void apply_style (string name) {
+            if (has_selection)
+                get_selection_range ().apply_style (name);
+        }
+        
+        public void remove_style (string name) {
+            if (has_selection)
+                get_selection_range ().remove_style (name);
+        }
+        
+        public void toggle_style (string name) {
+            if (has_selection)
+                get_selection_range ().toggle_style (name);
+        }
+        
+        public bool has_style (string name) {
+            if (has_selection)
+                return get_selection_range ().has_style (name);
+            else
+                return iter_has_style (get_cursor (), name);
+        }
+        
+        
+        public Gtk.Justification get_justification () {
+            if (has_selection)
+                return get_selection_range ().get_justification ();
+            else
+                return get_justification_at_iter (get_cursor ());
+        }
+        
+        public Gtk.Justification get_justification_at_iter (TextIter iter) {
+            if (iter_has_style (iter, "align-center"))
+                return Gtk.Justification.CENTER;
+            else if (iter_has_style (iter, "align-right"))
+                return Gtk.Justification.RIGHT;
+            else if (iter_has_style (iter, "align-fill"))
+                return Gtk.Justification.FILL;
+            else
+                return Gtk.Justification.LEFT;
+        }
+        
+        public int get_justification_as_int () {
+            if (has_selection)
+                return get_selection_range ().get_justification_as_int ();
+            else
+                return get_justification_as_int_at_iter (get_cursor ());
+        }
+        
+        public int get_justification_as_int_at_iter (TextIter iter) {
+            if (iter_has_style (iter, "align-center"))
+                return 1;
+            else if (iter_has_style (iter, "align-right"))
+                return 2;
+            else if (iter_has_style (iter, "align-fill"))
+                return 3;
+            else
+                return 0;
+        }
+        
+        public void set_justification (string align) {
+            get_selection_range ().set_justification (align);
+        }
+        
+        
+        public void set_font (FontDescription font) {
+            get_selection_range ().set_font (font);
+        }
+        
+        public void set_font_from_string (string font) {
+            get_selection_range ().set_font_from_string (font);
+        }
+        
+        
+        public void set_font_color (Gdk.Color color) {
+            get_selection_range ().set_font_color (color);
+        }
+        
+        public void set_font_color_from_string (string color) {
+            get_selection_range ().set_font_color_from_string (color);
+        }
+        
+        
+        
+        /*
+         * Inserts
+         */
+        
+        public void insert_comment () {
+            print ("Insert Comment\n");
+        }
+        
+        public void insert_image () {
+            print ("Insert Image\n");
+        }
+        
+        public void insert_link () {
+            print ("Insert Link\n");
+        }
+        
+        public void insert_table (int cols, int rows) {
+            print ("Insert Table of %d columns by %d rows\n", cols, rows);
+        }
+        
+        
+        
+        /*
+         * Utilities
+         */
+        
+        public TextIter get_cursor () {
+            TextIter iter;
+            get_iter_at_mark (out iter, get_insert ());
+            return iter;
+        }
+        
+        public TextRange get_cursor_as_range () {
+            var cursor = get_cursor ();
+            return new TextRange (this, cursor, cursor);
+        }
+        
+        public TextRange get_selection_range () {
+            TextIter start; TextIter end;
+            get_selection_bounds (out start, out end);
+            return new TextRange (this, start, end);
+        }
+        
+        public bool iter_has_tag (TextIter iter, TextTag tag) {
+            return iter.has_tag (tag) || iter.begins_tag (tag) || iter.ends_tag (tag);
+        }
+        
+        public bool iter_has_style (TextIter iter, string name) {
+            var tag = tag_table.lookup (name);
+            return iter_has_tag (iter, tag);
+        }
+        
+        
+        
+        
         
         /*
          * Signal callbacks
          */
         
-        private void cursor_moved () {
-            toolbar.bold_button.active = has_style ("bold");
-            toolbar.italic_button.active = has_style ("italic");
-            toolbar.underline_button.active = has_style ("underline");
-            toolbar.strikethrough_button.active = has_style ("strikethrough");
-            
-            toolbar.align_button.selected = get_align_type (get_cursor ());
-            
-            // TODO
-            // Update font button
+        private void cursor_moved_callback () {
+            // Emit 'cursor_moved' signal
+            cursor_moved ();
         }
         
-        private void text_inserted (TextIter cursor, string new_text, int length) {
+        private void text_inserted_callback (TextIter cursor, string new_text, int length) {
+            //TODO
+            // Bigger ranges of text
+            
             if (length == 1) {
                 TextIter previous;
                 get_iter_at_offset (out previous, cursor.get_offset () - 1);
@@ -182,26 +229,11 @@ namespace Writer {
                 if (iter_has_style (previous, "strikethrough"))
                     apply_tag_by_name ("strikethrough", previous, cursor);
                 
+                
+                // Emit signals
+                text_inserted ();
                 cursor_moved ();
             }
-        }
-        
-        public void update_font () {
-            var name = toolbar.font_button.get_font_name ();
-            if (tag_table.lookup (name) == null)
-                create_tag (name, "font", name);
-            
-            apply_style (name);
-        }
-        
-        public void update_color () {
-            var color = toolbar.font_color_button.rgba;
-            var name = color.to_string ();
-            
-            if (tag_table.lookup (name) == null)
-                create_tag (name, "foreground_rgba", color);
-            
-            apply_style (name);
         }
     
     }
