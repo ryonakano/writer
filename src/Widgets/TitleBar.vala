@@ -42,10 +42,10 @@ namespace Writer.Widgets {
             this.get_style_context ().add_class ("primary-toolbar");
             
             //Make buttons
+            var open_button = new Gtk.Button.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR);
+            var save_button = new Gtk.Button.from_icon_name ("document-save", Gtk.IconSize.LARGE_TOOLBAR);
             var undo_button = new Gtk.Button.from_icon_name ("edit-undo", Gtk.IconSize.LARGE_TOOLBAR);
             var redo_button = new Gtk.Button.from_icon_name ("edit-redo", Gtk.IconSize.LARGE_TOOLBAR);
-            var save_button = new Gtk.Button.from_icon_name ("document-save", Gtk.IconSize.LARGE_TOOLBAR);
-            var revert_button = new Gtk.Button.from_icon_name ("document-revert", Gtk.IconSize.LARGE_TOOLBAR);
             
             //Export menu
             var print_item = new Gtk.MenuItem.with_label ("Print");
@@ -57,30 +57,42 @@ namespace Writer.Widgets {
             var export_button = new ToolButtonWithMenu (export_image, "Export", export_menu);
             
             //AppMenu
-            var new_file_item = new Gtk.MenuItem.with_label ("New File");
-            var open_file_item = new Gtk.MenuItem.with_label ("Open File");
+            var new_file_item = new Gtk.MenuItem.with_label ("New");
+            var open_file_item = new Gtk.MenuItem.with_label ("Open");
+            var save_file_item = new Gtk.MenuItem.with_label ("Save");
+            var save_as_app_item = new Gtk.MenuItem.with_label ("Save As");
+            var preferences_item = new Gtk.MenuItem.with_label ("Preferences");
             var app_menu_menu = new Gtk.Menu ();
                 app_menu_menu.add (new_file_item);
                 app_menu_menu.add (open_file_item);
+                app_menu_menu.add (save_file_item);
+                app_menu_menu.add (save_as_app_item);
+                app_menu_menu.add (new Gtk.SeparatorMenuItem ());
+                app_menu_menu.add (preferences_item);
             var app_menu = app.create_appmenu (app_menu_menu);
             
             //Add buttons to TitleBar
+            this.pack_start (open_button);
+            this.pack_start (save_button);
             this.pack_start (undo_button);
             this.pack_start (redo_button);
-            this.pack_start (save_button);
-            this.pack_start (revert_button);
             this.pack_end (app_menu);
             this.pack_end (export_button);
             
-            //Connect events
+            //Connect signals
+            open_button.clicked.connect (app.open_file_dialog);
+            save_button.clicked.connect (app.save);
             undo_button.clicked.connect (app.undo);
             redo_button.clicked.connect (app.redo);
-            save_button.clicked.connect (app.save);
-            revert_button.clicked.connect (app.revert);
-            new_file_item.activate.connect (app.new_file);
-            open_file_item.activate.connect (app.open_file_dialog);
+            
             save_as_item.activate.connect (app.save_as);
             print_item.activate.connect (app.print_file);
+            
+            new_file_item.activate.connect (app.new_file);
+            open_file_item.activate.connect (app.open_file_dialog);
+            save_file_item.activate.connect (app.save);
+            save_as_app_item.activate.connect (app.save);
+            preferences_item.activate.connect (app.preferences);
         }        
     }
 }

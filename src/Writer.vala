@@ -131,6 +131,10 @@ namespace Writer {
             print ("print\n");
         }
         
+        public void preferences () {
+            print ("Open preferences dialog\n");
+        }
+        
         
         
         public static void main (string [] args) {
