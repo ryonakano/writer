@@ -52,11 +52,19 @@ namespace Writer {
             help_url = "https://answers.launchpad.net/writer";
             translate_url = "https://translations.launchpad.net/writer";
             
-            about_authors = { "Tuur Dutoit <me@tuurdutoit.be>" };
-            about_documenters = { "Tuur Dutoit <me@tuurdutoit.be>" };
-            about_artists = { "Caleb 'spiceofdesign' Riley" };
-            about_comments = "Writer";
-            about_translators = "Tuur Dutoit";
+            about_authors = {
+                "Tuur Dutoit <tuur.dutoit@live.nl>",
+                "Anthony Huben <harp37@gmail.com>"
+            };
+            about_documenters = {
+                "Tuur Dutoit <tuur.dutoit@live.nl>"
+            };
+            about_artists = {
+                "Caleb 'spiceofdesign' Riley",
+                "Anthony Huben <harp37@gmail.com>"
+            };
+            about_comments = "Word Processor";
+            about_translators = "Tuur Dutoit <tuur.dutoit@live.nl>";
             about_license = "MIT";
             about_license_type = Gtk.License.MIT_X11;
         }
