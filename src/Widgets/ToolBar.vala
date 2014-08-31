@@ -33,14 +33,8 @@ namespace Writer.Widgets {
         public ImageToolBar image_toolbar;
         public TableToolBar table_toolbar;
         
-        private string stylesheet = """
-            .toolbar {
-                /* Some Styles*/
-            }
-        """;
     
         public ToolBar (Editor editor) {
-            //add_stylesheet ();
             this.transition_type = Gtk.StackTransitionType.NONE;
             
             editor_toolbar = new EditorToolBar (editor);
@@ -50,23 +44,6 @@ namespace Writer.Widgets {
             add_named (editor_toolbar, "editor");
             add_named (image_toolbar, "image");
             add_named (table_toolbar, "table");
-            
-            add_stylesheet ();
-        }
-        
-        public void add_stylesheet () {
-            var style_provider = new Gtk.CssProvider ();
-            style_provider.parsing_error.connect ((section, error) => {
-                print ("Parsing error: %s\n", error.message);
-            });
-            
-            try {
-                style_provider.load_from_data (stylesheet, -1);
-            } catch (Error error) {
-                print ("CSS loading error: %s\n", error.message);
-            }
-            
-            Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), style_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
         }
         
         public void show_editor_toolbar () {
