@@ -108,10 +108,12 @@ namespace Writer {
         }
         
         public void show_editor () {
+            title_bar.set_active (true);
             stack.visible_child_name = "editor";
         }
         
         public void show_welcome () {
+            title_bar.set_active (false);
             stack.visible_child_name = "welcome";
         }
         
