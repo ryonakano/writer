@@ -28,7 +28,7 @@ using Gdk;
 using Granite.Widgets;
 
 namespace Writer.Widgets {
-    public class EditorToolBar : Gtk.HeaderBar {
+    public class EditorToolBar : Gtk.Toolbar {
     
         private Editor editor;
         public FontButton font_button;
@@ -43,8 +43,6 @@ namespace Writer.Widgets {
         public EditorToolBar (Editor editor) {
             this.editor = editor;
             editor.cursor_moved.connect (cursor_moved);
-            
-            this.get_style_context ().add_class ("primary-toolbar");
     
             setup_ui ();
         }
@@ -61,6 +59,8 @@ namespace Writer.Widgets {
                 paragraph_combobox.append ("Dashed List", ("Dashed List"));
                 paragraph_combobox.append ("Numbered List", ("Numbered List"));
                 paragraph_combobox.set_active_id ("Paragraph");
+            var paragraph_item = new ToolItem ();
+                paragraph_item.add (paragraph_combobox);
                 
             var font_item = new ToolItem ();
                 font_button = new Gtk.FontButton ();
@@ -70,6 +70,8 @@ namespace Writer.Widgets {
 
             font_color_button = new Gtk.ColorButton ();
                 font_color_button.use_alpha = false;
+            var font_color_item = new Gtk.ToolItem ();
+                font_color_item.add (font_color_button);
                 
             var styles_item = new ToolItem ();
                 var styles_buttons = new ButtonGroup ();
@@ -115,16 +117,19 @@ namespace Writer.Widgets {
                 insert_popover.add (insert_popover_content);
                 insert_popover.show_all ();
                 insert_popover.hide ();
+                
+            var insert_item = new Gtk.ToolItem ();
+                insert_item.add (insert_button);
             
             
             // Add Widgets
             
-            this.add (paragraph_combobox);
+            this.add (paragraph_item);
             this.add (font_item);
-            this.add (font_color_button);
+            this.add (font_color_item);
             this.add (styles_item);
             this.add (align_item);
-            this.add (insert_button);
+            this.add (insert_item);
             
             
             
