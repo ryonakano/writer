@@ -33,6 +33,13 @@ namespace Writer.Widgets {
         
         private WriterApp app;
         
+        private Button save_button;
+        private Button undo_button;
+        private Button redo_button;
+        private Gtk.MenuItem save_as_item;
+        private Gtk.MenuItem save_file_item;
+        private Gtk.MenuItem save_as_app_item;
+        
         public TitleBar (WriterApp app) {
         
             //Basics
@@ -43,13 +50,13 @@ namespace Writer.Widgets {
             
             //Make buttons
             var open_button = new Gtk.Button.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR);
-            var save_button = new Gtk.Button.from_icon_name ("document-save", Gtk.IconSize.LARGE_TOOLBAR);
-            var undo_button = new Gtk.Button.from_icon_name ("edit-undo", Gtk.IconSize.LARGE_TOOLBAR);
-            var redo_button = new Gtk.Button.from_icon_name ("edit-redo", Gtk.IconSize.LARGE_TOOLBAR);
+            save_button = new Gtk.Button.from_icon_name ("document-save", Gtk.IconSize.LARGE_TOOLBAR);
+            undo_button = new Gtk.Button.from_icon_name ("edit-undo", Gtk.IconSize.LARGE_TOOLBAR);
+            redo_button = new Gtk.Button.from_icon_name ("edit-redo", Gtk.IconSize.LARGE_TOOLBAR);
             
             //Export menu
             var print_item = new Gtk.MenuItem.with_label ("Print");
-            var save_as_item = new Gtk.MenuItem.with_label ("Save As");
+            save_as_item = new Gtk.MenuItem.with_label ("Save As");
             var export_menu = new Gtk.Menu ();
                 export_menu.append (save_as_item);
                 export_menu.append (print_item);
@@ -59,8 +66,8 @@ namespace Writer.Widgets {
             //AppMenu
             var new_file_item = new Gtk.MenuItem.with_label ("New");
             var open_file_item = new Gtk.MenuItem.with_label ("Open");
-            var save_file_item = new Gtk.MenuItem.with_label ("Save");
-            var save_as_app_item = new Gtk.MenuItem.with_label ("Save As");
+            save_file_item = new Gtk.MenuItem.with_label ("Save");
+            save_as_app_item = new Gtk.MenuItem.with_label ("Save As");
             var preferences_item = new Gtk.MenuItem.with_label ("Preferences");
             var app_menu_menu = new Gtk.Menu ();
                 app_menu_menu.add (new_file_item);
@@ -93,6 +100,17 @@ namespace Writer.Widgets {
             save_file_item.activate.connect (app.save);
             save_as_app_item.activate.connect (app.save);
             preferences_item.activate.connect (app.preferences);
-        }        
+        }
+        
+        
+        public void set_active (bool active) {
+            save_button.sensitive = active;
+            undo_button.sensitive = active;
+            redo_button.sensitive = active;
+            
+            save_as_item.sensitive = active;
+            save_file_item.sensitive = active;
+            save_as_app_item.sensitive = active;
+        }       
     }
 }
