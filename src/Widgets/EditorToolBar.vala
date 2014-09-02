@@ -41,6 +41,8 @@ namespace Writer.Widgets {
         public Popover insert_popover;
     
         public EditorToolBar (Editor editor) {
+            this.get_style_context ().add_class ("writer-toolbar");
+            
             this.editor = editor;
             editor.cursor_moved.connect (cursor_moved);
     
@@ -76,7 +78,7 @@ namespace Writer.Widgets {
             var styles_item = new ToolItem ();
                 var styles_buttons = new ButtonGroup ();
                     bold_button = new Gtk.ToggleButton ();
-                        bold_button.add (new Image.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.BUTTON));
+                        bold_button.add (new Image.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.MENU));
                         bold_button.focus_on_click = false;
                         styles_buttons.pack_start (bold_button);
                     italic_button = new Gtk.ToggleButton ();
@@ -92,10 +94,10 @@ namespace Writer.Widgets {
                 
             var align_item = new ToolItem ();
                 align_button = new ModeButton ();
-                    align_button.append (new Gtk.Button.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
-                    align_button.append (new Gtk.Button.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
-                    align_button.append (new Gtk.Button.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
-                    align_button.append (new Gtk.Button.from_icon_name ("format-justify-fill-symbolic", Gtk.IconSize.BUTTON));
+                    align_button.append (new Gtk.Image.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
+                    align_button.append (new Gtk.Image.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
+                    align_button.append (new Gtk.Image.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
+                    align_button.append (new Gtk.Image.from_icon_name ("format-justify-fill-symbolic", Gtk.IconSize.BUTTON));
                 align_item.add (align_button);
             
             var insert_button = new Gtk.Button.with_label ("Insert");
