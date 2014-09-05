@@ -139,6 +139,10 @@ namespace Writer {
         public void print_file () {
             print ("print\n");
         }
+
+        public void search () {
+            print ("search\n");
+        }
         
         public void preferences () {
             print ("Open preferences dialog\n");
