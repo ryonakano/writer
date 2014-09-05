@@ -43,7 +43,7 @@ namespace Writer {
             
             app_copyright = "2014";
             app_years = "2014";
-            app_icon = "writer";
+            app_icon = "office-document";
             app_launcher = "writer.desktop";
             application_id = "net.launchpad.writer";
             
@@ -61,10 +61,11 @@ namespace Writer {
             };
             about_artists = {
                 "Caleb 'spiceofdesign' Riley",
-                "Anthony Huben <harp37@gmail.com>"
+                "Anthony Huben <harp37@gmail.com>",
+                "Tuur Dutoit <tuur.dutoit@live.nl>"
             };
             about_comments = "Word Processor";
-            about_translators = "Tuur Dutoit <tuur.dutoit@live.nl>";
+            about_translators = "Launchpad Translators";
             about_license = "MIT";
             about_license_type = Gtk.License.MIT_X11;
         }
