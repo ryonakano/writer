@@ -124,8 +124,15 @@ namespace Writer.Widgets {
                 insert_item.add (insert_button);
             
             
-            // Add Widgets
+            //Set border_width on ToolItems
+            paragraph_item.border_width = 5;
+            font_item.border_width = 5;
+            font_color_item.border_width = 5;
+            styles_item.border_width = 5;
+            align_item.border_width = 5;
+            insert_item.border_width = 5;
             
+            // Add Widgets
             this.add (paragraph_item);
             this.add (font_item);
             this.add (font_color_item);

@@ -29,7 +29,7 @@ namespace Writer.Utils {
     
         string stylesheet = """
             .writer-window .writer-toolbar {
-                padding: 10px;
+                padding: 5px;
                 background: linear-gradient(to bottom,
                                             #F8F8F8,
                                             #F8F8F8 65%,
@@ -37,10 +37,6 @@ namespace Writer.Utils {
                                             );
                 border: none;
                 border-bottom: 1px solid #DADADA;
-            }
-            
-            .writer-window .writer-toolbar > * {
-                margin: 0 10px;
             }
         """;
     
