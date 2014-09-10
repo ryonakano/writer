@@ -60,6 +60,7 @@ namespace Writer.Widgets {
                 paragraph_combobox.append ("Bullet List", ("Bullet List"));
                 paragraph_combobox.append ("Dashed List", ("Dashed List"));
                 paragraph_combobox.append ("Numbered List", ("Numbered List"));
+                paragraph_combobox.append ("Two-Column", ("Two-Column"));
                 paragraph_combobox.set_active_id ("Paragraph");
                 
             var font_item = new ToolItem ();
