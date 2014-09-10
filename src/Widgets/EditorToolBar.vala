@@ -116,6 +116,12 @@ namespace Writer.Widgets {
                 insert_popover.show_all ();
                 insert_popover.hide ();
             
+            var indent_button = new ButtonGroup ();
+                var indent_more_button = new Image.from_icon_name ("format-indent-more-symbolic", Gtk.IconSize.BUTTON);
+                var indent_less_button = new Image.from_icon_name ("format-indent-less-symbolic", Gtk.IconSize.BUTTON);
+                indent_button.add (indent_less_button);
+                indent_button.add (indent_more_button);
+
             
             // Add Widgets
             
@@ -125,6 +131,7 @@ namespace Writer.Widgets {
             this.add (styles_item);
             this.add (align_item);
             this.add (insert_button);
+            this.add (indent_button);
             
             
             

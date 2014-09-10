@@ -3,6 +3,8 @@ install(FILES writer.desktop DESTINATION share/applications)
 set(FALLBACK_THEME_DIR ${ICON_DIR}/hicolor)
 
 set(ICONS
+    icons/format-indent-less-symbolic.svg
+    icons/format-indent-more-symbolic.svg
     icons/format-justify-center-symbolic.svg
     icons/format-justify-fill-symbolic.svg
     icons/format-justify-left-symbolic.svg
