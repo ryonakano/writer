@@ -34,13 +34,16 @@ namespace Writer.Widgets {
         public EditorView (Editor editor) {
             Object (orientation: Gtk.Orientation.VERTICAL, spacing: 0);
             
+            get_style_context ().add_class("editor-view");
+            
             this.editor = editor;
-            editor.text_view.set_border_width (20);
+            //editor.text_view.set_border_width (20);
             editor.text_view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
             
             this.toolbar = new Widgets.ToolBar (editor);
             
             var scrolled_window = new Gtk.ScrolledWindow (null, null);
+            scrolled_window.border_width = 20;
             scrolled_window.add (editor.text_view);
             
             this.pack_start (toolbar, false, false, 0);

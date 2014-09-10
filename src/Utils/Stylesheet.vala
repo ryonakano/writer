@@ -38,6 +38,13 @@ namespace Writer.Utils {
                 border: none;
                 border-bottom: 1px solid #DADADA;
             }
+            
+            .writer-window .editor-view {
+                background-image: linear-gradient(to bottom,
+                                                  #F8F8F8,
+                                                  #F0F0F0
+                                                  );
+            }
         """;
     
     
