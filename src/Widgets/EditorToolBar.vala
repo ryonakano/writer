@@ -37,6 +37,8 @@ namespace Writer.Widgets {
         public ToggleButton italic_button;
         public ToggleButton underline_button;
         public ToggleButton strikethrough_button;
+        public Button indent_more_button;
+        public Button indent_less_button;
         public ModeButton align_button;
         public Popover insert_popover;
     
@@ -89,6 +91,12 @@ namespace Writer.Widgets {
                         strikethrough_button.add (new Image.from_icon_name ("format-text-strikethrough-symbolic", Gtk.IconSize.BUTTON));
                         styles_buttons.pack_start (strikethrough_button);
                 styles_item.add (styles_buttons);
+
+            var indent_button = new ButtonGroup ();
+                var indent_more_button = new Image.from_icon_name ("format-indent-more-symbolic", Gtk.IconSize.BUTTON);
+                var indent_less_button = new Image.from_icon_name ("format-indent-less-symbolic", Gtk.IconSize.BUTTON);
+                indent_button.add (indent_more_button);
+                indent_button.add (indent_less_button);
                 
             var align_item = new ToolItem ();
                 align_button = new ModeButton ();
@@ -117,12 +125,6 @@ namespace Writer.Widgets {
                 insert_popover.add (insert_popover_content);
                 insert_popover.show_all ();
                 insert_popover.hide ();
-            
-            var indent_button = new ButtonGroup ();
-                var indent_more_button = new Image.from_icon_name ("format-indent-more-symbolic", Gtk.IconSize.BUTTON);
-                var indent_less_button = new Image.from_icon_name ("format-indent-less-symbolic", Gtk.IconSize.BUTTON);
-                indent_button.add (indent_less_button);
-                indent_button.add (indent_more_button);
 
             
             // Add Widgets
@@ -131,9 +133,9 @@ namespace Writer.Widgets {
             this.add (font_item);
             this.add (font_color_button);
             this.add (styles_item);
+            this.add (indent_button);
             this.add (align_item);
             this.add (insert_button);
-            this.add (indent_button);
             
             
             
