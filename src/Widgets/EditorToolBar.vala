@@ -71,6 +71,7 @@ namespace Writer.Widgets {
 
             font_color_button = new Gtk.ColorButton ();
                 font_color_button.use_alpha = false;
+                font_color_button.set_title ("Choose a Font Color");
                 
             var styles_item = new ToolItem ();
                 var styles_buttons = new ButtonGroup ();
