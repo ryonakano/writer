@@ -148,8 +148,7 @@ namespace Writer {
         public void preferences () {
             print ("Open preferences dialog\n");
         }
-        
-        
+           
         
         public static void main (string [] args) {
             var app = new Writer.WriterApp ();
