@@ -28,7 +28,7 @@ using Gdk;
 using Granite.Widgets;
 
 namespace Writer.Widgets {
-    public class EditorToolBar : Gtk.HeaderBar {
+    public class EditorToolBar : Gtk.Toolbar {
     
         private Editor editor;
         public FontButton font_button;
@@ -43,10 +43,10 @@ namespace Writer.Widgets {
         public Popover insert_popover;
     
         public EditorToolBar (Editor editor) {
+            this.get_style_context ().add_class ("writer-toolbar");
+            
             this.editor = editor;
             editor.cursor_moved.connect (cursor_moved);
-            
-            this.get_style_context ().add_class ("primary-toolbar");
     
             setup_ui ();
         }
@@ -64,6 +64,8 @@ namespace Writer.Widgets {
                 paragraph_combobox.append ("Numbered List", ("Numbered List"));
                 paragraph_combobox.append ("Two-Column", ("Two-Column"));
                 paragraph_combobox.set_active_id ("Paragraph");
+            var paragraph_item = new ToolItem ();
+                paragraph_item.add (paragraph_combobox);
                 
             var font_item = new ToolItem ();
                 font_button = new Gtk.FontButton ();
@@ -74,11 +76,14 @@ namespace Writer.Widgets {
             font_color_button = new Gtk.ColorButton ();
                 font_color_button.use_alpha = false;
                 font_color_button.set_title ("Choose a Font Color");
+
+            var font_color_item = new Gtk.ToolItem ();
+                font_color_item.add (font_color_button);
                 
             var styles_item = new ToolItem ();
                 var styles_buttons = new ButtonGroup ();
                     bold_button = new Gtk.ToggleButton ();
-                        bold_button.add (new Image.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.BUTTON));
+                        bold_button.add (new Image.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.MENU));
                         bold_button.focus_on_click = false;
                         styles_buttons.pack_start (bold_button);
                     italic_button = new Gtk.ToggleButton ();
@@ -97,13 +102,15 @@ namespace Writer.Widgets {
                 var indent_less_button = new Image.from_icon_name ("format-indent-less-symbolic", Gtk.IconSize.BUTTON);
                 indent_button.add (indent_more_button);
                 indent_button.add (indent_less_button);
+            var indent_item = new Gtk.ToolItem ();
+                indent_item.add (indent_button);
                 
             var align_item = new ToolItem ();
                 align_button = new ModeButton ();
-                    align_button.append (new Gtk.Button.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
-                    align_button.append (new Gtk.Button.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
-                    align_button.append (new Gtk.Button.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
-                    align_button.append (new Gtk.Button.from_icon_name ("format-justify-fill-symbolic", Gtk.IconSize.BUTTON));
+                    align_button.append (new Gtk.Image.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
+                    align_button.append (new Gtk.Image.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
+                    align_button.append (new Gtk.Image.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
+                    align_button.append (new Gtk.Image.from_icon_name ("format-justify-fill-symbolic", Gtk.IconSize.BUTTON));
                 align_item.add (align_button);
             
             var insert_button = new Gtk.Button.with_label ("Insert");
@@ -125,17 +132,27 @@ namespace Writer.Widgets {
                 insert_popover.add (insert_popover_content);
                 insert_popover.show_all ();
                 insert_popover.hide ();
-
+                
+            var insert_item = new Gtk.ToolItem ();
+                insert_item.add (insert_button);
+            
+            
+            //Set border_width on ToolItems
+            paragraph_item.border_width = 5;
+            font_item.border_width = 5;
+            font_color_item.border_width = 5;
+            styles_item.border_width = 5;
+            align_item.border_width = 5;
+            insert_item.border_width = 5;
             
             // Add Widgets
-            
-            this.add (paragraph_combobox);
+            this.add (paragraph_item);
             this.add (font_item);
-            this.add (font_color_button);
+            this.add (font_color_item);
             this.add (styles_item);
             this.add (indent_button);
             this.add (align_item);
-            this.add (insert_button);
+            this.add (insert_item);
             
             
             

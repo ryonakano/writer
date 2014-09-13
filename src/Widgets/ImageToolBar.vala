@@ -28,15 +28,13 @@ using Gdk;
 using Granite.Widgets;
 
 namespace Writer.Widgets {
-    public class ImageToolBar : Gtk.HeaderBar {
+    public class ImageToolBar : Gtk.Toolbar {
     
         private Editor editor;
         public ModeButton align_button;
     
         public ImageToolBar (Editor editor) {
             this.editor = editor;
-            
-            this.get_style_context ().add_class ("primary-toolbar");
 
             var wrap_combobox = new Gtk.ComboBoxText ();
                 wrap_combobox.append ("In line of text", ("In line of text"));
@@ -44,8 +42,12 @@ namespace Writer.Widgets {
                 wrap_combobox.append ("On the left", ("On the left"));
                 wrap_combobox.append ("On the right", ("On the right"));
                 wrap_combobox.set_active_id ("In line of text");
+            var wrap_item = new Gtk.ToolItem ();
+                wrap_item.add (wrap_combobox);
 
-            var lock_aspect_item = new Gtk.CheckButton.with_label ("Lock aspect ratio");
+            var lock_aspect_check = new Gtk.CheckButton.with_label ("Lock aspect ratio");
+            var lock_aspect_item = new Gtk.ToolItem ();
+                lock_aspect_item.add (lock_aspect_check);
                 
             var align_item = new ToolItem ();
                 align_button = new ModeButton ();
@@ -55,12 +57,16 @@ namespace Writer.Widgets {
                     align_button.append (new Gtk.Button.from_icon_name ("format-justify-fill-symbolic", Gtk.IconSize.BUTTON));
                 align_item.add (align_button);
                 
-            var edit_image_item = new Gtk.Button.with_label ("Edit Image");
+            var edit_image_button = new Gtk.Button.with_label ("Edit Image");
+            var edit_image_item = new Gtk.ToolItem ();
+                edit_image_item.add (edit_image_button);
 
-            var delete_image_item = new Gtk.Button.with_label ("Delete Image");
+            var delete_image_button = new Gtk.Button.with_label ("Delete Image");
+            var delete_image_item = new Gtk.ToolItem ();
+                delete_image_item.add (delete_image_button);
             
             
-            this.add (wrap_combobox);
+            this.add (wrap_item);
             this.add (lock_aspect_item);
             this.add (align_item);
             this.add (edit_image_item);

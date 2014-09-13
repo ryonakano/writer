@@ -28,7 +28,7 @@ using Gdk;
 using Granite.Widgets;
 
 namespace Writer.Widgets {
-    public class TableToolBar : Gtk.HeaderBar {
+    public class TableToolBar : Gtk.Toolbar {
     
         private Editor editor;
         public FontButton font_button;
@@ -40,11 +40,11 @@ namespace Writer.Widgets {
     
         public TableToolBar (Editor editor) {
             this.editor = editor;
-            
-            this.get_style_context ().add_class ("primary-toolbar");
 
             // TODO: Change to Gtk.PopOver
-            var table_properties_item = new Gtk.Button.with_label ("Table Properties");
+            var table_properties_button = new Gtk.Button.with_label ("Table Properties");
+            var table_properties_item = new Gtk.ToolItem ();
+                table_properties_item.add (table_properties_button);
 
             var font_item = new ToolItem ();
                 font_button = new Gtk.FontButton ();
@@ -56,8 +56,10 @@ namespace Writer.Widgets {
                 });
                 font_item.add (font_button);
 
-            var font_color_item = new Gtk.ColorButton ();
-                font_color_item.use_alpha = false;
+            var font_color_button = new Gtk.ColorButton ();
+                font_color_button.use_alpha = false;
+            var font_color_item = new Gtk.ToolItem ();
+                font_color_item.add (font_color_button);
                 
             var styles_item = new ToolItem ();
                 var styles_buttons = new ButtonGroup ();
@@ -84,9 +86,13 @@ namespace Writer.Widgets {
                     align_button.append (new Gtk.Button.from_icon_name ("format-justify-fill-symbolic", Gtk.IconSize.BUTTON));
                 align_item.add (align_button);
 
-            var add_table_item = new Gtk.Button.with_label ("Add");
+            var add_table_button = new Gtk.Button.with_label ("Add");
+            var add_table_item = new Gtk.ToolItem ();
+                add_table_item.add (add_table_button);
 
-            var delete_table_item = new Gtk.Button.with_label ("Delete");
+            var delete_table_button = new Gtk.Button.with_label ("Delete");
+            var delete_table_item = new Gtk.ToolItem ();
+                delete_table_item.add (delete_table_button);
             
             
             this.add (table_properties_item);

@@ -24,6 +24,7 @@ SOFTWARE.
 
 
 using Gtk;
+using Gdk;
 
 namespace Writer.Widgets {
     public class ToolBar : Gtk.Stack {
@@ -31,6 +32,7 @@ namespace Writer.Widgets {
         public EditorToolBar editor_toolbar;
         public ImageToolBar image_toolbar;
         public TableToolBar table_toolbar;
+        
     
         public ToolBar (Editor editor) {
             this.transition_type = Gtk.StackTransitionType.NONE;
