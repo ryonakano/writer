@@ -30,7 +30,7 @@ namespace Writer.Widgets {
     
         public ButtonGroup () {
             get_style_context ().add_class(Gtk.STYLE_CLASS_LINKED);
-            get_style_context ().add_class("raised"); //For Toolbars; from Granite
+            get_style_context ().add_class("raised"); //For Toolbars; taken from Granite
         }
     
     }

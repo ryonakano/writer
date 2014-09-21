@@ -97,13 +97,6 @@ namespace Writer.Widgets {
                         styles_buttons.pack_start (strikethrough_button);
                 styles_item.add (styles_buttons);
 
-            var indent_button = new ButtonGroup ();
-                var indent_more_button = new Image.from_icon_name ("format-indent-more-symbolic", Gtk.IconSize.BUTTON);
-                var indent_less_button = new Image.from_icon_name ("format-indent-less-symbolic", Gtk.IconSize.BUTTON);
-                indent_button.add (indent_more_button);
-                indent_button.add (indent_less_button);
-            var indent_item = new Gtk.ToolItem ();
-                indent_item.add (indent_button);
                 
             var align_item = new ToolItem ();
                 align_button = new ModeButton ();
@@ -112,6 +105,14 @@ namespace Writer.Widgets {
                     align_button.append (new Gtk.Image.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
                     align_button.append (new Gtk.Image.from_icon_name ("format-justify-fill-symbolic", Gtk.IconSize.BUTTON));
                 align_item.add (align_button);
+            
+            var indent_button = new ButtonGroup ();
+                var indent_more_button = new Button.from_icon_name ("format-indent-more-symbolic", Gtk.IconSize.BUTTON);
+                var indent_less_button = new Button.from_icon_name ("format-indent-less-symbolic", Gtk.IconSize.BUTTON);
+                indent_button.add (indent_more_button);
+                indent_button.add (indent_less_button);
+            var indent_item = new Gtk.ToolItem ();
+                indent_item.add (indent_button);
             
             var insert_button = new Gtk.Button.with_label ("Insert");
             insert_popover = new Gtk.Popover (insert_button);
@@ -143,6 +144,7 @@ namespace Writer.Widgets {
             font_color_item.border_width = 5;
             styles_item.border_width = 5;
             align_item.border_width = 5;
+            indent_item.border_width = 5;
             insert_item.border_width = 5;
             
             // Add Widgets
@@ -150,8 +152,8 @@ namespace Writer.Widgets {
             this.add (font_item);
             this.add (font_color_item);
             this.add (styles_item);
-            this.add (indent_item);
             this.add (align_item);
+            this.add (indent_item);
             this.add (insert_item);
             
             
