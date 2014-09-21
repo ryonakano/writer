@@ -39,6 +39,8 @@ namespace Writer.Utils {
                 border-bottom: 1px solid #DADADA;
             }
             
+            .writer-window .writer-toolbar 
+            
             .writer-window .editor-view {
                 background-image: linear-gradient(to bottom,
                                                   #F8F8F8,

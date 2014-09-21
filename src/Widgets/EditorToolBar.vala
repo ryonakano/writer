@@ -150,7 +150,7 @@ namespace Writer.Widgets {
             this.add (font_item);
             this.add (font_color_item);
             this.add (styles_item);
-            this.add (indent_button);
+            this.add (indent_item);
             this.add (align_item);
             this.add (insert_item);
             

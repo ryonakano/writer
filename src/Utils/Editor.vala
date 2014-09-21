@@ -42,6 +42,9 @@ namespace Writer {
             
             this.notify["cursor-position"].connect (cursor_moved_callback);
             this.insert_text.connect_after (text_inserted_callback);
+            
+            text_view.key_press_event.connect (key_press_callback);
+            text_view.pixels_below_lines = 20;
         }
         
         // Get a TextTagTable with all the default tags
@@ -168,6 +171,30 @@ namespace Writer {
         }
         
         
+        public void insert_line () {
+            TextIter insert_cursor = get_cursor ();
+            insert_line_at_iter (insert_cursor);
+        }
+        
+        public void insert_paragraph () {
+            TextIter cursor = get_cursor ();
+            insert_paragraph_at_iter (cursor);
+        }
+        
+        public void insert_line_at_iter (TextIter iter) {
+            //TODO
+            // Cursor does not move to next line
+            // Only happens when inserting at the end of the buffer
+            // Bug reported in GTK+
+            
+            insert (ref iter, "\u2028", -1);
+        }
+        
+        public void insert_paragraph_at_iter (TextIter iter) {
+            insert (ref iter, "\n", -1);
+        }
+        
+        
         
         /*
          * Utilities
@@ -213,26 +240,37 @@ namespace Writer {
         }
         
         private void text_inserted_callback (TextIter cursor, string new_text, int length) {
-            //TODO
-            // Bigger ranges of text
+            TextIter previous;
+            get_iter_at_offset (out previous, cursor.get_offset () - length);
             
-            if (length == 1) {
-                TextIter previous;
-                get_iter_at_offset (out previous, cursor.get_offset () - 1);
+            if (iter_has_style (previous, "bold"))
+                apply_tag_by_name ("bold", previous, cursor);
+            if (iter_has_style (previous, "italic"))
+                apply_tag_by_name ("italic", previous, cursor);
+            if (iter_has_style (previous, "underline"))
+                apply_tag_by_name ("underline", previous, cursor);
+            if (iter_has_style (previous, "strikethrough"))
+                apply_tag_by_name ("strikethrough", previous, cursor);
+            
+            
+            // Emit signals
+            text_inserted ();
+            cursor_moved ();
+        }
+        
+        private bool key_press_callback (EventKey event) {
+            if (Gdk.keyval_name (event.keyval) == "Return") {
+                ModifierType modifiers = Gtk.accelerator_get_default_mod_mask ();
                 
-                if (iter_has_style (previous, "bold"))
-                    apply_tag_by_name ("bold", previous, cursor);
-                if (iter_has_style (previous, "italic"))
-                    apply_tag_by_name ("italic", previous, cursor);
-                if (iter_has_style (previous, "underline"))
-                    apply_tag_by_name ("underline", previous, cursor);
-                if (iter_has_style (previous, "strikethrough"))
-                    apply_tag_by_name ("strikethrough", previous, cursor);
+                if ((event.state & modifiers) == Gdk.ModifierType.SHIFT_MASK)
+                    insert_line ();
+                else
+                    insert_paragraph ();
                 
-                
-                // Emit signals
-                text_inserted ();
-                cursor_moved ();
+                return true;
+            }
+            else {                
+                return false;
             }
         }
     
