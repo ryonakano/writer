@@ -127,7 +127,7 @@ namespace Writer {
         }
         
         public void set_justification (string align) {
-            get_selection_range ().set_justification (align);
+            get_paragraph (get_cursor ()).set_justification (align);
         }
         
         
@@ -196,6 +196,42 @@ namespace Writer {
         
         
         
+        
+        /*
+         * paragraphs
+         */
+        
+        // Moves iter to the start of the paragraph it is located in
+        public TextIter get_paragraph_start (TextIter iter) {
+            iter.backward_find_char ((char) => {
+                if (char.to_string () == "\n")
+                    return true;
+                else
+                    return false;
+            }, null);
+            return iter;
+        }
+        
+        // Moves iter to the end of the paragraph it is located in
+        public TextIter get_paragraph_end (TextIter iter) {
+            iter.forward_find_char ((char) => {
+                if (char.to_string () == "\n")
+                    return true;
+                else
+                    return false;
+            }, null);
+            return iter;
+        }
+        
+        public TextRange get_paragraph (TextIter iter) {
+            TextIter start = get_paragraph_start (iter);
+            TextIter end = get_paragraph_end (iter);
+            
+            return new TextRange (this, start, end);
+        }
+        
+        
+        
         /*
          * Utilities
          */
@@ -224,6 +260,12 @@ namespace Writer {
         public bool iter_has_style (TextIter iter, string name) {
             var tag = tag_table.lookup (name);
             return iter_has_tag (iter, tag);
+        }
+        
+        public TextIter copy_iter (TextIter iter) {
+            TextIter copy;
+            get_iter_at_offset (out copy, iter.get_offset ());
+            return copy;
         }
         
         
