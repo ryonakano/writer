@@ -232,6 +232,28 @@ namespace Writer {
         
         
         
+        
+        /*
+         * Search
+         */
+        
+        public void search (string text) {
+            if (text.length > 0)
+                search_string (text);
+            else
+                clear_search ();
+        }
+        
+        public void search_string (string text) {
+            print ("Searching for: %s\n", text);
+        }
+        
+        public void clear_search () {
+            print ("Clearing search");
+        }
+        
+        
+        
         /*
          * Utilities
          */

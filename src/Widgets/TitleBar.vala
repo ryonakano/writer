@@ -33,13 +33,14 @@ namespace Writer.Widgets {
         
         private WriterApp app;
         
+        private Button open_button;
         private Button save_button;
         private Button undo_button;
         private Button redo_button;
-        private Button search_button;
         private Gtk.MenuItem save_as_item;
         private Gtk.MenuItem save_file_item;
         private Gtk.MenuItem save_as_app_item;
+        private Gtk.SearchEntry search_field;
         
         public TitleBar (WriterApp app) {
         
@@ -50,11 +51,17 @@ namespace Writer.Widgets {
             this.get_style_context ().add_class ("primary-toolbar");
             
             //Make buttons
-            var open_button = new Gtk.Button.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR);
+            open_button = new Gtk.Button.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR);
             save_button = new Gtk.Button.from_icon_name ("document-save", Gtk.IconSize.LARGE_TOOLBAR);
             undo_button = new Gtk.Button.from_icon_name ("edit-undo", Gtk.IconSize.LARGE_TOOLBAR);
             redo_button = new Gtk.Button.from_icon_name ("edit-redo", Gtk.IconSize.LARGE_TOOLBAR);
-            search_button = new Gtk.Button.from_icon_name ("edit-find", Gtk.IconSize.LARGE_TOOLBAR);
+            
+            //Search Field
+            search_field = new Gtk.SearchEntry ();
+            search_field.search_changed.connect (() => {
+                app.search (search_field.text);
+            });
+            
             
             //Export menu
             var print_item = new Gtk.MenuItem.with_label ("Print");
@@ -87,14 +94,13 @@ namespace Writer.Widgets {
             this.pack_start (redo_button);
             this.pack_end (app_menu);
             this.pack_end (export_button);
-            this.pack_end (search_button);
+            this.pack_end (search_field);
             
             //Connect signals
             open_button.clicked.connect (app.open_file_dialog);
             save_button.clicked.connect (app.save);
             undo_button.clicked.connect (app.undo);
             redo_button.clicked.connect (app.redo);
-            search_button.clicked.connect (app.search);
             
             save_as_item.activate.connect (app.save_as);
             print_item.activate.connect (app.print_file);
@@ -111,7 +117,7 @@ namespace Writer.Widgets {
             save_button.sensitive = active;
             undo_button.sensitive = active;
             redo_button.sensitive = active;
-            search_button.sensitive = active;
+            search_field.sensitive = active;
             
             save_as_item.sensitive = active;
             save_file_item.sensitive = active;

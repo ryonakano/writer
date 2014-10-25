@@ -141,8 +141,9 @@ namespace Writer {
             print ("print\n");
         }
 
-        public void search () {
-            print ("search\n");
+        public void search (string text) {
+            // When tabs will be added, first get the active Editor
+            editor.search (text);
         }
         
         public void preferences () {
