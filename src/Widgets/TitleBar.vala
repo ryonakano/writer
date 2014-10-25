@@ -58,6 +58,7 @@ namespace Writer.Widgets {
             
             //Search Field
             search_field = new Gtk.SearchEntry ();
+            search_field.placeholder_text = "Search Current File";
             search_field.search_changed.connect (() => {
                 app.search (search_field.text);
             });
