@@ -34,7 +34,7 @@ namespace Writer {
     public class MainWindow : Gtk.Window {
         
         private WriterApp app;
-        private Editor editor;
+        private TextEditor editor;
         private Widgets.TitleBar title_bar;
         public Widgets.EditorView editor_view;
         private Widgets.WelcomeView welcome_view;
@@ -45,7 +45,7 @@ namespace Writer {
         private Zeitgeist.DataSourceRegistry registry;
 #endif
         
-        public MainWindow (WriterApp app, Editor editor) {
+        public MainWindow (WriterApp app, TextEditor editor) {
             this.app = app;
             this.editor = editor;
             this.set_application (app);

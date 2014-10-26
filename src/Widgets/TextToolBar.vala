@@ -28,9 +28,9 @@ using Gdk;
 using Granite.Widgets;
 
 namespace Writer.Widgets {
-    public class EditorToolBar : Gtk.Toolbar {
+    public class TextToolBar : Gtk.Toolbar {
     
-        private Editor editor;
+        private TextEditor editor;
         public FontButton font_button;
         public ColorButton font_color_button;
         public ToggleButton bold_button;
@@ -42,7 +42,7 @@ namespace Writer.Widgets {
         public ModeButton align_button;
         public Popover insert_popover;
     
-        public EditorToolBar (Editor editor) {
+        public TextToolBar (TextEditor editor) {
             this.get_style_context ().add_class ("writer-toolbar");
             
             this.editor = editor;

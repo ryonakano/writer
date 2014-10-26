@@ -28,10 +28,10 @@ using Gtk;
 namespace Writer.Widgets {
     public class EditorView : Box {
         
-        private Editor editor;
+        private TextEditor editor;
         public Widgets.ToolBar toolbar;
         
-        public EditorView (Editor editor) {
+        public EditorView (TextEditor editor) {
             Object (orientation: Gtk.Orientation.VERTICAL, spacing: 0);
             
             get_style_context ().add_class("editor-view");

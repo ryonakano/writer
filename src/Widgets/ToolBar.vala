@@ -29,25 +29,25 @@ using Gdk;
 namespace Writer.Widgets {
     public class ToolBar : Gtk.Stack {
     
-        public EditorToolBar editor_toolbar;
+        public TextToolBar text_toolbar;
         public ImageToolBar image_toolbar;
         public TableToolBar table_toolbar;
         
     
-        public ToolBar (Editor editor) {
+        public ToolBar (TextEditor editor) {
             this.transition_type = Gtk.StackTransitionType.NONE;
             
-            editor_toolbar = new EditorToolBar (editor);
+            text_toolbar = new TextToolBar (editor);
             image_toolbar = new ImageToolBar (editor);
             table_toolbar = new TableToolBar (editor);
             
-            add_named (editor_toolbar, "editor");
+            add_named (text_toolbar, "text");
             add_named (image_toolbar, "image");
             add_named (table_toolbar, "table");
         }
         
-        public void show_editor_toolbar () {
-            this.visible_child_name = "editor";
+        public void show_text_toolbar () {
+            this.visible_child_name = "text";
         }
         
         public void show_image_toolbar () {

@@ -29,14 +29,14 @@ using Pango;
 using Writer.Utils;
 
 namespace Writer {
-    public class Editor : TextBuffer {
+    public class TextEditor : TextBuffer {
     
         public TextView text_view;
         
         public signal void cursor_moved ();
         public signal void text_inserted ();
     
-        public Editor () {
+        public TextEditor () {
             setup_tagtable (this);
             text_view = new TextView.with_buffer (this);
             

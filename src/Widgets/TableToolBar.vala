@@ -30,7 +30,7 @@ using Granite.Widgets;
 namespace Writer.Widgets {
     public class TableToolBar : Gtk.Toolbar {
     
-        private Editor editor;
+        private TextEditor editor;
         public FontButton font_button;
         public ToggleButton bold_button;
         public ToggleButton italic_button;
@@ -38,7 +38,7 @@ namespace Writer.Widgets {
         public ToggleButton strikethrough_button;
         public ModeButton align_button;
     
-        public TableToolBar (Editor editor) {
+        public TableToolBar (TextEditor editor) {
             this.editor = editor;
 
             // TODO: Change to Gtk.PopOver

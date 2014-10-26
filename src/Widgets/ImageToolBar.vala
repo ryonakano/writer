@@ -30,10 +30,10 @@ using Granite.Widgets;
 namespace Writer.Widgets {
     public class ImageToolBar : Gtk.Toolbar {
     
-        private Editor editor;
+        private TextEditor editor;
         public ModeButton align_button;
     
-        public ImageToolBar (Editor editor) {
+        public ImageToolBar (TextEditor editor) {
             this.editor = editor;
 
             var wrap_combobox = new Gtk.ComboBoxText ();
