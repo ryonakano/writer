@@ -40,6 +40,7 @@ namespace Writer.Widgets {
         public Button indent_more_button;
         public Button indent_less_button;
         public ModeButton align_button;
+        public Gtk.SeparatorToolItem item_separator;
         public Popover insert_popover;
     
         public TextToolBar (TextEditor editor) {
@@ -114,6 +115,8 @@ namespace Writer.Widgets {
             var indent_item = new Gtk.ToolItem ();
                 indent_item.add (indent_button);
             
+            item_separator = new Gtk.SeparatorToolItem ();      
+
             var insert_button = new Gtk.Button.with_label ("Insert");
             insert_popover = new Gtk.Popover (insert_button);
             var insert_popover_content = new Gtk.Grid ();
@@ -154,6 +157,7 @@ namespace Writer.Widgets {
             this.add (styles_item);
             this.add (align_item);
             this.add (indent_item);
+            this.add (item_separator);
             this.add (insert_item);
             
             
