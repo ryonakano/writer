@@ -57,8 +57,8 @@ namespace Writer.Widgets {
             
             var paragraph_combobox = new Gtk.ComboBoxText ();
                 paragraph_combobox.append ("Paragraph", ("Paragraph"));
-                paragraph_combobox.append ("Heading One", ("Heading One"));
-                paragraph_combobox.append ("Heading Two", ("Heading Two"));
+                paragraph_combobox.append ("Title", ("Title"));
+                paragraph_combobox.append ("Subtitle", ("Subtitle"));
                 paragraph_combobox.append ("Bullet List", ("Bullet List"));
                 paragraph_combobox.append ("Dashed List", ("Dashed List"));
                 paragraph_combobox.append ("Numbered List", ("Numbered List"));
