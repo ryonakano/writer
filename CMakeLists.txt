@@ -25,7 +25,7 @@ add_definitions(-DGETTEXT_PACKAGE=\"${GETTEXT_PACKAGE}\")
 # Vala
 find_package (Vala REQUIRED)
 include (ValaVersion)
-ensure_vala_version ("0.22" MINIMUM)
+ensure_vala_version ("0.26" MINIMUM)
 include (ValaPrecompile)
 
 # Add 'make dist' command for creating release tarball
@@ -47,27 +47,28 @@ link_directories(${DEPS_LIBRARY_DIRS})
 
 find_package(Vala REQUIRED)
 include(ValaVersion)
-ensure_vala_version("0.18.0" MINIMUM)
+ensure_vala_version("0.26.0" MINIMUM)
 
 include(ValaPrecompile)
 vala_precompile(VALA_C
     src/Utils/Document.vala
-    src/Utils/Editor.vala
     src/Utils/FileChooser.vala
+    src/Utils/Stylesheet.vala
+    src/Utils/TextEditor.vala
     src/Utils/TextRange.vala
     src/Utils/ZeitgeistLogger.vala
     src/Widgets/ButtonGroup.vala
-    src/Widgets/EditorToolBar.vala
     src/Widgets/EditorView.vala
     src/Widgets/ImageToolBar.vala
     src/Widgets/TableChooser.vala
     src/Widgets/TableToolBar.vala
+    src/Widgets/TextToolBar.vala
     src/Widgets/TitleBar.vala
     src/Widgets/ToolBar.vala
     src/Widgets/WelcomeView.vala
     src/config.vala
-    src/Writer.vala
     src/MainWindow.vala
+    src/Writer.vala
 PACKAGES
     gtk+-3.0
     granite
