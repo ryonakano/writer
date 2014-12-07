@@ -115,16 +115,6 @@ namespace Writer {
             filech.close ();
         }
         
-        public void undo () {
-            print ("undo\n");
-            window.show_welcome ();
-        }
-        
-        public void redo () {
-            print ("redo\n");
-            window.show_editor ();
-        }
-        
         public void save () {
             print ("save\n");
         }
