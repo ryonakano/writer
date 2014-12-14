@@ -29,7 +29,7 @@ using Granite.Widgets;
 
 namespace Writer.Widgets {
     public class TextToolBar : Gtk.Toolbar {
-    
+
         private TextEditor editor;
         public FontButton font_button;
         public ColorButton font_color_button;
@@ -42,20 +42,20 @@ namespace Writer.Widgets {
         public ModeButton align_button;
         public Gtk.SeparatorToolItem item_separator;
         public Popover insert_popover;
-    
+
         public TextToolBar (TextEditor editor) {
             this.get_style_context ().add_class ("writer-toolbar");
-            
+
             this.editor = editor;
             editor.cursor_moved.connect (cursor_moved);
-    
+
             setup_ui ();
         }
-        
+
         public void setup_ui () {
-        
+
             // Make Widgets
-            
+
             var paragraph_combobox = new Gtk.ComboBoxText ();
                 paragraph_combobox.append ("Paragraph", ("Paragraph"));
                 paragraph_combobox.append ("Title", ("Title"));
@@ -67,7 +67,7 @@ namespace Writer.Widgets {
                 paragraph_combobox.set_active_id ("Paragraph");
             var paragraph_item = new ToolItem ();
                 paragraph_item.add (paragraph_combobox);
-                
+
             var font_item = new ToolItem ();
                 font_button = new Gtk.FontButton ();
                 font_button.use_font = true;
@@ -80,7 +80,7 @@ namespace Writer.Widgets {
 
             var font_color_item = new Gtk.ToolItem ();
                 font_color_item.add (font_color_button);
-                
+
             var styles_item = new ToolItem ();
                 var styles_buttons = new ButtonGroup ();
                     bold_button = new Gtk.ToggleButton ();
@@ -89,16 +89,19 @@ namespace Writer.Widgets {
                         styles_buttons.pack_start (bold_button);
                     italic_button = new Gtk.ToggleButton ();
                         italic_button.add (new Image.from_icon_name ("format-text-italic-symbolic", Gtk.IconSize.BUTTON));
+                        italic_button.focus_on_click = false;
                         styles_buttons.pack_start (italic_button);
                     underline_button = new Gtk.ToggleButton ();
                         underline_button.add (new Image.from_icon_name ("format-text-underline-symbolic", Gtk.IconSize.BUTTON));
+                        underline_button.focus_on_click = false;
                         styles_buttons.pack_start (underline_button);
                     strikethrough_button = new Gtk.ToggleButton ();
                         strikethrough_button.add (new Image.from_icon_name ("format-text-strikethrough-symbolic", Gtk.IconSize.BUTTON));
+                        strikethrough_button.focus_on_click = false;
                         styles_buttons.pack_start (strikethrough_button);
                 styles_item.add (styles_buttons);
 
-                
+
             var align_item = new ToolItem ();
                 align_button = new ModeButton ();
                     align_button.append (new Gtk.Image.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
@@ -106,7 +109,7 @@ namespace Writer.Widgets {
                     align_button.append (new Gtk.Image.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
                     align_button.append (new Gtk.Image.from_icon_name ("format-justify-fill-symbolic", Gtk.IconSize.BUTTON));
                 align_item.add (align_button);
-            
+
             var indent_button = new ButtonGroup ();
                 var indent_more_button = new Button.from_icon_name ("format-indent-more-symbolic", Gtk.IconSize.BUTTON);
                 var indent_less_button = new Button.from_icon_name ("format-indent-less-symbolic", Gtk.IconSize.BUTTON);
@@ -114,9 +117,9 @@ namespace Writer.Widgets {
                 indent_button.add (indent_less_button);
             var indent_item = new Gtk.ToolItem ();
                 indent_item.add (indent_button);
-            
+
             item_separator = new Gtk.SeparatorToolItem ();
-            
+
             //TODO: Set 'Insert' as title, not as Entry
             //       It looks like this isn't supported by GTK+
             //       WTF!?
@@ -129,8 +132,8 @@ namespace Writer.Widgets {
                 insert_menu.set_active (0);
             var insert_item = new Gtk.ToolItem ();
                 insert_item.add (insert_menu);
-            
-            
+
+
             //Set border_width on ToolItems
             paragraph_item.border_width = 5;
             font_item.border_width = 5;
@@ -139,7 +142,7 @@ namespace Writer.Widgets {
             align_item.border_width = 5;
             indent_item.border_width = 5;
             insert_item.border_width = 5;
-            
+
             // Add Widgets
             this.add (paragraph_item);
             this.add (font_item);
@@ -149,15 +152,15 @@ namespace Writer.Widgets {
             this.add (indent_item);
             this.add (item_separator);
             this.add (insert_item);
-            
-            
-            
+
+
+
             // Connect signals
-            
+
             align_button.mode_changed.connect (() => {
                 change_align (align_button.selected);
             });
-            
+
             font_button.font_set.connect (() => {
                 editor.set_font_from_string (font_button.get_font_name ());
             });
@@ -166,7 +169,7 @@ namespace Writer.Widgets {
                 font_color_button.get_color (out color);
                 editor.set_font_color (color);
             });
-            
+
             bold_button.button_press_event.connect ((event) => {
                 if (event.type == EventType.BUTTON_PRESS)
                     editor.toggle_style ("bold");
@@ -187,16 +190,16 @@ namespace Writer.Widgets {
                     editor.toggle_style ("strikethrough");
                 return false;
             });
-            
+
         }
-        
-        
-        
-        
+
+
+
+
         /*
          * Signal callbacks
          */
-        
+
         public void change_align (int index) {
             switch (index) {
                 case 1:
@@ -209,15 +212,15 @@ namespace Writer.Widgets {
                     editor.set_justification ("left"); break;
             }
         }
-         
+
         public void cursor_moved () {
             bold_button.active = editor.has_style ("bold");
             italic_button.active = editor.has_style ("italic");
             underline_button.active = editor.has_style ("underline");
             strikethrough_button.active = editor.has_style ("strikethrough");
-            
+
             align_button.selected = editor.get_justification_as_int ();
-            
+
             //TODO
             // Update font and color buttons
         }
