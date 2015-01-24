@@ -39,8 +39,6 @@ namespace Writer.Widgets {
             var wrap_combobox = new Gtk.ComboBoxText ();
                 wrap_combobox.append ("In line of text", ("In line of text"));
                 wrap_combobox.append ("Float above text", ("Float above text"));
-                wrap_combobox.append ("On the left", ("On the left"));
-                wrap_combobox.append ("On the right", ("On the right"));
                 wrap_combobox.set_active_id ("In line of text");
             var wrap_item = new Gtk.ToolItem ();
                 wrap_item.add (wrap_combobox);
@@ -54,7 +52,6 @@ namespace Writer.Widgets {
                     align_button.append (new Gtk.Button.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
                     align_button.append (new Gtk.Button.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
                     align_button.append (new Gtk.Button.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
-                    align_button.append (new Gtk.Button.from_icon_name ("format-justify-fill-symbolic", Gtk.IconSize.BUTTON));
                 align_item.add (align_button);
                 
             var edit_image_button = new Gtk.Button.with_label ("Edit Image");
@@ -83,8 +80,6 @@ namespace Writer.Widgets {
                     editor.set_justification ("center"); break;
                 case 2:
                     editor.set_justification ("right"); break;
-                case 3:
-                    editor.set_justification ("fill"); break;
                 default:
                     editor.set_justification ("left"); break;
             }
