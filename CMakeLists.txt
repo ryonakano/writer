@@ -51,6 +51,7 @@ ensure_vala_version("0.26.0" MINIMUM)
 
 include(ValaPrecompile)
 vala_precompile(VALA_C
+    BugFixAchive.vala
     src/Utils/Document.vala
     src/Utils/FileChooser.vala
     src/Utils/Stylesheet.vala
