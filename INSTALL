@@ -1,4 +1,4 @@
-                               Compile and Run                                    
+                               Compile and Run
 --------------------------------------------------------------------------------
 
 • Build and run Writer
@@ -9,10 +9,15 @@
   mkdir install; cd install
   cmake .. -DCMAKE_INSTALL_PREFIX=/usr./
   make
+  sudo make install
   ./writer
+
+• Dependencies
+
+  sudo apt-get build-dep scratch-text-editor
+
 
 • Bugs
 
   If you find bugs in this installation guide or in Writer itself, please report them at
   https://launchpad.net/writer/+filebug
-
