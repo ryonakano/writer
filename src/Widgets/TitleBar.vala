@@ -37,7 +37,6 @@ namespace Writer.Widgets {
         private Button save_button;
         private Button revert_button;
         private Button print_button;
-        private Gtk.MenuItem save_file_item;
         private Gtk.MenuItem save_as_item;
         private Gtk.SearchEntry search_field;
 
@@ -53,7 +52,7 @@ namespace Writer.Widgets {
             open_button = new Gtk.Button.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR);
             save_button = new Gtk.Button.from_icon_name ("document-save", Gtk.IconSize.LARGE_TOOLBAR);
             revert_button = new Gtk.Button.from_icon_name ("document-revert", Gtk.IconSize.LARGE_TOOLBAR);
-            print_button = new Gtk.Button.from_icon_name ("document-print", Gtk.IconSize.LARGE_TOOLBAR);
+            print_button = new Gtk.Button.from_icon_name ("document-export", Gtk.IconSize.LARGE_TOOLBAR);
 
             //Search Field
             search_field = new Gtk.SearchEntry ();
@@ -63,13 +62,9 @@ namespace Writer.Widgets {
             });
 
             //AppMenu
-            var new_file_item = new Gtk.MenuItem.with_label ("New");
-            var open_file_item = new Gtk.MenuItem.with_label ("Open");
-            save_file_item = new Gtk.MenuItem.with_label ("Save");
             save_as_item = new Gtk.MenuItem.with_label ("Save As");
             var preferences_item = new Gtk.MenuItem.with_label ("Preferences");
             var app_menu_menu = new Gtk.Menu ();
-                app_menu_menu.add (save_file_item);
                 app_menu_menu.add (save_as_item);
                 app_menu_menu.add (new Gtk.SeparatorMenuItem ());
                 app_menu_menu.add (preferences_item);
@@ -89,8 +84,6 @@ namespace Writer.Widgets {
             revert_button.clicked.connect (app.revert);
             print_button.clicked.connect (app.print_file);
 
-            new_file_item.activate.connect (app.new_file);
-            save_file_item.activate.connect (app.save);
             save_as_item.activate.connect (app.save);
             preferences_item.activate.connect (app.preferences);
         }
@@ -103,7 +96,6 @@ namespace Writer.Widgets {
             search_field.sensitive = active;
 
             save_as_item.sensitive = active;
-            save_file_item.sensitive = active;
         }
     }
 }
