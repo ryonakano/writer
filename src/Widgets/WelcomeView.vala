@@ -31,12 +31,12 @@ namespace Writer.Widgets {
         private WriterApp app;
         
         public WelcomeView (WriterApp app) {
-            base ("No Documents Open", "Open a saved file or create a new one to begin!");
+            base ("No Documents Open", "Open a document to begin editing.");
             
             this.app = app;
             
-            this.append ("document-new", "New File", "Create a new empty file.");
-            this.append ("document-open", "Open File", "Open a saved file.");
+            this.append ("document-new", "New File", "Create a new document.");
+            this.append ("document-open", "Open File", "Open a saved document.");
             
             this.activated.connect ((index) => {
                 // TODO
