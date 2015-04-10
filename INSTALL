@@ -7,7 +7,7 @@
   bzr branch lp:writer
   cd writer
   mkdir install; cd install
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr./
   make
   ./writer
 
