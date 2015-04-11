@@ -74,8 +74,8 @@ namespace Writer.Widgets {
             this.pack_start (open_button);
             this.pack_start (save_button);
             this.pack_start (revert_button);
-            this.pack_end (app_menu);
             this.pack_end (print_button);
+            this.pack_end (app_menu);
             this.pack_end (search_field);
 
             //Connect signals

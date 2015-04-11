@@ -54,7 +54,7 @@ namespace Writer.Widgets {
                     align_button.append (new Gtk.Button.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
                 align_item.add (align_button);
                 
-            var edit_image_button = new Gtk.Button.with_label ("Edit Image");
+            var edit_image_button = new Gtk.Button.with_label ("Crop");
             var edit_image_item = new Gtk.ToolItem ();
                 edit_image_item.add (edit_image_button);
 

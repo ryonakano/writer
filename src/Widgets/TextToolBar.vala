@@ -61,7 +61,6 @@ namespace Writer.Widgets {
                 paragraph_combobox.append ("Title", ("Title"));
                 paragraph_combobox.append ("Subtitle", ("Subtitle"));
                 paragraph_combobox.append ("Bullet List", ("Bullet List"));
-                paragraph_combobox.append ("Dashed List", ("Dashed List"));
                 paragraph_combobox.append ("Numbered List", ("Numbered List"));
                 paragraph_combobox.append ("Two-Column", ("Two-Column"));
                 paragraph_combobox.set_active_id ("Paragraph");
@@ -122,7 +121,7 @@ namespace Writer.Widgets {
 
             //TODO: Set 'Insert' as title, not as Entry
             //       It looks like this isn't supported by GTK+
-            //       WTF!?
+            //       yet.
             var insert_menu = new Gtk.ComboBoxText ();
                 insert_menu.append_text ("Insert");
                 insert_menu.append_text ("Comment");
@@ -154,9 +153,7 @@ namespace Writer.Widgets {
             this.add (insert_item);
 
 
-
             // Connect signals
-
             align_button.mode_changed.connect (() => {
                 change_align (align_button.selected);
             });
@@ -192,8 +189,6 @@ namespace Writer.Widgets {
             });
 
         }
-
-
 
 
         /*
