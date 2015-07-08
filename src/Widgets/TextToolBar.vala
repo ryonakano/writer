@@ -41,7 +41,6 @@ namespace Writer.Widgets {
         public Button indent_less_button;
         public ModeButton align_button;
         public Gtk.SeparatorToolItem item_separator;
-        public Popover insert_popover;
 
         public TextToolBar (TextEditor editor) {
             this.get_style_context ().add_class ("writer-toolbar");
@@ -119,19 +118,17 @@ namespace Writer.Widgets {
 
             item_separator = new Gtk.SeparatorToolItem ();
 
-            //TODO: Set 'Insert' as title, not as Entry
-            //       It looks like this isn't supported by GTK+
-            //       yet.
-            var insert_menu = new Gtk.ComboBoxText ();
-                insert_menu.append_text ("Insert");
-                insert_menu.append_text ("Comment");
-                insert_menu.append_text ("Link");
-                insert_menu.append_text ("Picture");
-                insert_menu.append_text ("Table");
-                insert_menu.set_active (0);
+            var insert_button = new ButtonGroup ();
+                var insert_comment_button = new Button.from_icon_name ("insert-text-symbolic", Gtk.IconSize.BUTTON);
+                var insert_link_button = new Button.from_icon_name ("insert-link-symbolic", Gtk.IconSize.BUTTON);
+                var insert_image_button = new Button.from_icon_name ("insert-image-symbolic", Gtk.IconSize.BUTTON);
+                var insert_table_button = new Button.from_icon_name ("insert-object-symbolic", Gtk.IconSize.BUTTON);
+                insert_button.add (insert_comment_button);
+                insert_button.add (insert_link_button);
+                insert_button.add (insert_image_button);
+                insert_button.add (insert_table_button);
             var insert_item = new Gtk.ToolItem ();
-                insert_item.add (insert_menu);
-
+                insert_item.add (insert_button);
 
             //Set border_width on ToolItems
             paragraph_item.border_width = 5;
