@@ -7,7 +7,7 @@
   bzr branch lp:writer
   cd writer
   mkdir install; cd install
-  cmake .. -DCMAKE_INSTALL_PREFIX=/usr./
+  cmake .. -DCMAKE_INSTALL_PREFIX=/usr/
   make
   sudo make install
   ./writer
@@ -16,6 +16,13 @@
 
   sudo apt-get build-dep scratch-text-editor
 
+OR
+
+ - libgtk-3.0-dev
+ - libgtksourceview-3.0-dev
+ - libgranite >= 0.3.0
+ - libgconf-2.0-dev
+ - libzeitgeist-2.0
 
 • Bugs
 
