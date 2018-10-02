@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=Writer
+GenericName=Word Processor
+Comment=Create simple and beautiful documents
+Categories=Office;WordProcessor;
+Exec=writer %U
+Icon=writer
+Terminal=false
+Type=Application

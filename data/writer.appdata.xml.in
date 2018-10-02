@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2018 Ryo Nakano <ryonakaknock3@gmail.com> -->
+<component type="desktop">
+  <id>writer</id>
+  <metadata_license>CC0</metadata_license>
+  <project_license>GPL-3.0</project_license>
+  <name>Writer</name>
+  <summary>Create simple and beautiful documents</summary>
+  <description>
+    <p>
+      Writer is a word processor designed for elementary OS that lets you create simple and beautiful documents with ease.
+    </p>
+  </description>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/ryonakano/writer/master/data/Screenshot.png</image>
+    </screenshot>
+  </screenshots>
+
+  <developer_name>Ryo Nakano</developer_name>
+  <url type="homepage">https://github.com/ryonakano/writer</url>
+  <url type="bugtracker">https://github.com/ryonakano/writer/issues</url>
+  
+  <custom>
+    <value key="x-appcenter-color-primary">#50a4f4</value>
+    <value key="x-appcenter-color-primary-text">#fafafa</value>
+  </custom>
+</component>

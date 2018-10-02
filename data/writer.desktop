@@ -1,9 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=writer
-Comment=A super-simple word processor for elementary
-GenericName=Word Processor
-Exec=/usr/bin/writer %U
-Icon=office-document
-Terminal=false
-Categories=development;Office;WordProcessor;
