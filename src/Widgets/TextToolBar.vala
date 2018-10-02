@@ -138,12 +138,12 @@ namespace Writer.Widgets {
                 change_align (align_button.selected);
             });
             font_button.font_set.connect (() => {
-                editor.set_font_from_string (font_button.get_font_name ());
+                editor.set_font_from_string (font_button.font);
             });
             font_color_button.color_set.connect (() => {
-                Gdk.Color color;
-                font_color_button.get_color (out color);
-                editor.set_font_color (color);
+                var rgba = Gdk.RGBA ();
+                rgba = font_color_button.rgba;
+                editor.set_font_color (rgba);
             });
             bold_button.button_press_event.connect ((event) => {
                 if (event.type == EventType.BUTTON_PRESS)

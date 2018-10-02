@@ -42,7 +42,7 @@ namespace Writer.Widgets {
             font_button.use_font = true;
             font_button.use_size = true;
             font_button.font_set.connect (() => {
-                unowned string name = font_button.get_font_name ();
+                string name = font_button.font;
                 stdout.printf ("Selected font: %s\n", name);
             });
             font_item.add (font_button);

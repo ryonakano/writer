@@ -85,7 +85,7 @@ namespace Writer.Utils {
 
         // Check if the range wraps the given tag, i.e. if the tag begins and ends within the range
         public bool wraps_tag (TextTag tag) {
-            if ( (!start.has_tag (tag) || start.begins_tag (tag)) &&
+            if ( (!start.has_tag (tag) || start.starts_tag (tag)) &&
                  (!end.has_tag (tag) || end.ends_tag (tag))       &&
                  (contains_tag (tag)) ) {
                 return true;
@@ -105,7 +105,7 @@ namespace Writer.Utils {
         public bool wraps_tag_exact (TextTag tag) {
             var range = new TextRange (buffer, get_iter_at_offset (start_offset + 1), get_iter_at_offset (end_offset - 1));
 
-            if ( (!start.has_tag (tag) || start.begins_tag (tag)) &&
+            if ( (!start.has_tag (tag) || start.starts_tag (tag)) &&
                  (!end.has_tag (tag) || end.ends_tag (tag))       &&
                  (range.has_tag (tag))
                ) {
@@ -124,7 +124,7 @@ namespace Writer.Utils {
 
         // Check if the range wraps the tag, with the bounds beginning and ending the tag
         public bool wraps_tag_with_bounds (TextTag tag) {
-            if ( (start.begins_tag (tag)) &&
+            if ( (start.starts_tag (tag)) &&
                  (end.ends_tag (tag))     &&
                  (has_tag (tag))
                ) {
@@ -258,16 +258,16 @@ namespace Writer.Utils {
             apply_style (font);
         }
 
-        public void set_font_color (Gdk.Color color) {
-            var name = color.to_string ();
+        public void set_font_color (Gdk.RGBA rgba) {
+            var name = rgba.to_string ();
             set_font_color_from_string (name);
         }
 
-        public void set_font_color_from_string (string color) {
-            if (buffer.tag_table.lookup (color) == null)
-                buffer.create_tag (color, "foreground", color);
+        public void set_font_color_from_string (string rgba) {
+            if (buffer.tag_table.lookup (rgba) == null)
+                buffer.create_tag (rgba, "foreground", rgba);
 
-            apply_style (color);
+            apply_style (rgba);
         }
 
 

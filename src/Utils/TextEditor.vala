@@ -166,12 +166,12 @@ namespace Writer {
         }
 
 
-        public void set_font_color (Gdk.Color color) {
-            get_selection_range ().set_font_color (color);
+        public void set_font_color (Gdk.RGBA rgba) {
+            get_selection_range ().set_font_color (rgba);
         }
 
-        public void set_font_color_from_string (string color) {
-            get_selection_range ().set_font_color_from_string (color);
+        public void set_font_color_from_string (string rgba) {
+            get_selection_range ().set_font_color_from_string (rgba);
         }
 
 
@@ -302,7 +302,7 @@ namespace Writer {
         }
 
         public bool iter_has_tag (TextIter iter, TextTag tag) {
-            return iter.has_tag (tag) || iter.begins_tag (tag) || iter.ends_tag (tag);
+            return iter.has_tag (tag) || iter.starts_tag (tag) || iter.ends_tag (tag);
         }
 
         public bool iter_has_style (TextIter iter, string name) {
