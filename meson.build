@@ -1,4 +1,4 @@
-project('writer', 'vala', 'c')
+project('com.github.ryonakano.writer', 'vala', 'c')
 
 i18n = import('i18n')
 add_global_arguments(

@@ -26,7 +26,7 @@ namespace Writer.Utils {
 
         Zeitgeist.Log zg_log = new Zeitgeist.Log();
 
-        public string actor = "application://writer.desktop";
+        public string actor = "application://com.github.ryonakano.writer.desktop";
         public string event_manifestation = Zeitgeist.ZG.USER_ACTIVITY;
 
         public void open_insert (string? uri, string mimetype) {

@@ -23,7 +23,7 @@ namespace Writer {
         private TextEditor editor;
         
         construct {
-            application_id = "writer";
+            application_id = "com.github.ryonakano.writer";
         }
         
         //the application started
