@@ -24,7 +24,7 @@ SOFTWARE.
 
 namespace Writer {
     
-    public class WriterApp : Granite.Application {
+    public class WriterApp : Gtk.Application {
         
         private MainWindow window;
         private TextEditor editor;
