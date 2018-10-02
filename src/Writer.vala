@@ -22,8 +22,6 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ***/
 
-using Granite.Services;
-
 namespace Writer {
     
     public class WriterApp : Granite.Application {
@@ -32,47 +30,7 @@ namespace Writer {
         private TextEditor editor;
         
         construct {
-            program_name = "Writer";
-            exec_name = "writer";
-            
-            build_data_dir = Constants.DATADIR;
-            build_pkg_data_dir = Constants.PKGDATADIR;
-            build_release_name = Constants.RELEASE_NAME;
-            build_version = Constants.VERSION;
-            build_version_info = Constants.VERSION_INFO;
-            
-            app_copyright = "2014";
-            app_years = "2014";
-            app_icon = "office-document";
-            app_launcher = "writer.desktop";
-            application_id = "net.launchpad.writer";
-            
-            main_url = "https://launchpad.net/writer";
-            bug_url = "https://bugs.launchpad.net/writer";
-            help_url = "https://answers.launchpad.net/writer";
-            translate_url = "https://translations.launchpad.net/writer";
-            
-            about_authors = {
-                "Tuur Dutoit <tuur.dutoit@live.nl>",
-                "Anthony Huben <harp37@gmail.com>"
-            };
-            about_documenters = {
-                "Tuur Dutoit <tuur.dutoit@live.nl>"
-            };
-            about_artists = {
-                "Caleb 'spiceofdesign' Riley",
-                "Anthony Huben <harp37@gmail.com>",
-                "Tuur Dutoit <tuur.dutoit@live.nl>"
-            };
-            about_comments = "Word Processor";
-            about_translators = "Launchpad Translators";
-            about_license = "MIT";
-            about_license_type = Gtk.License.MIT_X11;
-        }
-        
-        public WriterApp () {
-            Logger.initialize ("Writer");
-            Logger.DisplayLevel = LogLevel.DEBUG;   
+            application_id = "writer";
         }
         
         //the application started

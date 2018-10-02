@@ -65,10 +65,14 @@ namespace Writer.Widgets {
             save_as_item = new Gtk.MenuItem.with_label ("Save As");
             var preferences_item = new Gtk.MenuItem.with_label ("Preferences");
             var app_menu_menu = new Gtk.Menu ();
-                app_menu_menu.add (save_as_item);
-                app_menu_menu.add (new Gtk.SeparatorMenuItem ());
-                app_menu_menu.add (preferences_item);
-            var app_menu = app.create_appmenu (app_menu_menu);
+            app_menu_menu.add (save_as_item);
+            app_menu_menu.add (new Gtk.SeparatorMenuItem ());
+            app_menu_menu.add (preferences_item);
+            var app_menu = new Gtk.MenuButton ();
+            app_menu.set_popup (app_menu_menu);
+            app_menu.set_image (new Gtk.Image.from_icon_name ("open-menu", Gtk.IconSize.LARGE_TOOLBAR));
+            app_menu.tooltip_text = _("Preferences");
+            app_menu_menu.show_all ();
 
             //Add buttons to TitleBar
             this.pack_start (open_button);
