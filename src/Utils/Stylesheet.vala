@@ -20,25 +20,10 @@ namespace Writer.Utils {
     public void add_stylesheet () {
     
         string stylesheet = """
-            .writer-window .writer-toolbar {
-                padding: 3px;
-                background: linear-gradient(to bottom,
-                                            #F8F8F8,
-                                            #F8F8F8 65%,
-                                            #F0F0F0
-                                            );
-                border: none;
-                border-bottom: 1px solid #DADADA;
-            }
-            
-            .writer-window .writer-toolbar 
-            
-            .writer-window .editor-view {
-                background-image: linear-gradient(to bottom,
-                                                  #F8F8F8,
-                                                  #F0F0F0
-                                                  );
-            }
+            .writer-toolbar {
+                background: @bg_color;
+                border-radius: 0;
+            }            
         """;
     
     

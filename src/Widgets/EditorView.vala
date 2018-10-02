@@ -26,8 +26,6 @@ namespace Writer.Widgets {
         public EditorView (TextEditor editor) {
             Object (orientation: Gtk.Orientation.VERTICAL, spacing: 0);
             
-            get_style_context ().add_class("editor-view");
-            
             this.editor = editor;
             //editor.text_view.set_border_width (20);
             editor.text_view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
