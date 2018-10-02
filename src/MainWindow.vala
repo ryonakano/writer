@@ -100,15 +100,7 @@ namespace Writer {
         }
 
         public void set_title_for_document (Utils.Document doc) {
-            var home_dir = Environment.get_home_dir ();
-            var path = Path.get_dirname (doc.file.get_uri ()).replace (home_dir, "~");
-            path = path.replace ("file://", "");
-
-            if ("trash://" in path)
-                path = "Trash";
-
-            path = Uri.unescape_string (path);
-            title_bar.title = doc.file.get_basename () + " (%s)".printf(path);
+            title_bar.title = doc.file.get_basename () + " — " + "Writer";
         }
     }
 }
