@@ -22,7 +22,6 @@ using Writer.Utils;
 
 namespace Writer {
     public class TextEditor : TextBuffer {
-
         public TextView text_view;
         public bool style_bold;
         public bool style_italic;
@@ -51,7 +50,6 @@ namespace Writer {
 
         // Get a TextTagTable with all the default tags
         private void setup_tagtable (TextBuffer buffer) {
-
             buffer.create_tag ("bold", "weight", 700);
             buffer.create_tag ("italic", "style", Pango.Style.ITALIC);
             buffer.create_tag ("underline", "underline", Pango.Underline.SINGLE);
@@ -61,7 +59,6 @@ namespace Writer {
             buffer.create_tag ("align-center", "justification", Gtk.Justification.CENTER);
             buffer.create_tag ("align-right", "justification", Gtk.Justification.RIGHT);
             buffer.create_tag ("align-fill", "justification", Gtk.Justification.FILL);
-
         }
 
 
@@ -211,7 +208,7 @@ namespace Writer {
         }
 
         public void insert_line_at_iter (TextIter iter) {
-            //TODO
+            // TODO
             // Cursor does not move to next line
             // Only happens when inserting at the end of the buffer
             // Bug reported in GTK+
@@ -381,6 +378,5 @@ namespace Writer {
 
             return false;
         }
-
     }
 }

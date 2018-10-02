@@ -19,11 +19,9 @@ using Gtk;
 
 namespace Writer.Widgets {
     public class ButtonGroup : Gtk.Box {
-    
         public ButtonGroup () {
             get_style_context ().add_class(Gtk.STYLE_CLASS_LINKED);
             get_style_context ().add_class("raised"); //For Toolbars; taken from Granite
         }
-    
     }
 }

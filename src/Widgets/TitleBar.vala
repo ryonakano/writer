@@ -22,9 +22,7 @@ using Granite.Widgets;
 
 namespace Writer.Widgets {
     public class TitleBar : HeaderBar {
-
         private WriterApp app;
-
         private Button open_button;
         private Button save_button;
         private Button revert_button;
@@ -33,27 +31,22 @@ namespace Writer.Widgets {
         private Gtk.SearchEntry search_field;
 
         public TitleBar (WriterApp app) {
-
-            //Basics
             this.app = app;
             this.title = "Writer";
             this.set_show_close_button (true);
             this.get_style_context ().add_class ("primary-toolbar");
 
-            //Make buttons
             open_button = new Gtk.Button.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR);
             save_button = new Gtk.Button.from_icon_name ("document-save", Gtk.IconSize.LARGE_TOOLBAR);
             revert_button = new Gtk.Button.from_icon_name ("document-revert", Gtk.IconSize.LARGE_TOOLBAR);
             print_button = new Gtk.Button.from_icon_name ("document-export", Gtk.IconSize.LARGE_TOOLBAR);
 
-            //Search Field
             search_field = new Gtk.SearchEntry ();
             search_field.placeholder_text = "Find";
             search_field.search_changed.connect (() => {
                 app.search (search_field.text);
             });
 
-            //AppMenu
             save_as_item = new Gtk.MenuItem.with_label ("Save As");
             var preferences_item = new Gtk.MenuItem.with_label ("Preferences");
             var app_menu_menu = new Gtk.Menu ();
@@ -66,7 +59,6 @@ namespace Writer.Widgets {
             app_menu.tooltip_text = _("Preferences");
             app_menu_menu.show_all ();
 
-            //Add buttons to TitleBar
             this.pack_start (open_button);
             this.pack_start (save_button);
             this.pack_start (revert_button);
@@ -74,7 +66,6 @@ namespace Writer.Widgets {
             this.pack_end (app_menu);
             this.pack_end (search_field);
 
-            //Connect signals
             open_button.clicked.connect (app.open_file_dialog);
             save_button.clicked.connect (app.save);
             revert_button.clicked.connect (app.revert);
@@ -83,7 +74,6 @@ namespace Writer.Widgets {
             save_as_item.activate.connect (app.save);
             preferences_item.activate.connect (app.preferences);
         }
-
 
         public void set_active (bool active) {
             save_button.sensitive = active;

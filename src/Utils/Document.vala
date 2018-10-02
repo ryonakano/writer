@@ -17,22 +17,21 @@
 
 namespace Writer.Utils {
     public class Document : Object {
-        
         public string uri;
         public string path;
         public GLib.File file;
-    
+
         public Document (string uri) {
             this.uri = uri;
             this.file = GLib.File.new_for_uri (uri);
             this.path = file.get_path ();
         }
-        
+
         public string read_all () {
             try {
                 string content;
                 FileUtils.get_contents (path, out content);
-                
+
                 return content;
             }
             catch (Error err) {
@@ -40,6 +39,5 @@ namespace Writer.Utils {
                 return "";
             }
         }
-    
     }
 }

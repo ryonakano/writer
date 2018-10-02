@@ -21,7 +21,6 @@ using Granite.Widgets;
 
 namespace Writer.Widgets {
     public class TextToolBar : Gtk.Toolbar {
-
         private TextEditor editor;
         public FontButton font_button;
         public ColorButton font_color_button;
@@ -44,85 +43,80 @@ namespace Writer.Widgets {
         }
 
         public void setup_ui () {
-
-            // Make Widgets
-
             var paragraph_combobox = new Gtk.ComboBoxText ();
-                paragraph_combobox.append ("Paragraph", ("Paragraph"));
-                paragraph_combobox.append ("Title", ("Title"));
-                paragraph_combobox.append ("Subtitle", ("Subtitle"));
-                paragraph_combobox.append ("Bullet List", ("Bullet List"));
-                paragraph_combobox.append ("Numbered List", ("Numbered List"));
-                paragraph_combobox.append ("Two-Column", ("Two-Column"));
-                paragraph_combobox.set_active_id ("Paragraph");
+            paragraph_combobox.append ("Paragraph", ("Paragraph"));
+            paragraph_combobox.append ("Title", ("Title"));
+            paragraph_combobox.append ("Subtitle", ("Subtitle"));
+            paragraph_combobox.append ("Bullet List", ("Bullet List"));
+            paragraph_combobox.append ("Numbered List", ("Numbered List"));
+            paragraph_combobox.append ("Two-Column", ("Two-Column"));
+            paragraph_combobox.set_active_id ("Paragraph");
             var paragraph_item = new ToolItem ();
-                paragraph_item.add (paragraph_combobox);
+            paragraph_item.add (paragraph_combobox);
 
             var font_item = new ToolItem ();
-                font_button = new Gtk.FontButton ();
-                font_button.use_font = true;
-                font_button.use_size = true;
-                font_item.add (font_button);
+            font_button = new Gtk.FontButton ();
+            font_button.use_font = true;
+            font_button.use_size = true;
+            font_item.add (font_button);
 
             font_color_button = new Gtk.ColorButton ();
-                font_color_button.use_alpha = false;
-                font_color_button.set_title ("Choose a Font Color");
+            font_color_button.use_alpha = false;
+            font_color_button.set_title ("Choose a Font Color");
 
             var font_color_item = new Gtk.ToolItem ();
-                font_color_item.add (font_color_button);
+            font_color_item.add (font_color_button);
 
             var styles_item = new ToolItem ();
-                var styles_buttons = new ButtonGroup ();
-                    bold_button = new Gtk.ToggleButton ();
-                        bold_button.add (new Image.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.MENU));
-                        bold_button.focus_on_click = false;
-                        styles_buttons.pack_start (bold_button);
-                    italic_button = new Gtk.ToggleButton ();
-                        italic_button.add (new Image.from_icon_name ("format-text-italic-symbolic", Gtk.IconSize.BUTTON));
-                        italic_button.focus_on_click = false;
-                        styles_buttons.pack_start (italic_button);
-                    underline_button = new Gtk.ToggleButton ();
-                        underline_button.add (new Image.from_icon_name ("format-text-underline-symbolic", Gtk.IconSize.BUTTON));
-                        underline_button.focus_on_click = false;
-                        styles_buttons.pack_start (underline_button);
-                    strikethrough_button = new Gtk.ToggleButton ();
-                        strikethrough_button.add (new Image.from_icon_name ("format-text-strikethrough-symbolic", Gtk.IconSize.BUTTON));
-                        strikethrough_button.focus_on_click = false;
-                        styles_buttons.pack_start (strikethrough_button);
-                styles_item.add (styles_buttons);
-
+            var styles_buttons = new ButtonGroup ();
+            bold_button = new Gtk.ToggleButton ();
+            bold_button.add (new Image.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.MENU));
+            bold_button.focus_on_click = false;
+            styles_buttons.pack_start (bold_button);
+            italic_button = new Gtk.ToggleButton ();
+            italic_button.add (new Image.from_icon_name ("format-text-italic-symbolic", Gtk.IconSize.BUTTON));
+            italic_button.focus_on_click = false;
+            styles_buttons.pack_start (italic_button);
+            underline_button = new Gtk.ToggleButton ();
+            underline_button.add (new Image.from_icon_name ("format-text-underline-symbolic", Gtk.IconSize.BUTTON));
+            underline_button.focus_on_click = false;
+            styles_buttons.pack_start (underline_button);
+            strikethrough_button = new Gtk.ToggleButton ();
+            strikethrough_button.add (new Image.from_icon_name ("format-text-strikethrough-symbolic", Gtk.IconSize.BUTTON));
+            strikethrough_button.focus_on_click = false;
+            styles_buttons.pack_start (strikethrough_button);
+            styles_item.add (styles_buttons);
 
             var align_item = new ToolItem ();
-                align_button = new ModeButton ();
-                    align_button.append (new Gtk.Image.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
-                    align_button.append (new Gtk.Image.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
-                    align_button.append (new Gtk.Image.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
-                    align_button.append (new Gtk.Image.from_icon_name ("format-justify-fill-symbolic", Gtk.IconSize.BUTTON));
-                align_item.add (align_button);
+            align_button = new ModeButton ();
+            align_button.append (new Gtk.Image.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
+            align_button.append (new Gtk.Image.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
+            align_button.append (new Gtk.Image.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
+            align_button.append (new Gtk.Image.from_icon_name ("format-justify-fill-symbolic", Gtk.IconSize.BUTTON));
+            align_item.add (align_button);
 
             var indent_button = new ButtonGroup ();
-                var indent_more_button = new Button.from_icon_name ("format-indent-more-symbolic", Gtk.IconSize.BUTTON);
-                var indent_less_button = new Button.from_icon_name ("format-indent-less-symbolic", Gtk.IconSize.BUTTON);
-                indent_button.add (indent_more_button);
-                indent_button.add (indent_less_button);
+            var indent_more_button = new Button.from_icon_name ("format-indent-more-symbolic", Gtk.IconSize.BUTTON);
+            var indent_less_button = new Button.from_icon_name ("format-indent-less-symbolic", Gtk.IconSize.BUTTON);
+            indent_button.add (indent_more_button);
+            indent_button.add (indent_less_button);
             var indent_item = new Gtk.ToolItem ();
-                indent_item.add (indent_button);
+            indent_item.add (indent_button);
 
             item_separator = new Gtk.SeparatorToolItem ();
 
             var insert_button = new ButtonGroup ();
-                var insert_comment_button = new Button.from_icon_name ("insert-text-symbolic", Gtk.IconSize.BUTTON);
-                var insert_link_button = new Button.from_icon_name ("insert-link-symbolic", Gtk.IconSize.BUTTON);
-                var insert_image_button = new Button.from_icon_name ("insert-image-symbolic", Gtk.IconSize.BUTTON);
-                var insert_table_button = new Button.from_icon_name ("insert-object-symbolic", Gtk.IconSize.BUTTON);
-                insert_button.add (insert_comment_button);
-                insert_button.add (insert_link_button);
-                insert_button.add (insert_image_button);
-                insert_button.add (insert_table_button);
+            var insert_comment_button = new Button.from_icon_name ("insert-text-symbolic", Gtk.IconSize.BUTTON);
+            var insert_link_button = new Button.from_icon_name ("insert-link-symbolic", Gtk.IconSize.BUTTON);
+            var insert_image_button = new Button.from_icon_name ("insert-image-symbolic", Gtk.IconSize.BUTTON);
+            var insert_table_button = new Button.from_icon_name ("insert-object-symbolic", Gtk.IconSize.BUTTON);
+            insert_button.add (insert_comment_button);
+            insert_button.add (insert_link_button);
+            insert_button.add (insert_image_button);
+            insert_button.add (insert_table_button);
             var insert_item = new Gtk.ToolItem ();
-                insert_item.add (insert_button);
+            insert_item.add (insert_button);
 
-            //Set border_width on ToolItems
             paragraph_item.border_width = 5;
             font_item.border_width = 5;
             font_color_item.border_width = 5;
@@ -131,7 +125,6 @@ namespace Writer.Widgets {
             indent_item.border_width = 5;
             insert_item.border_width = 5;
 
-            // Add Widgets
             this.add (paragraph_item);
             this.add (font_item);
             this.add (font_color_item);
@@ -141,12 +134,9 @@ namespace Writer.Widgets {
             this.add (item_separator);
             this.add (insert_item);
 
-
-            // Connect signals
             align_button.mode_changed.connect (() => {
                 change_align (align_button.selected);
             });
-
             font_button.font_set.connect (() => {
                 editor.set_font_from_string (font_button.get_font_name ());
             });
@@ -155,7 +145,6 @@ namespace Writer.Widgets {
                 font_color_button.get_color (out color);
                 editor.set_font_color (color);
             });
-
             bold_button.button_press_event.connect ((event) => {
                 if (event.type == EventType.BUTTON_PRESS)
                     editor.toggle_style ("bold");
@@ -176,9 +165,7 @@ namespace Writer.Widgets {
                     editor.toggle_style ("strikethrough");
                 return false;
             });
-
         }
-
 
         /*
          * Signal callbacks
@@ -205,9 +192,8 @@ namespace Writer.Widgets {
 
             align_button.selected = editor.get_justification_as_int ();
 
-            //TODO
+            // TODO
             // Update font and color buttons
         }
-
     }
 }

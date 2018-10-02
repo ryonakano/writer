@@ -22,9 +22,8 @@ using Zeitgeist;
 #endif
 
 namespace Writer {
-    
+
     public class MainWindow : Gtk.Window {
-        
         private WriterApp app;
         private TextEditor editor;
         private Widgets.TitleBar title_bar;
@@ -36,19 +35,18 @@ namespace Writer {
         // Zeitgeist integration
         private Zeitgeist.DataSourceRegistry registry;
 #endif
-        
+
         public MainWindow (WriterApp app, TextEditor editor) {
             this.app = app;
             this.editor = editor;
             this.set_application (app);
-            
+
             this.set_size_request (950, 800);
             this.window_position = Gtk.WindowPosition.CENTER;
             this.add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
             this.get_style_context ().add_class ("writer-window");
             Writer.Utils.add_stylesheet ();
-            
-            // Build UI
+
             setup_ui ();
             this.show_all ();
 
@@ -74,43 +72,33 @@ namespace Writer {
             });
 #endif
         }
-        
+
         private void setup_ui () {
             stack = new Gtk.Stack ();
             stack.transition_duration = 200;
             stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
-            
-            // TitleBar
+
             title_bar = new Widgets.TitleBar (app);
-            
-            
-            // EditorView
             editor_view = new Widgets.EditorView (editor);
-            
-            
-            // WelcomeView
             welcome_view = new Widgets.WelcomeView (app);
-            
-            
-            //Attach headerbar
+
             this.set_titlebar (title_bar);
-            
-            // Add main box to window
+
             stack.add_named (welcome_view, "welcome");
             stack.add_named (editor_view, "editor");
             this.add (stack);
         }
-        
+
         public void show_editor () {
             title_bar.set_active (true);
             stack.visible_child_name = "editor";
         }
-        
+
         public void show_welcome () {
             title_bar.set_active (false);
             stack.visible_child_name = "welcome";
         }
-        
+
         public void set_title_for_document (Utils.Document doc) {
             var home_dir = Environment.get_home_dir ();
             var path = Path.get_dirname (doc.file.get_uri ()).replace (home_dir, "~");

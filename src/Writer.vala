@@ -16,17 +16,15 @@
 */
 
 namespace Writer {
-    
+
     public class WriterApp : Gtk.Application {
-        
         private MainWindow window;
         private TextEditor editor;
-        
+
         construct {
             application_id = "com.github.ryonakano.writer";
         }
-        
-        //the application started
+
         public override void activate () {
             if (get_windows () == null) {
                 editor = new TextEditor ();
@@ -37,64 +35,61 @@ namespace Writer {
                 window.present ();
             }
         }
-        
-        //the application was requested to open some files
+
         public void new_file () {
             window.show_editor ();
         }
-        
+
         public void open_file (Utils.Document doc) {
             editor.set_text (doc.read_all (), -1);
             window.set_title_for_document (doc);
             window.show_editor ();
         }
-        
+
         public void open_file_dialog () {
             var filech = Utils.file_chooser_dialog (Gtk.FileChooserAction.OPEN, "Choose a file to open", window, false);
-            
+
             if (filech.run () == Gtk.ResponseType.ACCEPT) {
                 var uri = filech.get_uris ().nth_data (0);
-                
-                //Update last visited path
+
+                // Update last visited path
                 Utils.last_path = Path.get_dirname (uri);
-                
-                //Open the file
+
+                // Open the file
                 var doc = new Utils.Document (uri);
                 open_file (doc);
             }
-            
+
             filech.close ();
         }
-        
+
         public void save () {
             print ("save\n");
         }
-        
+
         public void save_as () {
             print ("save as\n");
         }
-        
+
         public void revert () {
             print ("revert\n");
         }
-        
+
         public void print_file () {
             print ("print\n");
         }
 
         public void search (string text) {
-            // When tabs will be added, first get the active Editor
+            // TODO: When tabs will be added, first get the active Editor
             editor.search (text);
         }
-        
+
         public void preferences () {
             print ("Open preferences dialog\n");
         }
-           
-        
+
         public static void main (string [] args) {
             var app = new Writer.WriterApp ();
-            
             app.run (args);
         }
     }

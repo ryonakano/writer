@@ -20,7 +20,7 @@
 namespace Writer.Utils {
 
     public string? last_path = null;
-    
+
     // Create a GtkFileChooserDialog to perform the action desired
     public Gtk.FileChooserDialog file_chooser_dialog (Gtk.FileChooserAction action, string title, Gtk.Window? parent, bool select_multiple = false) {
         var filech = new Gtk.FileChooserDialog (title, parent, action);

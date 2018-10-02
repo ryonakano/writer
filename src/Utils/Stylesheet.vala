@@ -16,29 +16,27 @@
 */
 
 namespace Writer.Utils {
-    
+
     public void add_stylesheet () {
-    
+
         string stylesheet = """
             .writer-toolbar {
                 background: @bg_color;
                 border-radius: 0;
             }            
         """;
-    
-    
-    
+
         var style_provider = new Gtk.CssProvider ();
         style_provider.parsing_error.connect ((section, error) => {
             print ("Parsing error: %s\n", error.message);
         });
-        
+
         try {
             style_provider.load_from_data (stylesheet, -1);
         } catch (Error error) {
             print ("CSS loading error: %s\n", error.message);
         }
-        
+
         Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (), style_provider, Gtk.STYLE_PROVIDER_PRIORITY_USER);
     }
 }
