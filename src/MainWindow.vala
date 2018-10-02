@@ -54,7 +54,7 @@ namespace Writer {
             registry = new DataSourceRegistry ();
 
             var ds_event = new Zeitgeist.Event ();
-            ds_event.actor = "application://writer.desktop";
+            ds_event.actor = "application://com.github.ryonakano.writer.desktop";
             ds_event.add_subject (new Zeitgeist.Subject ());
             GenericArray<Zeitgeist.Event> ds_events = new GenericArray<Zeitgeist.Event>();
             ds_events.add(ds_event);
