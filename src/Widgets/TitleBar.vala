@@ -25,9 +25,9 @@ namespace Writer.Widgets {
         private WriterApp app;
         private Button open_button;
         private Button save_button;
+        private Button save_as_button;
         private Button revert_button;
         private Button print_button;
-        private Gtk.MenuItem save_as_item;
         private Gtk.SearchEntry search_field;
 
         public TitleBar (WriterApp app) {
@@ -37,6 +37,7 @@ namespace Writer.Widgets {
 
             open_button = new Gtk.Button.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR);
             save_button = new Gtk.Button.from_icon_name ("document-save", Gtk.IconSize.LARGE_TOOLBAR);
+            save_as_button = new Gtk.Button.from_icon_name ("document-save-as", Gtk.IconSize.LARGE_TOOLBAR);
             revert_button = new Gtk.Button.from_icon_name ("document-revert", Gtk.IconSize.LARGE_TOOLBAR);
             print_button = new Gtk.Button.from_icon_name ("document-export", Gtk.IconSize.LARGE_TOOLBAR);
 
@@ -47,11 +48,8 @@ namespace Writer.Widgets {
                 app.search (search_field.text);
             });
 
-            save_as_item = new Gtk.MenuItem.with_label ("Save As");
             var preferences_item = new Gtk.MenuItem.with_label ("Preferences");
             var app_menu_menu = new Gtk.Menu ();
-            app_menu_menu.add (save_as_item);
-            app_menu_menu.add (new Gtk.SeparatorMenuItem ());
             app_menu_menu.add (preferences_item);
             var app_menu = new Gtk.MenuButton ();
             app_menu.set_popup (app_menu_menu);
@@ -61,6 +59,7 @@ namespace Writer.Widgets {
 
             this.pack_start (open_button);
             this.pack_start (save_button);
+            this.pack_start (save_as_button);
             this.pack_start (revert_button);
             this.pack_end (print_button);
             this.pack_end (app_menu);
@@ -68,10 +67,10 @@ namespace Writer.Widgets {
 
             open_button.clicked.connect (app.open_file_dialog);
             save_button.clicked.connect (app.save);
+            save_as_button.clicked.connect (app.save_as);
             revert_button.clicked.connect (app.revert);
             print_button.clicked.connect (app.print_file);
 
-            save_as_item.activate.connect (app.save);
             preferences_item.activate.connect (app.preferences);
         }
 
@@ -81,7 +80,7 @@ namespace Writer.Widgets {
             print_button.sensitive = active;
             search_field.sensitive = active;
 
-            save_as_item.sensitive = active;
+            save_as_button.sensitive = active;
         }
     }
 }
