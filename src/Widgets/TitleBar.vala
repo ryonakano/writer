@@ -42,6 +42,7 @@ namespace Writer.Widgets {
             print_button = new Gtk.Button.from_icon_name ("document-export", Gtk.IconSize.LARGE_TOOLBAR);
 
             search_field = new Gtk.SearchEntry ();
+            search_field.valign = Gtk.Align.CENTER;
             search_field.placeholder_text = "Find";
             search_field.search_changed.connect (() => {
                 app.search (search_field.text);
