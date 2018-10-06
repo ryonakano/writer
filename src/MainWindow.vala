@@ -97,9 +97,5 @@ namespace Writer {
             title_bar.set_active (false);
             stack.visible_child_name = "welcome";
         }
-
-        public void set_title_for_document (Utils.Document doc) {
-            title_bar.title = doc.file.get_basename () + " — " + "Writer";
-        }
     }
 }

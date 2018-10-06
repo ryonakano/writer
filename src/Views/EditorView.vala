@@ -21,6 +21,7 @@ namespace Writer.Widgets {
     public class EditorView : Box {
         private TextEditor editor;
         public Widgets.ToolBar toolbar;
+        private Granite.Widgets.Tab tab;
 
         public EditorView (TextEditor editor) {
             Object (orientation: Gtk.Orientation.VERTICAL, spacing: 0);
@@ -36,11 +37,15 @@ namespace Writer.Widgets {
             scrolled_window.add (editor.text_view);
 
             var notebook = new Granite.Widgets.DynamicNotebook ();
-            var tab = new Granite.Widgets.Tab ("New Document", null, scrolled_window);
+            tab = new Granite.Widgets.Tab ("New Document", null, scrolled_window);
             notebook.insert_tab (tab, -1);
 
             this.pack_start (toolbar, false, false, 0);
             this.pack_start (notebook, true, true, 0);
+        }
+
+        public void set_tab_label_for_document (Utils.Document doc) {
+            tab.label = doc.file.get_basename ();
         }
     }
 }
