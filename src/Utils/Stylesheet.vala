@@ -22,8 +22,7 @@ namespace Writer.Utils {
         string stylesheet = """
             .writer-toolbar {
                 background: @bg_color;
-                border-radius: 0;
-            }            
+            }
         """;
 
         var style_provider = new Gtk.CssProvider ();
