@@ -35,8 +35,12 @@ namespace Writer.Widgets {
             scrolled_window.border_width = 20;
             scrolled_window.add (editor.text_view);
 
+            var notebook = new Granite.Widgets.DynamicNotebook ();
+            var tab = new Granite.Widgets.Tab ("New Document", null, scrolled_window);
+            notebook.insert_tab (tab, -1);
+
             this.pack_start (toolbar, false, false, 0);
-            this.pack_start (scrolled_window, true, true, 0);
+            this.pack_start (notebook, true, true, 0);
         }
     }
 }
