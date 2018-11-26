@@ -15,26 +15,25 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using Gtk;
-
-using Granite;
-using Granite.Widgets;
-
 namespace Writer.Widgets {
-    public class TitleBar : HeaderBar {
-        private WriterApp app;
-        private Button open_button;
-        private Button save_button;
-        private Button save_as_button;
-        private Button revert_button;
-        private Button print_button;
+    public class TitleBar : Gtk.HeaderBar {
+        public WriterApp app { get; construct; }
+        private Gtk.Button open_button;
+        private Gtk.Button save_button;
+        private Gtk.Button save_as_button;
+        private Gtk.Button revert_button;
+        private Gtk.Button print_button;
         private Gtk.SearchEntry search_field;
 
         public TitleBar (WriterApp app) {
-            this.app = app;
-            this.title = "Writer";
-            this.set_show_close_button (true);
+            Object (
+                app: app,
+                title: "Writer",
+                show_close_button: true
+            );
+        }
 
+        construct {
             open_button = new Gtk.Button.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR);
             save_button = new Gtk.Button.from_icon_name ("document-save", Gtk.IconSize.LARGE_TOOLBAR);
             save_as_button = new Gtk.Button.from_icon_name ("document-save-as", Gtk.IconSize.LARGE_TOOLBAR);
@@ -57,13 +56,13 @@ namespace Writer.Widgets {
             app_menu.tooltip_text = _("Preferences");
             app_menu_menu.show_all ();
 
-            this.pack_start (open_button);
-            this.pack_start (save_button);
-            this.pack_start (save_as_button);
-            this.pack_start (revert_button);
-            this.pack_end (print_button);
-            this.pack_end (app_menu);
-            this.pack_end (search_field);
+            pack_start (open_button);
+            pack_start (save_button);
+            pack_start (save_as_button);
+            pack_start (revert_button);
+            pack_end (print_button);
+            pack_end (app_menu);
+            pack_end (search_field);
 
             open_button.clicked.connect (app.open_file_dialog);
             save_button.clicked.connect (app.save);

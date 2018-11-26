@@ -15,18 +15,18 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using Gtk;
-using Gdk;
-using Granite.Widgets;
-
 namespace Writer.Widgets {
     public class ImageToolBar : Gtk.Toolbar {
-        private TextEditor editor;
-        public ModeButton align_button;
+        public TextEditor editor { get; set; }
+        public Granite.Widgets.ModeButton align_button;
 
         public ImageToolBar (TextEditor editor) {
-            this.editor = editor;
+            Object (
+                editor: editor
+            );
+        }
 
+        construct {
             var wrap_combobox = new Gtk.ComboBoxText ();
             wrap_combobox.append ("In line of text", ("In line of text"));
             wrap_combobox.append ("Float above text", ("Float above text"));
@@ -38,11 +38,11 @@ namespace Writer.Widgets {
             var lock_aspect_item = new Gtk.ToolItem ();
             lock_aspect_item.add (lock_aspect_check);
 
-            var align_item = new ToolItem ();
-            align_button = new ModeButton ();
+            align_button = new Granite.Widgets.ModeButton ();
             align_button.append (new Gtk.Button.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
             align_button.append (new Gtk.Button.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
             align_button.append (new Gtk.Button.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
+            var align_item = new Gtk.ToolItem ();
             align_item.add (align_button);
 
             var edit_image_button = new Gtk.Button.with_label ("Crop");
@@ -53,11 +53,11 @@ namespace Writer.Widgets {
             var delete_image_item = new Gtk.ToolItem ();
             delete_image_item.add (delete_image_button);
 
-            this.add (wrap_item);
-            this.add (lock_aspect_item);
-            this.add (align_item);
-            this.add (edit_image_item);
-            this.add (delete_image_item);
+            add (wrap_item);
+            add (lock_aspect_item);
+            add (align_item);
+            add (edit_image_item);
+            add (delete_image_item);
 
             align_button.mode_changed.connect (() => {
                 change_align (align_button.selected);

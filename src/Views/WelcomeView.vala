@@ -15,24 +15,26 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using Granite.Widgets;
-
 namespace Writer.Widgets {
-    public class WelcomeView : Welcome {
-        private WriterApp app;
+    public class WelcomeView : Granite.Widgets.Welcome {
+        public WriterApp app { get; set; }
 
         public WelcomeView (WriterApp app) {
-            base ("No Documents Open", "Open a document to begin editing.");
+            Object (
+                title: "No Documents Open",
+                subtitle: "Open a document to begin editing.",
+                app: app
+            );
+        }
 
-            this.app = app;
+        construct {
+            append ("document-new", "New File", "Create a new document.");
+            append ("document-open", "Open File", "Open a saved document.");
 
-            this.append ("document-new", "New File", "Create a new document.");
-            this.append ("document-open", "Open File", "Open a saved document.");
-
-            this.activated.connect ((index) => {
+            activated.connect ((index) => {
                 // TODO
                 // Open recent
-                if(index == 0) {
+                if (index == 0) {
                     app.new_file ();
                 }
                 else {

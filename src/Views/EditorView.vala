@@ -15,22 +15,24 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using Gtk;
-
 namespace Writer.Widgets {
-    public class EditorView : Box {
-        private TextEditor editor;
+    public class EditorView : Gtk.Box {
+        public TextEditor editor { get; construct; }
         public Widgets.ToolBar toolbar;
         private Granite.Widgets.Tab tab;
 
         public EditorView (TextEditor editor) {
-            Object (orientation: Gtk.Orientation.VERTICAL, spacing: 0);
+            Object (
+                orientation: Gtk.Orientation.VERTICAL,
+                spacing: 0,
+                editor: editor
+            );
+        }
 
-            this.editor = editor;
-            //editor.text_view.set_border_width (20);
+        construct {
             editor.text_view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
 
-            this.toolbar = new Widgets.ToolBar (editor);
+            toolbar = new Widgets.ToolBar (editor);
 
             var scrolled_window = new Gtk.ScrolledWindow (null, null);
             scrolled_window.border_width = 20;
@@ -40,8 +42,8 @@ namespace Writer.Widgets {
             tab = new Granite.Widgets.Tab ("New Document", null, scrolled_window);
             notebook.insert_tab (tab, -1);
 
-            this.pack_start (toolbar, false, false, 0);
-            this.pack_start (notebook, true, true, 0);
+            pack_start (toolbar, false, false, 0);
+            pack_start (notebook, true, true, 0);
         }
 
         public void set_tab_label_for_document (Utils.Document doc) {

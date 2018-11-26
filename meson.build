@@ -22,7 +22,6 @@ executable(
         'src/Widgets/ToolBars/ImageToolBar.vala',
         'src/Widgets/ToolBars/TableToolBar.vala',
         'src/Widgets/ToolBars/TextToolBar.vala',
-        'src/Widgets/ButtonGroup.vala',
         'src/Widgets/TitleBar.vala',
         'src/Widgets/ToolBar.vala',
         'src/MainWindow.vala',

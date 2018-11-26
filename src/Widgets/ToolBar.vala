@@ -15,9 +15,6 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using Gtk;
-using Gdk;
-
 namespace Writer.Widgets {
     public class ToolBar : Gtk.Stack {
         public TextToolBar text_toolbar;
@@ -25,7 +22,7 @@ namespace Writer.Widgets {
         public TableToolBar table_toolbar;
 
         public ToolBar (TextEditor editor) {
-            this.transition_type = Gtk.StackTransitionType.NONE;
+            transition_type = Gtk.StackTransitionType.NONE;
 
             text_toolbar = new TextToolBar (editor);
             image_toolbar = new ImageToolBar (editor);
@@ -37,15 +34,15 @@ namespace Writer.Widgets {
         }
 
         public void show_text_toolbar () {
-            this.visible_child_name = "text";
+            visible_child_name = "text";
         }
 
         public void show_image_toolbar () {
-            this.visible_child_name = "image";
+            visible_child_name = "image";
         }
 
         public void show_table_toolbar () {
-            this.visible_child_name = "table";
+            visible_child_name = "table";
         }
     }
 }

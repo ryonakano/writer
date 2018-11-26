@@ -15,8 +15,6 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using Gtk;
-
 namespace Writer.Widgets {
     public class TableChooser : Gtk.Grid {
         public int columns;
@@ -25,13 +23,13 @@ namespace Writer.Widgets {
         public signal void selected (int columns, int rows);
 
         public TableChooser () {
-            column_spacing = 6;
-            row_spacing = 4;
-
-            setup_ui ();
+            Object (
+                column_spacing: 6,
+                row_spacing: 4
+            );
         }
 
-        private void setup_ui () {
+        construct {
             var cols_spin = new Gtk.SpinButton.with_range (1, 10, 1);
             var rows_spin = new Gtk.SpinButton.with_range (1, 10, 1);
 

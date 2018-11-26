@@ -15,14 +15,9 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using Gtk;
-using Gdk;
-using Pango;
-using Writer.Utils;
-
 namespace Writer {
-    public class TextEditor : TextBuffer {
-        public TextView text_view;
+    public class TextEditor : Gtk.TextBuffer {
+        public Gtk.TextView text_view;
         public bool style_bold;
         public bool style_italic;
         public bool style_underline;
@@ -33,7 +28,7 @@ namespace Writer {
 
         public TextEditor () {
             setup_tagtable (this);
-            text_view = new TextView.with_buffer (this);
+            text_view = new Gtk.TextView.with_buffer (this);
 
             style_bold = false;
             style_italic = false;
@@ -42,14 +37,14 @@ namespace Writer {
 
             text_view.move_cursor.connect (cursor_moved_callback);
             text_view.button_release_event.connect (editor_clicked_callback);
-            this.insert_text.connect_after (text_inserted_callback);
+            insert_text.connect_after (text_inserted_callback);
 
             text_view.key_press_event.connect (key_press_callback);
             text_view.pixels_below_lines = 20;
         }
 
         // Get a TextTagTable with all the default tags
-        private void setup_tagtable (TextBuffer buffer) {
+        private void setup_tagtable (Gtk.TextBuffer buffer) {
             buffer.create_tag ("bold", "weight", 700);
             buffer.create_tag ("italic", "style", Pango.Style.ITALIC);
             buffer.create_tag ("underline", "underline", Pango.Underline.SINGLE);
@@ -63,93 +58,104 @@ namespace Writer {
 
 
         /*
-         * Styles (apply, remove, check)
-         */
+        * Styles (apply, remove, check)
+        */
 
         public void apply_style (string name) {
-            if (has_selection)
+            if (has_selection) {
                 get_selection_range ().apply_style (name);
+            }
 
-            if (name == "bold")
+            if (name == "bold") {
                 style_bold = true;
-            else if (name == "italic")
+            } else if (name == "italic") {
                 style_italic = true;
-            else if (name == "underline")
+            } else if (name == "underline") {
                 style_underline = true;
-            else if (name == "strikethrough")
+            } else if (name == "strikethrough") {
                 style_strikethrough = true;
+            }
         }
 
         public void remove_style (string name) {
-            if (has_selection)
+            if (has_selection) {
                 get_selection_range ().remove_style (name);
+            }
 
-            if (name == "bold")
+            if (name == "bold") {
                 style_bold = false;
-            else if (name == "italic")
+            } else if (name == "italic") {
                 style_italic = false;
-            else if (name == "underline")
+            } else if (name == "underline") {
                 style_underline = false;
-            else if (name == "strikethrough")
+            } else if (name == "strikethrough") {
                 style_strikethrough = false;
+            }
         }
 
         public void toggle_style (string name) {
-            if (has_selection)
+            if (has_selection) {
                 get_selection_range ().toggle_style (name);
+            }
 
-            if (name == "bold")
+            if (name == "bold") {
                 style_bold = !style_bold;
-            else if (name == "italic")
+            } else if (name == "italic") {
                 style_italic = !style_italic;
-            else if (name == "underline")
+            } else if (name == "underline") {
                 style_underline = !style_underline;
-            else if (name == "strikethrough")
+            } else if (name == "strikethrough") {
                 style_strikethrough = !style_strikethrough;
+            }
         }
 
         public bool has_style (string name) {
-            if (has_selection)
+            if (has_selection) {
                 return get_selection_range ().has_style (name);
-            else
+            } else {
                 return iter_has_style (get_cursor (), name);
+            }
         }
 
 
         public Gtk.Justification get_justification () {
-            if (has_selection)
+            if (has_selection) {
                 return get_selection_range ().get_justification ();
-            else
+            } else {
                 return get_justification_at_iter (get_cursor ());
+            }
         }
 
-        public Gtk.Justification get_justification_at_iter (TextIter iter) {
-            if (iter_has_style (iter, "align-center"))
+        public Gtk.Justification get_justification_at_iter (Gtk.TextIter iter) {
+            if (iter_has_style (iter, "align-center")) {
                 return Gtk.Justification.CENTER;
-            else if (iter_has_style (iter, "align-right"))
+            } else if (iter_has_style (iter, "align-right")) {
                 return Gtk.Justification.RIGHT;
-            else if (iter_has_style (iter, "align-fill"))
+            } else if (iter_has_style (iter, "align-fill")) {
                 return Gtk.Justification.FILL;
-            else
+            } else {
                 return Gtk.Justification.LEFT;
+            }
         }
 
         public int get_justification_as_int () {
-            if (has_selection)
+            if (has_selection) {
                 return get_selection_range ().get_justification_as_int ();
-            else
+            } else {
                 return get_justification_as_int_at_iter (get_cursor ());
+            }
         }
 
-        public int get_justification_as_int_at_iter (TextIter iter) {
-            if (iter_has_style (iter, "align-center"))
+        public int get_justification_as_int_at_iter (Gtk.TextIter iter) {
+            if (iter_has_style (iter, "align-center")) {
                 return 1;
-            else if (iter_has_style (iter, "align-right"))
+            } else if (iter_has_style (iter, "align-right")) {
                 return 2;
-            else if (iter_has_style (iter, "align-fill"))
+            } else if (iter_has_style (iter, "align-fill")) {
                 return 3;
-            else
+            } else {
                 return 0;
+            }
         }
 
         public void set_justification (string align) {
@@ -157,7 +163,7 @@ namespace Writer {
         }
 
 
-        public void set_font (FontDescription font) {
+        public void set_font (Pango.FontDescription font) {
             get_selection_range ().set_font (font);
         }
 
@@ -173,7 +179,6 @@ namespace Writer {
         public void set_font_color_from_string (string rgba) {
             get_selection_range ().set_font_color_from_string (rgba);
         }
-
 
 
         /*
@@ -198,16 +203,16 @@ namespace Writer {
 
 
         public void insert_line () {
-            TextIter insert_cursor = get_cursor ();
+            Gtk.TextIter insert_cursor = get_cursor ();
             insert_line_at_iter (insert_cursor);
         }
 
         public void insert_paragraph () {
-            TextIter cursor = get_cursor ();
+            Gtk.TextIter cursor = get_cursor ();
             insert_paragraph_at_iter (cursor);
         }
 
-        public void insert_line_at_iter (TextIter iter) {
+        public void insert_line_at_iter (Gtk.TextIter iter) {
             // TODO
             // Cursor does not move to next line
             // Only happens when inserting at the end of the buffer
@@ -216,58 +221,57 @@ namespace Writer {
             insert (ref iter, "\u2028", -1);
         }
 
-        public void insert_paragraph_at_iter (TextIter iter) {
+        public void insert_paragraph_at_iter (Gtk.TextIter iter) {
             insert (ref iter, "\n", -1);
         }
 
 
-
-
         /*
-         * paragraphs
-         */
+        * paragraphs
+        */
 
         // Moves iter to the start of the paragraph it is located in
-        public TextIter get_paragraph_start (TextIter iter) {
+        public Gtk.TextIter get_paragraph_start (Gtk.TextIter iter) {
             iter.backward_find_char ((char) => {
-                if (char.to_string () == "\n")
+                if (char.to_string () == "\n") {
                     return true;
-                else
+                } else {
                     return false;
+                }
             }, null);
             return iter;
         }
 
         // Moves iter to the end of the paragraph it is located in
-        public TextIter get_paragraph_end (TextIter iter) {
+        public Gtk.TextIter get_paragraph_end (Gtk.TextIter iter) {
             iter.forward_find_char ((char) => {
-                if (char.to_string () == "\n")
+                if (char.to_string () == "\n") {
                     return true;
-                else
+                } else {
                     return false;
+                }
             }, null);
             return iter;
         }
 
-        public TextRange get_paragraph (TextIter iter) {
-            TextIter start = get_paragraph_start (iter);
-            TextIter end = get_paragraph_end (iter);
+        public Writer.Utils.TextRange get_paragraph (Gtk.TextIter iter) {
+            Gtk.TextIter start = get_paragraph_start (iter);
+            Gtk.TextIter end = get_paragraph_end (iter);
 
-            return new TextRange (this, start, end);
+            return new Writer.Utils.TextRange (this, start, end);
         }
 
 
-
-
         /*
-         * Search
-         */
+        * Search
+        */
 
         public void search (string text) {
-            if (text.length > 0)
+            if (text.length > 0) {
                 search_string (text);
-            else
+            } else {
                 clear_search ();
+            }
         }
 
         public void search_string (string text) {
@@ -279,47 +283,45 @@ namespace Writer {
         }
 
 
-
         /*
-         * Utilities
-         */
+        * Utilities
+        */
 
-        public TextIter get_cursor () {
-            TextIter iter;
+        public Gtk.TextIter get_cursor () {
+            Gtk.TextIter iter;
             get_iter_at_mark (out iter, get_insert ());
             return iter;
         }
 
-        public TextRange get_cursor_as_range () {
+        public Writer.Utils.TextRange get_cursor_as_range () {
             var cursor = get_cursor ();
-            return new TextRange (this, cursor, cursor);
+            return new Writer.Utils.TextRange (this, cursor, cursor);
         }
 
-        public TextRange get_selection_range () {
-            TextIter start; TextIter end;
+        public Writer.Utils.TextRange get_selection_range () {
+            Gtk.TextIter start; Gtk.TextIter end;
             get_selection_bounds (out start, out end);
-            return new TextRange (this, start, end);
+            return new Writer.Utils.TextRange (this, start, end);
         }
 
-        public bool iter_has_tag (TextIter iter, TextTag tag) {
+        public bool iter_has_tag (Gtk.TextIter iter, Gtk.TextTag tag) {
             return iter.has_tag (tag) || iter.starts_tag (tag) || iter.ends_tag (tag);
         }
 
-        public bool iter_has_style (TextIter iter, string name) {
+        public bool iter_has_style (Gtk.TextIter iter, string name) {
             var tag = tag_table.lookup (name);
             return iter_has_tag (iter, tag);
         }
 
-        public TextIter copy_iter (TextIter iter) {
-            TextIter copy;
+        public Gtk.TextIter copy_iter (Gtk.TextIter iter) {
+            Gtk.TextIter copy;
             get_iter_at_offset (out copy, iter.get_offset ());
             return copy;
         }
 
 
-
         private void update_styles () {
-            var iter = get_cursor();
+            var iter = get_cursor ();
 
             style_bold = iter_has_style (iter, "bold");
             style_italic = iter_has_style (iter, "italic");
@@ -327,9 +329,10 @@ namespace Writer {
             style_strikethrough = iter_has_style (iter, "strikethrough");
         }
 
+
         /*
-         * Signal callbacks
-         */
+        * Signal callbacks
+        */
 
         private void cursor_moved_callback () {
             // Emit 'cursor_moved' signal
@@ -337,33 +340,37 @@ namespace Writer {
             cursor_moved ();
         }
 
-        private void text_inserted_callback (TextIter cursor, string new_text, int length) {
-            TextIter previous;
+        private void text_inserted_callback (Gtk.TextIter cursor, string new_text, int length) {
+            Gtk.TextIter previous;
             get_iter_at_offset (out previous, cursor.get_offset () - length);
 
-            if (style_bold)
+            if (style_bold) {
                 apply_tag_by_name ("bold", previous, cursor);
-            if (style_italic)
+            }
+            if (style_italic) {
                 apply_tag_by_name ("italic", previous, cursor);
-            if (style_underline)
+            }
+            if (style_underline) {
                 apply_tag_by_name ("underline", previous, cursor);
-            if (style_strikethrough)
+            }
+            if (style_strikethrough) {
                 apply_tag_by_name ("strikethrough", previous, cursor);
-
+            }
 
             // Emit signals
             text_inserted ();
             cursor_moved ();
         }
 
-        private bool key_press_callback (EventKey event) {
+        private bool key_press_callback (Gdk.EventKey event) {
             if (Gdk.keyval_name (event.keyval) == "Return") {
-                ModifierType modifiers = Gtk.accelerator_get_default_mod_mask ();
+                Gdk.ModifierType modifiers = Gtk.accelerator_get_default_mod_mask ();
 
-                if ((event.state & modifiers) == Gdk.ModifierType.SHIFT_MASK)
+                if ((event.state & modifiers) == Gdk.ModifierType.SHIFT_MASK) {
                     insert_line ();
-                else
+                } else {
                     insert_paragraph ();
+                }
 
                 return true;
             }
@@ -372,7 +379,7 @@ namespace Writer {
             }
         }
 
-        private bool editor_clicked_callback (EventButton event) {
+        private bool editor_clicked_callback (Gdk.EventButton event) {
             update_styles ();
             cursor_moved ();
 

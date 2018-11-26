@@ -15,29 +15,29 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using Gtk;
-using Gdk;
-using Granite.Widgets;
-
 namespace Writer.Widgets {
     public class TableToolBar : Gtk.Toolbar {
-        private TextEditor editor;
-        public FontButton font_button;
-        public ToggleButton bold_button;
-        public ToggleButton italic_button;
-        public ToggleButton underline_button;
-        public ToggleButton strikethrough_button;
-        public ModeButton align_button;
+        public TextEditor editor { get; construct; }
+        public Gtk.FontButton font_button;
+        public Gtk.ToggleButton bold_button;
+        public Gtk.ToggleButton italic_button;
+        public Gtk.ToggleButton underline_button;
+        public Gtk.ToggleButton strikethrough_button;
+        public Granite.Widgets.ModeButton align_button;
 
         public TableToolBar (TextEditor editor) {
-            this.editor = editor;
+            Object (
+                editor: editor
+            );
+        }
 
+        construct {
             // TODO: Change to Gtk.PopOver
             var table_properties_button = new Gtk.Button.with_label ("Table Properties");
             var table_properties_item = new Gtk.ToolItem ();
             table_properties_item.add (table_properties_button);
 
-            var font_item = new ToolItem ();
+            var font_item = new Gtk.ToolItem ();
             font_button = new Gtk.FontButton ();
             font_button.use_font = true;
             font_button.use_size = true;
@@ -52,25 +52,26 @@ namespace Writer.Widgets {
             var font_color_item = new Gtk.ToolItem ();
             font_color_item.add (font_color_button);
 
-            var styles_item = new ToolItem ();
-            var styles_buttons = new ButtonGroup ();
+            var styles_item = new Gtk.ToolItem ();
             bold_button = new Gtk.ToggleButton ();
-            bold_button.add (new Image.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.BUTTON));
+            bold_button.add (new Gtk.Image.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.BUTTON));
             bold_button.focus_on_click = false;
-            styles_buttons.pack_start (bold_button);
             italic_button = new Gtk.ToggleButton ();
-            italic_button.add (new Image.from_icon_name ("format-text-italic-symbolic", Gtk.IconSize.BUTTON));
-            styles_buttons.pack_start (italic_button);
+            italic_button.add (new Gtk.Image.from_icon_name ("format-text-italic-symbolic", Gtk.IconSize.BUTTON));
             underline_button = new Gtk.ToggleButton ();
-            underline_button.add (new Image.from_icon_name ("format-text-underline-symbolic", Gtk.IconSize.BUTTON));
-            styles_buttons.pack_start (underline_button);
+            underline_button.add (new Gtk.Image.from_icon_name ("format-text-underline-symbolic", Gtk.IconSize.BUTTON));
             strikethrough_button = new Gtk.ToggleButton ();
-            strikethrough_button.add (new Image.from_icon_name ("format-text-strikethrough-symbolic", Gtk.IconSize.BUTTON));
+            strikethrough_button.add (new Gtk.Image.from_icon_name ("format-text-strikethrough-symbolic", Gtk.IconSize.BUTTON));
+            var styles_buttons = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+            styles_buttons.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
+            styles_buttons.pack_start (bold_button);
+            styles_buttons.pack_start (italic_button);
+            styles_buttons.pack_start (underline_button);
             styles_buttons.pack_start (strikethrough_button);
             styles_item.add (styles_buttons);
 
-            var align_item = new ToolItem ();
-            align_button = new ModeButton ();
+            var align_item = new Gtk.ToolItem ();
+            align_button = new Granite.Widgets.ModeButton ();
             align_button.append (new Gtk.Button.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
             align_button.append (new Gtk.Button.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
             align_button.append (new Gtk.Button.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
@@ -85,36 +86,40 @@ namespace Writer.Widgets {
             var delete_table_item = new Gtk.ToolItem ();
             delete_table_item.add (delete_table_button);
 
-            this.add (table_properties_item);
-            this.add (font_item);
-            this.add (font_color_item);
-            this.add (styles_item);
-            this.add (align_item);
-            this.add (add_table_item);
-            this.add (delete_table_item);
+            add (table_properties_item);
+            add (font_item);
+            add (font_color_item);
+            add (styles_item);
+            add (align_item);
+            add (add_table_item);
+            add (delete_table_item);
 
             align_button.mode_changed.connect (() => {
                 change_align (align_button.selected);
             });
 
             bold_button.button_press_event.connect ((event) => {
-                if (event.type == EventType.BUTTON_PRESS)
+                if (event.type == Gdk.EventType.BUTTON_PRESS) {
                     editor.toggle_style ("bold");
+                }
                 return false;
             });
             italic_button.button_press_event.connect ((event) => {
-                if (event.type == EventType.BUTTON_PRESS)
+                if (event.type == Gdk.EventType.BUTTON_PRESS) {
                     editor.toggle_style ("italic");
+                }
                 return false;
             });
             underline_button.button_press_event.connect ((event) => {
-                if (event.type == EventType.BUTTON_PRESS)
+                if (event.type == Gdk.EventType.BUTTON_PRESS) {
                     editor.toggle_style ("underline");
+                }
                 return false;
             });
             strikethrough_button.button_press_event.connect ((event) => {
-                if (event.type == EventType.BUTTON_PRESS)
+                if (event.type == Gdk.EventType.BUTTON_PRESS) {
                     editor.toggle_style ("strikethrough");
+                }
                 return false;
             });
         }

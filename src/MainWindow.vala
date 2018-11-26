@@ -15,17 +15,10 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-using Gtk;
-
-#if HAVE_ZEITGEIST
-using Zeitgeist;
-#endif
-
 namespace Writer {
-
     public class MainWindow : Gtk.Window {
-        private WriterApp app;
-        private TextEditor editor;
+        public WriterApp app { get; construct; }
+        public TextEditor editor { get; construct; }
         private Widgets.TitleBar title_bar;
         public Widgets.EditorView editor_view;
         private Widgets.WelcomeView welcome_view;
@@ -37,42 +30,19 @@ namespace Writer {
 #endif
 
         public MainWindow (WriterApp app, TextEditor editor) {
-            this.app = app;
-            this.editor = editor;
-            this.set_application (app);
-
-            this.set_size_request (950, 800);
-            this.window_position = Gtk.WindowPosition.CENTER;
-            this.add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
-            Writer.Utils.add_stylesheet ();
-
-            setup_ui ();
-            this.show_all ();
-
-#if HAVE_ZEITGEIST
-            // Set up the Data Source Registry for Zeitgeist
-            registry = new DataSourceRegistry ();
-
-            var ds_event = new Zeitgeist.Event ();
-            ds_event.actor = "application://com.github.ryonakano.writer.desktop";
-            ds_event.add_subject (new Zeitgeist.Subject ());
-            GenericArray<Zeitgeist.Event> ds_events = new GenericArray<Zeitgeist.Event>();
-            ds_events.add(ds_event);
-            var ds = new DataSource.full ("writer-logger",
-                                          _("Zeitgeist Datasource for Writer"),
-                                          "A data source which logs Open, Close, Save and Move Events",
-                                          ds_events); // FIXME: templates!
-            registry.register_data_source.begin (ds, null, (obj, res) => {
-                try {
-                    registry.register_data_source.end (res);
-                } catch (GLib.Error reg_err) {
-                    warning ("%s", reg_err.message);
-                }
-            });
-#endif
+            Object (
+                application: app,
+                app: app,
+                editor: editor
+            );
         }
 
-        private void setup_ui () {
+        construct {
+            set_size_request (950, 800);
+            window_position = Gtk.WindowPosition.CENTER;
+            add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
+            Writer.Utils.add_stylesheet ();
+
             stack = new Gtk.Stack ();
             stack.transition_duration = 200;
             stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
@@ -81,11 +51,35 @@ namespace Writer {
             editor_view = new Widgets.EditorView (editor);
             welcome_view = new Widgets.WelcomeView (app);
 
-            this.set_titlebar (title_bar);
+            set_titlebar (title_bar);
 
             stack.add_named (welcome_view, "welcome");
             stack.add_named (editor_view, "editor");
-            this.add (stack);
+            add (stack);
+
+            show_all ();
+
+#if HAVE_ZEITGEIST
+            // Set up the Data Source Registry for Zeitgeist
+            registry = new Zeitgeist.DataSourceRegistry ();
+
+            var ds_event = new Zeitgeist.Event ();
+            ds_event.actor = "application://com.github.ryonakano.writer.desktop";
+            ds_event.add_subject (new Zeitgeist.Subject ());
+            var ds_events = new GenericArray<Zeitgeist.Event> ();
+            ds_events.add (ds_event);
+            var ds = new Zeitgeist.DataSource.full ("writer-logger",
+                                          _("Zeitgeist Datasource for Writer"),
+                                          "A data source which logs Open, Close, Save and Move Events",
+                                          ds_events); // FIXME: templates!
+            registry.register_data_source.begin (ds, null, (obj, res) => {
+                try {
+                    registry.register_data_source.end (res);
+                } catch (Error reg_err) {
+                    warning ("%s", reg_err.message);
+                }
+            });
+#endif
         }
 
         public void show_editor () {

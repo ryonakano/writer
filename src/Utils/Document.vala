@@ -17,14 +17,19 @@
 
 namespace Writer.Utils {
     public class Document : Object {
-        public string uri;
+        public string uri { get; construct; }
         public string path;
-        public GLib.File file;
+        public File file;
 
         public Document (string uri) {
-            this.uri = uri;
-            this.file = GLib.File.new_for_uri (uri);
-            this.path = file.get_path ();
+            Object (
+                uri: uri
+            );
+        }
+
+        construct {
+            file = File.new_for_uri (uri);
+            path = file.get_path ();
         }
 
         public string read_all () {
