@@ -38,10 +38,16 @@ namespace Writer {
         }
 
         construct {
+            // Import CSS
+            var cssprovider = new Gtk.CssProvider ();
+            cssprovider.load_from_resource ("/com/github/ryonakano/writer/Application.css");
+            Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (),
+                                                        cssprovider,
+                                                        Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+
             set_size_request (950, 800);
             window_position = Gtk.WindowPosition.CENTER;
             add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
-            Writer.Utils.add_stylesheet ();
 
             stack = new Gtk.Stack ();
             stack.transition_duration = 200;

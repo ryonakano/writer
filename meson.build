@@ -1,31 +1,39 @@
 project('com.github.ryonakano.writer', 'vala', 'c')
 
+gnome = import('gnome')
 i18n = import('i18n')
 add_global_arguments(
     '-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()),
     language:'c'
 )
 
+asresources = gnome.compile_resources(
+    'as-resources',
+    'data/' + meson.project_name() + '.gresource.xml',
+    source_dir: 'data',
+    c_name: 'as'
+)
+
 subdir('data')
 
 executable(
     meson.project_name(),
-        'src/Utils/Document.vala',
-        'src/Utils/FileChooser.vala',
-        'src/Utils/Stylesheet.vala',
-        'src/Utils/TextEditor.vala',
-        'src/Utils/TextRange.vala',
-        'src/Utils/ZeitgeistLogger.vala',
-        'src/Views/EditorView.vala',
-        'src/Views/WelcomeView.vala',
-        'src/Widgets/Choosers/TableChooser.vala',
-        'src/Widgets/ToolBars/ImageToolBar.vala',
-        'src/Widgets/ToolBars/TableToolBar.vala',
-        'src/Widgets/ToolBars/TextToolBar.vala',
-        'src/Widgets/TitleBar.vala',
-        'src/Widgets/ToolBar.vala',
-        'src/MainWindow.vala',
-        'src/Writer.vala',
+    asresources,
+    'src/Utils/Document.vala',
+    'src/Utils/FileChooser.vala',
+    'src/Utils/TextEditor.vala',
+    'src/Utils/TextRange.vala',
+    'src/Utils/ZeitgeistLogger.vala',
+    'src/Views/EditorView.vala',
+    'src/Views/WelcomeView.vala',
+    'src/Widgets/Choosers/TableChooser.vala',
+    'src/Widgets/ToolBars/ImageToolBar.vala',
+    'src/Widgets/ToolBars/TableToolBar.vala',
+    'src/Widgets/ToolBars/TextToolBar.vala',
+    'src/Widgets/TitleBar.vala',
+    'src/Widgets/ToolBar.vala',
+    'src/MainWindow.vala',
+    'src/Writer.vala',
     dependencies: [
         dependency('gee-0.8'),
         dependency('glib-2.0'),
