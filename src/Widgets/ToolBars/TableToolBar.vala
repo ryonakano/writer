@@ -32,12 +32,12 @@ namespace Writer.Widgets {
         }
 
         construct {
-            // TODO: Change to Gtk.PopOver
+            get_style_context ().add_class ("writer-toolbar");
+
             var table_properties_button = new Gtk.Button.with_label ("Table Properties");
             var table_properties_item = new Gtk.ToolItem ();
             table_properties_item.add (table_properties_button);
 
-            var font_item = new Gtk.ToolItem ();
             font_button = new Gtk.FontButton ();
             font_button.use_font = true;
             font_button.use_size = true;
@@ -45,6 +45,7 @@ namespace Writer.Widgets {
                 string name = font_button.font;
                 stdout.printf ("Selected font: %s\n", name);
             });
+            var font_item = new Gtk.ToolItem ();
             font_item.add (font_button);
 
             var font_color_button = new Gtk.ColorButton ();
@@ -52,30 +53,33 @@ namespace Writer.Widgets {
             var font_color_item = new Gtk.ToolItem ();
             font_color_item.add (font_color_button);
 
-            var styles_item = new Gtk.ToolItem ();
             bold_button = new Gtk.ToggleButton ();
             bold_button.add (new Gtk.Image.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.BUTTON));
             bold_button.focus_on_click = false;
             italic_button = new Gtk.ToggleButton ();
             italic_button.add (new Gtk.Image.from_icon_name ("format-text-italic-symbolic", Gtk.IconSize.BUTTON));
+            italic_button.focus_on_click = false;
             underline_button = new Gtk.ToggleButton ();
             underline_button.add (new Gtk.Image.from_icon_name ("format-text-underline-symbolic", Gtk.IconSize.BUTTON));
+            underline_button.focus_on_click = false;
             strikethrough_button = new Gtk.ToggleButton ();
             strikethrough_button.add (new Gtk.Image.from_icon_name ("format-text-strikethrough-symbolic", Gtk.IconSize.BUTTON));
+            strikethrough_button.focus_on_click = false;
             var styles_buttons = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
             styles_buttons.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
             styles_buttons.pack_start (bold_button);
             styles_buttons.pack_start (italic_button);
             styles_buttons.pack_start (underline_button);
             styles_buttons.pack_start (strikethrough_button);
+            var styles_item = new Gtk.ToolItem ();
             styles_item.add (styles_buttons);
 
-            var align_item = new Gtk.ToolItem ();
             align_button = new Granite.Widgets.ModeButton ();
-            align_button.append (new Gtk.Button.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
-            align_button.append (new Gtk.Button.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
-            align_button.append (new Gtk.Button.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
-            align_button.append (new Gtk.Button.from_icon_name ("format-justify-fill-symbolic", Gtk.IconSize.BUTTON));
+            align_button.append (new Gtk.Image.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
+            align_button.append (new Gtk.Image.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
+            align_button.append (new Gtk.Image.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
+            align_button.append (new Gtk.Image.from_icon_name ("format-justify-fill-symbolic", Gtk.IconSize.BUTTON));
+            var align_item = new Gtk.ToolItem ();
             align_item.add (align_button);
 
             var add_table_button = new Gtk.Button.with_label ("Add");
@@ -83,8 +87,17 @@ namespace Writer.Widgets {
             add_table_item.add (add_table_button);
 
             var delete_table_button = new Gtk.Button.with_label ("Delete");
+            delete_table_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
             var delete_table_item = new Gtk.ToolItem ();
             delete_table_item.add (delete_table_button);
+
+            table_properties_item.border_width = 6;
+            font_item.border_width = 6;
+            font_color_item.border_width = 6;
+            styles_item.border_width = 6;
+            align_item.border_width = 6;
+            add_table_item.border_width = 6;
+            delete_table_item.border_width = 6;
 
             add (table_properties_item);
             add (font_item);

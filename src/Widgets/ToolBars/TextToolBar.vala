@@ -51,22 +51,19 @@ namespace Writer.Widgets {
             var paragraph_item = new Gtk.ToolItem ();
             paragraph_item.add (paragraph_combobox);
 
-            var font_item = new Gtk.ToolItem ();
             font_button = new Gtk.FontButton ();
             font_button.use_font = true;
             font_button.use_size = true;
+            var font_item = new Gtk.ToolItem ();
             font_item.add (font_button);
 
             font_color_button = new Gtk.ColorButton ();
             font_color_button.use_alpha = false;
-            font_color_button.set_title ("Choose a Font Color");
-
             var font_color_item = new Gtk.ToolItem ();
             font_color_item.add (font_color_button);
 
-            var styles_item = new Gtk.ToolItem ();
             bold_button = new Gtk.ToggleButton ();
-            bold_button.add (new Gtk.Image.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.MENU));
+            bold_button.add (new Gtk.Image.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.BUTTON));
             bold_button.focus_on_click = false;
             italic_button = new Gtk.ToggleButton ();
             italic_button.add (new Gtk.Image.from_icon_name ("format-text-italic-symbolic", Gtk.IconSize.BUTTON));
@@ -83,14 +80,15 @@ namespace Writer.Widgets {
             styles_buttons.pack_start (italic_button);
             styles_buttons.pack_start (underline_button);
             styles_buttons.pack_start (strikethrough_button);
+            var styles_item = new Gtk.ToolItem ();
             styles_item.add (styles_buttons);
 
-            var align_item = new Gtk.ToolItem ();
             align_button = new Granite.Widgets.ModeButton ();
             align_button.append (new Gtk.Image.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
             align_button.append (new Gtk.Image.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
             align_button.append (new Gtk.Image.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
             align_button.append (new Gtk.Image.from_icon_name ("format-justify-fill-symbolic", Gtk.IconSize.BUTTON));
+            var align_item = new Gtk.ToolItem ();
             align_item.add (align_button);
 
             var indent_more_button = new Gtk.Button.from_icon_name ("format-indent-more-symbolic", Gtk.IconSize.BUTTON);
@@ -117,13 +115,13 @@ namespace Writer.Widgets {
             var insert_item = new Gtk.ToolItem ();
             insert_item.add (insert_button);
 
-            paragraph_item.border_width = 5;
-            font_item.border_width = 5;
-            font_color_item.border_width = 5;
-            styles_item.border_width = 5;
-            align_item.border_width = 5;
-            indent_item.border_width = 5;
-            insert_item.border_width = 5;
+            paragraph_item.border_width = 6;
+            font_item.border_width = 6;
+            font_color_item.border_width = 6;
+            styles_item.border_width = 6;
+            align_item.border_width = 6;
+            indent_item.border_width = 6;
+            insert_item.border_width = 6;
 
             add (paragraph_item);
             add (font_item);

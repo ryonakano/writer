@@ -27,6 +27,8 @@ namespace Writer.Widgets {
         }
 
         construct {
+            get_style_context ().add_class ("writer-toolbar");
+
             var wrap_combobox = new Gtk.ComboBoxText ();
             wrap_combobox.append ("In line of text", ("In line of text"));
             wrap_combobox.append ("Float above text", ("Float above text"));
@@ -39,9 +41,9 @@ namespace Writer.Widgets {
             lock_aspect_item.add (lock_aspect_check);
 
             align_button = new Granite.Widgets.ModeButton ();
-            align_button.append (new Gtk.Button.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
-            align_button.append (new Gtk.Button.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
-            align_button.append (new Gtk.Button.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
+            align_button.append (new Gtk.Image.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
+            align_button.append (new Gtk.Image.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
+            align_button.append (new Gtk.Image.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
             var align_item = new Gtk.ToolItem ();
             align_item.add (align_button);
 
@@ -50,8 +52,15 @@ namespace Writer.Widgets {
             edit_image_item.add (edit_image_button);
 
             var delete_image_button = new Gtk.Button.with_label ("Delete Image");
+            delete_image_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
             var delete_image_item = new Gtk.ToolItem ();
             delete_image_item.add (delete_image_button);
+
+            wrap_item.border_width = 6;
+            lock_aspect_item.border_width = 6;
+            align_item.border_width = 6;
+            edit_image_item.border_width = 6;
+            delete_image_item.border_width = 6;
 
             add (wrap_item);
             add (lock_aspect_item);
