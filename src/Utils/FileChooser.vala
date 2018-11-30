@@ -23,22 +23,17 @@ namespace Writer.Utils {
 
     // Create a GtkFileChooserDialog to perform the action desired
     public Gtk.FileChooserDialog file_chooser_dialog (Gtk.FileChooserAction action, string title, Gtk.Window? parent, bool select_multiple = false) {
-        var all_files_filter = new Gtk.FileFilter ();
-        all_files_filter.set_filter_name (_("All files"));
-        all_files_filter.add_pattern ("*");
-
-        var text_files_filter = new Gtk.FileFilter ();
-        text_files_filter.set_filter_name (_("Text files"));
-        text_files_filter.add_mime_type ("text/*");
+        var rtf_files_filter = new Gtk.FileFilter ();
+        rtf_files_filter.set_filter_name (_("Rich Text Format (.rtf)"));
+        rtf_files_filter.add_mime_type ("text/rtf");
 
         var filech = new Gtk.FileChooserDialog (title, parent, action);
         filech.add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
-        filech.add_filter (all_files_filter);
-        filech.add_filter (text_files_filter);
+        filech.add_filter (rtf_files_filter);
         filech.set_current_folder_uri (Utils.last_path ?? Environment.get_home_dir ());
         filech.set_default_response (Gtk.ResponseType.ACCEPT);
         filech.select_multiple = select_multiple;
-        filech.filter = text_files_filter;
+        filech.filter = rtf_files_filter;
 
         if (action == Gtk.FileChooserAction.OPEN) {
             filech.add_button (_("Open"), Gtk.ResponseType.ACCEPT);
