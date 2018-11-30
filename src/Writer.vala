@@ -22,7 +22,7 @@ namespace Writer {
         private TextEditor editor;
 
         construct {
-            application_id = "com.github.ryonakano.writer";
+            application_id = Constants.PROJECT_NAME;
         }
 
         public override void activate () {

@@ -70,7 +70,7 @@ namespace Writer {
             registry = new Zeitgeist.DataSourceRegistry ();
 
             var ds_event = new Zeitgeist.Event ();
-            ds_event.actor = "application://com.github.ryonakano.writer.desktop";
+            ds_event.actor = "application://" + Constants.PROJECT_NAME + ".desktop";
             ds_event.add_subject (new Zeitgeist.Subject ());
             var ds_events = new GenericArray<Zeitgeist.Event> ();
             ds_events.add (ds_event);
