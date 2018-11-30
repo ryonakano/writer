@@ -19,7 +19,6 @@ namespace Writer.Widgets {
     public class TitleBar : Gtk.HeaderBar {
         public WriterApp app { get; construct; }
         private Gtk.Button open_button;
-        private Gtk.Button save_button;
         private Gtk.Button save_as_button;
         private Gtk.Button revert_button;
         private Gtk.Button print_button;
@@ -35,7 +34,6 @@ namespace Writer.Widgets {
 
         construct {
             open_button = new Gtk.Button.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR);
-            save_button = new Gtk.Button.from_icon_name ("document-save", Gtk.IconSize.LARGE_TOOLBAR);
             save_as_button = new Gtk.Button.from_icon_name ("document-save-as", Gtk.IconSize.LARGE_TOOLBAR);
             revert_button = new Gtk.Button.from_icon_name ("document-revert", Gtk.IconSize.LARGE_TOOLBAR);
             print_button = new Gtk.Button.from_icon_name ("document-export", Gtk.IconSize.LARGE_TOOLBAR);
@@ -57,7 +55,6 @@ namespace Writer.Widgets {
             app_menu_menu.show_all ();
 
             pack_start (open_button);
-            pack_start (save_button);
             pack_start (save_as_button);
             pack_start (revert_button);
             pack_end (print_button);
@@ -65,7 +62,6 @@ namespace Writer.Widgets {
             pack_end (search_field);
 
             open_button.clicked.connect (app.open_file_dialog);
-            save_button.clicked.connect (app.save);
             save_as_button.clicked.connect (app.save_as);
             revert_button.clicked.connect (app.revert);
             print_button.clicked.connect (app.print_file);
@@ -74,12 +70,10 @@ namespace Writer.Widgets {
         }
 
         public void set_active (bool active) {
-            save_button.sensitive = active;
+            save_as_button.sensitive = active;
             revert_button.sensitive = active;
             print_button.sensitive = active;
             search_field.sensitive = active;
-
-            save_as_button.sensitive = active;
         }
     }
 }
