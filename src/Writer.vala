@@ -20,6 +20,7 @@ namespace Writer {
     public class WriterApp : Gtk.Application {
         private MainWindow window;
         private TextEditor editor;
+        private Utils.Document doc;
 
         construct {
             application_id = Constants.PROJECT_NAME;
@@ -56,7 +57,7 @@ namespace Writer {
                 Utils.last_path = Path.get_dirname (uri);
 
                 // Open the file
-                var doc = new Utils.Document (uri);
+                doc = new Utils.Document (uri);
                 open_file (doc);
             }
 
@@ -64,7 +65,7 @@ namespace Writer {
         }
 
         public void save () {
-            print ("save\n");
+            doc.write_to_file (editor);
         }
 
         public void save_as () {

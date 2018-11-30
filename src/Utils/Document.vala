@@ -44,5 +44,20 @@ namespace Writer.Utils {
                 return "";
             }
         }
+
+        private string to_string (TextEditor editor) {
+            string rtf;
+            rtf = editor.text;
+            return rtf;
+        }
+
+        public void write_to_file (TextEditor editor) {
+            try {
+                FileUtils.set_contents (path, to_string (editor));
+            }
+            catch (Error err) {
+                print ("Error writing file: " + err.message);
+            }
+        }
     }
 }
