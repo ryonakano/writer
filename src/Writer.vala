@@ -28,7 +28,7 @@ namespace Writer {
 
         public override void activate () {
             if (get_windows () == null) {
-                editor = new TextEditor ();
+                editor = new TextEditor (this);
                 window = new MainWindow (this, editor);
                 window.show_welcome ();
                 window.show_all ();
