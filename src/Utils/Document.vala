@@ -46,8 +46,8 @@ namespace Writer.Utils {
         }
 
         private string to_string (TextEditor editor) {
-            string rtf;
-            rtf = editor.text;
+            string rtf = "";
+            rtf += "{\\rtf\n" + editor.text + "\n}\n";
             return rtf;
         }
 
