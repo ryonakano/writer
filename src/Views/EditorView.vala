@@ -19,7 +19,7 @@ namespace Writer.Widgets {
     public class EditorView : Gtk.Box {
         public TextEditor editor { get; construct; }
         public Widgets.ToolBar toolbar;
-        private Granite.Widgets.Tab tab;
+        public Granite.Widgets.Tab tab { get; set; }
 
         public EditorView (TextEditor editor) {
             Object (
@@ -44,10 +44,6 @@ namespace Writer.Widgets {
 
             pack_start (toolbar, false, false, 0);
             pack_start (notebook, true, true, 0);
-        }
-
-        public void set_tab_label_for_document (Utils.Document doc) {
-            tab.label = doc.file.get_basename ();
         }
     }
 }

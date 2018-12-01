@@ -17,22 +17,11 @@
 
 namespace Writer.Utils {
     public class Document : Object {
-        public string uri { get; construct; }
-        public string path;
-        public File file;
-
-        public Document (string uri) {
-            Object (
-                uri: uri
-            );
-        }
 
         construct {
-            file = File.new_for_uri (uri);
-            path = file.get_path ();
         }
 
-        public string read_all () {
+        public string read_all (string path) {
             try {
                 string content;
                 FileUtils.get_contents (path, out content);
@@ -51,7 +40,7 @@ namespace Writer.Utils {
             return rtf;
         }
 
-        public void write_to_file (TextEditor editor) {
+        public void write_to_file (TextEditor editor, string path) {
             try {
                 FileUtils.set_contents (path, to_string (editor));
             }

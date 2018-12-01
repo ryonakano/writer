@@ -21,6 +21,8 @@ namespace Writer {
         private MainWindow window;
         private TextEditor editor;
         private Utils.Document doc;
+        string? path = null;
+        string? last_path = null;
 
         construct {
             application_id = Constants.PROJECT_NAME;
@@ -41,35 +43,69 @@ namespace Writer {
             window.show_editor ();
         }
 
-        public void open_file (Utils.Document doc) {
-            editor.set_text (doc.read_all (), -1);
-            window.editor_view.set_tab_label_for_document (doc);
+        public void open_file (Utils.Document doc, string path) {
+            editor.set_text (doc.read_all (path), -1);
+            window.editor_view.tab.label = (path);
             window.show_editor ();
         }
 
         public void open_file_dialog () {
-            var filech = Utils.file_chooser_dialog (Gtk.FileChooserAction.OPEN, "Choose a file to open", window, false);
+            var filech = new Gtk.FileChooserDialog ("Choose a file to open", window, Gtk.FileChooserAction.OPEN);
+            var rtf_files_filter = new Gtk.FileFilter ();
+            rtf_files_filter.set_filter_name (_("Rich Text Format (.rtf)"));
+            rtf_files_filter.add_mime_type ("text/rtf");
+
+            filech.add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
+            filech.add_button (_("Open"), Gtk.ResponseType.ACCEPT);
+            filech.add_filter (rtf_files_filter);
+            filech.set_current_folder_uri (last_path ?? Environment.get_home_dir ());
+            filech.set_default_response (Gtk.ResponseType.ACCEPT);
+            filech.select_multiple = false;
+            filech.filter = rtf_files_filter;
+
+            filech.key_press_event.connect ((ev) => {
+                if (ev.keyval == 65307) // Esc key
+                    filech.destroy ();
+                return false;
+            });
 
             if (filech.run () == Gtk.ResponseType.ACCEPT) {
-                var uri = filech.get_uris ().nth_data (0);
+                path = filech.get_filename ();
 
                 // Update last visited path
-                Utils.last_path = Path.get_dirname (uri);
+                last_path = path;
 
                 // Open the file
-                doc = new Utils.Document (uri);
-                open_file (doc);
+                doc = new Utils.Document ();
+                open_file (doc, path);
             }
 
             filech.close ();
         }
 
         public void save () {
-            doc.write_to_file (editor);
+            doc.write_to_file (editor, path);
         }
 
         public void save_as () {
-            print ("save as\n");
+            var filech = new Gtk.FileChooserDialog ("Save file with a different name", window, Gtk.FileChooserAction.SAVE);
+            var rtf_files_filter = new Gtk.FileFilter ();
+            rtf_files_filter.set_filter_name (_("Rich Text Format (.rtf)"));
+            rtf_files_filter.add_mime_type ("text/rtf");
+
+            filech.add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
+            filech.add_button (_("Save"), Gtk.ResponseType.ACCEPT);
+            filech.add_filter (rtf_files_filter);
+            filech.set_current_folder_uri (last_path ?? Environment.get_home_dir ());
+            filech.set_default_response (Gtk.ResponseType.ACCEPT);
+            filech.select_multiple = false;
+            filech.filter = rtf_files_filter;
+
+            filech.key_press_event.connect ((ev) => {
+                if (ev.keyval == 65307) // Esc key
+                    filech.destroy ();
+                return false;
+            });
         }
 
         public void revert () {

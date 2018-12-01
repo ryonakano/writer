@@ -29,7 +29,6 @@ executable(
     asresources,
     config_header,
     'src/Utils/Document.vala',
-    'src/Utils/FileChooser.vala',
     'src/Utils/TextEditor.vala',
     'src/Utils/TextRange.vala',
     'src/Utils/ZeitgeistLogger.vala',
