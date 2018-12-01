@@ -25,10 +25,8 @@ namespace Writer.Utils {
             try {
                 string content;
                 FileUtils.get_contents (path, out content);
-
                 return content;
-            }
-            catch (Error err) {
+            } catch (Error err) {
                 print ("Error reading file: " + err.message);
                 return "";
             }
@@ -43,8 +41,7 @@ namespace Writer.Utils {
         public void write_to_file (TextEditor editor, string path) {
             try {
                 FileUtils.set_contents (path, to_string (editor));
-            }
-            catch (Error err) {
+            } catch (Error err) {
                 print ("Error writing file: " + err.message);
             }
         }
