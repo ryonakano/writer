@@ -40,7 +40,29 @@ namespace Writer {
         }
 
         public void new_file () {
-            window.show_editor ();
+            int id = 1;
+            string file_name = "";
+            string suffix = "";
+            string documents = "";
+            File? file = null;
+
+            do {
+                file_name = "Untitled Document %i".printf (id++);
+                suffix = ".rtf";
+                documents = Environment.get_user_special_dir (UserDirectory.DOCUMENTS) + "/%s".printf ("Documents");
+                file = File.new_for_path ("%s/%s%s".printf (documents, file_name, suffix));
+                if (documents != null) {
+                    DirUtils.create_with_parents (documents, 0775);
+                } else {
+                    documents = Environment.get_home_dir ();
+                }
+            } while (file.query_exists ());
+
+            doc = new Utils.Document ();
+            path = file.get_path ();
+            save ();
+
+            open_file (doc, path);
         }
 
         public void open_file (Utils.Document doc, string path) {
