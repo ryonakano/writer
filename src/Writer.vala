@@ -128,6 +128,21 @@ namespace Writer {
                     filech.destroy ();
                 return false;
             });
+
+            if (filech.run () == Gtk.ResponseType.ACCEPT) {
+                path = filech.get_filename ();
+
+                // Update last visited path
+                last_path = path;
+
+                // Save the file with a provided name
+                doc = new Utils.Document ();
+                save ();
+            }
+
+            filech.close ();
+            // Open newly saved file
+            open_file (doc, path);
         }
 
         public void revert () {
