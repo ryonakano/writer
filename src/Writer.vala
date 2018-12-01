@@ -67,7 +67,7 @@ namespace Writer {
 
         public void open_file (Utils.Document doc, string path) {
             editor.set_text (doc.read_all (path), -1);
-            window.editor_view.tab.label = path;
+            window.editor_view.tab.label = Path.get_basename (path);
             window.show_editor ();
         }
 
