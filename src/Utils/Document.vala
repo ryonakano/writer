@@ -25,7 +25,10 @@ namespace Writer.Utils {
             try {
                 string content;
                 FileUtils.get_contents (path, out content);
-                return content;
+                int start = content.index_of ("{\\rtf\n") + "{\\rtf\n".length;
+                int end = content.index_of ("\n}\n");
+                string res = content.substring (start, end - start);
+                return res;
             } catch (Error err) {
                 print ("Error reading file: " + err.message);
                 return "";
