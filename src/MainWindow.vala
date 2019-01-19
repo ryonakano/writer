@@ -97,5 +97,9 @@ namespace Writer {
             title_bar.set_active (false);
             stack.visible_child_name = "welcome";
         }
+
+        public void set_title_for_document (string path) {
+            title_bar.title = "%s — ".printf (Path.get_basename (path)) + "Writer";
+        }
     }
 }

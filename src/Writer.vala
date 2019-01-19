@@ -43,7 +43,7 @@ namespace Writer {
 
         public void open_file (Utils.Document doc) {
             editor.set_text (doc.read_all (), -1);
-            window.editor_view.set_tab_label_for_document (doc);
+            window.set_title_for_document (doc.path);
             window.show_editor ();
         }
 
