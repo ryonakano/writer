@@ -21,8 +21,8 @@ namespace Writer {
         private MainWindow window;
         private TextEditor editor;
         private Utils.Document doc;
-        string? path = null;
-        string? last_path = null;
+        private string? path = null;
+        private string? last_path = null;
 
         construct {
             application_id = Constants.PROJECT_NAME;
