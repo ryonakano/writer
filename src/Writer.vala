@@ -20,6 +20,7 @@ namespace Writer {
     public class WriterApp : Gtk.Application {
         private MainWindow window;
         private TextEditor editor;
+        private string? last_path = null;
 
         construct {
             application_id = Constants.PROJECT_NAME;
@@ -47,13 +48,30 @@ namespace Writer {
         }
 
         public void open_file_dialog () {
-            var filech = Utils.file_chooser_dialog (Gtk.FileChooserAction.OPEN, "Choose a file to open", window, false);
+            var filech = new Gtk.FileChooserDialog ("Choose a file to open", window, Gtk.FileChooserAction.OPEN);
+            var rtf_files_filter = new Gtk.FileFilter ();
+            rtf_files_filter.set_filter_name (_("Rich Text Format (.rtf)"));
+            rtf_files_filter.add_mime_type ("text/rtf");
+
+            filech.add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
+            filech.add_button (_("Open"), Gtk.ResponseType.ACCEPT);
+            filech.add_filter (rtf_files_filter);
+            filech.set_current_folder_uri (last_path ?? Environment.get_home_dir ());
+            filech.set_default_response (Gtk.ResponseType.ACCEPT);
+            filech.select_multiple = false;
+            filech.filter = rtf_files_filter;
+
+            filech.key_press_event.connect ((ev) => {
+                if (ev.keyval == 65307) // Esc key
+                    filech.destroy ();
+                return false;
+            });
 
             if (filech.run () == Gtk.ResponseType.ACCEPT) {
                 var uri = filech.get_uris ().nth_data (0);
 
                 // Update last visited path
-                Utils.last_path = Path.get_dirname (uri);
+                last_path = Path.get_dirname (uri);
 
                 // Open the file
                 var doc = new Utils.Document (uri);
