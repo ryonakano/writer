@@ -29,7 +29,9 @@ namespace Writer {
         construct {
             application_id = Constants.PROJECT_NAME;
 
-            if (settings.get_string ("destination") == "") {
+            documents = settings.get_string ("destination");
+
+            if (documents == "") {
                 documents = Environment.get_user_special_dir (UserDirectory.DOCUMENTS);
                 if (documents != null) {
                     DirUtils.create_with_parents (documents, 0775);
