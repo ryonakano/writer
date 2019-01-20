@@ -20,12 +20,29 @@ namespace Writer {
     public class WriterApp : Gtk.Application {
         private MainWindow window;
         private TextEditor editor;
+        public static Settings settings;
         private Utils.Document doc;
+        private string documents = "";
         private string? path = null;
         private string? last_path = null;
 
         construct {
             application_id = Constants.PROJECT_NAME;
+
+            if (settings.get_string ("destination") == "") {
+                documents = Environment.get_user_special_dir (UserDirectory.DOCUMENTS);
+                if (documents != null) {
+                    DirUtils.create_with_parents (documents, 0775);
+                } else {
+                    documents = Environment.get_home_dir ();
+                }
+
+                settings.set_string ("destination", documents);
+            }
+        }
+
+        static construct {
+            settings = new Settings (Constants.PROJECT_NAME);
         }
 
         public override void activate () {
@@ -43,19 +60,12 @@ namespace Writer {
             int id = 1;
             string file_name = "";
             string suffix = "";
-            string documents = "";
             File? file = null;
 
             do {
                 file_name = "Untitled Document %i".printf (id++);
                 suffix = ".rtf";
-                documents = Environment.get_user_special_dir (UserDirectory.DOCUMENTS);
                 file = File.new_for_path ("%s/%s%s".printf (documents, file_name, suffix));
-                if (documents != null) {
-                    DirUtils.create_with_parents (documents, 0775);
-                } else {
-                    documents = Environment.get_home_dir ();
-                }
             } while (file.query_exists ());
 
             doc = new Utils.Document ();
@@ -159,7 +169,9 @@ namespace Writer {
         }
 
         public void preferences () {
-            print ("Open preferences dialog\n");
+            var preference_window = new PreferenceWindow (window);
+            preference_window.transient_for = window;
+            preference_window.show_all ();
         }
 
         public static void main (string [] args) {
