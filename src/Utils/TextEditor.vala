@@ -26,7 +26,7 @@ namespace Writer {
         public signal void cursor_moved ();
         public signal void text_inserted ();
 
-        public TextEditor () {
+        public TextEditor (WriterApp app) {
             setup_tagtable (this);
             text_view = new Gtk.TextView.with_buffer (this);
 
@@ -41,6 +41,8 @@ namespace Writer {
 
             text_view.key_press_event.connect (key_press_callback);
             text_view.pixels_below_lines = 20;
+
+            changed.connect (app.save);
         }
 
         // Get a TextTagTable with all the default tags

@@ -20,6 +20,8 @@ namespace Writer {
     public class WriterApp : Gtk.Application {
         private MainWindow window;
         private TextEditor editor;
+        private Utils.Document doc;
+        private string? path = null;
         private string? last_path = null;
 
         construct {
@@ -28,7 +30,7 @@ namespace Writer {
 
         public override void activate () {
             if (get_windows () == null) {
-                editor = new TextEditor ();
+                editor = new TextEditor (this);
                 window = new MainWindow (this, editor);
                 window.show_welcome ();
                 window.show_all ();
@@ -38,12 +40,34 @@ namespace Writer {
         }
 
         public void new_file () {
-            window.show_editor ();
+            int id = 1;
+            string file_name = "";
+            string suffix = "";
+            string documents = "";
+            File? file = null;
+
+            do {
+                file_name = "Untitled Document %i".printf (id++);
+                suffix = ".rtf";
+                documents = Environment.get_user_special_dir (UserDirectory.DOCUMENTS);
+                file = File.new_for_path ("%s/%s%s".printf (documents, file_name, suffix));
+                if (documents != null) {
+                    DirUtils.create_with_parents (documents, 0775);
+                } else {
+                    documents = Environment.get_home_dir ();
+                }
+            } while (file.query_exists ());
+
+            doc = new Utils.Document ();
+            path = file.get_path ();
+            save ();
+
+            open_file (doc, path);
         }
 
-        public void open_file (Utils.Document doc) {
-            editor.set_text (doc.read_all (), -1);
-            window.set_title_for_document (doc.path);
+        public void open_file (Utils.Document doc, string path) {
+            editor.set_text (doc.read_all (path), -1);
+            window.set_title_for_document (path);
             window.show_editor ();
         }
 
@@ -68,25 +92,57 @@ namespace Writer {
             });
 
             if (filech.run () == Gtk.ResponseType.ACCEPT) {
-                var uri = filech.get_uris ().nth_data (0);
+                path = filech.get_filename ();
 
                 // Update last visited path
-                last_path = Path.get_dirname (uri);
+                last_path = path;
 
                 // Open the file
-                var doc = new Utils.Document (uri);
-                open_file (doc);
+                doc = new Utils.Document ();
+                open_file (doc, path);
             }
 
             filech.close ();
         }
 
         public void save () {
-            print ("save\n");
+            doc.write_to_file (editor, path);
         }
 
         public void save_as () {
-            print ("save as\n");
+            var filech = new Gtk.FileChooserDialog ("Save file with a different name", window, Gtk.FileChooserAction.SAVE);
+            var rtf_files_filter = new Gtk.FileFilter ();
+            rtf_files_filter.set_filter_name (_("Rich Text Format (.rtf)"));
+            rtf_files_filter.add_mime_type ("text/rtf");
+
+            filech.add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
+            filech.add_button (_("Save"), Gtk.ResponseType.ACCEPT);
+            filech.add_filter (rtf_files_filter);
+            filech.set_current_folder_uri (last_path ?? Environment.get_home_dir ());
+            filech.set_default_response (Gtk.ResponseType.ACCEPT);
+            filech.select_multiple = false;
+            filech.filter = rtf_files_filter;
+
+            filech.key_press_event.connect ((ev) => {
+                if (ev.keyval == 65307) // Esc key
+                    filech.destroy ();
+                return false;
+            });
+
+            if (filech.run () == Gtk.ResponseType.ACCEPT) {
+                path = filech.get_filename ();
+
+                // Update last visited path
+                last_path = path;
+
+                // Save the file with a provided name
+                doc = new Utils.Document ();
+                save ();
+            }
+
+            filech.close ();
+            // Open newly saved file
+            open_file (doc, path);
         }
 
         public void revert () {

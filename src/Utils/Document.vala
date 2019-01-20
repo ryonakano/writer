@@ -17,31 +17,35 @@
 
 namespace Writer.Utils {
     public class Document : Object {
-        public string uri { get; construct; }
-        public string path;
-        public File file;
-
-        public Document (string uri) {
-            Object (
-                uri: uri
-            );
-        }
 
         construct {
-            file = File.new_for_uri (uri);
-            path = file.get_path ();
         }
 
-        public string read_all () {
+        public string read_all (string path) {
             try {
                 string content;
                 FileUtils.get_contents (path, out content);
-
-                return content;
-            }
-            catch (Error err) {
+                int start = content.index_of ("{\\rtf\n") + "{\\rtf\n".length;
+                int end = content.index_of ("\n}\n");
+                string res = content.substring (start, end - start);
+                return res;
+            } catch (Error err) {
                 print ("Error reading file: " + err.message);
                 return "";
+            }
+        }
+
+        private string to_string (TextEditor editor) {
+            string rtf = "";
+            rtf += "{\\rtf\n" + editor.text + "\n}\n";
+            return rtf;
+        }
+
+        public void write_to_file (TextEditor editor, string path) {
+            try {
+                FileUtils.set_contents (path, to_string (editor));
+            } catch (Error err) {
+                print ("Error writing file: " + err.message);
             }
         }
     }
