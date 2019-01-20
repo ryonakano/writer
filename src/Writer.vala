@@ -56,6 +56,33 @@ namespace Writer {
             } else {
                 window.present ();
             }
+
+            var open_file_action = new SimpleAction ("open", null);
+            add_action (open_file_action);
+            set_accels_for_action ("app.open", {"<Control>o"});
+            open_file_action.activate.connect (() => {
+                if (window != null) {
+                    open_file_dialog ();
+                }
+            });
+
+            var save_file_action = new SimpleAction ("save", null);
+            add_action (save_file_action);
+            set_accels_for_action ("app.save", {"<Control>s"});
+            save_file_action.activate.connect (() => {
+                if (window != null && window.stack.visible_child_name == "editor") {
+                    save ();
+                }
+            });
+
+            var save_as_file_action = new SimpleAction ("save_as", null);
+            add_action (save_as_file_action);
+            set_accels_for_action ("app.save_as", {"<Control><Shift>s"});
+            save_as_file_action.activate.connect (() => {
+                if (window != null && window.stack.visible_child_name == "editor") {
+                    save_as ();
+                }
+            });
         }
 
         public void new_file () {

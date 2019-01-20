@@ -22,7 +22,7 @@ namespace Writer.Widgets {
         private Gtk.Button save_as_button;
         private Gtk.Button revert_button;
         private Gtk.Button print_button;
-        private Gtk.SearchEntry search_field;
+        public Gtk.SearchEntry search_field { get; private set; }
 
         public TitleBar (WriterApp app) {
             Object (

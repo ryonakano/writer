@@ -19,10 +19,10 @@ namespace Writer {
     public class MainWindow : Gtk.Window {
         public WriterApp app { get; construct; }
         public TextEditor editor { get; construct; }
-        private Widgets.TitleBar title_bar;
+        public Widgets.TitleBar title_bar { get; private set; }
         public Widgets.EditorView editor_view;
         private Widgets.WelcomeView welcome_view;
-        private Gtk.Stack stack;
+        public Gtk.Stack stack { get; private set; }
 
 #if HAVE_ZEITGEIST
         // Zeitgeist integration
