@@ -49,7 +49,7 @@ namespace Writer {
             do {
                 file_name = "Untitled Document %i".printf (id++);
                 suffix = ".rtf";
-                documents = Environment.get_user_special_dir (UserDirectory.DOCUMENTS) + "/%s".printf ("Documents");
+                documents = Environment.get_user_special_dir (UserDirectory.DOCUMENTS);
                 file = File.new_for_path ("%s/%s%s".printf (documents, file_name, suffix));
                 if (documents != null) {
                     DirUtils.create_with_parents (documents, 0775);
