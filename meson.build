@@ -46,7 +46,7 @@ executable(
     dependencies: [
         dependency('gee-0.8'),
         dependency('glib-2.0'),
-        dependency('granite'),
+        dependency('granite', version: '>=5.2.0'),
         dependency('gtk+-3.0', version: '>=3.22'),
         dependency('gtksourceview-3.0'),
         dependency('zeitgeist-2.0'),

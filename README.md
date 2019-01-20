@@ -20,7 +20,7 @@ You'll need the following dependencies:
 
 * libgtk-3.0-dev (>= 3.22)
 * libgtksourceview-3.0-dev
-* libgranite-dev
+* libgranite-dev (>= 5.2.0)
 * libzeitgeist-2.0
 * meson
 * valac
