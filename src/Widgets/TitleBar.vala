@@ -34,9 +34,13 @@ namespace Writer.Widgets {
 
         construct {
             open_button = new Gtk.Button.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR);
+            open_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>O"}, "Open a file");
             save_as_button = new Gtk.Button.from_icon_name ("document-save-as", Gtk.IconSize.LARGE_TOOLBAR);
+            save_as_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Shift><Ctrl>S"}, "Save this file with a different name");
             revert_button = new Gtk.Button.from_icon_name ("document-revert", Gtk.IconSize.LARGE_TOOLBAR);
+            revert_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Shift><Ctrl>O"}, "Restore this file");
             print_button = new Gtk.Button.from_icon_name ("document-export", Gtk.IconSize.LARGE_TOOLBAR);
+            print_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>P"}, "Print this file");
 
             search_field = new Gtk.SearchEntry ();
             search_field.valign = Gtk.Align.CENTER;
