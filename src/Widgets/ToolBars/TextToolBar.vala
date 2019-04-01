@@ -49,7 +49,7 @@ namespace Writer.Widgets {
             var paragraph_item = new Gtk.ToolItem ();
             paragraph_item.add (paragraph_combobox);
 
-            var font_button = new Gtk.ToggleButton.with_label ("Open Sans 14");
+            var font_button = new Gtk.ToggleButton ();
             var font_item = new Gtk.ToolItem ();
             font_item.add (font_button);
 
@@ -57,6 +57,8 @@ namespace Writer.Widgets {
             font_popover.border_width = 12;
             var font_chooser = new Gtk.FontChooserWidget ();
             font_popover.add (font_chooser);
+
+            font_button.label = font_chooser.font;
 
             // TODO: Show the current color instead of "Font Color" label
             var font_color_button = new Gtk.ToggleButton.with_label ("Font Color");
