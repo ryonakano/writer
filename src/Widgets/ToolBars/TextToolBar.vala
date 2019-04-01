@@ -18,8 +18,6 @@
 namespace Writer.Widgets {
     public class TextToolBar : Gtk.Toolbar {
         public TextEditor editor { get; construct; }
-        public Gtk.FontButton font_button;
-        public Gtk.ColorButton font_color_button;
         public Gtk.ToggleButton bold_button;
         public Gtk.ToggleButton italic_button;
         public Gtk.ToggleButton underline_button;
@@ -51,16 +49,22 @@ namespace Writer.Widgets {
             var paragraph_item = new Gtk.ToolItem ();
             paragraph_item.add (paragraph_combobox);
 
-            font_button = new Gtk.FontButton ();
-            font_button.use_font = true;
-            font_button.use_size = true;
+            var font_button = new Gtk.ToggleButton.with_label ("Open Sans 14");
             var font_item = new Gtk.ToolItem ();
             font_item.add (font_button);
 
-            font_color_button = new Gtk.ColorButton ();
-            font_color_button.use_alpha = false;
+            var font_popover = new Gtk.Popover (font_button);
+
+            // TODO: Show the current color instead of "Font Color" label
+            var font_color_button = new Gtk.ToggleButton.with_label ("Font Color");
             var font_color_item = new Gtk.ToolItem ();
             font_color_item.add (font_color_button);
+
+            var font_color_popover = new Gtk.Popover (font_color_button);
+            font_color_popover.border_width = 6;
+            var font_color_chooser = new Gtk.ColorChooserWidget ();
+            font_color_chooser.show_editor = false;
+            font_color_popover.add (font_color_chooser);
 
             bold_button = new Gtk.ToggleButton ();
             bold_button.add (new Gtk.Image.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.BUTTON));
@@ -135,13 +139,30 @@ namespace Writer.Widgets {
             align_button.mode_changed.connect (() => {
                 change_align (align_button.selected);
             });
-            font_button.font_set.connect (() => {
-                editor.set_font_from_string (font_button.font);
+            //  font_button.font_set.connect (() => {
+            //      editor.set_font_from_string (font_button.font);
+            //  });
+            font_button.toggled.connect (() => {
+                if (font_button.active) {
+                    font_popover.show_all ();
+                }
             });
-            font_color_button.color_set.connect (() => {
+            font_popover.closed.connect (() => {
+                font_button.active = false;
+            });
+            font_color_button.toggled.connect (() => {
+                if (font_color_button.active) {
+                    font_color_popover.show_all ();
+                }
+            });
+            font_color_popover.closed.connect (() => {
+                font_color_button.active = false;
+            });
+            font_color_chooser.notify["rgba"].connect (() => {
                 var rgba = Gdk.RGBA ();
-                rgba = font_color_button.rgba;
+                rgba = font_color_chooser.rgba;
                 editor.set_font_color (rgba);
+                font_color_popover.hide ();
             });
             bold_button.button_press_event.connect ((event) => {
                 if (event.type == Gdk.EventType.BUTTON_PRESS) {
