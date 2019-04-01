@@ -56,6 +56,8 @@ namespace Writer.Widgets {
             var font_popover = new Gtk.Popover (font_button);
             font_popover.border_width = 12;
             var font_chooser = new Gtk.FontChooserWidget ();
+            // TODO: Allow to set default font in PreferenceWindow
+            font_chooser.set_font ("Open Sans 12");
             font_popover.add (font_chooser);
 
             font_button.label = font_chooser.font;
