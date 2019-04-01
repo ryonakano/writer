@@ -54,7 +54,7 @@ namespace Writer.Widgets {
             font_item.add (font_button);
 
             var font_popover = new Gtk.Popover (font_button);
-            font_popover.border_width = 6;
+            font_popover.border_width = 12;
             var font_chooser = new Gtk.FontChooserWidget ();
             font_popover.add (font_chooser);
 
@@ -64,10 +64,16 @@ namespace Writer.Widgets {
             font_color_item.add (font_color_button);
 
             var font_color_popover = new Gtk.Popover (font_color_button);
-            font_color_popover.border_width = 6;
+            var font_color_header = new Granite.HeaderLabel ("Font Color");
             var font_color_chooser = new Gtk.ColorChooserWidget ();
+            font_color_chooser.rgba = { 0, 0, 0, 1 };
             font_color_chooser.show_editor = false;
-            font_color_popover.add (font_color_chooser);
+            var font_color_grid = new Gtk.Grid ();
+            font_color_grid.margin = 12;
+            font_color_grid.margin_top = 6;
+            font_color_grid.attach (font_color_header, 0, 0, 1, 1);
+            font_color_grid.attach (font_color_chooser, 0, 1, 1, 1);
+            font_color_popover.add (font_color_grid);
 
             bold_button = new Gtk.ToggleButton ();
             bold_button.add (new Gtk.Image.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.BUTTON));
