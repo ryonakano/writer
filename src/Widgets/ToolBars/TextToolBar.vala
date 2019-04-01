@@ -54,6 +54,9 @@ namespace Writer.Widgets {
             font_item.add (font_button);
 
             var font_popover = new Gtk.Popover (font_button);
+            font_popover.border_width = 6;
+            var font_chooser = new Gtk.FontChooserWidget ();
+            font_popover.add (font_chooser);
 
             // TODO: Show the current color instead of "Font Color" label
             var font_color_button = new Gtk.ToggleButton.with_label ("Font Color");
@@ -139,9 +142,11 @@ namespace Writer.Widgets {
             align_button.mode_changed.connect (() => {
                 change_align (align_button.selected);
             });
-            //  font_button.font_set.connect (() => {
-            //      editor.set_font_from_string (font_button.font);
-            //  });
+            font_chooser.font_activated.connect (() => {
+                editor.set_font_from_string (font_chooser.font);
+                font_popover.hide ();
+                font_button.label = font_chooser.font;
+            });
             font_button.toggled.connect (() => {
                 if (font_button.active) {
                     font_popover.show_all ();
