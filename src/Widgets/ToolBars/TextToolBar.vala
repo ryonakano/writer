@@ -62,8 +62,8 @@ namespace Writer.Widgets {
 
             font_button.label = font_chooser.font;
 
-            // TODO: Show the current color instead of "Font Color" label
-            var font_color_button = new Gtk.ToggleButton.with_label ("Font Color");
+            var font_color_button = new Gtk.ToggleButton ();
+            font_color_button.width_request = 42;
             var font_color_item = new Gtk.ToolItem ();
             font_color_item.add (font_color_button);
 
@@ -172,6 +172,18 @@ namespace Writer.Widgets {
             });
             font_color_popover.closed.connect (() => {
                 font_color_button.active = false;
+            });
+            font_color_button.draw.connect ((cr) => {
+                int width = font_color_button.get_allocated_width ();
+                int height = font_color_button.get_allocated_height ();
+                const int BORDER = 6;
+
+                // TODO: Reflect the current selected color
+                cr.set_source_rgba (0, 0, 0, 1);
+                cr.rectangle (BORDER, BORDER, width - (BORDER * 2), height - (BORDER * 2));
+                cr.fill ();
+
+                return false;
             });
             font_color_chooser.notify["rgba"].connect (() => {
                 var rgba = Gdk.RGBA ();
