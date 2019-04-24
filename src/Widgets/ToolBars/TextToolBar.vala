@@ -18,6 +18,7 @@
 namespace Writer.Widgets {
     public class TextToolBar : Gtk.Toolbar {
         public TextEditor editor { get; construct; }
+        private Gtk.ToggleButton font_color_button;
         public Gtk.ToggleButton bold_button;
         public Gtk.ToggleButton italic_button;
         public Gtk.ToggleButton underline_button;
@@ -62,22 +63,12 @@ namespace Writer.Widgets {
 
             font_button.label = font_chooser.font;
 
-            var font_color_button = new Gtk.ToggleButton ();
+            font_color_button = new Gtk.ToggleButton ();
             font_color_button.width_request = 42;
             var font_color_item = new Gtk.ToolItem ();
             font_color_item.add (font_color_button);
 
-            var font_color_popover = new Gtk.Popover (font_color_button);
-            var font_color_header = new Granite.HeaderLabel ("Font Color");
-            var font_color_chooser = new Gtk.ColorChooserWidget ();
-            font_color_chooser.rgba = { 0, 0, 0, 1 };
-            font_color_chooser.show_editor = false;
-            var font_color_grid = new Gtk.Grid ();
-            font_color_grid.margin = 12;
-            font_color_grid.margin_top = 6;
-            font_color_grid.attach (font_color_header, 0, 0, 1, 1);
-            font_color_grid.attach (font_color_chooser, 0, 1, 1, 1);
-            font_color_popover.add (font_color_grid);
+            create_font_color_popover ();
 
             bold_button = new Gtk.ToggleButton ();
             bold_button.add (new Gtk.Image.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.BUTTON));
@@ -167,11 +158,8 @@ namespace Writer.Widgets {
             });
             font_color_button.toggled.connect (() => {
                 if (font_color_button.active) {
-                    font_color_popover.show_all ();
+                    create_font_color_popover ().show_all ();
                 }
-            });
-            font_color_popover.closed.connect (() => {
-                font_color_button.active = false;
             });
             font_color_button.draw.connect ((cr) => {
                 int width = font_color_button.get_allocated_width ();
@@ -184,12 +172,6 @@ namespace Writer.Widgets {
                 cr.fill ();
 
                 return false;
-            });
-            font_color_chooser.notify["rgba"].connect (() => {
-                var rgba = Gdk.RGBA ();
-                rgba = font_color_chooser.rgba;
-                editor.set_font_color (rgba);
-                font_color_popover.hide ();
             });
             bold_button.button_press_event.connect ((event) => {
                 if (event.type == Gdk.EventType.BUTTON_PRESS) {
@@ -244,6 +226,48 @@ namespace Writer.Widgets {
 
             // TODO
             // Update font and color Gtk.Buttons
+        }
+
+        private Gtk.Popover create_font_color_popover () {
+            var font_color_popover = new Gtk.Popover (font_color_button);
+            var font_color_header = new Granite.HeaderLabel ("Font Color");
+            var font_color_chooser = new Gtk.ColorChooserWidget ();
+            font_color_chooser.rgba = { 0, 0, 0, 1 };
+            font_color_chooser.show_editor = false;
+
+            var cancel_button = new Gtk.Button.with_label ("Cancel");
+            var select_button = new Gtk.Button.with_label ("Select the Color");
+            select_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+
+            var buttons_grid = new Gtk.Grid ();
+            buttons_grid.margin = 6;
+            buttons_grid.column_spacing = 6;
+            buttons_grid.halign = Gtk.Align.END;
+            buttons_grid.attach (cancel_button, 0, 0, 1, 1);
+            buttons_grid.attach (select_button, 1, 0, 1, 1);
+
+            var font_color_grid = new Gtk.Grid ();
+            font_color_grid.margin = 12;
+            font_color_grid.margin_top = 6;
+            font_color_grid.attach (font_color_header, 0, 0, 1, 1);
+            font_color_grid.attach (font_color_chooser, 0, 1, 1, 1);
+            font_color_grid.attach (buttons_grid, 0, 2, 1, 1);
+            font_color_popover.add (font_color_grid);
+
+            cancel_button.clicked.connect (() => {
+                font_color_popover.hide ();
+            });
+            font_color_popover.closed.connect (() => {
+                font_color_button.active = false;
+            });
+            select_button.clicked.connect (() => {
+                var rgba = Gdk.RGBA ();
+                rgba = font_color_chooser.rgba;
+                editor.set_font_color (rgba);
+                font_color_popover.hide ();
+            });
+
+            return font_color_popover;
         }
     }
 }
