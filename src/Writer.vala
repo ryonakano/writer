@@ -48,14 +48,33 @@ namespace Writer {
         }
 
         public override void activate () {
-            if (get_windows () == null) {
-                editor = new TextEditor (this);
-                window = new MainWindow (this, editor);
-                window.show_welcome ();
-                window.show_all ();
-            } else {
+            if (get_windows () != null) {
                 window.present ();
+                return;
             }
+
+            var window_x = settings.get_int ("window-x");
+            var window_y = settings.get_int ("window-y");
+            var window_width = settings.get_int ("window-width");
+            var window_height = settings.get_int ("window-height");
+            var is_maximized = settings.get_boolean ("is-maximized");
+
+            editor = new TextEditor (this);
+            window = new MainWindow (this, editor);
+            window.set_default_size (window_width, window_height);
+
+            if (window_x == -1 || window_y == -1) {
+                window.window_position = Gtk.WindowPosition.CENTER;
+            } else {
+                window.move (window_x, window_y);
+            }
+
+            if (is_maximized) {
+                window.maximize ();
+            }
+
+            window.show_welcome ();
+            window.show_all ();
 
             var open_file_action = new SimpleAction ("open", null);
             add_action (open_file_action);
