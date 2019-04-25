@@ -45,8 +45,6 @@ namespace Writer {
                                                         cssprovider,
                                                         Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
 
-            set_size_request (950, 800);
-            window_position = Gtk.WindowPosition.CENTER;
             add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
 
             stack = new Gtk.Stack ();
@@ -62,8 +60,6 @@ namespace Writer {
             stack.add_named (welcome_view, "welcome");
             stack.add_named (editor_view, "editor");
             add (stack);
-
-            show_all ();
 
 #if HAVE_ZEITGEIST
             // Set up the Data Source Registry for Zeitgeist
@@ -100,6 +96,21 @@ namespace Writer {
 
         public void set_title_for_document (string path) {
             title_bar.title = "%s — ".printf (Path.get_basename (path)) + "Writer";
+        }
+
+        protected override bool configure_event (Gdk.EventConfigure event) {
+            int x, y, w, h;
+            bool m;
+            get_position (out x, out y);
+            get_size (out w, out h);
+            m = this.is_maximized;
+            WriterApp.settings.set_int ("window-x", x);
+            WriterApp.settings.set_int ("window-y", y);
+            WriterApp.settings.set_int ("window-width", w);
+            WriterApp.settings.set_int ("window-height", h);
+            WriterApp.settings.set_boolean ("is-maximized", m);
+    
+            return base.configure_event (event);
         }
     }
 }

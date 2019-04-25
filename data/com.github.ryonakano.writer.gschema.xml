@@ -6,5 +6,30 @@
       <summary>File destination</summary>
       <description>The location to save files.</description>
     </key>
+    <key name="window-width" type="i">
+      <default>950</default>
+      <summary>Window width</summary>
+      <description>Width of last closed window</description>
+    </key>
+    <key name="window-height" type="i">
+      <default>800</default>
+      <summary>Window height</summary>
+      <description>Height of last closed window</description>
+    </key>
+    <key name="window-x" type="i">
+      <default>-1</default>
+      <summary>Window X position</summary>
+      <description>X position of last closed window</description>
+    </key>
+    <key name="window-y" type="i">
+      <default>-1</default>
+      <summary>Window Y position</summary>
+      <description>Y position of last closed window</description>
+    </key>
+    <key name="is-maximized" type="b">
+      <default>false</default>
+      <summary>Open window maximized</summary>
+      <description>If true, window opens maximized</description>
+    </key>
   </schema>
 </schemalist>
