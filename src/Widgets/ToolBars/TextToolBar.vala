@@ -240,7 +240,9 @@ namespace Writer.Widgets {
             select_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
             var buttons_grid = new Gtk.Grid ();
-            buttons_grid.margin = 6;
+            buttons_grid.margin = 12;
+            buttons_grid.margin_end = 0;
+            buttons_grid.margin_bottom = 0;
             buttons_grid.column_spacing = 6;
             buttons_grid.halign = Gtk.Align.END;
             buttons_grid.attach (cancel_button, 0, 0, 1, 1);
