@@ -21,24 +21,24 @@ namespace Writer {
         private MainWindow window;
         private TextEditor editor;
         public static Settings settings;
-        private string documents = "";
+        private string destination = "";
         private string? path = null;
         private string? last_path = null;
 
         construct {
             application_id = Constants.PROJECT_NAME;
 
-            documents = settings.get_string ("destination");
+            destination = settings.get_string ("destination");
 
-            if (documents == "") {
-                documents = Environment.get_user_special_dir (UserDirectory.DOCUMENTS);
-                if (documents != null) {
-                    DirUtils.create_with_parents (documents, 0775);
+            if (destination == "") {
+                destination = Environment.get_user_special_dir (UserDirectory.DOCUMENTS);
+                if (destination != null) {
+                    DirUtils.create_with_parents (destination, 0775);
                 } else {
-                    documents = Environment.get_home_dir ();
+                    destination = Environment.get_home_dir ();
                 }
 
-                settings.set_string ("destination", documents);
+                settings.set_string ("destination", destination);
             }
         }
 
@@ -112,7 +112,7 @@ namespace Writer {
             do {
                 file_name = "Untitled Document %i".printf (id++);
                 suffix = ".rtf";
-                file = File.new_for_path ("%s/%s%s".printf (documents, file_name, suffix));
+                file = File.new_for_path ("%s/%s%s".printf (destination, file_name, suffix));
             } while (file.query_exists ());
 
             path = file.get_path ();
