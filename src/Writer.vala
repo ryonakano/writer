@@ -21,7 +21,6 @@ namespace Writer {
         private MainWindow window;
         private TextEditor editor;
         public static Settings settings;
-        private Utils.Document doc;
         private string documents = "";
         private string? path = null;
         private string? last_path = null;
@@ -116,15 +115,13 @@ namespace Writer {
                 file = File.new_for_path ("%s/%s%s".printf (documents, file_name, suffix));
             } while (file.query_exists ());
 
-            doc = new Utils.Document ();
             path = file.get_path ();
             save ();
-
-            open_file (doc, path);
+            open_file (path);
         }
 
-        public void open_file (Utils.Document doc, string path) {
-            editor.set_text (doc.read_all (path), -1);
+        public void open_file (string path) {
+            editor.set_text (new Utils.RTFParser ().read_all (path), -1);
             window.set_title_for_document (path);
             window.show_editor ();
         }
@@ -155,16 +152,14 @@ namespace Writer {
                 // Update last visited path
                 last_path = path;
 
-                // Open the file
-                doc = new Utils.Document ();
-                open_file (doc, path);
+                open_file (path);
             }
 
             filech.close ();
         }
 
         public void save () {
-            doc.write_to_file (editor, path);
+            new Utils.RTFWriter (editor).write_to_file (path);
         }
 
         public void save_as () {
@@ -193,14 +188,11 @@ namespace Writer {
                 // Update last visited path
                 last_path = path;
 
-                // Save the file with a provided name
-                doc = new Utils.Document ();
                 save ();
+                open_file (path);
             }
 
             filech.close ();
-            // Open newly saved file
-            open_file (doc, path);
         }
 
         public void revert () {
