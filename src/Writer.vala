@@ -110,7 +110,7 @@ namespace Writer {
             File? file = null;
 
             do {
-                file_name = _("Untitled Document") + "%i".printf (id++);
+                file_name = _("Untitled Document %i").printf (id++);
                 suffix = ".rtf";
                 file = File.new_for_path ("%s/%s%s".printf (destination, file_name, suffix));
             } while (file.query_exists ());

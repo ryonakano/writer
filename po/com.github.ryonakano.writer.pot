@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.ryonakano.writer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-21 15:46+0200\n"
+"POT-Creation-Date: 2019-06-21 16:50+0200\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -163,7 +163,8 @@ msgid "A data source which logs Open, Close, Save and Move Events"
 msgstr ""
 
 #: src/Writer.vala:113
-msgid "Untitled Document"
+#, c-format
+msgid "Untitled Document %i"
 msgstr ""
 
 #: src/Writer.vala:130

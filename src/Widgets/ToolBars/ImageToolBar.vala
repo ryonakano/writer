@@ -30,8 +30,8 @@ namespace Writer.Widgets {
             get_style_context ().add_class ("writer-toolbar");
 
             var wrap_combobox = new Gtk.ComboBoxText ();
-            wrap_combobox.append (_("In line of text"), ("In line of text"));
-            wrap_combobox.append (_("Float above text"), ("Float above text"));
+            wrap_combobox.append ("In line of text", _("In line of text"));
+            wrap_combobox.append ("Float above text", _("Float above text"));
             wrap_combobox.set_active_id ("In line of text");
             var wrap_item = new Gtk.ToolItem ();
             wrap_item.add (wrap_combobox);
