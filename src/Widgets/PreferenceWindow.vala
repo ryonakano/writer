@@ -24,7 +24,7 @@ public class Writer.PreferenceWindow : Gtk.Dialog {
             resizable: false,
             deletable: false,
             modal: true,
-            title: "Preferences",
+            title: _("Preferences"),
             width_request: 420,
             height_request: 300,
             window_position: Gtk.WindowPosition.CENTER_ON_PARENT

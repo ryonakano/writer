@@ -110,7 +110,7 @@ namespace Writer {
             File? file = null;
 
             do {
-                file_name = "Untitled Document %i".printf (id++);
+                file_name = _("Untitled Document") + "%i".printf (id++);
                 suffix = ".rtf";
                 file = File.new_for_path ("%s/%s%s".printf (destination, file_name, suffix));
             } while (file.query_exists ());
@@ -127,7 +127,7 @@ namespace Writer {
         }
 
         public void open_file_dialog () {
-            var filech = new Gtk.FileChooserDialog ("Choose a file to open", window, Gtk.FileChooserAction.OPEN);
+            var filech = new Gtk.FileChooserDialog (_("Choose a file to open"), window, Gtk.FileChooserAction.OPEN);
             var rtf_files_filter = new Gtk.FileFilter ();
             rtf_files_filter.set_filter_name (_("Rich Text Format (.rtf)"));
             rtf_files_filter.add_mime_type ("text/rtf");
@@ -163,7 +163,7 @@ namespace Writer {
         }
 
         public void save_as () {
-            var filech = new Gtk.FileChooserDialog ("Save file with a different name", window, Gtk.FileChooserAction.SAVE);
+            var filech = new Gtk.FileChooserDialog (_("Save file with a different name"), window, Gtk.FileChooserAction.SAVE);
             var rtf_files_filter = new Gtk.FileFilter ();
             rtf_files_filter.set_filter_name (_("Rich Text Format (.rtf)"));
             rtf_files_filter.add_mime_type ("text/rtf");
