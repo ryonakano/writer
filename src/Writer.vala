@@ -21,25 +21,24 @@ namespace Writer {
         private MainWindow window;
         private TextEditor editor;
         public static Settings settings;
-        private Utils.Document doc;
-        private string documents = "";
+        private string destination = "";
         private string? path = null;
         private string? last_path = null;
 
         construct {
             application_id = Constants.PROJECT_NAME;
 
-            documents = settings.get_string ("destination");
+            destination = settings.get_string ("destination");
 
-            if (documents == "") {
-                documents = Environment.get_user_special_dir (UserDirectory.DOCUMENTS);
-                if (documents != null) {
-                    DirUtils.create_with_parents (documents, 0775);
+            if (destination == "") {
+                destination = Environment.get_user_special_dir (UserDirectory.DOCUMENTS);
+                if (destination != null) {
+                    DirUtils.create_with_parents (destination, 0775);
                 } else {
-                    documents = Environment.get_home_dir ();
+                    destination = Environment.get_home_dir ();
                 }
 
-                settings.set_string ("destination", documents);
+                settings.set_string ("destination", destination);
             }
         }
 
@@ -48,14 +47,33 @@ namespace Writer {
         }
 
         public override void activate () {
-            if (get_windows () == null) {
-                editor = new TextEditor (this);
-                window = new MainWindow (this, editor);
-                window.show_welcome ();
-                window.show_all ();
-            } else {
+            if (get_windows () != null) {
                 window.present ();
+                return;
             }
+
+            var window_x = settings.get_int ("window-x");
+            var window_y = settings.get_int ("window-y");
+            var window_width = settings.get_int ("window-width");
+            var window_height = settings.get_int ("window-height");
+            var is_maximized = settings.get_boolean ("is-maximized");
+
+            editor = new TextEditor (this);
+            window = new MainWindow (this, editor);
+            window.set_default_size (window_width, window_height);
+
+            if (window_x == -1 || window_y == -1) {
+                window.window_position = Gtk.WindowPosition.CENTER;
+            } else {
+                window.move (window_x, window_y);
+            }
+
+            if (is_maximized) {
+                window.maximize ();
+            }
+
+            window.show_welcome ();
+            window.show_all ();
 
             var open_file_action = new SimpleAction ("open", null);
             add_action (open_file_action);
@@ -94,18 +112,16 @@ namespace Writer {
             do {
                 file_name = "Untitled Document %i".printf (id++);
                 suffix = ".rtf";
-                file = File.new_for_path ("%s/%s%s".printf (documents, file_name, suffix));
+                file = File.new_for_path ("%s/%s%s".printf (destination, file_name, suffix));
             } while (file.query_exists ());
 
-            doc = new Utils.Document ();
             path = file.get_path ();
             save ();
-
-            open_file (doc, path);
+            open_file (path);
         }
 
-        public void open_file (Utils.Document doc, string path) {
-            editor.set_text (doc.read_all (path), -1);
+        public void open_file (string path) {
+            editor.set_text (new Utils.RTFParser ().read_all (path), -1);
             window.set_title_for_document (path);
             window.show_editor ();
         }
@@ -136,16 +152,14 @@ namespace Writer {
                 // Update last visited path
                 last_path = path;
 
-                // Open the file
-                doc = new Utils.Document ();
-                open_file (doc, path);
+                open_file (path);
             }
 
             filech.close ();
         }
 
         public void save () {
-            doc.write_to_file (editor, path);
+            new Utils.RTFWriter (editor).write_to_file (path);
         }
 
         public void save_as () {
@@ -174,14 +188,11 @@ namespace Writer {
                 // Update last visited path
                 last_path = path;
 
-                // Save the file with a provided name
-                doc = new Utils.Document ();
                 save ();
+                open_file (path);
             }
 
             filech.close ();
-            // Open newly saved file
-            open_file (doc, path);
         }
 
         public void revert () {

@@ -36,6 +36,18 @@ To install, use `ninja install`, then execute with `com.github.ryonakano.writer`
     sudo ninja install
     com.github.ryonakano.writer
 
+## Contributing
+
+There are many ways you can contribute, even if you don't know how to code.
+
+### Reporting Bugs or Suggesting Improvements
+
+Simply [create a new issue](https://github.com/ryonakano/writer/issues/new) describing your problem and how to reproduce or your suggestion. If you are not used to do, [this section](https://elementary.io/docs/code/reference#reporting-bugs) is for you.
+
+### Writing Some Code
+
+We follow the [coding style of elementary OS](https://elementary.io/docs/code/reference#code-style) and [its Human Interface Guidelines](https://elementary.io/docs/human-interface-guidelines#human-interface-guidelines), please try to respect them.
+
 ## The Story Behind This App
 
 Actually this repository is a fork of the [original Writer](https://launchpad.net/writer). One day I found the original one and was very impressed, but it didn't seem to be updated at that time and wasn't released to AppCenter. Then I felt I would like to fork it and continue the development.
