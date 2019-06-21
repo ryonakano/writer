@@ -41,12 +41,12 @@ namespace Writer.Widgets {
             editor.cursor_moved.connect (cursor_moved);
 
             var paragraph_combobox = new Gtk.ComboBoxText ();
-            paragraph_combobox.append ("Paragraph", ("Paragraph"));
-            paragraph_combobox.append ("Title", ("Title"));
-            paragraph_combobox.append ("Subtitle", ("Subtitle"));
-            paragraph_combobox.append ("Bullet List", ("Bullet List"));
-            paragraph_combobox.append ("Numbered List", ("Numbered List"));
-            paragraph_combobox.append ("Two-Column", ("Two-Column"));
+            paragraph_combobox.append ("Paragraph", _("Paragraph"));
+            paragraph_combobox.append ("Title", _("Title"));
+            paragraph_combobox.append ("Subtitle", _("Subtitle"));
+            paragraph_combobox.append ("Bullet List", _("Bullet List"));
+            paragraph_combobox.append ("Numbered List", _("Numbered List"));
+            paragraph_combobox.append ("Two-Column", _("Two-Column"));
             paragraph_combobox.set_active_id ("Paragraph");
             var paragraph_item = new Gtk.ToolItem ();
             paragraph_item.add (paragraph_combobox);

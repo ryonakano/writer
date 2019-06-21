@@ -72,7 +72,7 @@ namespace Writer {
             ds_events.add (ds_event);
             var ds = new Zeitgeist.DataSource.full ("writer-logger",
                                           _("Zeitgeist Datasource for Writer"),
-                                          "A data source which logs Open, Close, Save and Move Events",
+                                          _("A data source which logs Open, Close, Save and Move Events"),
                                           ds_events); // FIXME: templates!
             registry.register_data_source.begin (ds, null, (obj, res) => {
                 try {
@@ -95,7 +95,7 @@ namespace Writer {
         }
 
         public void set_title_for_document (string path) {
-            title_bar.title = "%s — ".printf (Path.get_basename (path)) + "Writer";
+            title_bar.title = "%s — ".printf (Path.get_basename (path)) + _("Writer");
         }
 
         protected override bool configure_event (Gdk.EventConfigure event) {

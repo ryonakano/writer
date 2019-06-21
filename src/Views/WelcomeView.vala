@@ -21,15 +21,15 @@ namespace Writer.Widgets {
 
         public WelcomeView (WriterApp app) {
             Object (
-                title: "No Documents Open",
-                subtitle: "Open a document to begin editing.",
+                title: _("No Documents Open"),
+                subtitle: _("Open a document to begin editing."),
                 app: app
             );
         }
 
         construct {
-            append ("document-new", "New File", "Create a new document.");
-            append ("document-open", "Open File", "Open a saved document.");
+            append ("document-new", _("New File"), _("Create a new document."));
+            append ("document-open", _("Open File"), _("Open a saved document."));
 
             activated.connect ((index) => {
                 // TODO

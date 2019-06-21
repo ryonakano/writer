@@ -27,29 +27,29 @@ namespace Writer.Widgets {
         public TitleBar (WriterApp app) {
             Object (
                 app: app,
-                title: "Writer",
+                title: _("Writer"),
                 show_close_button: true
             );
         }
 
         construct {
             open_button = new Gtk.Button.from_icon_name ("document-open", Gtk.IconSize.LARGE_TOOLBAR);
-            open_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>O"}, "Open a file");
+            open_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>O"}, _("Open a file"));
             save_as_button = new Gtk.Button.from_icon_name ("document-save-as", Gtk.IconSize.LARGE_TOOLBAR);
-            save_as_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Shift><Ctrl>S"}, "Save this file with a different name");
+            save_as_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Shift><Ctrl>S"}, _("Save this file with a different name"));
             revert_button = new Gtk.Button.from_icon_name ("document-revert", Gtk.IconSize.LARGE_TOOLBAR);
-            revert_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Shift><Ctrl>O"}, "Restore this file");
+            revert_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Shift><Ctrl>O"}, _("Restore this file"));
             print_button = new Gtk.Button.from_icon_name ("document-export", Gtk.IconSize.LARGE_TOOLBAR);
-            print_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>P"}, "Print this file");
+            print_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>P"}, _("Print this file"));
 
             search_field = new Gtk.SearchEntry ();
             search_field.valign = Gtk.Align.CENTER;
-            search_field.placeholder_text = "Find";
+            search_field.placeholder_text = _("Find");
             search_field.search_changed.connect (() => {
                 app.search (search_field.text);
             });
 
-            var preferences_item = new Gtk.MenuItem.with_label ("Preferences");
+            var preferences_item = new Gtk.MenuItem.with_label (_("Preferences"));
             var app_menu_menu = new Gtk.Menu ();
             app_menu_menu.add (preferences_item);
             var app_menu = new Gtk.MenuButton ();

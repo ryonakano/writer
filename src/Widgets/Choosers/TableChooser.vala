@@ -33,13 +33,13 @@ namespace Writer.Widgets {
             var cols_spin = new Gtk.SpinButton.with_range (1, 10, 1);
             var rows_spin = new Gtk.SpinButton.with_range (1, 10, 1);
 
-            var insert_button = new Gtk.Button.with_label ("Insert Table");
+            var insert_button = new Gtk.Button.with_label (_("Insert Table"));
 
-            var main_label = new Gtk.Label ("Table");
+            var main_label = new Gtk.Label (_("Table"));
             main_label.xalign = 0;
-            var cols_label = new Gtk.Label ("Columns:");
+            var cols_label = new Gtk.Label (_("Columns:"));
             cols_label.xalign = 0;
-            var rows_label = new Gtk.Label ("Rows:");
+            var rows_label = new Gtk.Label (_("Rows:"));
             rows_label.xalign = 0;
 
             attach (main_label, 0, 0, 2, 1);
