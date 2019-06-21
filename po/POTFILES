@@ -1,0 +1,11 @@
+src/Views/WelcomView.vala
+
+src/Widgets/Choosers/TableChooser.vala
+src/Widgets/Toolbars/ImageToolbar.vala
+src/Widgets/Toolbars/TableToolbar.vala
+src/Widgets/Toolbars/TextToolbar.vala
+src/Widgets/PreferencesWindow.vala
+src/Widgets/TitleBar.vala
+
+src/MainWindow.vala
+src/Writer.vala
