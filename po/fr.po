@@ -23,7 +23,7 @@ msgstr "Aucun document ouvert"
 
 #: src/Views/WelcomeView.vala:25
 msgid "Open a document to begin editing."
-msgstr "Ouvrir un documment pour commencer l'édition."
+msgstr "Ouvrir un document pour commencer l'édition."
 
 #: src/Views/WelcomeView.vala:31
 msgid "New File"
@@ -136,7 +136,7 @@ msgstr "Writer"
 
 #: src/Widgets/TitleBar.vala:37
 msgid "Open a file"
-msgstr "Ouvrir un fichir"
+msgstr "Ouvrir un fichier"
 
 #: src/Widgets/TitleBar.vala:39
 msgid "Save this file with a different name"
