@@ -1,4 +1,4 @@
-src/Views/WelcomView.vala
+src/Views/WelcomeView.vala
 
 src/Widgets/Choosers/TableChooser.vala
 src/Widgets/Toolbars/ImageToolbar.vala
