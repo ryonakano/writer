@@ -34,7 +34,7 @@ namespace Writer.Widgets {
         construct {
             get_style_context ().add_class ("writer-toolbar");
 
-            var table_properties_button = new Gtk.Button.with_label ("Table Properties");
+            var table_properties_button = new Gtk.Button.with_label (_("Table Properties"));
             var table_properties_item = new Gtk.ToolItem ();
             table_properties_item.add (table_properties_button);
 
@@ -82,11 +82,11 @@ namespace Writer.Widgets {
             var align_item = new Gtk.ToolItem ();
             align_item.add (align_button);
 
-            var add_table_button = new Gtk.Button.with_label ("Add");
+            var add_table_button = new Gtk.Button.with_label (_("Add"));
             var add_table_item = new Gtk.ToolItem ();
             add_table_item.add (add_table_button);
 
-            var delete_table_button = new Gtk.Button.with_label ("Delete");
+            var delete_table_button = new Gtk.Button.with_label (_("Delete"));
             delete_table_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
             var delete_table_item = new Gtk.ToolItem ();
             delete_table_item.add (delete_table_button);
