@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2014-2018 Writer Developers
+* Copyright (c) 2014-2019 Writer Developers
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -18,12 +18,6 @@
 namespace Writer.Widgets {
     public class TableToolBar : Gtk.Toolbar {
         public TextEditor editor { get; construct; }
-        public Gtk.FontButton font_button;
-        public Gtk.ToggleButton bold_button;
-        public Gtk.ToggleButton italic_button;
-        public Gtk.ToggleButton underline_button;
-        public Gtk.ToggleButton strikethrough_button;
-        public Granite.Widgets.ModeButton align_button;
 
         public TableToolBar (TextEditor editor) {
             Object (
@@ -38,7 +32,7 @@ namespace Writer.Widgets {
             var table_properties_item = new Gtk.ToolItem ();
             table_properties_item.add (table_properties_button);
 
-            font_button = new Gtk.FontButton ();
+            var font_button = new Gtk.FontButton ();
             font_button.use_font = true;
             font_button.use_size = true;
             font_button.font_set.connect (() => {
@@ -53,16 +47,16 @@ namespace Writer.Widgets {
             var font_color_item = new Gtk.ToolItem ();
             font_color_item.add (font_color_button);
 
-            bold_button = new Gtk.ToggleButton ();
+            var bold_button = new Gtk.ToggleButton ();
             bold_button.add (new Gtk.Image.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.BUTTON));
             bold_button.focus_on_click = false;
-            italic_button = new Gtk.ToggleButton ();
+            var italic_button = new Gtk.ToggleButton ();
             italic_button.add (new Gtk.Image.from_icon_name ("format-text-italic-symbolic", Gtk.IconSize.BUTTON));
             italic_button.focus_on_click = false;
-            underline_button = new Gtk.ToggleButton ();
+            var underline_button = new Gtk.ToggleButton ();
             underline_button.add (new Gtk.Image.from_icon_name ("format-text-underline-symbolic", Gtk.IconSize.BUTTON));
             underline_button.focus_on_click = false;
-            strikethrough_button = new Gtk.ToggleButton ();
+            var strikethrough_button = new Gtk.ToggleButton ();
             strikethrough_button.add (new Gtk.Image.from_icon_name ("format-text-strikethrough-symbolic", Gtk.IconSize.BUTTON));
             strikethrough_button.focus_on_click = false;
             var styles_buttons = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
@@ -74,7 +68,7 @@ namespace Writer.Widgets {
             var styles_item = new Gtk.ToolItem ();
             styles_item.add (styles_buttons);
 
-            align_button = new Granite.Widgets.ModeButton ();
+            var align_button = new Granite.Widgets.ModeButton ();
             align_button.append (new Gtk.Image.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
             align_button.append (new Gtk.Image.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
             align_button.append (new Gtk.Image.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
@@ -115,38 +109,49 @@ namespace Writer.Widgets {
                 if (event.type == Gdk.EventType.BUTTON_PRESS) {
                     editor.toggle_style ("bold");
                 }
+
                 return false;
             });
+
             italic_button.button_press_event.connect ((event) => {
                 if (event.type == Gdk.EventType.BUTTON_PRESS) {
                     editor.toggle_style ("italic");
                 }
+
                 return false;
             });
+
             underline_button.button_press_event.connect ((event) => {
                 if (event.type == Gdk.EventType.BUTTON_PRESS) {
                     editor.toggle_style ("underline");
                 }
+
                 return false;
             });
+
             strikethrough_button.button_press_event.connect ((event) => {
                 if (event.type == Gdk.EventType.BUTTON_PRESS) {
                     editor.toggle_style ("strikethrough");
                 }
+
                 return false;
             });
         }
 
-        public void change_align (int index) {
+        private void change_align (int index) {
             switch (index) {
                 case 1:
-                    editor.set_justification ("center"); break;
+                    editor.set_justification ("center");
+                    break;
                 case 2:
-                    editor.set_justification ("right"); break;
+                    editor.set_justification ("right");
+                    break;
                 case 3:
-                    editor.set_justification ("fill"); break;
+                    editor.set_justification ("fill");
+                    break;
                 default:
-                    editor.set_justification ("left"); break;
+                    editor.set_justification ("left");
+                    break;
             }
         }
     }
