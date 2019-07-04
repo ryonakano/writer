@@ -1,1 +1,1 @@
-option('no_zeitgeist', type: 'boolean', value: false, description: 'Build without Zeitgeist')
+option('no_zeitgeist', type: 'boolean', value: false, description: 'Use Zeitgeist integration')
