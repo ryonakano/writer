@@ -43,8 +43,8 @@ public class Writer.MainWindow : Gtk.Window {
         stack.transition_duration = 200;
         stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
 
-        var editor_view = new Widgets.EditorView (editor);
-        var welcome_view = new Widgets.WelcomeView (app);
+        var editor_view = new Views.EditorView (editor);
+        var welcome_view = new Views.WelcomeView (app);
 
         stack.add_named (welcome_view, "welcome");
         stack.add_named (editor_view, "editor");

@@ -15,7 +15,7 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-public class Writer.Widgets.EditorView : Gtk.Box {
+public class Writer.Views.EditorView : Gtk.Box {
     public TextEditor editor { get; construct; }
 
     public EditorView (TextEditor editor) {

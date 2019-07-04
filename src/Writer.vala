@@ -217,7 +217,7 @@ public class Writer.WriterApp : Gtk.Application {
     }
 
     public void preferences () {
-        var preference_window = new PreferenceWindow (window);
+        var preference_window = new Widgets.PreferenceWindow (window);
         preference_window.transient_for = window;
         preference_window.show_all ();
     }

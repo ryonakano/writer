@@ -15,7 +15,7 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-public class Writer.PreferenceWindow : Gtk.Dialog {
+public class Writer.Widgets.PreferenceWindow : Gtk.Dialog {
     public Gtk.Window window { get; construct; }
 
     public PreferenceWindow (Gtk.Window parent) {

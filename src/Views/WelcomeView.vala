@@ -15,7 +15,7 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-public class Writer.Widgets.WelcomeView : Granite.Widgets.Welcome {
+public class Writer.Views.WelcomeView : Granite.Widgets.Welcome {
     public WriterApp app { get; construct; }
 
     public WelcomeView (WriterApp app) {
