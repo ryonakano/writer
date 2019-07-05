@@ -34,16 +34,14 @@ public class Writer.Widgets.TableToolBar : Gtk.Grid {
 
         var font_button = new Gtk.FontButton ();
         font_button.margin = 12;
+        font_button.margin_start = 6;
         font_button.margin_end = 6;
         font_button.use_font = true;
         font_button.use_size = true;
-        font_button.font_set.connect (() => {
-            string name = font_button.font;
-            stdout.printf ("Selected font: %s\n", name);
-        });
 
         var font_color_button = new Gtk.ColorButton ();
         font_color_button.margin = 12;
+        font_color_button.margin_start = 6;
         font_color_button.margin_end = 6;
         font_color_button.use_alpha = false;
 
@@ -61,6 +59,7 @@ public class Writer.Widgets.TableToolBar : Gtk.Grid {
         strikethrough_button.focus_on_click = false;
         var styles_buttons = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         styles_buttons.margin = 12;
+        styles_buttons.margin_start = 6;
         styles_buttons.margin_end = 6;
         styles_buttons.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
         styles_buttons.pack_start (bold_button);
@@ -70,6 +69,7 @@ public class Writer.Widgets.TableToolBar : Gtk.Grid {
 
         var align_button = new Granite.Widgets.ModeButton ();
         align_button.margin = 12;
+        align_button.margin_start = 6;
         align_button.margin_end = 6;
         align_button.append (new Gtk.Image.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
         align_button.append (new Gtk.Image.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
@@ -78,11 +78,12 @@ public class Writer.Widgets.TableToolBar : Gtk.Grid {
 
         var add_table_button = new Gtk.Button.with_label (_("Add"));
         add_table_button.margin = 12;
+        add_table_button.margin_start = 6;
         add_table_button.margin_end = 6;
 
         var delete_table_button = new Gtk.Button.with_label (_("Delete"));
         delete_table_button.margin = 12;
-        delete_table_button.margin_end = 6;
+        delete_table_button.margin_start = 6;
         delete_table_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
 
         attach (table_properties_button, 0, 0, 1, 1);
@@ -92,6 +93,11 @@ public class Writer.Widgets.TableToolBar : Gtk.Grid {
         attach (align_button, 4, 0, 1, 1);
         attach (add_table_button, 5, 0, 1, 1);
         attach (delete_table_button, 6, 0, 1, 1);
+
+        font_button.font_set.connect (() => {
+            string name = font_button.font;
+            stdout.printf ("Selected font: %s\n", name);
+        });
 
         align_button.mode_changed.connect (() => {
             change_align (align_button.selected);

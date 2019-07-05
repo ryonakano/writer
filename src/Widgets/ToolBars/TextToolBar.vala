@@ -38,6 +38,8 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
         editor.cursor_moved.connect (cursor_moved);
 
         var paragraph_combobox = new Gtk.ComboBoxText ();
+        paragraph_combobox.margin = 12;
+        paragraph_combobox.margin_end = 6;
         paragraph_combobox.append ("Paragraph", _("Paragraph"));
         paragraph_combobox.append ("Title", _("Title"));
         paragraph_combobox.append ("Subtitle", _("Subtitle"));
@@ -45,21 +47,19 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
         paragraph_combobox.append ("Numbered List", _("Numbered List"));
         paragraph_combobox.append ("Two-Column", _("Two-Column"));
         paragraph_combobox.set_active_id ("Paragraph");
-        paragraph_combobox.margin = 12;
-        paragraph_combobox.margin_end = 6;
 
         var font_button = new Gtk.FontButton ();
-        font_button.use_font = true;
-        font_button.use_size = true;
         font_button.margin = 12;
         font_button.margin_start = 6;
         font_button.margin_end = 6;
+        font_button.use_font = true;
+        font_button.use_size = true;
 
         var font_color_button = new Gtk.ColorButton ();
-        font_color_button.use_alpha = false;
         font_color_button.margin = 12;
         font_color_button.margin_start = 6;
         font_color_button.margin_end = 6;
+        font_color_button.use_alpha = false;
 
         bold_button = new Gtk.ToggleButton ();
         bold_button.add (new Gtk.Image.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.BUTTON));
@@ -74,10 +74,10 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
         strikethrough_button.add (new Gtk.Image.from_icon_name ("format-text-strikethrough-symbolic", Gtk.IconSize.BUTTON));
         strikethrough_button.focus_on_click = false;
         var styles_buttons = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
-        styles_buttons.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
         styles_buttons.margin = 12;
         styles_buttons.margin_start = 6;
         styles_buttons.margin_end = 6;
+        styles_buttons.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
         styles_buttons.pack_start (bold_button);
         styles_buttons.pack_start (italic_button);
         styles_buttons.pack_start (underline_button);
@@ -111,7 +111,6 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
         var insert_button = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         insert_button.margin = 12;
         insert_button.margin_start = 6;
-        insert_button.margin_end = 6;
         insert_button.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
         insert_button.add (insert_comment_button);
         insert_button.add (insert_link_button);

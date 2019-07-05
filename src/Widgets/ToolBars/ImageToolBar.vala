@@ -29,31 +29,34 @@ public class Writer.Widgets.ImageToolBar : Gtk.Grid {
         get_style_context ().add_class ("frame");
 
         var wrap_combobox = new Gtk.ComboBoxText ();
+        wrap_combobox.margin = 12;
+        wrap_combobox.margin_end = 6;
         wrap_combobox.append ("In line of text", _("In line of text"));
         wrap_combobox.append ("Float above text", _("Float above text"));
         wrap_combobox.set_active_id ("In line of text");
-        wrap_combobox.margin = 12;
-        wrap_combobox.margin_end = 6;
 
         var lock_aspect_check = new Gtk.CheckButton.with_label (_("Lock aspect ratio"));
         lock_aspect_check.margin = 12;
+        lock_aspect_check.margin_start = 6;
         lock_aspect_check.margin_end = 6;
 
         var align_button = new Granite.Widgets.ModeButton ();
+        align_button.margin = 12;
+        align_button.margin_start = 6;
+        align_button.margin_end = 6;
         align_button.append (new Gtk.Image.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
         align_button.append (new Gtk.Image.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
         align_button.append (new Gtk.Image.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
-        align_button.margin = 12;
-        align_button.margin_end = 6;
 
         var edit_image_button = new Gtk.Button.with_label (_("Crop"));
         edit_image_button.margin = 12;
+        edit_image_button.margin_start = 6;
         edit_image_button.margin_end = 6;
 
         var delete_image_button = new Gtk.Button.with_label (_("Delete Image"));
-        delete_image_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
         delete_image_button.margin = 12;
         delete_image_button.margin_start = 6;
+        delete_image_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
 
         attach (wrap_combobox, 0, 0, 1, 1);
         attach (lock_aspect_check, 1, 0, 1, 1);
