@@ -15,7 +15,7 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-public class Writer.Widgets.TableToolBar : Gtk.Toolbar {
+public class Writer.Widgets.TableToolBar : Gtk.Grid {
     public TextEditor editor { get; construct; }
 
     public TableToolBar (TextEditor editor) {
@@ -26,25 +26,24 @@ public class Writer.Widgets.TableToolBar : Gtk.Toolbar {
 
     construct {
         get_style_context ().add_class ("writer-toolbar");
+        get_style_context ().add_class ("frame");
 
         var table_properties_button = new Gtk.Button.with_label (_("Table Properties"));
-        var table_properties_item = new Gtk.ToolItem ();
-        table_properties_item.add (table_properties_button);
+        table_properties_button.margin = 12;
+        table_properties_button.margin_end = 6;
 
         var font_button = new Gtk.FontButton ();
+        font_button.margin = 12;
+        font_button.margin_start = 6;
+        font_button.margin_end = 6;
         font_button.use_font = true;
         font_button.use_size = true;
-        font_button.font_set.connect (() => {
-            string name = font_button.font;
-            stdout.printf ("Selected font: %s\n", name);
-        });
-        var font_item = new Gtk.ToolItem ();
-        font_item.add (font_button);
 
         var font_color_button = new Gtk.ColorButton ();
+        font_color_button.margin = 12;
+        font_color_button.margin_start = 6;
+        font_color_button.margin_end = 6;
         font_color_button.use_alpha = false;
-        var font_color_item = new Gtk.ToolItem ();
-        font_color_item.add (font_color_button);
 
         var bold_button = new Gtk.ToggleButton ();
         bold_button.add (new Gtk.Image.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.BUTTON));
@@ -59,46 +58,46 @@ public class Writer.Widgets.TableToolBar : Gtk.Toolbar {
         strikethrough_button.add (new Gtk.Image.from_icon_name ("format-text-strikethrough-symbolic", Gtk.IconSize.BUTTON));
         strikethrough_button.focus_on_click = false;
         var styles_buttons = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        styles_buttons.margin = 12;
+        styles_buttons.margin_start = 6;
+        styles_buttons.margin_end = 6;
         styles_buttons.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
         styles_buttons.pack_start (bold_button);
         styles_buttons.pack_start (italic_button);
         styles_buttons.pack_start (underline_button);
         styles_buttons.pack_start (strikethrough_button);
-        var styles_item = new Gtk.ToolItem ();
-        styles_item.add (styles_buttons);
 
         var align_button = new Granite.Widgets.ModeButton ();
+        align_button.margin = 12;
+        align_button.margin_start = 6;
+        align_button.margin_end = 6;
         align_button.append (new Gtk.Image.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
         align_button.append (new Gtk.Image.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
         align_button.append (new Gtk.Image.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
         align_button.append (new Gtk.Image.from_icon_name ("format-justify-fill-symbolic", Gtk.IconSize.BUTTON));
-        var align_item = new Gtk.ToolItem ();
-        align_item.add (align_button);
 
         var add_table_button = new Gtk.Button.with_label (_("Add"));
-        var add_table_item = new Gtk.ToolItem ();
-        add_table_item.add (add_table_button);
+        add_table_button.margin = 12;
+        add_table_button.margin_start = 6;
+        add_table_button.margin_end = 6;
 
         var delete_table_button = new Gtk.Button.with_label (_("Delete"));
+        delete_table_button.margin = 12;
+        delete_table_button.margin_start = 6;
         delete_table_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
-        var delete_table_item = new Gtk.ToolItem ();
-        delete_table_item.add (delete_table_button);
 
-        table_properties_item.border_width = 6;
-        font_item.border_width = 6;
-        font_color_item.border_width = 6;
-        styles_item.border_width = 6;
-        align_item.border_width = 6;
-        add_table_item.border_width = 6;
-        delete_table_item.border_width = 6;
+        attach (table_properties_button, 0, 0, 1, 1);
+        attach (font_button, 1, 0, 1, 1);
+        attach (font_color_button, 2, 0, 1, 1);
+        attach (styles_buttons, 3, 0, 1, 1);
+        attach (align_button, 4, 0, 1, 1);
+        attach (add_table_button, 5, 0, 1, 1);
+        attach (delete_table_button, 6, 0, 1, 1);
 
-        add (table_properties_item);
-        add (font_item);
-        add (font_color_item);
-        add (styles_item);
-        add (align_item);
-        add (add_table_item);
-        add (delete_table_item);
+        font_button.font_set.connect (() => {
+            string name = font_button.font;
+            stdout.printf ("Selected font: %s\n", name);
+        });
 
         align_button.mode_changed.connect (() => {
             change_align (align_button.selected);

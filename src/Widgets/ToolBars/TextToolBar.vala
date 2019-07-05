@@ -15,7 +15,7 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-public class Writer.Widgets.TextToolBar : Gtk.Toolbar {
+public class Writer.Widgets.TextToolBar : Gtk.Grid {
     public TextEditor editor { get; construct; }
     private Gtk.ToggleButton bold_button;
     private Gtk.ToggleButton italic_button;
@@ -33,10 +33,13 @@ public class Writer.Widgets.TextToolBar : Gtk.Toolbar {
 
     construct {
         get_style_context ().add_class ("writer-toolbar");
+        get_style_context ().add_class ("frame");
 
         editor.cursor_moved.connect (cursor_moved);
 
         var paragraph_combobox = new Gtk.ComboBoxText ();
+        paragraph_combobox.margin = 12;
+        paragraph_combobox.margin_end = 6;
         paragraph_combobox.append ("Paragraph", _("Paragraph"));
         paragraph_combobox.append ("Title", _("Title"));
         paragraph_combobox.append ("Subtitle", _("Subtitle"));
@@ -44,19 +47,19 @@ public class Writer.Widgets.TextToolBar : Gtk.Toolbar {
         paragraph_combobox.append ("Numbered List", _("Numbered List"));
         paragraph_combobox.append ("Two-Column", _("Two-Column"));
         paragraph_combobox.set_active_id ("Paragraph");
-        var paragraph_item = new Gtk.ToolItem ();
-        paragraph_item.add (paragraph_combobox);
 
         var font_button = new Gtk.FontButton ();
+        font_button.margin = 12;
+        font_button.margin_start = 6;
+        font_button.margin_end = 6;
         font_button.use_font = true;
         font_button.use_size = true;
-        var font_item = new Gtk.ToolItem ();
-        font_item.add (font_button);
 
         var font_color_button = new Gtk.ColorButton ();
+        font_color_button.margin = 12;
+        font_color_button.margin_start = 6;
+        font_color_button.margin_end = 6;
         font_color_button.use_alpha = false;
-        var font_color_item = new Gtk.ToolItem ();
-        font_color_item.add (font_color_button);
 
         bold_button = new Gtk.ToggleButton ();
         bold_button.add (new Gtk.Image.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.BUTTON));
@@ -71,62 +74,54 @@ public class Writer.Widgets.TextToolBar : Gtk.Toolbar {
         strikethrough_button.add (new Gtk.Image.from_icon_name ("format-text-strikethrough-symbolic", Gtk.IconSize.BUTTON));
         strikethrough_button.focus_on_click = false;
         var styles_buttons = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        styles_buttons.margin = 12;
+        styles_buttons.margin_start = 6;
+        styles_buttons.margin_end = 6;
         styles_buttons.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
         styles_buttons.pack_start (bold_button);
         styles_buttons.pack_start (italic_button);
         styles_buttons.pack_start (underline_button);
         styles_buttons.pack_start (strikethrough_button);
-        var styles_item = new Gtk.ToolItem ();
-        styles_item.add (styles_buttons);
 
         align_button = new Granite.Widgets.ModeButton ();
+        align_button.margin = 12;
+        align_button.margin_start = 6;
+        align_button.margin_end = 6;
         align_button.append (new Gtk.Image.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
         align_button.append (new Gtk.Image.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
         align_button.append (new Gtk.Image.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
         align_button.append (new Gtk.Image.from_icon_name ("format-justify-fill-symbolic", Gtk.IconSize.BUTTON));
-        var align_item = new Gtk.ToolItem ();
-        align_item.add (align_button);
 
         indent_more_button = new Gtk.Button.from_icon_name ("format-indent-more-symbolic", Gtk.IconSize.BUTTON);
         indent_less_button = new Gtk.Button.from_icon_name ("format-indent-less-symbolic", Gtk.IconSize.BUTTON);
         var indent_button = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        indent_button.margin = 12;
+        indent_button.margin_start = 6;
+        indent_button.margin_end = 6;
         indent_button.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
         indent_button.add (indent_more_button);
         indent_button.add (indent_less_button);
-        var indent_item = new Gtk.ToolItem ();
-        indent_item.add (indent_button);
-
-        var item_separator = new Gtk.SeparatorToolItem ();
 
         var insert_comment_button = new Gtk.Button.from_icon_name ("insert-text-symbolic", Gtk.IconSize.BUTTON);
         var insert_link_button = new Gtk.Button.from_icon_name ("insert-link-symbolic", Gtk.IconSize.BUTTON);
         var insert_image_button = new Gtk.Button.from_icon_name ("insert-image-symbolic", Gtk.IconSize.BUTTON);
         var insert_table_button = new Gtk.Button.from_icon_name ("insert-object-symbolic", Gtk.IconSize.BUTTON);
         var insert_button = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
+        insert_button.margin = 12;
+        insert_button.margin_start = 6;
         insert_button.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
         insert_button.add (insert_comment_button);
         insert_button.add (insert_link_button);
         insert_button.add (insert_image_button);
         insert_button.add (insert_table_button);
-        var insert_item = new Gtk.ToolItem ();
-        insert_item.add (insert_button);
 
-        paragraph_item.border_width = 6;
-        font_item.border_width = 6;
-        font_color_item.border_width = 6;
-        styles_item.border_width = 6;
-        align_item.border_width = 6;
-        indent_item.border_width = 6;
-        insert_item.border_width = 6;
-
-        add (paragraph_item);
-        add (font_item);
-        add (font_color_item);
-        add (styles_item);
-        add (align_item);
-        add (indent_item);
-        add (item_separator);
-        add (insert_item);
+        attach (paragraph_combobox, 0, 0, 1, 1);
+        attach (font_button, 1, 0, 1, 1);
+        attach (font_color_button, 2, 0, 1, 1);
+        attach (styles_buttons, 3, 0, 1, 1);
+        attach (align_button, 4, 0, 1, 1);
+        attach (indent_button, 5, 0, 1, 1);
+        attach (insert_button, 6, 0, 1, 1);
 
         align_button.mode_changed.connect (() => {
             change_align (align_button.selected);
