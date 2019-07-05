@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2014-2018 Writer Developers
+* Copyright (c) 2014-2019 Writer Developers
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -15,32 +15,29 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-namespace Writer.Widgets {
-    public class WelcomeView : Granite.Widgets.Welcome {
-        public WriterApp app { get; set; }
+public class Writer.Views.WelcomeView : Granite.Widgets.Welcome {
+    public WriterApp app { get; construct; }
 
-        public WelcomeView (WriterApp app) {
-            Object (
-                title: _("No Documents Open"),
-                subtitle: _("Open a document to begin editing."),
-                app: app
-            );
-        }
+    public WelcomeView (WriterApp app) {
+        Object (
+            title: _("No Documents Open"),
+            subtitle: _("Open a document to begin editing."),
+            app: app
+        );
+    }
 
-        construct {
-            append ("document-new", _("New File"), _("Create a new document."));
-            append ("document-open", _("Open File"), _("Open a saved document."));
+    construct {
+        append ("document-new", _("New File"), _("Create a new document."));
+        append ("document-open", _("Open File"), _("Open a saved document."));
 
-            activated.connect ((index) => {
-                // TODO
-                // Open recent
-                if (index == 0) {
-                    app.new_file ();
-                }
-                else {
-                    app.open_file_dialog ();
-                }
-            });
-        }
+        activated.connect ((index) => {
+            // TODO
+            // Open recent
+            if (index == 0) {
+                app.new_file ();
+            } else {
+                app.open_file_dialog ();
+            }
+        });
     }
 }

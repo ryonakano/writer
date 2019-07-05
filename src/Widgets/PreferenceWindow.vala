@@ -15,8 +15,8 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-public class Writer.PreferenceWindow : Gtk.Dialog {
-    public Gtk.Window window { get; set; }
+public class Writer.Widgets.PreferenceWindow : Gtk.Dialog {
+    public Gtk.Window window { get; construct; }
 
     public PreferenceWindow (Gtk.Window parent) {
         Object (
@@ -35,8 +35,11 @@ public class Writer.PreferenceWindow : Gtk.Dialog {
         var destination_label = new Gtk.Label (_("Document folder location:"));
         destination_label.halign = Gtk.Align.END;
 
-        var destination_chooser_button = new Gtk.FileChooserButton (_("Select Document Folder…"), Gtk.FileChooserAction.SELECT_FOLDER);
-        destination_chooser_button.halign = START;
+        var destination_chooser_button = new Gtk.FileChooserButton (
+            _("Select Document Folder…"),
+            Gtk.FileChooserAction.SELECT_FOLDER
+        );
+        destination_chooser_button.halign = Gtk.Align.START;
         destination_chooser_button.set_current_folder (WriterApp.settings.get_string ("destination"));
 
         var main_grid = new Gtk.Grid ();
