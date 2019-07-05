@@ -102,8 +102,6 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
         indent_button.add (indent_more_button);
         indent_button.add (indent_less_button);
 
-        var item_separator = new Gtk.SeparatorToolItem ();
-
         var insert_comment_button = new Gtk.Button.from_icon_name ("insert-text-symbolic", Gtk.IconSize.BUTTON);
         var insert_link_button = new Gtk.Button.from_icon_name ("insert-link-symbolic", Gtk.IconSize.BUTTON);
         var insert_image_button = new Gtk.Button.from_icon_name ("insert-image-symbolic", Gtk.IconSize.BUTTON);
@@ -123,8 +121,7 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
         attach (styles_buttons, 3, 0, 1, 1);
         attach (align_button, 4, 0, 1, 1);
         attach (indent_button, 5, 0, 1, 1);
-        attach (item_separator, 6, 0, 1, 1);
-        attach (insert_button, 7, 0, 1, 1);
+        attach (insert_button, 6, 0, 1, 1);
 
         align_button.mode_changed.connect (() => {
             change_align (align_button.selected);
