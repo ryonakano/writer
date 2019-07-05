@@ -15,7 +15,7 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-public class Writer.Widgets.ImageToolBar : Gtk.Toolbar {
+public class Writer.Widgets.ImageToolBar : Gtk.Grid {
     public TextEditor editor { get; construct; }
 
     public ImageToolBar (TextEditor editor) {
@@ -26,45 +26,40 @@ public class Writer.Widgets.ImageToolBar : Gtk.Toolbar {
 
     construct {
         get_style_context ().add_class ("writer-toolbar");
+        get_style_context ().add_class ("frame");
 
         var wrap_combobox = new Gtk.ComboBoxText ();
         wrap_combobox.append ("In line of text", _("In line of text"));
         wrap_combobox.append ("Float above text", _("Float above text"));
         wrap_combobox.set_active_id ("In line of text");
-        var wrap_item = new Gtk.ToolItem ();
-        wrap_item.add (wrap_combobox);
+        wrap_combobox.margin = 12;
+        wrap_combobox.margin_end = 6;
 
         var lock_aspect_check = new Gtk.CheckButton.with_label (_("Lock aspect ratio"));
-        var lock_aspect_item = new Gtk.ToolItem ();
-        lock_aspect_item.add (lock_aspect_check);
+        lock_aspect_check.margin = 12;
+        lock_aspect_check.margin_end = 6;
 
         var align_button = new Granite.Widgets.ModeButton ();
         align_button.append (new Gtk.Image.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
         align_button.append (new Gtk.Image.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
         align_button.append (new Gtk.Image.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
-        var align_item = new Gtk.ToolItem ();
-        align_item.add (align_button);
+        align_button.margin = 12;
+        align_button.margin_end = 6;
 
         var edit_image_button = new Gtk.Button.with_label (_("Crop"));
-        var edit_image_item = new Gtk.ToolItem ();
-        edit_image_item.add (edit_image_button);
+        edit_image_button.margin = 12;
+        edit_image_button.margin_end = 6;
 
         var delete_image_button = new Gtk.Button.with_label (_("Delete Image"));
         delete_image_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
-        var delete_image_item = new Gtk.ToolItem ();
-        delete_image_item.add (delete_image_button);
+        delete_image_button.margin = 12;
+        delete_image_button.margin_start = 6;
 
-        wrap_item.border_width = 6;
-        lock_aspect_item.border_width = 6;
-        align_item.border_width = 6;
-        edit_image_item.border_width = 6;
-        delete_image_item.border_width = 6;
-
-        add (wrap_item);
-        add (lock_aspect_item);
-        add (align_item);
-        add (edit_image_item);
-        add (delete_image_item);
+        attach (wrap_combobox, 0, 0, 1, 1);
+        attach (lock_aspect_check, 1, 0, 1, 1);
+        attach (align_button, 2, 0, 1, 1);
+        attach (edit_image_button, 3, 0, 1, 1);
+        attach (delete_image_button, 4, 0, 1, 1);
 
         align_button.mode_changed.connect (() => {
             change_align (align_button.selected);
