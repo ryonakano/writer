@@ -40,13 +40,13 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
         var paragraph_combobox = new Gtk.ComboBoxText ();
         paragraph_combobox.margin = 12;
         paragraph_combobox.margin_end = 6;
-        paragraph_combobox.append ("Paragraph", _("Paragraph"));
-        paragraph_combobox.append ("Title", _("Title"));
-        paragraph_combobox.append ("Subtitle", _("Subtitle"));
-        paragraph_combobox.append ("Bullet List", _("Bullet List"));
-        paragraph_combobox.append ("Numbered List", _("Numbered List"));
-        paragraph_combobox.append ("Two-Column", _("Two-Column"));
-        paragraph_combobox.set_active_id ("Paragraph");
+        paragraph_combobox.append ("paragraph", _("Paragraph"));
+        paragraph_combobox.append ("title", _("Title"));
+        paragraph_combobox.append ("subtitle", _("Subtitle"));
+        paragraph_combobox.append ("bullet-list", _("Bullet List"));
+        paragraph_combobox.append ("numbered-List", _("Numbered List"));
+        paragraph_combobox.append ("two-column", _("Two-Column"));
+        paragraph_combobox.set_active_id ("paragraph");
 
         var font_button = new Gtk.FontButton ();
         font_button.margin = 12;

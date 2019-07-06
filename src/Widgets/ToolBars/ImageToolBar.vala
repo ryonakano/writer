@@ -31,9 +31,9 @@ public class Writer.Widgets.ImageToolBar : Gtk.Grid {
         var wrap_combobox = new Gtk.ComboBoxText ();
         wrap_combobox.margin = 12;
         wrap_combobox.margin_end = 6;
-        wrap_combobox.append ("In line of text", _("In line of text"));
-        wrap_combobox.append ("Float above text", _("Float above text"));
-        wrap_combobox.set_active_id ("In line of text");
+        wrap_combobox.append ("in-line", _("In line of text"));
+        wrap_combobox.append ("float", _("Float above text"));
+        wrap_combobox.set_active_id ("in-line");
 
         var lock_aspect_check = new Gtk.CheckButton.with_label (_("Lock aspect ratio"));
         lock_aspect_check.margin = 12;
