@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2014-2018 Writer Developers
+* Copyright (c) 2014-2019 Writer Developers
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -15,34 +15,35 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-namespace Writer.Widgets {
-    public class ToolBar : Gtk.Stack {
-        public TextToolBar text_toolbar;
-        public ImageToolBar image_toolbar;
-        public TableToolBar table_toolbar;
+public class Writer.Widgets.ToolBar : Gtk.Stack {
+    public TextEditor editor { get; construct; }
 
-        public ToolBar (TextEditor editor) {
-            transition_type = Gtk.StackTransitionType.NONE;
+    public ToolBar (TextEditor editor) {
+        Object (
+            editor: editor,
+            transition_type: Gtk.StackTransitionType.NONE
+        );
+    }
 
-            text_toolbar = new TextToolBar (editor);
-            image_toolbar = new ImageToolBar (editor);
-            table_toolbar = new TableToolBar (editor);
+    construct {
+        var text_toolbar = new TextToolBar (editor);
+        var image_toolbar = new ImageToolBar (editor);
+        var table_toolbar = new TableToolBar (editor);
 
-            add_named (text_toolbar, "text");
-            add_named (image_toolbar, "image");
-            add_named (table_toolbar, "table");
-        }
+        add_named (text_toolbar, "text");
+        add_named (image_toolbar, "image");
+        add_named (table_toolbar, "table");
+    }
 
-        public void show_text_toolbar () {
-            visible_child_name = "text";
-        }
+    public void show_text_toolbar () {
+        visible_child_name = "text";
+    }
 
-        public void show_image_toolbar () {
-            visible_child_name = "image";
-        }
+    public void show_image_toolbar () {
+        visible_child_name = "image";
+    }
 
-        public void show_table_toolbar () {
-            visible_child_name = "table";
-        }
+    public void show_table_toolbar () {
+        visible_child_name = "table";
     }
 }

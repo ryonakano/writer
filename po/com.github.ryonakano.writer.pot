@@ -1,0 +1,192 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.ryonakano.writer package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.ryonakano.writer\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-06-21 17:23+0200\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/Views/WelcomeView.vala:24
+msgid "No Documents Open"
+msgstr ""
+
+#: src/Views/WelcomeView.vala:25
+msgid "Open a document to begin editing."
+msgstr ""
+
+#: src/Views/WelcomeView.vala:31
+msgid "New File"
+msgstr ""
+
+#: src/Views/WelcomeView.vala:31
+msgid "Create a new document."
+msgstr ""
+
+#: src/Views/WelcomeView.vala:32
+msgid "Open File"
+msgstr ""
+
+#: src/Views/WelcomeView.vala:32
+msgid "Open a saved document."
+msgstr ""
+
+#: src/Widgets/Choosers/TableChooser.vala:36
+msgid "Insert Table"
+msgstr ""
+
+#: src/Widgets/Choosers/TableChooser.vala:38
+msgid "Table"
+msgstr ""
+
+#: src/Widgets/Choosers/TableChooser.vala:40
+msgid "Columns:"
+msgstr ""
+
+#: src/Widgets/Choosers/TableChooser.vala:42
+msgid "Rows:"
+msgstr ""
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:33
+msgid "In line of text"
+msgstr ""
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:34
+msgid "Float above text"
+msgstr ""
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:39
+msgid "Lock aspect ratio"
+msgstr ""
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:50
+msgid "Crop"
+msgstr ""
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:54
+msgid "Delete Image"
+msgstr ""
+
+#: src/Widgets/ToolBars/TableToolBar.vala:37
+msgid "Table Properties"
+msgstr ""
+
+#: src/Widgets/ToolBars/TableToolBar.vala:85
+msgid "Add"
+msgstr ""
+
+#: src/Widgets/ToolBars/TableToolBar.vala:89
+msgid "Delete"
+msgstr ""
+
+#: src/Widgets/ToolBars/TextToolBar.vala:44
+msgid "Paragraph"
+msgstr ""
+
+#: src/Widgets/ToolBars/TextToolBar.vala:45
+msgid "Title"
+msgstr ""
+
+#: src/Widgets/ToolBars/TextToolBar.vala:46
+msgid "Subtitle"
+msgstr ""
+
+#: src/Widgets/ToolBars/TextToolBar.vala:47
+msgid "Bullet List"
+msgstr ""
+
+#: src/Widgets/ToolBars/TextToolBar.vala:48
+msgid "Numbered List"
+msgstr ""
+
+#: src/Widgets/ToolBars/TextToolBar.vala:49
+msgid "Two-Column"
+msgstr ""
+
+#: src/Widgets/PreferenceWindow.vala:27 src/Widgets/TitleBar.vala:52
+#: src/Widgets/TitleBar.vala:58
+msgid "Preferences"
+msgstr ""
+
+#: src/Widgets/PreferenceWindow.vala:35
+msgid "Document folder location:"
+msgstr ""
+
+#: src/Widgets/PreferenceWindow.vala:38
+msgid "Select Document Folder…"
+msgstr ""
+
+#: src/Widgets/PreferenceWindow.vala:52
+msgid "Close"
+msgstr ""
+
+#: src/Widgets/TitleBar.vala:30 src/MainWindow.vala:98
+msgid "Writer"
+msgstr ""
+
+#: src/Widgets/TitleBar.vala:37
+msgid "Open a file"
+msgstr ""
+
+#: src/Widgets/TitleBar.vala:39
+msgid "Save this file with a different name"
+msgstr ""
+
+#: src/Widgets/TitleBar.vala:41
+msgid "Restore this file"
+msgstr ""
+
+#: src/Widgets/TitleBar.vala:43
+msgid "Print this file"
+msgstr ""
+
+#: src/Widgets/TitleBar.vala:47
+msgid "Find"
+msgstr ""
+
+#: src/MainWindow.vala:74
+msgid "Zeitgeist Datasource for Writer"
+msgstr ""
+
+#: src/MainWindow.vala:75
+msgid "A data source which logs Open, Close, Save and Move Events"
+msgstr ""
+
+#: src/Writer.vala:113
+#, c-format
+msgid "Untitled Document %i"
+msgstr ""
+
+#: src/Writer.vala:130
+msgid "Choose a file to open"
+msgstr ""
+
+#: src/Writer.vala:132 src/Writer.vala:168
+msgid "Rich Text Format (.rtf)"
+msgstr ""
+
+#: src/Writer.vala:135 src/Writer.vala:171
+msgid "Cancel"
+msgstr ""
+
+#: src/Writer.vala:136
+msgid "Open"
+msgstr ""
+
+#: src/Writer.vala:166
+msgid "Save file with a different name"
+msgstr ""
+
+#: src/Writer.vala:172
+msgid "Save"
+msgstr ""

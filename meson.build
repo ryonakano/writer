@@ -22,8 +22,6 @@ config_header = configure_file(
     configuration: conf_data
 )
 
-subdir('data')
-
 executable(
     meson.project_name(),
     asresources,
@@ -54,5 +52,8 @@ executable(
     ],
     install: true
 )
+
+subdir('data')
+subdir('po')
 
 meson.add_install_script('meson/post_install.py')

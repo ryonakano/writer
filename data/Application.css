@@ -1,3 +1,6 @@
 .writer-toolbar {
-    background: @bg_color;
+    background: @base_color;
+    border-top: none;
+    border-left: none;
+    border-right: none;
 }
