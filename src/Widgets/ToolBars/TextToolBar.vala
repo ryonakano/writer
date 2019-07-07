@@ -240,13 +240,13 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
 
     private Gtk.Popover create_font_color_popover () {
         var font_color_popover = new Gtk.Popover (font_color_button);
-        var font_color_header = new Granite.HeaderLabel ("Font Color");
+        var font_color_header = new Granite.HeaderLabel (_("Font Color"));
         var font_color_chooser = new Gtk.ColorChooserWidget ();
         font_color_chooser.rgba = { 0, 0, 0, 1 };
         font_color_chooser.show_editor = false;
 
-        var cancel_button = new Gtk.Button.with_label ("Cancel");
-        var select_button = new Gtk.Button.with_label ("Select the Color");
+        var cancel_button = new Gtk.Button.with_label (_("Cancel"));
+        var select_button = new Gtk.Button.with_label (_("Select the Color"));
         select_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
 
         var buttons_grid = new Gtk.Grid ();
@@ -269,9 +269,11 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
         cancel_button.clicked.connect (() => {
             font_color_popover.hide ();
         });
+
         font_color_popover.closed.connect (() => {
             font_color_button.active = false;
         });
+
         select_button.clicked.connect (() => {
             var rgba = Gdk.RGBA ();
             rgba = font_color_chooser.rgba;
