@@ -7,5 +7,5 @@ src/Widgets/ToolBars/TextToolBar.vala
 src/Widgets/PreferenceWindow.vala
 src/Widgets/TitleBar.vala
 
+src/Application.vala
 src/MainWindow.vala
-src/Writer.vala

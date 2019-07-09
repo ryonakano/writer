@@ -15,7 +15,7 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-public class Writer.WriterApp : Gtk.Application {
+public class Writer.Application : Gtk.Application {
     private MainWindow window;
     private TextEditor editor;
     public static Settings settings;
@@ -23,7 +23,7 @@ public class Writer.WriterApp : Gtk.Application {
     private string? path = null;
     private string? last_path = null;
 
-    public WriterApp () {
+    public Application () {
         Object (
             application_id: Constants.PROJECT_NAME,
             flags: ApplicationFlags.FLAGS_NONE
@@ -223,7 +223,7 @@ public class Writer.WriterApp : Gtk.Application {
     }
 
     public static void main (string [] args) {
-        var app = new Writer.WriterApp ();
+        var app = new Writer.Application ();
         app.run (args);
     }
 }

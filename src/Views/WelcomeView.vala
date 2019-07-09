@@ -16,9 +16,9 @@
 */
 
 public class Writer.Views.WelcomeView : Granite.Widgets.Welcome {
-    public WriterApp app { get; construct; }
+    public Application app { get; construct; }
 
-    public WelcomeView (WriterApp app) {
+    public WelcomeView (Application app) {
         Object (
             title: _("No Documents Open"),
             subtitle: _("Open a document to begin editing."),

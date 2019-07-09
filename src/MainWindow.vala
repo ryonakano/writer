@@ -16,12 +16,12 @@
 */
 
 public class Writer.MainWindow : Gtk.Window {
-    public WriterApp app { get; construct; }
+    public Application app { get; construct; }
     public TextEditor editor { get; construct; }
     private Widgets.TitleBar title_bar;
     public Gtk.Stack stack { get; private set; }
 
-    public MainWindow (WriterApp app, TextEditor editor) {
+    public MainWindow (Application app, TextEditor editor) {
         Object (
             application: app,
             app: app,
@@ -96,11 +96,11 @@ public class Writer.MainWindow : Gtk.Window {
         get_position (out x, out y);
         get_size (out w, out h);
         m = this.is_maximized;
-        WriterApp.settings.set_int ("window-x", x);
-        WriterApp.settings.set_int ("window-y", y);
-        WriterApp.settings.set_int ("window-width", w);
-        WriterApp.settings.set_int ("window-height", h);
-        WriterApp.settings.set_boolean ("is-maximized", m);
+        Application.settings.set_int ("window-x", x);
+        Application.settings.set_int ("window-y", y);
+        Application.settings.set_int ("window-width", w);
+        Application.settings.set_int ("window-height", h);
+        Application.settings.set_boolean ("is-maximized", m);
 
         return base.configure_event (event);
     }

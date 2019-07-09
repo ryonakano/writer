@@ -25,7 +25,7 @@ public class Writer.TextEditor : Gtk.TextBuffer {
     public signal void cursor_moved ();
     public signal void text_inserted ();
 
-    public TextEditor (WriterApp app) {
+    public TextEditor (Application app) {
         setup_tagtable (this);
         text_view = new Gtk.TextView.with_buffer (this);
         text_view.pixels_below_lines = 20;

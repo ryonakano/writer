@@ -40,8 +40,8 @@ executable(
     'src/Widgets/PreferenceWindow.vala',
     'src/Widgets/TitleBar.vala',
     'src/Widgets/ToolBar.vala',
+    'src/Application.vala',
     'src/MainWindow.vala',
-    'src/Writer.vala',
     dependencies: [
         dependency('gee-0.8'),
         dependency('glib-2.0'),
