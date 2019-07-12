@@ -13,6 +13,9 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*
+* The way to show writing area as a page is inspired from
+* https://github.com/aggalex/OfficeWorks-Author/blob/master/src/views/EditView.vala
 */
 
 public class Writer.Views.EditorView : Gtk.Box {
