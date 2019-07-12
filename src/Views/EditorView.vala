@@ -29,9 +29,21 @@ public class Writer.Views.EditorView : Gtk.Box {
     construct {
         var toolbar = new Widgets.ToolBar (editor);
 
+        var document_view = new Gtk.Grid ();
+        document_view.get_style_context ().add_class ("page-decoration");
+        document_view.margin = 24;
+        // Set document_view size to A4 size
+        document_view.height_request = 1123;
+        document_view.width_request = 794;
+        document_view.add (editor.text_view);
+
+        var document_view_wrapper = new Gtk.Grid ();
+        document_view_wrapper.halign = Gtk.Align.CENTER;
+        document_view_wrapper.valign = Gtk.Align.CENTER;
+        document_view_wrapper.add (document_view);
+
         var scrolled_window = new Gtk.ScrolledWindow (null, null);
-        scrolled_window.border_width = 20;
-        scrolled_window.add (editor.text_view);
+        scrolled_window.add (document_view_wrapper);
 
         pack_start (toolbar, false, false, 0);
         pack_start (scrolled_window, true, true, 0);
