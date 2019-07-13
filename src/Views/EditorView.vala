@@ -20,6 +20,7 @@
 
 public class Writer.Views.EditorView : Gtk.Box {
     public TextEditor editor { get; construct; }
+    public Gtk.Grid document_view { get; private set; }
 
     public EditorView (TextEditor editor) {
         Object (
@@ -32,7 +33,7 @@ public class Writer.Views.EditorView : Gtk.Box {
     construct {
         var toolbar = new Widgets.ToolBar (editor);
 
-        var document_view = new Gtk.Grid ();
+        document_view = new Gtk.Grid ();
         document_view.get_style_context ().add_class ("page-decoration");
         document_view.margin = 24;
         // Set document_view size to A4 size

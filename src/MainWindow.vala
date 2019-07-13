@@ -20,6 +20,7 @@ public class Writer.MainWindow : Gtk.Window {
     public TextEditor editor { get; construct; }
     private Widgets.TitleBar title_bar;
     public Gtk.Stack stack { get; private set; }
+    private Views.EditorView editor_view;
 
     public MainWindow (Application app, TextEditor editor) {
         Object (
@@ -43,7 +44,7 @@ public class Writer.MainWindow : Gtk.Window {
         stack.transition_duration = 200;
         stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
 
-        var editor_view = new Views.EditorView (editor);
+        editor_view = new Views.EditorView (editor);
         var welcome_view = new Views.WelcomeView (app);
 
         stack.add_named (welcome_view, "welcome");
@@ -101,6 +102,8 @@ public class Writer.MainWindow : Gtk.Window {
         Application.settings.set_int ("window-width", w);
         Application.settings.set_int ("window-height", h);
         Application.settings.set_boolean ("is-maximized", m);
+
+        editor_view.document_view.queue_draw ();
 
         return base.configure_event (event);
     }
