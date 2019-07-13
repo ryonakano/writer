@@ -105,6 +105,42 @@ public class Writer.Application : Gtk.Application {
                 save_as ();
             }
         });
+
+        var bold_action = new SimpleAction ("bold", null);
+        add_action (bold_action);
+        set_accels_for_action ("app.bold", {"<Control>b"});
+        bold_action.activate.connect (() => {
+            if (window != null && window.stack.visible_child_name == "editor") {
+                editor.toggle_style ("bold");
+            }
+        });
+
+        var italic_action = new SimpleAction ("italic", null);
+        add_action (italic_action);
+        set_accels_for_action ("app.italic", {"<Control>i"});
+        italic_action.activate.connect (() => {
+            if (window != null && window.stack.visible_child_name == "editor") {
+                editor.toggle_style ("italic");
+            }
+        });
+
+        var underline_action = new SimpleAction ("underline", null);
+        add_action (underline_action);
+        set_accels_for_action ("app.underline", {"<Control>u"});
+        underline_action.activate.connect (() => {
+            if (window != null && window.stack.visible_child_name == "editor") {
+                editor.toggle_style ("underline");
+            }
+        });
+
+        var strikethrough_action = new SimpleAction ("strikethrough", null);
+        add_action (strikethrough_action);
+        set_accels_for_action ("app.strikethrough", {"<Control>h"});
+        strikethrough_action.activate.connect (() => {
+            if (window != null && window.stack.visible_child_name == "editor") {
+                editor.toggle_style ("strikethrough");
+            }
+        });
     }
 
     public void new_file () {
