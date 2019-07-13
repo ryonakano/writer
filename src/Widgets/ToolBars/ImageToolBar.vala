@@ -34,11 +34,13 @@ public class Writer.Widgets.ImageToolBar : Gtk.Grid {
         wrap_combobox.append ("in-line", _("In line of text"));
         wrap_combobox.append ("float", _("Float above text"));
         wrap_combobox.set_active_id ("in-line");
+        wrap_combobox.tooltip_text = _("Set how to wrap text");
 
         var lock_aspect_check = new Gtk.CheckButton.with_label (_("Lock aspect ratio"));
         lock_aspect_check.margin = 12;
         lock_aspect_check.margin_start = 6;
         lock_aspect_check.margin_end = 6;
+        lock_aspect_check.tooltip_text = _("Allow to resize images without changing aspect ratio");
 
         var align_button = new Granite.Widgets.ModeButton ();
         align_button.margin = 12;
@@ -52,11 +54,13 @@ public class Writer.Widgets.ImageToolBar : Gtk.Grid {
         edit_image_button.margin = 12;
         edit_image_button.margin_start = 6;
         edit_image_button.margin_end = 6;
+        edit_image_button.tooltip_text = _("Remove unnecessary part of image");
 
         var delete_image_button = new Gtk.Button.with_label (_("Delete Image"));
         delete_image_button.margin = 12;
         delete_image_button.margin_start = 6;
         delete_image_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
+        delete_image_button.tooltip_text = _("Delete selected image");
 
         attach (wrap_combobox, 0, 0, 1, 1);
         attach (lock_aspect_check, 1, 0, 1, 1);
