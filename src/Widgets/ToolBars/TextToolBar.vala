@@ -47,6 +47,7 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
         paragraph_combobox.append ("numbered-List", _("Numbered List"));
         paragraph_combobox.append ("two-column", _("Two-Column"));
         paragraph_combobox.set_active_id ("paragraph");
+        paragraph_combobox.tooltip_text = _("Set text style");
 
         var font_button = new Gtk.FontButton ();
         font_button.margin = 12;
@@ -54,25 +55,35 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
         font_button.margin_end = 6;
         font_button.use_font = true;
         font_button.use_size = true;
+        font_button.tooltip_text = _("Choose font family and font size");
 
         var font_color_button = new Gtk.ColorButton ();
         font_color_button.margin = 12;
         font_color_button.margin_start = 6;
         font_color_button.margin_end = 6;
         font_color_button.use_alpha = false;
+        font_color_button.tooltip_text = _("Choose font color");
 
         bold_button = new Gtk.ToggleButton ();
         bold_button.add (new Gtk.Image.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.BUTTON));
         bold_button.focus_on_click = false;
+        bold_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>B"}, _("Toggle bold"));
+
         italic_button = new Gtk.ToggleButton ();
         italic_button.add (new Gtk.Image.from_icon_name ("format-text-italic-symbolic", Gtk.IconSize.BUTTON));
         italic_button.focus_on_click = false;
+        italic_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>I"}, _("Toggle italic"));
+
         underline_button = new Gtk.ToggleButton ();
         underline_button.add (new Gtk.Image.from_icon_name ("format-text-underline-symbolic", Gtk.IconSize.BUTTON));
         underline_button.focus_on_click = false;
+        underline_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>U"}, _("Toggle underline"));
+
         strikethrough_button = new Gtk.ToggleButton ();
         strikethrough_button.add (new Gtk.Image.from_icon_name ("format-text-strikethrough-symbolic", Gtk.IconSize.BUTTON));
         strikethrough_button.focus_on_click = false;
+        strikethrough_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>H"}, _("Toggle strikethrough"));
+
         var styles_buttons = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         styles_buttons.margin = 12;
         styles_buttons.margin_start = 6;
