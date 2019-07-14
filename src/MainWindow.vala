@@ -105,6 +105,7 @@ public class Writer.MainWindow : Gtk.Window {
 
         // Redraw document_view when window is resized or maximized/unmaximized, otherwise the view will be broken
         editor_view.document_view.queue_draw ();
+        editor_view.document_view_wrapper.queue_draw ();
 
         return base.configure_event (event);
     }

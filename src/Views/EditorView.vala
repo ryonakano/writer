@@ -21,6 +21,7 @@
 public class Writer.Views.EditorView : Gtk.Box {
     public TextEditor editor { get; construct; }
     public Gtk.Grid document_view { get; private set; }
+    public Gtk.Grid document_view_wrapper { get; private set; }
 
     public EditorView (TextEditor editor) {
         Object (
@@ -41,7 +42,7 @@ public class Writer.Views.EditorView : Gtk.Box {
         document_view.width_request = 794;
         document_view.add (editor.text_view);
 
-        var document_view_wrapper = new Gtk.Grid ();
+        document_view_wrapper = new Gtk.Grid ();
         document_view_wrapper.halign = Gtk.Align.CENTER;
         document_view_wrapper.valign = Gtk.Align.CENTER;
         document_view_wrapper.add (document_view);
