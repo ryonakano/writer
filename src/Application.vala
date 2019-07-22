@@ -180,8 +180,8 @@ public class Writer.Application : Gtk.Application {
         filech.select_multiple = false;
         filech.filter = rtf_files_filter;
 
-        filech.key_press_event.connect ((ev) => {
-            if (ev.keyval == 65307) { // Esc key
+        filech.key_press_event.connect ((event) => {
+            if (Gdk.keyval_name (event.keyval) == "Escape") {
                 filech.destroy ();
             }
 
@@ -220,8 +220,8 @@ public class Writer.Application : Gtk.Application {
         filech.select_multiple = false;
         filech.filter = rtf_files_filter;
 
-        filech.key_press_event.connect ((ev) => {
-            if (ev.keyval == 65307) { // Esc key
+        filech.key_press_event.connect ((event) => {
+            if (Gdk.keyval_name (event.keyval) == "Escape") {
                 filech.destroy ();
             }
 
