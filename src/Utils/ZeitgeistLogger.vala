@@ -76,7 +76,7 @@ public class Writer.Utils.ZeitgeistLogger {
     }
 
     private void insert_events (Zeitgeist.Event ev) {
-        var events = new GenericArray<Event> ();
+        var events = new GenericArray<Zeitgeist.Event> ();
         events.add (ev);
         try {
             var zg_log = new Zeitgeist.Log ();
@@ -86,10 +86,10 @@ public class Writer.Utils.ZeitgeistLogger {
         }
     }
 
-    private Subject get_subject (string uri, string mimetype) {
-        return new Subject.full (uri,
-                        interpretation_for_mimetype (mimetype),
-                        manifestation_for_uri (uri),
+    private Zeitgeist.Subject get_subject (string uri, string mimetype) {
+        return new Zeitgeist.Subject.full (uri,
+                        Zeitgeist.interpretation_for_mimetype (mimetype),
+                        Zeitgeist.manifestation_for_uri (uri),
                         mimetype,
                         GLib.Path.get_dirname (uri),
                         GLib.Path.get_basename (uri),
