@@ -30,6 +30,9 @@ public class Writer.TextEditor : Gtk.TextBuffer {
         text_view = new Gtk.TextView.with_buffer (this);
         text_view.pixels_below_lines = 20;
         text_view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
+        text_view.hexpand = true;
+        text_view.vexpand = true;
+        text_view.margin = 48;
 
         text_view.key_press_event.connect (key_press_callback);
         text_view.move_cursor.connect (cursor_moved_callback);
