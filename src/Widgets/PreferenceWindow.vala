@@ -15,8 +15,8 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-public class Writer.PreferenceWindow : Gtk.Dialog {
-    public Gtk.Window window { get; set; }
+public class Writer.Widgets.PreferenceWindow : Gtk.Dialog {
+    public Gtk.Window window { get; construct; }
 
     public PreferenceWindow (Gtk.Window parent) {
         Object (
@@ -35,9 +35,12 @@ public class Writer.PreferenceWindow : Gtk.Dialog {
         var destination_label = new Gtk.Label (_("Document folder location:"));
         destination_label.halign = Gtk.Align.END;
 
-        var destination_chooser_button = new Gtk.FileChooserButton (_("Select Document Folder…"), Gtk.FileChooserAction.SELECT_FOLDER);
-        destination_chooser_button.halign = START;
-        destination_chooser_button.set_current_folder (WriterApp.settings.get_string ("destination"));
+        var destination_chooser_button = new Gtk.FileChooserButton (
+            _("Select Document Folder…"),
+            Gtk.FileChooserAction.SELECT_FOLDER
+        );
+        destination_chooser_button.halign = Gtk.Align.START;
+        destination_chooser_button.set_current_folder (Application.settings.get_string ("destination"));
 
         var main_grid = new Gtk.Grid ();
         main_grid.margin = 12;
@@ -53,7 +56,7 @@ public class Writer.PreferenceWindow : Gtk.Dialog {
         ((Gtk.Button) close_button).clicked.connect (() => destroy ());
 
         destination_chooser_button.file_set.connect (() => {
-            WriterApp.settings.set_string ("destination", destination_chooser_button.get_filename ());
+            Application.settings.set_string ("destination", destination_chooser_button.get_filename ());
         });
     }
 }

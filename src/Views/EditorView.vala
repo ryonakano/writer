@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2014-2018 Writer Developers
+* Copyright (c) 2014-2019 Writer Developers
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -13,32 +13,44 @@
 *
 * You should have received a copy of the GNU General Public License
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
+*
+* The way to show writing area as a page is inspired from
+* https://github.com/aggalex/OfficeWorks-Author/blob/master/src/views/EditView.vala
 */
 
-namespace Writer.Widgets {
-    public class EditorView : Gtk.Box {
-        public TextEditor editor { get; construct; }
-        public Widgets.ToolBar toolbar;
+public class Writer.Views.EditorView : Gtk.Box {
+    public TextEditor editor { get; construct; }
+    public Gtk.Grid document_view { get; private set; }
+    public Gtk.Grid document_view_wrapper { get; private set; }
 
-        public EditorView (TextEditor editor) {
-            Object (
-                orientation: Gtk.Orientation.VERTICAL,
-                spacing: 0,
-                editor: editor
-            );
-        }
+    public EditorView (TextEditor editor) {
+        Object (
+            orientation: Gtk.Orientation.VERTICAL,
+            spacing: 0,
+            editor: editor
+        );
+    }
 
-        construct {
-            editor.text_view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
+    construct {
+        var toolbar = new Widgets.ToolBar (editor);
 
-            toolbar = new Widgets.ToolBar (editor);
+        document_view = new Gtk.Grid ();
+        document_view.get_style_context ().add_class ("page-decoration");
+        document_view.margin = 24;
+        // Set document_view size to A4 size
+        document_view.height_request = 1123;
+        document_view.width_request = 794;
+        document_view.add (editor.text_view);
 
-            var scrolled_window = new Gtk.ScrolledWindow (null, null);
-            scrolled_window.border_width = 20;
-            scrolled_window.add (editor.text_view);
+        document_view_wrapper = new Gtk.Grid ();
+        document_view_wrapper.halign = Gtk.Align.CENTER;
+        document_view_wrapper.valign = Gtk.Align.CENTER;
+        document_view_wrapper.add (document_view);
 
-            pack_start (toolbar, false, false, 0);
-            pack_start (scrolled_window, true, true, 0);
-        }
+        var scrolled_window = new Gtk.ScrolledWindow (null, null);
+        scrolled_window.add (document_view_wrapper);
+
+        pack_start (toolbar, false, false, 0);
+        pack_start (scrolled_window, true, true, 0);
     }
 }

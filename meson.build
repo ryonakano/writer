@@ -55,8 +55,8 @@ executable(
     'src/Widgets/PreferenceWindow.vala',
     'src/Widgets/TitleBar.vala',
     'src/Widgets/ToolBar.vala',
+    'src/Application.vala',
     'src/MainWindow.vala',
-    'src/Writer.vala',
     dependencies: dependencies,
     install: true
 )

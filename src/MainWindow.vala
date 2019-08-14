@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2014-2018 Writer Developers
+* Copyright (c) 2014-2019 Writer Developers
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -15,102 +15,98 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-namespace Writer {
-    public class MainWindow : Gtk.Window {
-        public WriterApp app { get; construct; }
-        public TextEditor editor { get; construct; }
-        public Widgets.TitleBar title_bar { get; private set; }
-        public Widgets.EditorView editor_view;
-        private Widgets.WelcomeView welcome_view;
-        public Gtk.Stack stack { get; private set; }
+public class Writer.MainWindow : Gtk.Window {
+    public Application app { get; construct; }
+    public TextEditor editor { get; construct; }
+    private Widgets.TitleBar title_bar;
+    public Gtk.Stack stack { get; private set; }
+    private Views.EditorView editor_view;
+
+    public MainWindow (Application app, TextEditor editor) {
+        Object (
+            application: app,
+            app: app,
+            editor: editor
+        );
+    }
+
+    construct {
+        // Import CSS
+        var cssprovider = new Gtk.CssProvider ();
+        cssprovider.load_from_resource ("/com/github/ryonakano/writer/Application.css");
+        Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (),
+                                                    cssprovider,
+                                                    Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+
+        add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
+
+        stack = new Gtk.Stack ();
+        stack.transition_duration = 200;
+        stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
+
+        editor_view = new Views.EditorView (editor);
+        var welcome_view = new Views.WelcomeView (app);
+
+        stack.add_named (welcome_view, "welcome");
+        stack.add_named (editor_view, "editor");
+        add (stack);
+
+        title_bar = new Widgets.TitleBar (app);
+        set_titlebar (title_bar);
 
 #if HAVE_ZEITGEIST
-        // Zeitgeist integration
-        private Zeitgeist.DataSourceRegistry registry;
+        // Set up the Data Source Registry for Zeitgeist
+        var registry = new Zeitgeist.DataSourceRegistry ();
+
+        var ds_event = new Zeitgeist.Event ();
+        ds_event.actor = "application://" + Constants.PROJECT_NAME + ".desktop";
+        ds_event.add_subject (new Zeitgeist.Subject ());
+        var ds_events = new GenericArray<Zeitgeist.Event> ();
+        ds_events.add (ds_event);
+        var ds = new Zeitgeist.DataSource.full ("writer-logger",
+                                        _("Zeitgeist Datasource for Writer"),
+                                        _("A data source which logs Open, Close, Save and Move Events"),
+                                        ds_events); // FIXME: templates!
+        registry.register_data_source.begin (ds, null, (obj, res) => {
+            try {
+                registry.register_data_source.end (res);
+            } catch (Error reg_err) {
+                warning ("%s", reg_err.message);
+            }
+        });
 #endif
+    }
 
-        public MainWindow (WriterApp app, TextEditor editor) {
-            Object (
-                application: app,
-                app: app,
-                editor: editor
-            );
-        }
+    public void show_editor () {
+        title_bar.set_active (true);
+        stack.visible_child_name = "editor";
+    }
 
-        construct {
-            // Import CSS
-            var cssprovider = new Gtk.CssProvider ();
-            cssprovider.load_from_resource ("/com/github/ryonakano/writer/Application.css");
-            Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (),
-                                                        cssprovider,
-                                                        Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
+    public void show_welcome () {
+        title_bar.set_active (false);
+        stack.visible_child_name = "welcome";
+    }
 
-            add_events (Gdk.EventMask.BUTTON_PRESS_MASK);
+    public void set_title_for_document (string path) {
+        title_bar.title = "%s — ".printf (Path.get_basename (path)) + _("Writer");
+    }
 
-            stack = new Gtk.Stack ();
-            stack.transition_duration = 200;
-            stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
+    protected override bool configure_event (Gdk.EventConfigure event) {
+        int x, y, w, h;
+        bool m;
+        get_position (out x, out y);
+        get_size (out w, out h);
+        m = this.is_maximized;
+        Application.settings.set_int ("window-x", x);
+        Application.settings.set_int ("window-y", y);
+        Application.settings.set_int ("window-width", w);
+        Application.settings.set_int ("window-height", h);
+        Application.settings.set_boolean ("is-maximized", m);
 
-            title_bar = new Widgets.TitleBar (app);
-            editor_view = new Widgets.EditorView (editor);
-            welcome_view = new Widgets.WelcomeView (app);
+        // Redraw document_view when window is resized or maximized/unmaximized, otherwise the view will be broken
+        editor_view.document_view.queue_draw ();
+        editor_view.document_view_wrapper.queue_draw ();
 
-            set_titlebar (title_bar);
-
-            stack.add_named (welcome_view, "welcome");
-            stack.add_named (editor_view, "editor");
-            add (stack);
-
-#if HAVE_ZEITGEIST
-            // Set up the Data Source Registry for Zeitgeist
-            registry = new Zeitgeist.DataSourceRegistry ();
-
-            var ds_event = new Zeitgeist.Event ();
-            ds_event.actor = "application://" + Constants.PROJECT_NAME + ".desktop";
-            ds_event.add_subject (new Zeitgeist.Subject ());
-            var ds_events = new GenericArray<Zeitgeist.Event> ();
-            ds_events.add (ds_event);
-            var ds = new Zeitgeist.DataSource.full ("writer-logger",
-                                          _("Zeitgeist Datasource for Writer"),
-                                          _("A data source which logs Open, Close, Save and Move Events"),
-                                          ds_events); // FIXME: templates!
-            registry.register_data_source.begin (ds, null, (obj, res) => {
-                try {
-                    registry.register_data_source.end (res);
-                } catch (Error reg_err) {
-                    warning ("%s", reg_err.message);
-                }
-            });
-#endif
-        }
-
-        public void show_editor () {
-            title_bar.set_active (true);
-            stack.visible_child_name = "editor";
-        }
-
-        public void show_welcome () {
-            title_bar.set_active (false);
-            stack.visible_child_name = "welcome";
-        }
-
-        public void set_title_for_document (string path) {
-            title_bar.title = "%s — ".printf (Path.get_basename (path)) + _("Writer");
-        }
-
-        protected override bool configure_event (Gdk.EventConfigure event) {
-            int x, y, w, h;
-            bool m;
-            get_position (out x, out y);
-            get_size (out w, out h);
-            m = this.is_maximized;
-            WriterApp.settings.set_int ("window-x", x);
-            WriterApp.settings.set_int ("window-y", y);
-            WriterApp.settings.set_int ("window-width", w);
-            WriterApp.settings.set_int ("window-height", h);
-            WriterApp.settings.set_boolean ("is-maximized", m);
-    
-            return base.configure_event (event);
-        }
+        return base.configure_event (event);
     }
 }
