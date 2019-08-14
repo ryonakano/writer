@@ -38,25 +38,35 @@ public class Writer.Widgets.TableToolBar : Gtk.Grid {
         font_button.margin_end = 6;
         font_button.use_font = true;
         font_button.use_size = true;
+        font_button.tooltip_text = _("Choose font family and font size");
 
         var font_color_button = new Gtk.ColorButton ();
         font_color_button.margin = 12;
         font_color_button.margin_start = 6;
         font_color_button.margin_end = 6;
         font_color_button.use_alpha = false;
+        font_color_button.tooltip_text = _("Choose font color");
 
         var bold_button = new Gtk.ToggleButton ();
         bold_button.add (new Gtk.Image.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.BUTTON));
         bold_button.focus_on_click = false;
+        bold_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>B"}, _("Toggle bold"));
+
         var italic_button = new Gtk.ToggleButton ();
         italic_button.add (new Gtk.Image.from_icon_name ("format-text-italic-symbolic", Gtk.IconSize.BUTTON));
         italic_button.focus_on_click = false;
+        italic_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>I"}, _("Toggle italic"));
+
         var underline_button = new Gtk.ToggleButton ();
         underline_button.add (new Gtk.Image.from_icon_name ("format-text-underline-symbolic", Gtk.IconSize.BUTTON));
         underline_button.focus_on_click = false;
+        underline_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>U"}, _("Toggle underline"));
+
         var strikethrough_button = new Gtk.ToggleButton ();
         strikethrough_button.add (new Gtk.Image.from_icon_name ("format-text-strikethrough-symbolic", Gtk.IconSize.BUTTON));
         strikethrough_button.focus_on_click = false;
+        strikethrough_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>H"}, _("Toggle strikethrough"));
+
         var styles_buttons = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         styles_buttons.margin = 12;
         styles_buttons.margin_start = 6;
@@ -80,11 +90,13 @@ public class Writer.Widgets.TableToolBar : Gtk.Grid {
         add_table_button.margin = 12;
         add_table_button.margin_start = 6;
         add_table_button.margin_end = 6;
+        add_table_button.tooltip_text = _("Add a new table");
 
         var delete_table_button = new Gtk.Button.with_label (_("Delete"));
         delete_table_button.margin = 12;
         delete_table_button.margin_start = 6;
         delete_table_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
+        delete_table_button.tooltip_text = _("Delete selected table");
 
         attach (table_properties_button, 0, 0, 1, 1);
         attach (font_button, 1, 0, 1, 1);

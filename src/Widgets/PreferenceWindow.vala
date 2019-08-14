@@ -40,7 +40,7 @@ public class Writer.Widgets.PreferenceWindow : Gtk.Dialog {
             Gtk.FileChooserAction.SELECT_FOLDER
         );
         destination_chooser_button.halign = Gtk.Align.START;
-        destination_chooser_button.set_current_folder (WriterApp.settings.get_string ("destination"));
+        destination_chooser_button.set_current_folder (Application.settings.get_string ("destination"));
 
         var main_grid = new Gtk.Grid ();
         main_grid.margin = 12;
@@ -56,7 +56,7 @@ public class Writer.Widgets.PreferenceWindow : Gtk.Dialog {
         ((Gtk.Button) close_button).clicked.connect (() => destroy ());
 
         destination_chooser_button.file_set.connect (() => {
-            WriterApp.settings.set_string ("destination", destination_chooser_button.get_filename ());
+            Application.settings.set_string ("destination", destination_chooser_button.get_filename ());
         });
     }
 }

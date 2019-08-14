@@ -16,14 +16,14 @@
 */
 
 public class Writer.Widgets.TitleBar : Gtk.HeaderBar {
-    public WriterApp app { get; construct; }
+    public Application app { get; construct; }
     private Gtk.Button open_button;
     private Gtk.Button save_as_button;
     private Gtk.Button revert_button;
     private Gtk.Button print_button;
     private Gtk.SearchEntry search_field;
 
-    public TitleBar (WriterApp app) {
+    public TitleBar (Application app) {
         Object (
             app: app,
             title: _("Writer"),

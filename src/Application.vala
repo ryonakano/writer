@@ -15,7 +15,7 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-public class Writer.WriterApp : Gtk.Application {
+public class Writer.Application : Gtk.Application {
     private MainWindow window;
     private TextEditor editor;
     public static Settings settings;
@@ -23,7 +23,11 @@ public class Writer.WriterApp : Gtk.Application {
     private string? path = null;
     private string? last_path = null;
 
-    public WriterApp () {
+    #if HAVE_ZEITGEIST
+    private Utils.ZeitgeistLogger zg_log = new Utils.ZeitgeistLogger ();
+    #endif
+
+    public Application () {
         Object (
             application_id: Constants.PROJECT_NAME,
             flags: ApplicationFlags.FLAGS_NONE
@@ -105,6 +109,42 @@ public class Writer.WriterApp : Gtk.Application {
                 save_as ();
             }
         });
+
+        var bold_action = new SimpleAction ("bold", null);
+        add_action (bold_action);
+        set_accels_for_action ("app.bold", {"<Control>b"});
+        bold_action.activate.connect (() => {
+            if (window != null && window.stack.visible_child_name == "editor") {
+                editor.toggle_style ("bold");
+            }
+        });
+
+        var italic_action = new SimpleAction ("italic", null);
+        add_action (italic_action);
+        set_accels_for_action ("app.italic", {"<Control>i"});
+        italic_action.activate.connect (() => {
+            if (window != null && window.stack.visible_child_name == "editor") {
+                editor.toggle_style ("italic");
+            }
+        });
+
+        var underline_action = new SimpleAction ("underline", null);
+        add_action (underline_action);
+        set_accels_for_action ("app.underline", {"<Control>u"});
+        underline_action.activate.connect (() => {
+            if (window != null && window.stack.visible_child_name == "editor") {
+                editor.toggle_style ("underline");
+            }
+        });
+
+        var strikethrough_action = new SimpleAction ("strikethrough", null);
+        add_action (strikethrough_action);
+        set_accels_for_action ("app.strikethrough", {"<Control>h"});
+        strikethrough_action.activate.connect (() => {
+            if (window != null && window.stack.visible_child_name == "editor") {
+                editor.toggle_style ("strikethrough");
+            }
+        });
     }
 
     public void new_file () {
@@ -128,6 +168,15 @@ public class Writer.WriterApp : Gtk.Application {
         editor.set_text (new Utils.RTFParser ().read_all (path), -1);
         window.set_title_for_document (path);
         window.show_editor ();
+
+        #if HAVE_ZEITGEIST
+        try {
+            string uri = GLib.Filename.to_uri (path);
+            zg_log.open_insert (uri, uri.substring (uri.last_index_of (".") + 1));
+        } catch (ConvertError e) {
+            warning (e.message);
+        }
+        #endif
     }
 
     public void open_file_dialog () {
@@ -144,8 +193,8 @@ public class Writer.WriterApp : Gtk.Application {
         filech.select_multiple = false;
         filech.filter = rtf_files_filter;
 
-        filech.key_press_event.connect ((ev) => {
-            if (ev.keyval == 65307) { // Esc key
+        filech.key_press_event.connect ((event) => {
+            if (Gdk.keyval_name (event.keyval) == "Escape") {
                 filech.destroy ();
             }
 
@@ -184,8 +233,8 @@ public class Writer.WriterApp : Gtk.Application {
         filech.select_multiple = false;
         filech.filter = rtf_files_filter;
 
-        filech.key_press_event.connect ((ev) => {
-            if (ev.keyval == 65307) { // Esc key
+        filech.key_press_event.connect ((event) => {
+            if (Gdk.keyval_name (event.keyval) == "Escape") {
                 filech.destroy ();
             }
 
@@ -198,6 +247,15 @@ public class Writer.WriterApp : Gtk.Application {
             last_path = path;
             save ();
             open_file (path);
+
+            #if HAVE_ZEITGEIST
+            try {
+                string uri = GLib.Filename.to_uri (path);
+                zg_log.open_insert (uri, uri.substring (uri.last_index_of (".") + 1));
+            } catch (ConvertError e) {
+                warning (e.message);
+            }
+            #endif
         }
 
         filech.close ();
@@ -223,7 +281,7 @@ public class Writer.WriterApp : Gtk.Application {
     }
 
     public static void main (string [] args) {
-        var app = new Writer.WriterApp ();
+        var app = new Writer.Application ();
         app.run (args);
     }
 }

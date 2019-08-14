@@ -1,0 +1,1 @@
+option('no_zeitgeist', type: 'boolean', value: false, description: 'Build without Zeitgeist')
