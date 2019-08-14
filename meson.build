@@ -1,5 +1,20 @@
 project('com.github.ryonakano.writer', 'vala', 'c')
 
+no_zeitgeist = get_option('no_zeitgeist')
+
+dependencies = [
+    dependency('gee-0.8'),
+    dependency('glib-2.0'),
+    dependency('granite', version: '>=5.2.0'),
+    dependency('gtk+-3.0', version: '>=3.22'),
+    dependency('gtksourceview-3.0')
+]
+
+if no_zeitgeist == false
+    dependencies += dependency('zeitgeist-2.0')
+    add_project_arguments(['--define', 'HAVE_ZEITGEIST'], language: 'vala')
+endif
+
 gnome = import('gnome')
 i18n = import('i18n')
 add_global_arguments(
@@ -42,14 +57,7 @@ executable(
     'src/Widgets/ToolBar.vala',
     'src/Application.vala',
     'src/MainWindow.vala',
-    dependencies: [
-        dependency('gee-0.8'),
-        dependency('glib-2.0'),
-        dependency('granite', version: '>=5.2.0'),
-        dependency('gtk+-3.0', version: '>=3.22'),
-        dependency('gtksourceview-3.0'),
-        dependency('zeitgeist-2.0'),
-    ],
+    dependencies: dependencies,
     install: true
 )
 
