@@ -31,6 +31,7 @@ public class Writer.Widgets.TableToolBar : Gtk.Grid {
         var table_properties_button = new Gtk.Button.with_label (_("Table Properties"));
         table_properties_button.margin = 12;
         table_properties_button.margin_end = 6;
+        table_properties_button.tooltip_text = _("Set properties of selected table");
 
         var font_button = new Gtk.FontButton ();
         font_button.margin = 12;
@@ -48,24 +49,20 @@ public class Writer.Widgets.TableToolBar : Gtk.Grid {
         font_color_button.tooltip_text = _("Choose font color");
 
         var bold_button = new Gtk.ToggleButton ();
-        bold_button.add (new Gtk.Image.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.BUTTON));
+        bold_button.add (new ToolBarImage ("format-text-bold-symbolic",  _("Toggle bold"), "<Ctrl>B"));
         bold_button.focus_on_click = false;
-        bold_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>B"}, _("Toggle bold"));
 
         var italic_button = new Gtk.ToggleButton ();
-        italic_button.add (new Gtk.Image.from_icon_name ("format-text-italic-symbolic", Gtk.IconSize.BUTTON));
+        italic_button.add (new ToolBarImage ("format-text-italic-symbolic", _("Toggle italic"), "<Ctrl>I"));
         italic_button.focus_on_click = false;
-        italic_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>I"}, _("Toggle italic"));
 
         var underline_button = new Gtk.ToggleButton ();
-        underline_button.add (new Gtk.Image.from_icon_name ("format-text-underline-symbolic", Gtk.IconSize.BUTTON));
+        underline_button.add (new ToolBarImage ("format-text-underline-symbolic", _("Toggle underline"), "<Ctrl>U"));
         underline_button.focus_on_click = false;
-        underline_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>U"}, _("Toggle underline"));
 
         var strikethrough_button = new Gtk.ToggleButton ();
-        strikethrough_button.add (new Gtk.Image.from_icon_name ("format-text-strikethrough-symbolic", Gtk.IconSize.BUTTON));
+        strikethrough_button.add (new ToolBarImage ("format-text-strikethrough-symbolic", _("Toggle strikethrough"), "<Ctrl>H"));
         strikethrough_button.focus_on_click = false;
-        strikethrough_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>H"}, _("Toggle strikethrough"));
 
         var styles_buttons = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         styles_buttons.margin = 12;
@@ -81,10 +78,10 @@ public class Writer.Widgets.TableToolBar : Gtk.Grid {
         align_button.margin = 12;
         align_button.margin_start = 6;
         align_button.margin_end = 6;
-        align_button.append (new Gtk.Image.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
-        align_button.append (new Gtk.Image.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
-        align_button.append (new Gtk.Image.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
-        align_button.append (new Gtk.Image.from_icon_name ("format-justify-fill-symbolic", Gtk.IconSize.BUTTON));
+        align_button.append (new ToolBarImage ("format-justify-left-symbolic", _("Align table left")));
+        align_button.append (new ToolBarImage ("format-justify-center-symbolic", _("Center table")));
+        align_button.append (new ToolBarImage ("format-justify-right-symbolic", _("Align table right")));
+        align_button.append (new ToolBarImage ("format-justify-fill-symbolic", _("Justify table")));
 
         var add_table_button = new Gtk.Button.with_label (_("Add"));
         add_table_button.margin = 12;

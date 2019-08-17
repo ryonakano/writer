@@ -65,24 +65,20 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
         font_color_button.tooltip_text = _("Choose font color");
 
         bold_button = new Gtk.ToggleButton ();
-        bold_button.add (new Gtk.Image.from_icon_name ("format-text-bold-symbolic", Gtk.IconSize.BUTTON));
+        bold_button.add (new ToolBarImage ("format-text-bold-symbolic",  _("Toggle bold"), "<Ctrl>B"));
         bold_button.focus_on_click = false;
-        bold_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>B"}, _("Toggle bold"));
 
         italic_button = new Gtk.ToggleButton ();
-        italic_button.add (new Gtk.Image.from_icon_name ("format-text-italic-symbolic", Gtk.IconSize.BUTTON));
+        italic_button.add (new ToolBarImage ("format-text-italic-symbolic", _("Toggle italic"), "<Ctrl>I"));
         italic_button.focus_on_click = false;
-        italic_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>I"}, _("Toggle italic"));
 
         underline_button = new Gtk.ToggleButton ();
-        underline_button.add (new Gtk.Image.from_icon_name ("format-text-underline-symbolic", Gtk.IconSize.BUTTON));
+        underline_button.add (new ToolBarImage ("format-text-underline-symbolic", _("Toggle underline"), "<Ctrl>U"));
         underline_button.focus_on_click = false;
-        underline_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>U"}, _("Toggle underline"));
 
         strikethrough_button = new Gtk.ToggleButton ();
-        strikethrough_button.add (new Gtk.Image.from_icon_name ("format-text-strikethrough-symbolic", Gtk.IconSize.BUTTON));
+        strikethrough_button.add (new ToolBarImage ("format-text-strikethrough-symbolic", _("Toggle strikethrough"), "<Ctrl>H"));
         strikethrough_button.focus_on_click = false;
-        strikethrough_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>H"}, _("Toggle strikethrough"));
 
         var styles_buttons = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         styles_buttons.margin = 12;
@@ -98,13 +94,15 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
         align_button.margin = 12;
         align_button.margin_start = 6;
         align_button.margin_end = 6;
-        align_button.append (new Gtk.Image.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
-        align_button.append (new Gtk.Image.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
-        align_button.append (new Gtk.Image.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
-        align_button.append (new Gtk.Image.from_icon_name ("format-justify-fill-symbolic", Gtk.IconSize.BUTTON));
+        align_button.append (new ToolBarImage ("format-justify-left-symbolic", _("Align text left")));
+        align_button.append (new ToolBarImage ("format-justify-center-symbolic", _("Center text")));
+        align_button.append (new ToolBarImage ("format-justify-right-symbolic", _("Align text right")));
+        align_button.append (new ToolBarImage ("format-justify-fill-symbolic", _("Justify text")));
 
         indent_more_button = new Gtk.Button.from_icon_name ("format-indent-more-symbolic", Gtk.IconSize.BUTTON);
+        indent_more_button.tooltip_text = _("Increase indent");
         indent_less_button = new Gtk.Button.from_icon_name ("format-indent-less-symbolic", Gtk.IconSize.BUTTON);
+        indent_less_button.tooltip_text = _("Decrease indent");
         var indent_button = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         indent_button.margin = 12;
         indent_button.margin_start = 6;
@@ -114,9 +112,13 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
         indent_button.add (indent_less_button);
 
         var insert_comment_button = new Gtk.Button.from_icon_name ("insert-text-symbolic", Gtk.IconSize.BUTTON);
+        insert_comment_button.tooltip_text = _("Insert text");
         var insert_link_button = new Gtk.Button.from_icon_name ("insert-link-symbolic", Gtk.IconSize.BUTTON);
+        insert_link_button.tooltip_text = _("Insert link");
         var insert_image_button = new Gtk.Button.from_icon_name ("insert-image-symbolic", Gtk.IconSize.BUTTON);
+        insert_image_button.tooltip_text = _("Insert image");
         var insert_table_button = new Gtk.Button.from_icon_name ("insert-object-symbolic", Gtk.IconSize.BUTTON);
+        insert_table_button.tooltip_text = _("Insert table");
         var insert_button = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 0);
         insert_button.margin = 12;
         insert_button.margin_start = 6;
