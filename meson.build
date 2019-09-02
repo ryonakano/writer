@@ -52,6 +52,7 @@ executable(
     'src/Widgets/ToolBars/ImageToolBar.vala',
     'src/Widgets/ToolBars/TableToolBar.vala',
     'src/Widgets/ToolBars/TextToolBar.vala',
+    'src/Widgets/ToolBars/ToolBarImage.vala',
     'src/Widgets/PreferenceWindow.vala',
     'src/Widgets/TitleBar.vala',
     'src/Widgets/ToolBar.vala',

@@ -46,9 +46,9 @@ public class Writer.Widgets.ImageToolBar : Gtk.Grid {
         align_button.margin = 12;
         align_button.margin_start = 6;
         align_button.margin_end = 6;
-        align_button.append (new Gtk.Image.from_icon_name ("format-justify-left-symbolic", Gtk.IconSize.BUTTON));
-        align_button.append (new Gtk.Image.from_icon_name ("format-justify-center-symbolic", Gtk.IconSize.BUTTON));
-        align_button.append (new Gtk.Image.from_icon_name ("format-justify-right-symbolic", Gtk.IconSize.BUTTON));
+        align_button.append (new ToolBarImage ("format-justify-left-symbolic", _("Align image left")));
+        align_button.append (new ToolBarImage ("format-justify-center-symbolic", _("Center image")));
+        align_button.append (new ToolBarImage("format-justify-right-symbolic", _("Align image right")));
 
         var edit_image_button = new Gtk.Button.with_label (_("Crop"));
         edit_image_button.margin = 12;

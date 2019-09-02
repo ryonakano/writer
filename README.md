@@ -48,6 +48,10 @@ Simply [create a new issue](https://github.com/ryonakano/writer/issues/new) desc
 
 We follow the [coding style of elementary OS](https://elementary.io/docs/code/reference#code-style) and [its Human Interface Guidelines](https://elementary.io/docs/human-interface-guidelines#human-interface-guidelines), please try to respect them.
 
+### Translating This App
+
+I accept translations through Pull Requests. If you're not sure how to do, [the guideline I made](po/README.md) might be helpful.
+
 ## The Story Behind This App
 
 Actually this repository is a fork of the [original Writer](https://launchpad.net/writer). One day I found the original one and was very impressed, but it didn't seem to be updated at that time and wasn't released to AppCenter. Then I felt I would like to fork it and continue the development.
