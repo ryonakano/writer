@@ -21,6 +21,7 @@ public class Writer.MainWindow : Gtk.ApplicationWindow {
     private Widgets.TitleBar title_bar;
     public Gtk.Stack stack { get; private set; }
     private Views.EditorView editor_view;
+    private uint configure_id;
 
     public MainWindow (Application app, TextEditor editor) {
         Object (
@@ -92,16 +93,25 @@ public class Writer.MainWindow : Gtk.ApplicationWindow {
     }
 
     protected override bool configure_event (Gdk.EventConfigure event) {
-        int x, y, w, h;
-        bool m;
-        get_position (out x, out y);
-        get_size (out w, out h);
-        m = this.is_maximized;
-        Application.settings.set_int ("window-x", x);
-        Application.settings.set_int ("window-y", y);
-        Application.settings.set_int ("window-width", w);
-        Application.settings.set_int ("window-height", h);
-        Application.settings.set_boolean ("is-maximized", m);
+        if (configure_id != 0) {
+            GLib.Source.remove (configure_id);
+        }
+
+        configure_id = Timeout.add (100, () => {
+            configure_id = 0;
+
+            Application.settings.set_boolean ("is-maximized", is_maximized);
+
+            if (!is_maximized) {
+                int x, y, w, h;
+                get_position (out x, out y);
+                get_size (out w, out h);
+                Application.settings.set ("window-position", "(ii)", x, y);
+                Application.settings.set ("window-size", "(ii)", w, h);
+            }
+
+            return false;
+        });
 
         // Redraw document_view when window is resized or maximized/unmaximized, otherwise the view will be broken
         editor_view.document_view.queue_draw ();
