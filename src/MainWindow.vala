@@ -15,7 +15,7 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-public class Writer.MainWindow : Gtk.Window {
+public class Writer.MainWindow : Gtk.ApplicationWindow {
     public Application app { get; construct; }
     public TextEditor editor { get; construct; }
     private Widgets.TitleBar title_bar;
