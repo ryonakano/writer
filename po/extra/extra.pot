@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-21 17:23+0200\n"
+"POT-Creation-Date: 2019-09-09 08:40+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -41,6 +41,6 @@ msgid ""
 "simple and beautiful documents with ease."
 msgstr ""
 
-#: data/com.github.ryonakano.writer.appdata.xml.in:20
-msgid "Ryo Nakano"
+#: data/com.github.ryonakano.writer.appdata.xml.in:50
+msgid "Writer Developers"
 msgstr ""
