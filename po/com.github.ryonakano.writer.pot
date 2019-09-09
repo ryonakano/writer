@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.ryonakano.writer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-09 08:39+0900\n"
+"POT-Creation-Date: 2019-09-09 16:00+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -260,7 +260,7 @@ msgstr ""
 msgid "Close"
 msgstr ""
 
-#: src/Widgets/TitleBar.vala:29 src/MainWindow.vala:92
+#: src/Widgets/TitleBar.vala:29
 msgid "Writer"
 msgstr ""
 
@@ -319,4 +319,11 @@ msgstr ""
 
 #: src/MainWindow.vala:69
 msgid "A data source which logs Open, Close, Save and Move Events"
+msgstr ""
+
+#. TRANSLATORS: The string shown in the titlebar. "%s" represents the name of an opened file.
+#. The latter string "Writer" is the name of this app.
+#: src/MainWindow.vala:94
+#, c-format
+msgid "%s — Writer"
 msgstr ""
