@@ -89,7 +89,9 @@ public class Writer.MainWindow : Gtk.ApplicationWindow {
     }
 
     public void set_title_for_document (string path) {
-        title_bar.title = "%s — ".printf (Path.get_basename (path)) + _("Writer");
+        ///TRANSLATORS: The string shown in the titlebar. "%s" represents the name of an opened file.
+        ///The latter string "Writer" is the name of this app.
+        title_bar.title = _("%s — Writer").printf (Path.get_basename (path));
     }
 
     protected override bool configure_event (Gdk.EventConfigure event) {
