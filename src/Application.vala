@@ -60,10 +60,9 @@ public class Writer.Application : Gtk.Application {
             return;
         }
 
-        var window_x = settings.get_int ("window-x");
-        var window_y = settings.get_int ("window-y");
-        var window_width = settings.get_int ("window-width");
-        var window_height = settings.get_int ("window-height");
+        int window_x, window_y, window_width, window_height;
+        settings.get ("window-position", "(ii)", out window_x, out window_y);
+        settings.get ("window-size", "(ii)", out window_width, out window_height);
         var is_maximized = settings.get_boolean ("is-maximized");
 
         editor = new TextEditor (this);

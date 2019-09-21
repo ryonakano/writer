@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.ryonakano.writer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-21 17:23+0200\n"
+"POT-Creation-Date: 2019-09-09 16:00+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,104 +17,234 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/Views/WelcomeView.vala:24
+#: src/Views/WelcomeView.vala:23
 msgid "No Documents Open"
 msgstr ""
 
-#: src/Views/WelcomeView.vala:25
+#: src/Views/WelcomeView.vala:24
 msgid "Open a document to begin editing."
 msgstr ""
 
-#: src/Views/WelcomeView.vala:31
+#: src/Views/WelcomeView.vala:30
 msgid "New File"
 msgstr ""
 
-#: src/Views/WelcomeView.vala:31
+#: src/Views/WelcomeView.vala:30
 msgid "Create a new document."
 msgstr ""
 
-#: src/Views/WelcomeView.vala:32
+#: src/Views/WelcomeView.vala:31
 msgid "Open File"
 msgstr ""
 
-#: src/Views/WelcomeView.vala:32
+#: src/Views/WelcomeView.vala:31
 msgid "Open a saved document."
 msgstr ""
 
-#: src/Widgets/Choosers/TableChooser.vala:36
+#: src/Widgets/Choosers/TableChooser.vala:35
 msgid "Insert Table"
 msgstr ""
 
-#: src/Widgets/Choosers/TableChooser.vala:38
+#: src/Widgets/Choosers/TableChooser.vala:37
 msgid "Table"
 msgstr ""
 
-#: src/Widgets/Choosers/TableChooser.vala:40
+#: src/Widgets/Choosers/TableChooser.vala:39
 msgid "Columns:"
 msgstr ""
 
-#: src/Widgets/Choosers/TableChooser.vala:42
+#: src/Widgets/Choosers/TableChooser.vala:41
 msgid "Rows:"
 msgstr ""
 
-#: src/Widgets/ToolBars/ImageToolBar.vala:33
+#: src/Widgets/ToolBars/ImageToolBar.vala:34
 msgid "In line of text"
 msgstr ""
 
-#: src/Widgets/ToolBars/ImageToolBar.vala:34
+#: src/Widgets/ToolBars/ImageToolBar.vala:35
 msgid "Float above text"
+msgstr ""
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:37
+msgid "Set how to wrap text"
 msgstr ""
 
 #: src/Widgets/ToolBars/ImageToolBar.vala:39
 msgid "Lock aspect ratio"
 msgstr ""
 
+#: src/Widgets/ToolBars/ImageToolBar.vala:43
+msgid "Allow to resize images without changing aspect ratio"
+msgstr ""
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:49
+msgid "Align image left"
+msgstr ""
+
 #: src/Widgets/ToolBars/ImageToolBar.vala:50
+msgid "Center image"
+msgstr ""
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:51
+msgid "Align image right"
+msgstr ""
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:53
 msgid "Crop"
 msgstr ""
 
-#: src/Widgets/ToolBars/ImageToolBar.vala:54
+#: src/Widgets/ToolBars/ImageToolBar.vala:57
+msgid "Remove unnecessary part of image"
+msgstr ""
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:59
 msgid "Delete Image"
 msgstr ""
 
-#: src/Widgets/ToolBars/TableToolBar.vala:37
+#: src/Widgets/ToolBars/ImageToolBar.vala:63
+msgid "Delete selected image"
+msgstr ""
+
+#: src/Widgets/ToolBars/TableToolBar.vala:31
 msgid "Table Properties"
 msgstr ""
 
-#: src/Widgets/ToolBars/TableToolBar.vala:85
+#: src/Widgets/ToolBars/TableToolBar.vala:34
+msgid "Set properties of selected table"
+msgstr ""
+
+#: src/Widgets/ToolBars/TableToolBar.vala:42
+#: src/Widgets/ToolBars/TextToolBar.vala:58
+msgid "Choose font family and font size"
+msgstr ""
+
+#: src/Widgets/ToolBars/TableToolBar.vala:49
+#: src/Widgets/ToolBars/TextToolBar.vala:65
+msgid "Choose font color"
+msgstr ""
+
+#: src/Widgets/ToolBars/TableToolBar.vala:52
+#: src/Widgets/ToolBars/TextToolBar.vala:68
+msgid "Toggle bold"
+msgstr ""
+
+#: src/Widgets/ToolBars/TableToolBar.vala:56
+#: src/Widgets/ToolBars/TextToolBar.vala:72
+msgid "Toggle italic"
+msgstr ""
+
+#: src/Widgets/ToolBars/TableToolBar.vala:60
+#: src/Widgets/ToolBars/TextToolBar.vala:76
+msgid "Toggle underline"
+msgstr ""
+
+#: src/Widgets/ToolBars/TableToolBar.vala:64
+#: src/Widgets/ToolBars/TextToolBar.vala:80
+msgid "Toggle strikethrough"
+msgstr ""
+
+#: src/Widgets/ToolBars/TableToolBar.vala:81
+msgid "Align table left"
+msgstr ""
+
+#: src/Widgets/ToolBars/TableToolBar.vala:82
+msgid "Center table"
+msgstr ""
+
+#: src/Widgets/ToolBars/TableToolBar.vala:83
+msgid "Align table right"
+msgstr ""
+
+#: src/Widgets/ToolBars/TableToolBar.vala:84
+msgid "Justify table"
+msgstr ""
+
+#: src/Widgets/ToolBars/TableToolBar.vala:86
 msgid "Add"
 msgstr ""
 
-#: src/Widgets/ToolBars/TableToolBar.vala:89
+#: src/Widgets/ToolBars/TableToolBar.vala:90
+msgid "Add a new table"
+msgstr ""
+
+#: src/Widgets/ToolBars/TableToolBar.vala:92
 msgid "Delete"
 msgstr ""
 
-#: src/Widgets/ToolBars/TextToolBar.vala:44
+#: src/Widgets/ToolBars/TableToolBar.vala:96
+msgid "Delete selected table"
+msgstr ""
+
+#: src/Widgets/ToolBars/TextToolBar.vala:43
 msgid "Paragraph"
 msgstr ""
 
-#: src/Widgets/ToolBars/TextToolBar.vala:45
+#: src/Widgets/ToolBars/TextToolBar.vala:44
 msgid "Title"
 msgstr ""
 
-#: src/Widgets/ToolBars/TextToolBar.vala:46
+#: src/Widgets/ToolBars/TextToolBar.vala:45
 msgid "Subtitle"
 msgstr ""
 
-#: src/Widgets/ToolBars/TextToolBar.vala:47
+#: src/Widgets/ToolBars/TextToolBar.vala:46
 msgid "Bullet List"
 msgstr ""
 
-#: src/Widgets/ToolBars/TextToolBar.vala:48
+#: src/Widgets/ToolBars/TextToolBar.vala:47
 msgid "Numbered List"
 msgstr ""
 
-#: src/Widgets/ToolBars/TextToolBar.vala:49
+#: src/Widgets/ToolBars/TextToolBar.vala:48
 msgid "Two-Column"
 msgstr ""
 
-#: src/Widgets/PreferenceWindow.vala:27 src/Widgets/TitleBar.vala:52
-#: src/Widgets/TitleBar.vala:58
+#: src/Widgets/ToolBars/TextToolBar.vala:50
+msgid "Set text style"
+msgstr ""
+
+#: src/Widgets/ToolBars/TextToolBar.vala:97
+msgid "Align text left"
+msgstr ""
+
+#: src/Widgets/ToolBars/TextToolBar.vala:98
+msgid "Center text"
+msgstr ""
+
+#: src/Widgets/ToolBars/TextToolBar.vala:99
+msgid "Align text right"
+msgstr ""
+
+#: src/Widgets/ToolBars/TextToolBar.vala:100
+msgid "Justify text"
+msgstr ""
+
+#: src/Widgets/ToolBars/TextToolBar.vala:103
+msgid "Increase indent"
+msgstr ""
+
+#: src/Widgets/ToolBars/TextToolBar.vala:105
+msgid "Decrease indent"
+msgstr ""
+
+#: src/Widgets/ToolBars/TextToolBar.vala:115
+msgid "Insert text"
+msgstr ""
+
+#: src/Widgets/ToolBars/TextToolBar.vala:117
+msgid "Insert link"
+msgstr ""
+
+#: src/Widgets/ToolBars/TextToolBar.vala:119
+msgid "Insert image"
+msgstr ""
+
+#: src/Widgets/ToolBars/TextToolBar.vala:121
+msgid "Insert table"
+msgstr ""
+
+#: src/Widgets/PreferenceWindow.vala:27 src/Widgets/TitleBar.vala:54
+#: src/Widgets/TitleBar.vala:60
 msgid "Preferences"
 msgstr ""
 
@@ -122,19 +252,19 @@ msgstr ""
 msgid "Document folder location:"
 msgstr ""
 
-#: src/Widgets/PreferenceWindow.vala:38
+#: src/Widgets/PreferenceWindow.vala:39
 msgid "Select Document Folder…"
 msgstr ""
 
-#: src/Widgets/PreferenceWindow.vala:52
+#: src/Widgets/PreferenceWindow.vala:55
 msgid "Close"
 msgstr ""
 
-#: src/Widgets/TitleBar.vala:30 src/MainWindow.vala:98
+#: src/Widgets/TitleBar.vala:29
 msgid "Writer"
 msgstr ""
 
-#: src/Widgets/TitleBar.vala:37
+#: src/Widgets/TitleBar.vala:36
 msgid "Open a file"
 msgstr ""
 
@@ -142,51 +272,58 @@ msgstr ""
 msgid "Save this file with a different name"
 msgstr ""
 
-#: src/Widgets/TitleBar.vala:41
+#: src/Widgets/TitleBar.vala:42
 msgid "Restore this file"
 msgstr ""
 
-#: src/Widgets/TitleBar.vala:43
+#: src/Widgets/TitleBar.vala:45
 msgid "Print this file"
 msgstr ""
 
-#: src/Widgets/TitleBar.vala:47
+#: src/Widgets/TitleBar.vala:49
 msgid "Find"
 msgstr ""
 
-#: src/MainWindow.vala:74
-msgid "Zeitgeist Datasource for Writer"
-msgstr ""
-
-#: src/MainWindow.vala:75
-msgid "A data source which logs Open, Close, Save and Move Events"
-msgstr ""
-
-#: src/Writer.vala:113
+#: src/Application.vala:156
 #, c-format
 msgid "Untitled Document %i"
 msgstr ""
 
-#: src/Writer.vala:130
+#: src/Application.vala:182
 msgid "Choose a file to open"
 msgstr ""
 
-#: src/Writer.vala:132 src/Writer.vala:168
+#: src/Application.vala:184 src/Application.vala:224
 msgid "Rich Text Format (.rtf)"
 msgstr ""
 
-#: src/Writer.vala:135 src/Writer.vala:171
+#: src/Application.vala:187 src/Application.vala:227
 msgid "Cancel"
 msgstr ""
 
-#: src/Writer.vala:136
+#: src/Application.vala:188
 msgid "Open"
 msgstr ""
 
-#: src/Writer.vala:166
+#: src/Application.vala:219
 msgid "Save file with a different name"
 msgstr ""
 
-#: src/Writer.vala:172
+#: src/Application.vala:228
 msgid "Save"
+msgstr ""
+
+#: src/MainWindow.vala:68
+msgid "Zeitgeist Datasource for Writer"
+msgstr ""
+
+#: src/MainWindow.vala:69
+msgid "A data source which logs Open, Close, Save and Move Events"
+msgstr ""
+
+#. TRANSLATORS: The string shown in the titlebar. "%s" represents the name of an opened file.
+#. The latter string "Writer" is the name of this app.
+#: src/MainWindow.vala:94
+#, c-format
+msgid "%s — Writer"
 msgstr ""

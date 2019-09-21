@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-06-21 17:23+0200\n"
+"POT-Creation-Date: 2019-09-09 16:00+0900\n"
 "PO-Revision-Date: 2019-06-21 17:11+0200\n"
 "Last-Translator: NathanBnm\n"
 "Language-Team: none\n"
@@ -43,6 +43,9 @@ msgstr ""
 "Writer est un logiciel de traitement de texte conçu pour elementary OS qui "
 "vous permet de créer facilement des documents simples et beaux."
 
-#: data/com.github.ryonakano.writer.appdata.xml.in:20
-msgid "Ryo Nakano"
-msgstr "Ryo Nakano"
+#: data/com.github.ryonakano.writer.appdata.xml.in:50
+msgid "Writer Developers"
+msgstr ""
+
+#~ msgid "Ryo Nakano"
+#~ msgstr "Ryo Nakano"
