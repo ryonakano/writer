@@ -65,7 +65,7 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
         font_color_button.tooltip_text = _("Choose font color");
 
         bold_button = new Gtk.ToggleButton ();
-        bold_button.add (new ToolBarImage ("format-text-bold-symbolic",  _("Toggle bold"), "<Ctrl>B"));
+        bold_button.add (new ToolBarImage ("format-text-bold-symbolic", _("Toggle bold"), "<Ctrl>B"));
         bold_button.focus_on_click = false;
 
         italic_button = new Gtk.ToggleButton ();
