@@ -50,6 +50,9 @@ public class Writer.Views.EditorView : Gtk.Box {
         var scrolled_window = new Gtk.ScrolledWindow (null, null);
         scrolled_window.add (document_view_wrapper);
 
+        var action_bar = new Widgets.ActionBar (editor);
+
+        pack_end (action_bar, false, false, 0);
         pack_start (toolbar, false, false, 0);
         pack_start (scrolled_window, true, true, 0);
     }
