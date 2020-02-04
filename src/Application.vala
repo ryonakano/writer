@@ -65,7 +65,11 @@ public class Writer.Application : Gtk.Application {
         settings.get ("window-size", "(ii)", out window_width, out window_height);
         var is_maximized = settings.get_boolean ("is-maximized");
 
-        editor = new TextEditor (this);
+        editor = new TextEditor ();
+        editor.changed.connect (() => {
+            save ();
+        });
+
         window = new MainWindow (this, editor);
         window.set_default_size (window_width, window_height);
 
