@@ -250,8 +250,6 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
 
         align_button.selected = editor.get_justification_as_int ();
 
-        font_color = editor.rgba;
-        font_color_button.queue_draw ();
         // TODO
         // Update font and color Gtk.Buttons
     }
