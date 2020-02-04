@@ -26,6 +26,8 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
     private Gtk.Button indent_less_button;
     public Granite.Widgets.ModeButton align_button;
 
+    private Gdk.RGBA font_color;
+
     public TextToolBar (TextEditor editor) {
         Object (
             editor: editor
@@ -33,6 +35,8 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
     }
 
     construct {
+        font_color = { 0, 0, 0, 1};
+
         get_style_context ().add_class ("writer-toolbar");
         get_style_context ().add_class ("frame");
 
@@ -177,8 +181,7 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
             int height = font_color_button.get_allocated_height ();
             const int BORDER = 6;
 
-            // TODO: Reflect the current selected color
-            cr.set_source_rgba (0, 0, 0, 1);
+            Gdk.cairo_set_source_rgba (cr, font_color);
             cr.rectangle (BORDER, BORDER, width - (BORDER * 2), height - (BORDER * 2));
             cr.fill ();
 
@@ -247,6 +250,8 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
 
         align_button.selected = editor.get_justification_as_int ();
 
+        font_color = editor.rgba;
+        font_color_button.queue_draw ();
         // TODO
         // Update font and color Gtk.Buttons
     }
@@ -255,7 +260,7 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
         var font_color_popover = new Gtk.Popover (font_color_button);
         var font_color_header = new Granite.HeaderLabel (_("Font Color"));
         var font_color_chooser = new Gtk.ColorChooserWidget ();
-        font_color_chooser.rgba = { 0, 0, 0, 1 };
+        font_color_chooser.rgba = font_color;
         font_color_chooser.show_editor = false;
 
         var cancel_button = new Gtk.Button.with_label (_("Cancel"));
@@ -291,6 +296,8 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
             var rgba = Gdk.RGBA ();
             rgba = font_color_chooser.rgba;
             editor.set_font_color (rgba);
+            font_color = rgba;
+            font_color_button.queue_draw ();
             font_color_popover.hide ();
         });
 
