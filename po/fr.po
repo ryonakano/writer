@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.ryonakano.writer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-09 16:00+0900\n"
+"POT-Creation-Date: 2020-02-05 07:20+0900\n"
 "PO-Revision-Date: 2019-06-21 17:11+0200\n"
 "Last-Translator: NathanBnm\n"
 "Language-Team: none\n"
@@ -250,6 +250,13 @@ msgstr "Insérer un tableau"
 msgid "Insert table"
 msgstr "Insérer un tableau"
 
+#: src/Widgets/ActionBar.vala:43
+#, c-format
+msgid "%d character"
+msgid_plural "%d characters"
+msgstr[0] ""
+msgstr[1] ""
+
 #: src/Widgets/PreferenceWindow.vala:27 src/Widgets/TitleBar.vala:54
 #: src/Widgets/TitleBar.vala:60
 msgid "Preferences"
@@ -291,32 +298,32 @@ msgstr "Imprimer ce fichier"
 msgid "Find"
 msgstr "Rechercher"
 
-#: src/Application.vala:156
+#: src/Application.vala:160
 #, c-format
 msgid "Untitled Document %i"
 msgstr "Document sans titre %i"
 
-#: src/Application.vala:182
+#: src/Application.vala:186
 msgid "Choose a file to open"
 msgstr "Choisissez un fichier à ouvrir"
 
-#: src/Application.vala:184 src/Application.vala:224
+#: src/Application.vala:188 src/Application.vala:228
 msgid "Rich Text Format (.rtf)"
 msgstr "Format Rich Text (.rtf)"
 
-#: src/Application.vala:187 src/Application.vala:227
+#: src/Application.vala:191 src/Application.vala:231
 msgid "Cancel"
 msgstr "Annuler"
 
-#: src/Application.vala:188
+#: src/Application.vala:192
 msgid "Open"
 msgstr "Ouvrir"
 
-#: src/Application.vala:219
+#: src/Application.vala:223
 msgid "Save file with a different name"
 msgstr "Enregistrer avec un nom différent"
 
-#: src/Application.vala:228
+#: src/Application.vala:232
 msgid "Save"
 msgstr "Enregistrer"
 
@@ -330,8 +337,8 @@ msgstr ""
 "Une source de données qui enregistre les événements Ouvrir, Fermer, "
 "Enregistrer et Déplacer"
 
-#. TRANSLATORS: The string shown in the titlebar. "%s" represents the name of an opened file.
-#. The latter string "Writer" is the name of this app.
+#. /TRANSLATORS: The string shown in the titlebar. "%s" represents the name of an opened file.
+#. /The latter string "Writer" is the name of this app.
 #: src/MainWindow.vala:94
 #, fuzzy, c-format
 msgid "%s — Writer"
