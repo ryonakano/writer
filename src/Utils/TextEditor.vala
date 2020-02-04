@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2014-2019 Writer Developers
+* Copyright 2014-2020 Writer Developers
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -25,7 +25,7 @@ public class Writer.TextEditor : Gtk.TextBuffer {
     public signal void cursor_moved ();
     public signal void text_inserted ();
 
-    public TextEditor (Application app) {
+    public TextEditor () {
         setup_tagtable (this);
         text_view = new Gtk.TextView.with_buffer (this);
         text_view.pixels_below_lines = 20;
@@ -38,8 +38,6 @@ public class Writer.TextEditor : Gtk.TextBuffer {
         text_view.move_cursor.connect (cursor_moved_callback);
         text_view.button_release_event.connect (editor_clicked_callback);
         insert_text.connect_after (text_inserted_callback);
-
-        changed.connect (app.save);
     }
 
     // Get a TextTagTable with all the default tags

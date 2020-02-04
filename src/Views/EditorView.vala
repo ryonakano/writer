@@ -1,5 +1,5 @@
 /*
-* Copyright (c) 2014-2019 Writer Developers
+* Copyright 2014-2020 Writer Developers
 *
 * This program is free software: you can redistribute it and/or modify
 * it under the terms of the GNU General Public License as published by
@@ -50,6 +50,9 @@ public class Writer.Views.EditorView : Gtk.Box {
         var scrolled_window = new Gtk.ScrolledWindow (null, null);
         scrolled_window.add (document_view_wrapper);
 
+        var action_bar = new Widgets.ActionBar (editor);
+
+        pack_end (action_bar, false, false, 0);
         pack_start (toolbar, false, false, 0);
         pack_start (scrolled_window, true, true, 0);
     }

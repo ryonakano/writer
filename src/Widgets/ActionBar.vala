@@ -15,22 +15,31 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-public class Writer.Utils.RTFParser : Object {
+public class Writer.Widgets.ActionBar : Gtk.ActionBar {
+    public TextEditor editor { get; construct; }
+    private Gtk.Label char_count_label;
 
-    public RTFParser () {
+    public ActionBar (TextEditor editor) {
+        Object (
+            editor: editor
+        );
     }
 
-    public string read_all (string path) {
-        try {
-            string content;
-            FileUtils.get_contents (path, out content);
-            int start = content.index_of ("{\\rtf\n") + "{\\rtf\n".length;
-            int end = content.index_of ("\n}\n");
-            string res = content.substring (start, end - start);
-            return res;
-        } catch (Error err) {
-            print ("Error reading file: " + err.message);
-            return "";
-        }
+    construct {
+        char_count_label = new Gtk.Label (null);
+
+        update_char_count ();
+
+        pack_end (char_count_label);
+
+        editor.changed.connect (() => {
+            Idle.add (() => {
+                update_char_count ();
+            });
+        });
+    }
+
+    private void update_char_count () {
+        char_count_label.label = ngettext ("%d character", "%d characters", editor.text.length).printf (editor.text.length);
     }
 }

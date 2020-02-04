@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.ryonakano.writer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2019-09-09 16:00+0900\n"
+"POT-Creation-Date: 2020-02-05 07:20+0900\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
 #: src/Views/WelcomeView.vala:23
 msgid "No Documents Open"
@@ -243,6 +244,13 @@ msgstr ""
 msgid "Insert table"
 msgstr ""
 
+#: src/Widgets/ActionBar.vala:43
+#, c-format
+msgid "%d character"
+msgid_plural "%d characters"
+msgstr[0] ""
+msgstr[1] ""
+
 #: src/Widgets/PreferenceWindow.vala:27 src/Widgets/TitleBar.vala:54
 #: src/Widgets/TitleBar.vala:60
 msgid "Preferences"
@@ -284,32 +292,32 @@ msgstr ""
 msgid "Find"
 msgstr ""
 
-#: src/Application.vala:156
+#: src/Application.vala:160
 #, c-format
 msgid "Untitled Document %i"
 msgstr ""
 
-#: src/Application.vala:182
+#: src/Application.vala:186
 msgid "Choose a file to open"
 msgstr ""
 
-#: src/Application.vala:184 src/Application.vala:224
+#: src/Application.vala:188 src/Application.vala:228
 msgid "Rich Text Format (.rtf)"
 msgstr ""
 
-#: src/Application.vala:187 src/Application.vala:227
+#: src/Application.vala:191 src/Application.vala:231
 msgid "Cancel"
 msgstr ""
 
-#: src/Application.vala:188
+#: src/Application.vala:192
 msgid "Open"
 msgstr ""
 
-#: src/Application.vala:219
+#: src/Application.vala:223
 msgid "Save file with a different name"
 msgstr ""
 
-#: src/Application.vala:228
+#: src/Application.vala:232
 msgid "Save"
 msgstr ""
 
@@ -321,8 +329,8 @@ msgstr ""
 msgid "A data source which logs Open, Close, Save and Move Events"
 msgstr ""
 
-#. TRANSLATORS: The string shown in the titlebar. "%s" represents the name of an opened file.
-#. The latter string "Writer" is the name of this app.
+#. /TRANSLATORS: The string shown in the titlebar. "%s" represents the name of an opened file.
+#. /The latter string "Writer" is the name of this app.
 #: src/MainWindow.vala:94
 #, c-format
 msgid "%s — Writer"
