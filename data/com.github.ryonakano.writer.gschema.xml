@@ -4,7 +4,7 @@
     <key name="destination" type="s">
       <default>''</default>
       <summary>File destination</summary>
-      <description>The location to save files.</description>
+      <description>The location to save files</description>
     </key>
     <key name="window-position" type="(ii)">
       <default>(-1, -1)</default>
