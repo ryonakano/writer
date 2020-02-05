@@ -22,6 +22,7 @@ public class Writer.Views.EditorView : Gtk.Box {
     public TextEditor editor { get; construct; }
     public Gtk.Grid document_view { get; private set; }
     public Gtk.Grid document_view_wrapper { get; private set; }
+    public Widgets.ActionBar action_bar { get; private set; }
 
     public EditorView (TextEditor editor) {
         Object (
@@ -50,7 +51,7 @@ public class Writer.Views.EditorView : Gtk.Box {
         var scrolled_window = new Gtk.ScrolledWindow (null, null);
         scrolled_window.add (document_view_wrapper);
 
-        var action_bar = new Widgets.ActionBar (editor);
+        action_bar = new Widgets.ActionBar (editor);
 
         pack_end (action_bar, false, false, 0);
         pack_start (toolbar, false, false, 0);

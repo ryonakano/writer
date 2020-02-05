@@ -16,9 +16,9 @@
 */
 
 public class Writer.Widgets.PreferenceWindow : Gtk.Dialog {
-    public Gtk.Window window { get; construct; }
+    public MainWindow window { get; construct; }
 
-    public PreferenceWindow (Gtk.Window parent) {
+    public PreferenceWindow (MainWindow parent) {
         Object (
             window: parent,
             resizable: false,
@@ -42,12 +42,23 @@ public class Writer.Widgets.PreferenceWindow : Gtk.Dialog {
         destination_chooser_button.halign = Gtk.Align.START;
         destination_chooser_button.set_current_folder (Application.settings.get_string ("destination"));
 
+        var count_include_spaces_label = new Gtk.Label ("Include spaces to count characters:");
+        count_include_spaces_label.halign = Gtk.Align.END;
+
+        var count_include_spaces_switch = new Gtk.Switch ();
+        count_include_spaces_switch.halign = Gtk.Align.START;
+        count_include_spaces_switch.state_flags_changed.connect (() => {
+            window.editor_view.action_bar.update_char_count ();
+        });
+
         var main_grid = new Gtk.Grid ();
         main_grid.margin = 12;
         main_grid.column_spacing = 6;
         main_grid.row_spacing = 6;
         main_grid.attach (destination_label, 0, 0, 1, 1);
         main_grid.attach (destination_chooser_button, 1, 0, 1, 1);
+        main_grid.attach (count_include_spaces_label, 0, 1, 1, 1);
+        main_grid.attach (count_include_spaces_switch, 1, 1, 1, 1);
 
         var content = (Gtk.Box) get_content_area ();
         content.add (main_grid);
@@ -58,5 +69,7 @@ public class Writer.Widgets.PreferenceWindow : Gtk.Dialog {
         destination_chooser_button.file_set.connect (() => {
             Application.settings.set_string ("destination", destination_chooser_button.get_filename ());
         });
+
+        Application.settings.bind ("count-include-spaces", count_include_spaces_switch, "active", SettingsBindFlags.DEFAULT);
     }
 }
