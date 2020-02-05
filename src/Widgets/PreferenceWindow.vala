@@ -42,7 +42,7 @@ public class Writer.Widgets.PreferenceWindow : Gtk.Dialog {
         destination_chooser_button.halign = Gtk.Align.START;
         destination_chooser_button.set_current_folder (Application.settings.get_string ("destination"));
 
-        var count_include_spaces_label = new Gtk.Label ("Include spaces to count characters:");
+        var count_include_spaces_label = new Gtk.Label (_("Include spaces to count characters:"));
         count_include_spaces_label.halign = Gtk.Align.END;
 
         var count_include_spaces_switch = new Gtk.Switch ();
