@@ -40,12 +40,16 @@ public class Writer.Widgets.ActionBar : Gtk.ActionBar {
     }
 
     public void update_char_count () {
-        char_count_label.label = ngettext ("%d word", "%d words", editor.text.split (" ").length).printf (editor.text.split (" ").length);
+        int word_count = editor.text.split (" ").length;
+        int char_count_with_spaces = editor.text.char_count ();
+        int char_count_without_spaces = editor.text.replace (" ", "").length;
+
+        char_count_label.label = ngettext ("%d word", "%d words", word_count).printf (word_count);
 
         if (Application.settings.get_boolean ("count-include-spaces")) {
-            char_count_label.tooltip_text = ngettext ("%d character with spaces", "%d characters with spaces", editor.text.char_count ()).printf (editor.text.char_count ());
+            char_count_label.tooltip_text = ngettext ("%d character with spaces", "%d characters with spaces", char_count_with_spaces).printf (char_count_with_spaces);
         } else {
-            char_count_label.tooltip_text = ngettext ("%d character without spaces", "%d characters without spaces", editor.text.replace (" ", "").length).printf (editor.text.replace (" ", "").length);
+            char_count_label.tooltip_text = ngettext ("%d character without spaces", "%d characters without spaces", char_count_without_spaces).printf (char_count_without_spaces);
         }
     }
 }
