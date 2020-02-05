@@ -113,6 +113,15 @@ public class Writer.Application : Gtk.Application {
             }
         });
 
+        var quit_action = new SimpleAction ("quit", null);
+        add_action (quit_action);
+        set_accels_for_action ("app.quit", {"<Control>q"});
+        quit_action.activate.connect (() => {
+            if (window != null) {
+                window.destroy ();
+            }
+        });
+
         var bold_action = new SimpleAction ("bold", null);
         add_action (bold_action);
         set_accels_for_action ("app.bold", {"<Control>b"});
