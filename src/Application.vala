@@ -113,6 +113,15 @@ public class Writer.Application : Gtk.Application {
             }
         });
 
+        var close_file_action = new SimpleAction ("close", null);
+        add_action (close_file_action);
+        set_accels_for_action ("app.close", {"<Control>w"});
+        close_file_action.activate.connect (() => {
+            if (window != null && window.stack.visible_child_name == "editor") {
+                close_file ();
+            }
+        });
+
         var quit_action = new SimpleAction ("quit", null);
         add_action (quit_action);
         set_accels_for_action ("app.quit", {"<Control>q"});
@@ -178,7 +187,7 @@ public class Writer.Application : Gtk.Application {
 
     private void open_file (string path) {
         editor.set_text (new Utils.RTFParser ().read_all (path), -1);
-        window.set_title_for_document (path);
+        window.set_header_title (path);
         window.show_editor ();
 
         #if HAVE_ZEITGEIST
@@ -221,6 +230,12 @@ public class Writer.Application : Gtk.Application {
         }
 
         filech.close ();
+    }
+
+    private void close_file () {
+        editor.set_text ("");
+        window.set_header_title ();
+        window.show_welcome ();
     }
 
     public void save () {
