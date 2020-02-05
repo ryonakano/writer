@@ -40,6 +40,6 @@ public class Writer.Widgets.ActionBar : Gtk.ActionBar {
     }
 
     private void update_char_count () {
-        char_count_label.label = ngettext ("%d character", "%d characters", editor.text.length).printf (editor.text.length);
+        char_count_label.label = ngettext ("%d character", "%d characters", editor.text.char_count ()).printf (editor.text.char_count ());
     }
 }
