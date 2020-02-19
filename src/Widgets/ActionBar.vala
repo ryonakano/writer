@@ -40,23 +40,19 @@ public class Writer.Widgets.ActionBar : Gtk.ActionBar {
     }
 
     public void update_char_count () {
-        int word_count = editor.text.split (" ").length;
-        int char_count_with_spaces = editor.text.char_count ();
-
-        int char_count_without_spaces = 0;
-        string char_without_spaces = editor.text.replace (" ", "").replace ("　", "");
-        for (int i = 0; i < char_without_spaces.length; i++) {
-            if (char_without_spaces.valid_char (i)) {
-                char_count_without_spaces++;
-            }
-        }
-
-        char_count_label.label = ngettext ("%d word", "%d words", word_count).printf (word_count);
-
         if (Application.settings.get_boolean ("count-include-spaces")) {
-            char_count_label.tooltip_text = ngettext ("%d character with spaces", "%d characters with spaces", char_count_with_spaces).printf (char_count_with_spaces);
+            int char_count_with_spaces = editor.text.char_count ();
+            char_count_label.label = ngettext ("%d character with spaces", "%d characters with spaces", char_count_with_spaces).printf (char_count_with_spaces);
         } else {
-            char_count_label.tooltip_text = ngettext ("%d character without spaces", "%d characters without spaces", char_count_without_spaces).printf (char_count_without_spaces);
+            int char_count_without_spaces = 0;
+            string char_without_spaces = editor.text.replace (" ", "").replace ("　", "");
+            for (int i = 0; i < char_without_spaces.length; i++) {
+                if (char_without_spaces.valid_char (i)) {
+                    char_count_without_spaces++;
+                }
+            }
+
+            char_count_label.label = ngettext ("%d character without spaces", "%d characters without spaces", char_count_without_spaces).printf (char_count_without_spaces);
         }
     }
 }
