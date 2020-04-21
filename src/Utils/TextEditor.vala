@@ -15,8 +15,8 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-public class Writer.TextEditor : Gtk.TextBuffer {
-    public Gtk.TextView text_view { get; private set; }
+public class Writer.TextEditor : Gtk.SourceBuffer {
+    public Gtk.SourceView text_view { get; private set; }
     private bool style_bold;
     private bool style_italic;
     private bool style_underline;
@@ -27,7 +27,7 @@ public class Writer.TextEditor : Gtk.TextBuffer {
 
     public TextEditor () {
         setup_tagtable (this);
-        text_view = new Gtk.TextView.with_buffer (this);
+        text_view = new Gtk.SourceView.with_buffer (this);
         text_view.pixels_below_lines = 20;
         text_view.wrap_mode = Gtk.WrapMode.WORD_CHAR;
         text_view.hexpand = true;
