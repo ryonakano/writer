@@ -40,16 +40,22 @@ public class Writer.Widgets.ActionBar : Gtk.ActionBar {
     }
 
     public void update_char_count () {
+        string text_to_count = editor.text;
+
         if (Application.settings.get_boolean ("count-include-spaces")) {
-            int char_count_with_spaces = editor.text.char_count ();
+            int char_count_with_spaces = text_to_count.char_count ();
             char_count_label.label = ngettext ("%d character with spaces", "%d characters with spaces", char_count_with_spaces).printf (char_count_with_spaces);
         } else {
             int char_count_without_spaces = 0;
-            string char_without_spaces = editor.text.replace (" ", "").replace ("　", "");
-            for (int i = 0; i < char_without_spaces.length; i++) {
-                if (char_without_spaces.valid_char (i)) {
+            MatchInfo match_info;
+
+            try {
+                var regex = new Regex ("\\S");
+                for (regex.match (text_to_count, 0, out match_info); match_info.matches (); match_info.next ()) {
                     char_count_without_spaces++;
                 }
+            } catch (RegexError err) {
+                warning (err.message);
             }
 
             char_count_label.label = ngettext ("%d character without spaces", "%d characters without spaces", char_count_without_spaces).printf (char_count_without_spaces);
