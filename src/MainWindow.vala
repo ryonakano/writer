@@ -20,7 +20,7 @@ public class Writer.MainWindow : Gtk.ApplicationWindow {
     public TextEditor editor { get; construct; }
     private Widgets.TitleBar title_bar;
     public Gtk.Stack stack { get; private set; }
-    private Views.EditorView editor_view;
+    public Views.EditorView editor_view { get; private set; }
     private uint configure_id;
 
     public MainWindow (Application app, TextEditor editor) {
