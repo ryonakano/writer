@@ -17,7 +17,7 @@
 
 public class Writer.Application : Gtk.Application {
     private MainWindow window;
-    private TextEditor editor;
+    public TextEditor editor { get; private set; }
     public static Settings settings;
     private string destination = "";
     private string? path = null;
@@ -284,6 +284,18 @@ public class Writer.Application : Gtk.Application {
     public void search (string text) {
         // TODO: When tabs will be added, first get the active Editor
         editor.search (text);
+    }
+
+    public void undo () {
+        if (editor.can_undo) {
+            editor.undo ();
+        }
+    }
+
+    public void redo () {
+        if (editor.can_redo) {
+            editor.redo ();
+        }
     }
 
     public void preferences () {
