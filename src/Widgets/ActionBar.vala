@@ -39,7 +39,26 @@ public class Writer.Widgets.ActionBar : Gtk.ActionBar {
         });
     }
 
-    private void update_char_count () {
-        char_count_label.label = ngettext ("%d character", "%d characters", editor.text.char_count ()).printf (editor.text.char_count ());
+    public void update_char_count () {
+        string text_to_count = editor.text;
+
+        if (Application.settings.get_boolean ("count-include-spaces")) {
+            int char_count_with_spaces = text_to_count.char_count ();
+            char_count_label.label = ngettext ("%d character with spaces", "%d characters with spaces", char_count_with_spaces).printf (char_count_with_spaces);
+        } else {
+            int char_count_without_spaces = 0;
+            MatchInfo match_info;
+
+            try {
+                var regex = new Regex ("\\S");
+                for (regex.match (text_to_count, 0, out match_info); match_info.matches (); match_info.next ()) {
+                    char_count_without_spaces++;
+                }
+            } catch (RegexError err) {
+                warning (err.message);
+            }
+
+            char_count_label.label = ngettext ("%d character without spaces", "%d characters without spaces", char_count_without_spaces).printf (char_count_without_spaces);
+        }
     }
 }

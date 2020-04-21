@@ -6,6 +6,11 @@
       <summary>File destination</summary>
       <description>The location to save files</description>
     </key>
+    <key name="count-include-spaces" type="b">
+      <default>false</default>
+      <summary>Include spaces to count characters</summary>
+      <description>Whether include spaces to count characters</description>
+    </key>
     <key name="window-position" type="(ii)">
       <default>(-1, -1)</default>
       <summary>Window position</summary>
