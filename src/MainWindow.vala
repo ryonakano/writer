@@ -55,6 +55,8 @@ public class Writer.MainWindow : Gtk.ApplicationWindow {
         title_bar = new Widgets.TitleBar (app);
         set_titlebar (title_bar);
 
+        destroy.connect (app.delete_tmp_file);
+
 #if HAVE_ZEITGEIST
         // Set up the Data Source Registry for Zeitgeist
         var registry = new Zeitgeist.DataSourceRegistry ();
