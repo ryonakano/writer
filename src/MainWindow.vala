@@ -88,7 +88,7 @@ public class Writer.MainWindow : Gtk.ApplicationWindow {
         stack.visible_child_name = "welcome";
     }
 
-    public void set_header_title (string path = "") {
+    public void set_header_title (string path) {
         if (path != "") {
             ///TRANSLATORS: The string shown in the titlebar. "%s" represents the name of an opened file.
             ///The latter string "Writer" is the name of this app.
