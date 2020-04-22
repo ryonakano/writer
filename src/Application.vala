@@ -182,10 +182,10 @@ public class Writer.Application : Gtk.Application {
 
         path = file.get_path ();
         save ();
-        open_file (path);
+        open_file ();
     }
 
-    private void open_file (string path) {
+    private void open_file () {
         editor.set_text (new Utils.RTFParser ().read_all (path), -1);
         window.set_header_title (path);
         window.show_editor ();
@@ -226,7 +226,7 @@ public class Writer.Application : Gtk.Application {
             path = filech.get_filename ();
             // Update last visited path
             last_path = path;
-            open_file (path);
+            open_file ();
         }
 
         filech.close ();
@@ -276,7 +276,7 @@ public class Writer.Application : Gtk.Application {
             // Update last visited path
             last_path = path;
             save ();
-            open_file (path);
+            open_file ();
 
             #if HAVE_ZEITGEIST
             try {
