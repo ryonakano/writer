@@ -233,13 +233,15 @@ public class Writer.Application : Gtk.Application {
     }
 
     private void close_file () {
-        editor.set_text ("");
+        path = null;
         window.set_header_title ();
         window.show_welcome ();
     }
 
     public void save () {
-        new Utils.RTFWriter (editor).write_to_file (path);
+        if (path != null) {
+            new Utils.RTFWriter (editor).write_to_file (path);
+        }
     }
 
     public void save_as () {
