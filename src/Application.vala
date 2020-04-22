@@ -113,6 +113,15 @@ public class Writer.Application : Gtk.Application {
             }
         });
 
+        var close_file_action = new SimpleAction ("close", null);
+        add_action (close_file_action);
+        set_accels_for_action ("app.close", {"<Control>w"});
+        close_file_action.activate.connect (() => {
+            if (window != null && window.stack.visible_child_name == "editor") {
+                close_file ();
+            }
+        });
+
         var quit_action = new SimpleAction ("quit", null);
         add_action (quit_action);
         set_accels_for_action ("app.quit", {"<Control>q"});
@@ -173,12 +182,12 @@ public class Writer.Application : Gtk.Application {
 
         path = file.get_path ();
         save ();
-        open_file (path);
+        open_file ();
     }
 
-    private void open_file (string path) {
+    private void open_file () {
         editor.set_text (new Utils.RTFParser ().read_all (path), -1);
-        window.set_title_for_document (path);
+        window.set_header_title (path);
         window.show_editor ();
         editor.text_view.grab_focus ();
 
@@ -218,14 +227,23 @@ public class Writer.Application : Gtk.Application {
             path = filech.get_filename ();
             // Update last visited path
             last_path = path;
-            open_file (path);
+            open_file ();
         }
 
         filech.close ();
     }
 
+    private void close_file () {
+        path = null;
+        editor.set_text ("");
+        window.set_header_title ("");
+        window.show_welcome ();
+    }
+
     public void save () {
-        new Utils.RTFWriter (editor).write_to_file (path);
+        if (path != null) {
+            Utils.RTFWriter.get_default ().write_to_file (path, editor.text);
+        }
     }
 
     public void save_as () {
@@ -259,7 +277,7 @@ public class Writer.Application : Gtk.Application {
             // Update last visited path
             last_path = path;
             save ();
-            open_file (path);
+            open_file ();
 
             #if HAVE_ZEITGEIST
             try {
