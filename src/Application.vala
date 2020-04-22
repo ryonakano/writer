@@ -242,7 +242,7 @@ public class Writer.Application : Gtk.Application {
 
     public void save () {
         if (path != null) {
-            new Utils.RTFWriter (editor).write_to_file (path);
+            Utils.RTFWriter.get_default ().write_to_file (path, editor.text);
         }
     }
 
