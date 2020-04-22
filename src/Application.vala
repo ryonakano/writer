@@ -293,7 +293,22 @@ public class Writer.Application : Gtk.Application {
     }
 
     public void revert () {
-        print ("revert\n");
+        var revert_dialog = new Granite.MessageDialog.with_image_from_icon_name (
+            _("Are you sure you want to revet this file?"),
+            _("Changes you made will be discarded."),
+            "dialog-warning",
+            Gtk.ButtonsType.CANCEL
+        );
+        revert_dialog.transient_for = window;
+
+        var revert_button = revert_dialog.add_button (_("Revert"), Gtk.ResponseType.ACCEPT);
+        revert_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
+
+        if (revert_dialog.run () == Gtk.ResponseType.ACCEPT) {
+            print ("revert\n");
+        }
+
+        revert_dialog.destroy ();
     }
 
     public void print_file () {
