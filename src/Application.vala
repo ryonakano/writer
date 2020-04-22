@@ -291,12 +291,16 @@ public class Writer.Application : Gtk.Application {
         if (editor.can_undo) {
             editor.undo ();
         }
+
+        editor.text_view.grab_focus ();
     }
 
     public void redo () {
         if (editor.can_redo) {
             editor.redo ();
         }
+
+        editor.text_view.grab_focus ();
     }
 
     public void preferences () {
