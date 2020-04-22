@@ -234,6 +234,7 @@ public class Writer.Application : Gtk.Application {
 
     private void close_file () {
         path = null;
+        editor.set_text ("");
         window.set_header_title ();
         window.show_welcome ();
     }
