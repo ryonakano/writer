@@ -189,6 +189,7 @@ public class Writer.Application : Gtk.Application {
         editor.set_text (new Utils.RTFParser ().read_all (path), -1);
         window.set_header_title (path);
         window.show_editor ();
+        editor.text_view.grab_focus ();
 
         #if HAVE_ZEITGEIST
         try {
