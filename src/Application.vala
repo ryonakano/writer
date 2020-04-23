@@ -21,8 +21,7 @@ public class Writer.Application : Gtk.Application {
     public static Settings settings;
     private string destination = "";
     private string file_name = "";
-    private string? path = null;
-    private string? last_path = null;
+    private string path = "";
     private File? opened_file = null;
     private File? tmp_file = null;
 
@@ -231,7 +230,6 @@ public class Writer.Application : Gtk.Application {
         filech.add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
         filech.add_button (_("Open"), Gtk.ResponseType.ACCEPT);
         filech.add_filter (rtf_files_filter);
-        filech.set_current_folder_uri (last_path ?? Environment.get_home_dir ());
         filech.set_default_response (Gtk.ResponseType.ACCEPT);
         filech.select_multiple = false;
         filech.filter = rtf_files_filter;
@@ -247,8 +245,6 @@ public class Writer.Application : Gtk.Application {
         if (filech.run () == Gtk.ResponseType.ACCEPT) {
             path = filech.get_filename ();
             file_name = filech.get_file ().get_basename ();
-            // Update last visited path
-            last_path = path;
             open_file ();
             create_backup ();
         }
@@ -271,7 +267,7 @@ public class Writer.Application : Gtk.Application {
     }
 
     private void close_file () {
-        path = null;
+        path = "";
         delete_tmp_file ();
         editor.set_text ("");
         window.set_header_title ("");
@@ -287,7 +283,7 @@ public class Writer.Application : Gtk.Application {
     }
 
     public void save () {
-        if (path != null) {
+        if (path != "") {
             Utils.RTFWriter.get_default ().write_to_file (path, editor.text);
         }
     }
@@ -305,7 +301,6 @@ public class Writer.Application : Gtk.Application {
         filech.add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
         filech.add_button (_("Save"), Gtk.ResponseType.ACCEPT);
         filech.add_filter (rtf_files_filter);
-        filech.set_current_folder_uri (last_path ?? Environment.get_home_dir ());
         filech.set_default_response (Gtk.ResponseType.ACCEPT);
         filech.select_multiple = false;
         filech.filter = rtf_files_filter;
@@ -321,8 +316,6 @@ public class Writer.Application : Gtk.Application {
         if (filech.run () == Gtk.ResponseType.ACCEPT) {
             path = filech.get_filename ();
             file_name = filech.get_current_name ();
-            // Update last visited path
-            last_path = path;
             save ();
             open_file ();
 
