@@ -116,6 +116,23 @@ public class Writer.Application : Gtk.Application {
             }
         });
 
+        bool revertable = false;
+
+        var revert_file_action = new SimpleAction ("revert", null);
+        add_action (revert_file_action);
+        set_accels_for_action ("app.revert", {"<Control><Shift>o"});
+        revert_file_action.activate.connect (() => {
+            if (window != null && window.stack.visible_child_name == "editor") {
+                if (revertable) {
+                    revertable = !revert ();
+                }
+
+                editor.changed.connect (() => {
+                    revertable = true;
+                });
+            }
+        });
+
         var close_file_action = new SimpleAction ("close", null);
         add_action (close_file_action);
         set_accels_for_action ("app.close", {"<Control>w"});
