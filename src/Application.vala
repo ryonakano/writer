@@ -17,7 +17,7 @@
 
 public class Writer.Application : Gtk.Application {
     private MainWindow window;
-    private TextEditor editor;
+    public TextEditor editor { get; private set; }
     public static Settings settings;
     private string destination = "";
     private string file_name = "";
@@ -322,7 +322,7 @@ public class Writer.Application : Gtk.Application {
         filech.close ();
     }
 
-    public void revert () {
+    public bool revert () {
         var revert_dialog = new Granite.MessageDialog.with_image_from_icon_name (
             _("Are you sure you want to revet this file?"),
             _("Changes you made will be discarded."),
@@ -335,7 +335,6 @@ public class Writer.Application : Gtk.Application {
         revert_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
 
         if (revert_dialog.run () == Gtk.ResponseType.ACCEPT) {
-
             try {
                 tmp_file.copy (opened_file, FileCopyFlags.OVERWRITE, null, (current_num_bytes, total_num_bytes) => {
                     // Report copy-status
@@ -348,9 +347,13 @@ public class Writer.Application : Gtk.Application {
             } catch (Error err) {
                 warning (err.message);
             }
+
+            revert_dialog.destroy ();
+            return true;
         }
 
         revert_dialog.destroy ();
+        return false;
     }
 
     public void print_file () {

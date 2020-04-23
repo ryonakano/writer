@@ -40,6 +40,7 @@ public class Writer.Widgets.TitleBar : Gtk.HeaderBar {
 
         revert_button = new Gtk.Button.from_icon_name ("document-revert", Gtk.IconSize.LARGE_TOOLBAR);
         revert_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Shift><Ctrl>O"}, _("Restore this file"));
+        revert_button.sensitive = false;
 
         print_button = new Gtk.Button.from_icon_name ("document-export", Gtk.IconSize.LARGE_TOOLBAR);
         print_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>P"}, _("Print this file"));
@@ -69,15 +70,22 @@ public class Writer.Widgets.TitleBar : Gtk.HeaderBar {
 
         open_button.clicked.connect (app.open_file_dialog);
         save_as_button.clicked.connect (app.save_as);
-        revert_button.clicked.connect (app.revert);
+        revert_button.clicked.connect (() => {
+            revert_button.sensitive = !app.revert ();
+        });
         print_button.clicked.connect (app.print_file);
 
         preferences_item.activate.connect (app.preferences);
+
+        app.editor.changed.connect (() => {
+            if (!revert_button.sensitive) {
+                revert_button.sensitive = true;
+            }
+        });
     }
 
     public void set_active (bool active) {
         save_as_button.sensitive = active;
-        revert_button.sensitive = active;
         print_button.sensitive = active;
         search_field.sensitive = active;
     }
