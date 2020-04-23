@@ -69,15 +69,23 @@ public class Writer.Widgets.TitleBar : Gtk.HeaderBar {
 
         open_button.clicked.connect (app.open_file_dialog);
         save_as_button.clicked.connect (app.save_as);
-        revert_button.clicked.connect (app.revert);
+        revert_button.clicked.connect (() => {
+            revert_button.sensitive = !app.revert ();
+        });
         print_button.clicked.connect (app.print_file);
 
         preferences_item.activate.connect (app.preferences);
+
+        app.editor.changed.connect (() => {
+            if (!revert_button.sensitive) {
+                revert_button.sensitive = true;
+            }
+        });
     }
 
     public void set_active (bool active) {
         save_as_button.sensitive = active;
-        revert_button.sensitive = active;
+        revert_button.sensitive = false;
         print_button.sensitive = active;
         search_field.sensitive = active;
     }

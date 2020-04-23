@@ -17,11 +17,14 @@
 
 public class Writer.Application : Gtk.Application {
     private MainWindow window;
-    private TextEditor editor;
+    public TextEditor editor { get; private set; }
     public static Settings settings;
     private string destination = "";
+    private string file_name = "";
     private string? path = null;
     private string? last_path = null;
+    private File? opened_file = null;
+    private File? tmp_file = null;
 
     #if HAVE_ZEITGEIST
     private Utils.ZeitgeistLogger zg_log = new Utils.ZeitgeistLogger ();
@@ -113,6 +116,23 @@ public class Writer.Application : Gtk.Application {
             }
         });
 
+        bool revertable = false;
+
+        var revert_file_action = new SimpleAction ("revert", null);
+        add_action (revert_file_action);
+        set_accels_for_action ("app.revert", {"<Control><Shift>o"});
+        revert_file_action.activate.connect (() => {
+            if (window != null && window.stack.visible_child_name == "editor") {
+                if (revertable) {
+                    revertable = !revert ();
+                }
+
+                editor.changed.connect (() => {
+                    revertable = true;
+                });
+            }
+        });
+
         var close_file_action = new SimpleAction ("close", null);
         add_action (close_file_action);
         set_accels_for_action ("app.close", {"<Control>w"});
@@ -170,19 +190,20 @@ public class Writer.Application : Gtk.Application {
 
     public void new_file () {
         int id = 1;
-        string file_name = "";
+        string name = "";
         string suffix = "";
-        File? file = null;
 
         do {
-            file_name = _("Untitled Document %i").printf (id++);
+            name = _("Untitled Document %i").printf (id++);
             suffix = ".rtf";
-            file = File.new_for_path ("%s/%s%s".printf (destination, file_name, suffix));
-        } while (file.query_exists ());
+            opened_file = File.new_for_path ("%s/%s%s".printf (destination, name, suffix));
+        } while (opened_file.query_exists ());
 
-        path = file.get_path ();
+        path = opened_file.get_path ();
+        file_name = opened_file.get_basename ();
         save ();
         open_file ();
+        create_backup ();
     }
 
     private void open_file () {
@@ -225,19 +246,44 @@ public class Writer.Application : Gtk.Application {
 
         if (filech.run () == Gtk.ResponseType.ACCEPT) {
             path = filech.get_filename ();
+            file_name = filech.get_file ().get_basename ();
             // Update last visited path
             last_path = path;
             open_file ();
+            create_backup ();
         }
 
         filech.close ();
     }
 
+    private void create_backup () {
+        // Take a backup in /tmp
+        opened_file = File.new_for_path (path);
+        tmp_file = File.new_for_path ("%s/%s".printf (Environment.get_tmp_dir (), file_name));
+
+        try {
+            opened_file.copy (tmp_file, FileCopyFlags.OVERWRITE, null, (current_num_bytes, total_num_bytes) => {
+                debug ("Opened file backuped");
+            });
+        } catch (Error err) {
+            warning (err.message);
+        }
+    }
+
     private void close_file () {
         path = null;
+        delete_tmp_file ();
         editor.set_text ("");
         window.set_header_title ("");
         window.show_welcome ();
+    }
+
+    public void delete_tmp_file () {
+        try {
+            tmp_file.delete ();
+        } catch (Error err) {
+            warning (err.message);
+        }
     }
 
     public void save () {
@@ -274,6 +320,7 @@ public class Writer.Application : Gtk.Application {
 
         if (filech.run () == Gtk.ResponseType.ACCEPT) {
             path = filech.get_filename ();
+            file_name = filech.get_current_name ();
             // Update last visited path
             last_path = path;
             save ();
@@ -292,8 +339,38 @@ public class Writer.Application : Gtk.Application {
         filech.close ();
     }
 
-    public void revert () {
-        print ("revert\n");
+    public bool revert () {
+        var revert_dialog = new Granite.MessageDialog.with_image_from_icon_name (
+            _("Are you sure you want to revret this file?"),
+            _("Changes you made will be discarded."),
+            "dialog-warning",
+            Gtk.ButtonsType.CANCEL
+        );
+        revert_dialog.transient_for = window;
+
+        var revert_button = revert_dialog.add_button (_("Revert"), Gtk.ResponseType.ACCEPT);
+        revert_button.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
+
+        if (revert_dialog.run () == Gtk.ResponseType.ACCEPT) {
+            try {
+                tmp_file.copy (opened_file, FileCopyFlags.OVERWRITE, null, (current_num_bytes, total_num_bytes) => {
+                    // Report copy-status
+                    debug ("%" + int64.FORMAT + " bytes of %" + int64.FORMAT + " bytes copied.",
+                        current_num_bytes, total_num_bytes);
+                });
+
+                // Refresh the text view
+                open_file ();
+            } catch (Error err) {
+                warning (err.message);
+            }
+
+            revert_dialog.destroy ();
+            return true;
+        }
+
+        revert_dialog.destroy ();
+        return false;
     }
 
     public void print_file () {
