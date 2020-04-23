@@ -16,7 +16,7 @@
 */
 
 public class Writer.Widgets.TextToolBar : Gtk.Grid {
-    public TextEditor editor { get; construct; }
+    private TextEditor editor;
     private Gtk.ToggleButton bold_button;
     private Gtk.ToggleButton italic_button;
     private Gtk.ToggleButton underline_button;
@@ -25,13 +25,12 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
     private Gtk.Button indent_less_button;
     public Granite.Widgets.ModeButton align_button;
 
-    public TextToolBar (TextEditor editor) {
-        Object (
-            editor: editor
-        );
+    public TextToolBar () {
     }
 
     construct {
+        editor = Writer.TextEditor.get_default ();
+
         get_style_context ().add_class ("writer-toolbar");
         get_style_context ().add_class ("frame");
 

@@ -25,7 +25,7 @@ public class Writer.TextEditor : Gtk.SourceBuffer {
     public signal void cursor_moved ();
     public signal void text_inserted ();
 
-    public TextEditor () {
+    private TextEditor () {
         setup_tagtable (this);
         text_view = new Gtk.SourceView.with_buffer (this);
         text_view.pixels_below_lines = 20;
@@ -38,6 +38,15 @@ public class Writer.TextEditor : Gtk.SourceBuffer {
         text_view.move_cursor.connect (cursor_moved_callback);
         text_view.button_release_event.connect (editor_clicked_callback);
         insert_text.connect_after (text_inserted_callback);
+    }
+
+    private static TextEditor _instance;
+    public static TextEditor get_default () {
+        if (_instance == null) {
+            _instance = new TextEditor ();
+        }
+
+        return _instance;
     }
 
     // Get a TextTagTable with all the default tags

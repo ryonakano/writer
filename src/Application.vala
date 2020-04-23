@@ -17,7 +17,7 @@
 
 public class Writer.Application : Gtk.Application {
     private MainWindow window;
-    public TextEditor editor { get; private set; }
+    private TextEditor editor;
     public static Settings settings;
     private string destination = "";
     private string file_name = "";
@@ -67,12 +67,12 @@ public class Writer.Application : Gtk.Application {
         settings.get ("window-size", "(ii)", out window_width, out window_height);
         var is_maximized = settings.get_boolean ("is-maximized");
 
-        editor = new TextEditor ();
+        editor = TextEditor.get_default ();
         editor.changed.connect (() => {
             save ();
         });
 
-        window = new MainWindow (this, editor);
+        window = new MainWindow (this);
         window.set_default_size (window_width, window_height);
 
         if (window_x == -1 || window_y == -1) {

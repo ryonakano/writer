@@ -16,19 +16,16 @@
 */
 
 public class Writer.Widgets.ToolBar : Gtk.Stack {
-    public TextEditor editor { get; construct; }
-
-    public ToolBar (TextEditor editor) {
+    public ToolBar () {
         Object (
-            editor: editor,
             transition_type: Gtk.StackTransitionType.NONE
         );
     }
 
     construct {
-        var text_toolbar = new TextToolBar (editor);
-        var image_toolbar = new ImageToolBar (editor);
-        var table_toolbar = new TableToolBar (editor);
+        var text_toolbar = new TextToolBar ();
+        var image_toolbar = new ImageToolBar ();
+        var table_toolbar = new TableToolBar ();
 
         add_named (text_toolbar, "text");
         add_named (image_toolbar, "image");

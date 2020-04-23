@@ -16,16 +16,15 @@
 */
 
 public class Writer.Widgets.ActionBar : Gtk.ActionBar {
-    public TextEditor editor { get; construct; }
+    private TextEditor editor;
     private Gtk.Label char_count_label;
 
-    public ActionBar (TextEditor editor) {
-        Object (
-            editor: editor
-        );
+    public ActionBar () {
     }
 
     construct {
+        editor = Writer.TextEditor.get_default ();
+
         char_count_label = new Gtk.Label (null);
 
         update_char_count ();

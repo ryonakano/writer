@@ -17,17 +17,15 @@
 
 public class Writer.MainWindow : Gtk.ApplicationWindow {
     public Application app { get; construct; }
-    public TextEditor editor { get; construct; }
     private Widgets.TitleBar title_bar;
     public Gtk.Stack stack { get; private set; }
     public Views.EditorView editor_view { get; private set; }
     private uint configure_id;
 
-    public MainWindow (Application app, TextEditor editor) {
+    public MainWindow (Application app) {
         Object (
             application: app,
-            app: app,
-            editor: editor
+            app: app
         );
     }
 
@@ -45,7 +43,7 @@ public class Writer.MainWindow : Gtk.ApplicationWindow {
         stack.transition_duration = 200;
         stack.transition_type = Gtk.StackTransitionType.SLIDE_LEFT_RIGHT;
 
-        editor_view = new Views.EditorView (editor);
+        editor_view = new Views.EditorView ();
         var welcome_view = new Views.WelcomeView (app);
 
         stack.add_named (welcome_view, "welcome");

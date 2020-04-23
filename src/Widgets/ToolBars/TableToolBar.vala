@@ -16,15 +16,14 @@
 */
 
 public class Writer.Widgets.TableToolBar : Gtk.Grid {
-    public TextEditor editor { get; construct; }
+    private TextEditor editor;
 
-    public TableToolBar (TextEditor editor) {
-        Object (
-            editor: editor
-        );
+    public TableToolBar () {
     }
 
     construct {
+        editor = Writer.TextEditor.get_default ();
+
         get_style_context ().add_class ("writer-toolbar");
         get_style_context ().add_class ("frame");
 

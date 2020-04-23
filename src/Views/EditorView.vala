@@ -19,21 +19,19 @@
 */
 
 public class Writer.Views.EditorView : Gtk.Box {
-    public TextEditor editor { get; construct; }
     public Gtk.Grid document_view { get; private set; }
     public Gtk.Grid document_view_wrapper { get; private set; }
     public Widgets.ActionBar action_bar { get; private set; }
 
-    public EditorView (TextEditor editor) {
+    public EditorView () {
         Object (
             orientation: Gtk.Orientation.VERTICAL,
-            spacing: 0,
-            editor: editor
+            spacing: 0
         );
     }
 
     construct {
-        var toolbar = new Widgets.ToolBar (editor);
+        var toolbar = new Widgets.ToolBar ();
 
         document_view = new Gtk.Grid ();
         document_view.get_style_context ().add_class ("page-decoration");
@@ -41,7 +39,7 @@ public class Writer.Views.EditorView : Gtk.Box {
         // Set document_view size to A4 size
         document_view.height_request = 1123;
         document_view.width_request = 794;
-        document_view.add (editor.text_view);
+        document_view.add (Writer.TextEditor.get_default ().text_view);
 
         document_view_wrapper = new Gtk.Grid ();
         document_view_wrapper.halign = Gtk.Align.CENTER;
@@ -51,7 +49,7 @@ public class Writer.Views.EditorView : Gtk.Box {
         var scrolled_window = new Gtk.ScrolledWindow (null, null);
         scrolled_window.add (document_view_wrapper);
 
-        action_bar = new Widgets.ActionBar (editor);
+        action_bar = new Widgets.ActionBar ();
 
         pack_end (action_bar, false, false, 0);
         pack_start (toolbar, false, false, 0);

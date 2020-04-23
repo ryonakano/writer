@@ -76,7 +76,7 @@ public class Writer.Widgets.TitleBar : Gtk.HeaderBar {
 
         preferences_item.activate.connect (app.preferences);
 
-        app.editor.changed.connect (() => {
+        TextEditor.get_default ().changed.connect (() => {
             if (!revert_button.sensitive) {
                 revert_button.sensitive = true;
             }
