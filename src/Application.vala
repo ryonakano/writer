@@ -23,7 +23,7 @@ public class Writer.Application : Gtk.Application {
     private string file_name = "";
     private string path = "";
     private File? opened_file = null;
-    private File? tmp_file = null;
+    private File? backedup_file = null;
 
     #if HAVE_ZEITGEIST
     private Utils.ZeitgeistLogger zg_log = new Utils.ZeitgeistLogger ();
@@ -252,13 +252,21 @@ public class Writer.Application : Gtk.Application {
         filech.close ();
     }
 
+    private void close_file () {
+        path = "";
+        delete_backup ();
+        editor.set_text ("");
+        window.set_header_title ("");
+        window.show_welcome ();
+    }
+
     private void create_backup () {
         // Take a backup in /tmp
         opened_file = File.new_for_path (path);
-        tmp_file = File.new_for_path ("%s/%s".printf (Environment.get_tmp_dir (), file_name));
+        backedup_file = File.new_for_path ("%s/%s".printf (Environment.get_tmp_dir (), file_name));
 
         try {
-            opened_file.copy (tmp_file, FileCopyFlags.OVERWRITE, null, (current_num_bytes, total_num_bytes) => {
+            opened_file.copy (backedup_file, FileCopyFlags.OVERWRITE, null, (current_num_bytes, total_num_bytes) => {
                 debug ("Opened file backuped");
             });
         } catch (Error err) {
@@ -266,17 +274,9 @@ public class Writer.Application : Gtk.Application {
         }
     }
 
-    private void close_file () {
-        path = "";
-        delete_tmp_file ();
-        editor.set_text ("");
-        window.set_header_title ("");
-        window.show_welcome ();
-    }
-
-    public void delete_tmp_file () {
+    public void delete_backup () {
         try {
-            tmp_file.delete ();
+            backedup_file.delete ();
         } catch (Error err) {
             warning (err.message);
         }
@@ -346,7 +346,7 @@ public class Writer.Application : Gtk.Application {
 
         if (revert_dialog.run () == Gtk.ResponseType.ACCEPT) {
             try {
-                tmp_file.copy (opened_file, FileCopyFlags.OVERWRITE, null, (current_num_bytes, total_num_bytes) => {
+                backedup_file.copy (opened_file, FileCopyFlags.OVERWRITE, null, (current_num_bytes, total_num_bytes) => {
                     // Report copy-status
                     debug ("%" + int64.FORMAT + " bytes of %" + int64.FORMAT + " bytes copied.",
                         current_num_bytes, total_num_bytes);
