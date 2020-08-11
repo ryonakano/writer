@@ -375,6 +375,22 @@ public class Writer.Application : Gtk.Application {
         editor.search (text);
     }
 
+    public void undo () {
+        if (editor.can_undo) {
+            editor.undo ();
+        }
+
+        editor.text_view.grab_focus ();
+    }
+
+    public void redo () {
+        if (editor.can_redo) {
+            editor.redo ();
+        }
+
+        editor.text_view.grab_focus ();
+    }
+
     public void preferences () {
         var preference_window = new Widgets.PreferenceWindow (window);
         preference_window.transient_for = window;
