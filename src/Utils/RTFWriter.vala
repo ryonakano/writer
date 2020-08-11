@@ -16,23 +16,27 @@
 */
 
 public class Writer.Utils.RTFWriter : Object {
-    public TextEditor editor { get; construct; }
-
-    public RTFWriter (TextEditor editor) {
-        Object (
-            editor: editor
-        );
+    private RTFWriter () {
     }
 
-    private string to_string () {
+    private static RTFWriter _instance;
+    public static RTFWriter get_default () {
+        if (_instance == null) {
+            _instance = new RTFWriter ();
+        }
+
+        return _instance;
+    }
+
+    private string to_string (string contents) {
         string rtf = "";
-        rtf += "{\\rtf\n" + editor.text + "\n}\n";
+        rtf += "{\\rtf\n" + contents + "\n}\n";
         return rtf;
     }
 
-    public void write_to_file (string path) {
+    public void write_to_file (string path, string contents) {
         try {
-            FileUtils.set_contents (path, to_string ());
+            FileUtils.set_contents (path, to_string (contents));
         } catch (Error err) {
             print ("Error writing file: " + err.message);
         }

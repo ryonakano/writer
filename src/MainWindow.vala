@@ -55,6 +55,8 @@ public class Writer.MainWindow : Gtk.ApplicationWindow {
         title_bar = new Widgets.TitleBar (app);
         set_titlebar (title_bar);
 
+        destroy.connect (app.delete_backup);
+
 #if HAVE_ZEITGEIST
         // Set up the Data Source Registry for Zeitgeist
         var registry = new Zeitgeist.DataSourceRegistry ();
@@ -88,10 +90,15 @@ public class Writer.MainWindow : Gtk.ApplicationWindow {
         stack.visible_child_name = "welcome";
     }
 
-    public void set_title_for_document (string path) {
-        ///TRANSLATORS: The string shown in the titlebar. "%s" represents the name of an opened file.
-        ///The latter string "Writer" is the name of this app.
-        title_bar.title = _("%s — Writer").printf (Path.get_basename (path));
+    public void set_header_title (string path) {
+        if (path != "") {
+            ///TRANSLATORS: The string shown in the titlebar. "%s" represents the name of an opened file.
+            ///The latter string "Writer" is the name of this app.
+            title_bar.title = _("%s — Writer").printf (Path.get_basename (path));
+        } else {
+            ///TRANSLATORS: The string shown in the titlebar. "Writer" is the name of this app.
+            title_bar.title = _("Writer");
+        }
     }
 
     protected override bool configure_event (Gdk.EventConfigure event) {
