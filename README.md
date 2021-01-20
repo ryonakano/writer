@@ -19,7 +19,7 @@ Arch Linux users can find Writer under the name [writer-git](https://aur.archlin
 You'll need the following dependencies:
 
 * libgtk-3.0-dev (>= 3.22)
-* libgtksourceview-3.0-dev
+* libgtksourceview-4-dev (or libgtksourceview-3.0-dev)
 * libgranite-dev (>= 5.2.0)
 * libzeitgeist-2.0-dev (use `-Dno_zeitgeist=true` to build without this)
 * meson
@@ -33,7 +33,7 @@ Run `meson build` to configure the build environment. Change to the build direct
 
 To install, use `ninja install`, then execute with `com.github.ryonakano.writer`
 
-    sudo ninja install
+    ninja install
     com.github.ryonakano.writer
 
 ## Contributing

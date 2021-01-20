@@ -1,0 +1,49 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the extra package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: extra\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2019-09-09 16:00+0900\n"
+"PO-Revision-Date: 2020-08-22 13:09+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.1\n"
+"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: nl\n"
+
+#: data/com.github.ryonakano.writer.desktop.in:3
+#: data/com.github.ryonakano.writer.appdata.xml.in:7
+msgid "Writer"
+msgstr "Tekstverwerker"
+
+#: data/com.github.ryonakano.writer.desktop.in:4
+msgid "Word Processor"
+msgstr "Word-achtige toepassing"
+
+#: data/com.github.ryonakano.writer.desktop.in:5
+#: data/com.github.ryonakano.writer.appdata.xml.in:8
+msgid "Create simple and beautiful documents"
+msgstr "Maak eenvoudige, maar mooie documenten"
+
+#: data/com.github.ryonakano.writer.desktop.in:8
+msgid "com.github.ryonakano.writer"
+msgstr "com.github.ryonakano.writer"
+
+#: data/com.github.ryonakano.writer.appdata.xml.in:10
+msgid ""
+"Writer is a word processor designed for elementary OS that lets you create "
+"simple and beautiful documents with ease."
+msgstr ""
+"Tekstverwerker is een Word-achtige toepassing, ontworpen voor elementary "
+"OS. Hiermee kun je eenvoudig mooie documenten maken."
+
+#: data/com.github.ryonakano.writer.appdata.xml.in:50
+msgid "Writer Developers"
+msgstr "Tekstverwerker-ontwikkelaars"
