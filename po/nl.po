@@ -1,0 +1,337 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.ryonakano.writer package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.ryonakano.writer\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2020-02-05 07:20+0900\n"
+"PO-Revision-Date: 2020-08-22 13:07+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 2.4.1\n"
+"Last-Translator: Heimen Stoffels <vistausss@outlook.com>\n"
+"Language: nl\n"
+
+#: src/Views/WelcomeView.vala:23
+msgid "No Documents Open"
+msgstr "Geen geopende documenten"
+
+#: src/Views/WelcomeView.vala:24
+msgid "Open a document to begin editing."
+msgstr "Open een document om aan de slag te gaan."
+
+#: src/Views/WelcomeView.vala:30
+msgid "New File"
+msgstr "Nieuw bestand"
+
+#: src/Views/WelcomeView.vala:30
+msgid "Create a new document."
+msgstr "Maak een nieuw document."
+
+#: src/Views/WelcomeView.vala:31
+msgid "Open File"
+msgstr "Bestand openen"
+
+#: src/Views/WelcomeView.vala:31
+msgid "Open a saved document."
+msgstr "Open een opgeslagen document."
+
+#: src/Widgets/Choosers/TableChooser.vala:35
+msgid "Insert Table"
+msgstr "Tabel invoegen"
+
+#: src/Widgets/Choosers/TableChooser.vala:37
+msgid "Table"
+msgstr "Tabel"
+
+#: src/Widgets/Choosers/TableChooser.vala:39
+msgid "Columns:"
+msgstr "Kolommen:"
+
+#: src/Widgets/Choosers/TableChooser.vala:41
+msgid "Rows:"
+msgstr "Rijen:"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:34
+msgid "In line of text"
+msgstr "Tussen tekst"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:35
+msgid "Float above text"
+msgstr "Boven tekst"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:37
+msgid "Set how to wrap text"
+msgstr "Stel in hoe tekst moet worden omgeslagen"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:39
+msgid "Lock aspect ratio"
+msgstr "Beeldverhouding vergrendelen"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:43
+msgid "Allow to resize images without changing aspect ratio"
+msgstr "Sta toe dat afbeeldingen andere afmetingen krijgen zonder de beeldverhouding aan te passen"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:49
+msgid "Align image left"
+msgstr "Afbeelding links uitlijnen"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:50
+msgid "Center image"
+msgstr "Afbeelding centreren"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:51
+msgid "Align image right"
+msgstr "Afbeelding rechts uitlijnen"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:53
+msgid "Crop"
+msgstr "Bijsnijden"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:57
+msgid "Remove unnecessary part of image"
+msgstr "Verwijder onnodige delen van de afbeelding"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:59
+msgid "Delete Image"
+msgstr "Afbeelding verwijderen"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:63
+msgid "Delete selected image"
+msgstr "Verwijder de geselecteerde afbeelding"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:31
+msgid "Table Properties"
+msgstr "Tabeleigenschappen"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:34
+msgid "Set properties of selected table"
+msgstr "Stel de eigenschappen van de geselecteerde tabel in"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:42
+#: src/Widgets/ToolBars/TextToolBar.vala:58
+msgid "Choose font family and font size"
+msgstr "Lettertype en -grootte instellen"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:49
+#: src/Widgets/ToolBars/TextToolBar.vala:65
+msgid "Choose font color"
+msgstr "Letterkleur instellen"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:52
+#: src/Widgets/ToolBars/TextToolBar.vala:68
+msgid "Toggle bold"
+msgstr "Vetgedrukt aan/uit"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:56
+#: src/Widgets/ToolBars/TextToolBar.vala:72
+msgid "Toggle italic"
+msgstr "Cursief aan/uit"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:60
+#: src/Widgets/ToolBars/TextToolBar.vala:76
+msgid "Toggle underline"
+msgstr "Onderstrepen aan/uit"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:64
+#: src/Widgets/ToolBars/TextToolBar.vala:80
+msgid "Toggle strikethrough"
+msgstr "Doorhalen aan/uit"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:81
+msgid "Align table left"
+msgstr "Tabel links uitlijnen"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:82
+msgid "Center table"
+msgstr "Tabel centreren"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:83
+msgid "Align table right"
+msgstr "Tabel rechts uitlijnen"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:84
+msgid "Justify table"
+msgstr "Tabel uitvullen"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:86
+msgid "Add"
+msgstr "Toevoegen"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:90
+msgid "Add a new table"
+msgstr "Voeg een tabel toe"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:92
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:96
+msgid "Delete selected table"
+msgstr "Verwijder de geselecteerde tabel"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:43
+msgid "Paragraph"
+msgstr "Paragraaf"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:44
+msgid "Title"
+msgstr "Titel"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:45
+msgid "Subtitle"
+msgstr "Ondertitel"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:46
+msgid "Bullet List"
+msgstr "Opsomming"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:47
+msgid "Numbered List"
+msgstr "Genummerde lijst"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:48
+msgid "Two-Column"
+msgstr "Twee kolommen"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:50
+msgid "Set text style"
+msgstr "Tekststijl instellen"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:97
+msgid "Align text left"
+msgstr "Tekst links uitlijnen"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:98
+msgid "Center text"
+msgstr "Tekst centreren"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:99
+msgid "Align text right"
+msgstr "Tekst rechts uitlijnen"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:100
+msgid "Justify text"
+msgstr "Tekst uitvullen"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:103
+msgid "Increase indent"
+msgstr "Inspringing vergroten"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:105
+msgid "Decrease indent"
+msgstr "Inspringing verkleinen"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:115
+msgid "Insert text"
+msgstr "Tekst invoegen"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:117
+msgid "Insert link"
+msgstr "Link invoegen"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:119
+msgid "Insert image"
+msgstr "Afbeelding invoegen"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:121
+msgid "Insert table"
+msgstr "Tabel invoegen"
+
+#: src/Widgets/ActionBar.vala:43
+#, c-format
+msgid "%d character"
+msgid_plural "%d characters"
+msgstr[0] "%d teken"
+msgstr[1] "%d tekens"
+
+#: src/Widgets/PreferenceWindow.vala:27 src/Widgets/TitleBar.vala:54
+#: src/Widgets/TitleBar.vala:60
+msgid "Preferences"
+msgstr "Voorkeuren"
+
+#: src/Widgets/PreferenceWindow.vala:35
+msgid "Document folder location:"
+msgstr "Locatie van documentenmap:"
+
+#: src/Widgets/PreferenceWindow.vala:39
+msgid "Select Document Folder…"
+msgstr "Documentenmap kiezen…"
+
+#: src/Widgets/PreferenceWindow.vala:55
+msgid "Close"
+msgstr "Sluiten"
+
+#: src/Widgets/TitleBar.vala:29
+msgid "Writer"
+msgstr "Tekstverwerker"
+
+#: src/Widgets/TitleBar.vala:36
+msgid "Open a file"
+msgstr "Open een bestand"
+
+#: src/Widgets/TitleBar.vala:39
+msgid "Save this file with a different name"
+msgstr "Sla dit bestand op onder een andere naam"
+
+#: src/Widgets/TitleBar.vala:42
+msgid "Restore this file"
+msgstr "Herstel dit bestand"
+
+#: src/Widgets/TitleBar.vala:45
+msgid "Print this file"
+msgstr "Druk dit bestand af"
+
+#: src/Widgets/TitleBar.vala:49
+msgid "Find"
+msgstr "Zoeken"
+
+#: src/Application.vala:160
+#, c-format
+msgid "Untitled Document %i"
+msgstr "Naamloos document %i"
+
+#: src/Application.vala:186
+msgid "Choose a file to open"
+msgstr "Kies een te openen bestand"
+
+#: src/Application.vala:188 src/Application.vala:228
+msgid "Rich Text Format (.rtf)"
+msgstr "Rich Text Format (.rtf)"
+
+#: src/Application.vala:191 src/Application.vala:231
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: src/Application.vala:192
+msgid "Open"
+msgstr "Openen"
+
+#: src/Application.vala:223
+msgid "Save file with a different name"
+msgstr "Bestand opslaan onder een andere naam"
+
+#: src/Application.vala:232
+msgid "Save"
+msgstr "Opslaan"
+
+#: src/MainWindow.vala:68
+msgid "Zeitgeist Datasource for Writer"
+msgstr "Zeitgeist-gegevensbron voor Tekstverwerker"
+
+#: src/MainWindow.vala:69
+msgid "A data source which logs Open, Close, Save and Move Events"
+msgstr "Een gegevensbron die gebeurtenissen vastlegt, zoals openen, sluiten, opslaan en verplaatsen"
+
+#. /TRANSLATORS: The string shown in the titlebar. "%s" represents the name of an opened file.
+#. /The latter string "Writer" is the name of this app.
+#: src/MainWindow.vala:94
+#, c-format
+msgid "%s — Writer"
+msgstr "%s - Tekstverwerker"

@@ -2,12 +2,17 @@ project('com.github.ryonakano.writer', 'vala', 'c')
 
 no_zeitgeist = get_option('no_zeitgeist')
 
+gtksourceview_dep = dependency('gtksourceview-4', required: false)
+if gtksourceview_dep.found() == false
+    gtksourceview_dep = dependency('gtksourceview-3.0')
+endif
+
 dependencies = [
     dependency('gee-0.8'),
     dependency('glib-2.0'),
     dependency('granite', version: '>=5.2.0'),
     dependency('gtk+-3.0', version: '>=3.22'),
-    dependency('gtksourceview-3.0')
+    gtksourceview_dep
 ]
 
 if no_zeitgeist == false
