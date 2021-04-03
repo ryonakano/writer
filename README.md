@@ -57,3 +57,5 @@ I accept translations through Pull Requests. If you're not sure how to do, [the 
 Actually this repository is a fork of the [original Writer](https://launchpad.net/writer). One day I found the original one and was very impressed, but it didn't seem to be updated at that time and wasn't released to AppCenter. Then I felt I would like to fork it and continue the development.
 
 So this repository would not exist without the work of the developers of the original one Tuur Dutoit, Anthony Huben, Ryan Riffle and [its mockup designer](https://www.deviantart.com/spiceofdesign/art/Writer-Concept-351501580) spiceofdesign. I would like to say thank you very much for them!
+
+Credits to elementary Ltd. for the app icons.
