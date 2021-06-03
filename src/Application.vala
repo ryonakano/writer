@@ -25,10 +25,6 @@ public class Writer.Application : Gtk.Application {
     private File? opened_file = null;
     private File? backedup_file = null;
 
-    #if HAVE_ZEITGEIST
-    private Utils.ZeitgeistLogger zg_log = new Utils.ZeitgeistLogger ();
-    #endif
-
     public Application () {
         Object (
             application_id: Constants.PROJECT_NAME,
@@ -210,15 +206,6 @@ public class Writer.Application : Gtk.Application {
         window.set_header_title (path);
         window.show_editor ();
         editor.text_view.grab_focus ();
-
-        #if HAVE_ZEITGEIST
-        try {
-            string uri = GLib.Filename.to_uri (path);
-            zg_log.open_insert (uri, uri.substring (uri.last_index_of (".") + 1));
-        } catch (ConvertError e) {
-            warning (e.message);
-        }
-        #endif
     }
 
     public void open_file_dialog () {
@@ -318,15 +305,6 @@ public class Writer.Application : Gtk.Application {
             file_name = filech.get_current_name ();
             save ();
             open_file ();
-
-            #if HAVE_ZEITGEIST
-            try {
-                string uri = GLib.Filename.to_uri (path);
-                zg_log.open_insert (uri, uri.substring (uri.last_index_of (".") + 1));
-            } catch (ConvertError e) {
-                warning (e.message);
-            }
-            #endif
         }
 
         filech.close ();

@@ -21,7 +21,6 @@ You'll need the following dependencies:
 * libgtk-3.0-dev (>= 3.22)
 * libgtksourceview-4-dev (or libgtksourceview-3.0-dev)
 * libgranite-dev (>= 5.2.0)
-* libzeitgeist-2.0-dev (use `-Dno_zeitgeist=true` to build without this)
 * meson
 * valac
 
