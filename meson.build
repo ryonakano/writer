@@ -1,18 +1,5 @@
 project('com.github.ryonakano.writer', 'vala', 'c')
 
-gtksourceview_dep = dependency('gtksourceview-4', required: false)
-if gtksourceview_dep.found() == false
-    gtksourceview_dep = dependency('gtksourceview-3.0')
-endif
-
-dependencies = [
-    dependency('gee-0.8'),
-    dependency('glib-2.0'),
-    dependency('granite', version: '>=5.2.0'),
-    dependency('gtk+-3.0', version: '>=3.22'),
-    gtksourceview_dep
-]
-
 gnome = import('gnome')
 i18n = import('i18n')
 add_global_arguments(
@@ -56,7 +43,13 @@ executable(
     'src/Widgets/ToolBar.vala',
     'src/Application.vala',
     'src/MainWindow.vala',
-    dependencies: dependencies,
+    dependencies: [
+        dependency('gee-0.8'),
+        dependency('glib-2.0'),
+        dependency('granite', version: '>=5.2.0'),
+        dependency('gtk+-3.0', version: '>=3.22'),
+        dependency('gtksourceview-4')
+    ],
     install: true
 )
 
