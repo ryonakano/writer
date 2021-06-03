@@ -1,7 +1,5 @@
 project('com.github.ryonakano.writer', 'vala', 'c')
 
-no_zeitgeist = get_option('no_zeitgeist')
-
 gtksourceview_dep = dependency('gtksourceview-4', required: false)
 if gtksourceview_dep.found() == false
     gtksourceview_dep = dependency('gtksourceview-3.0')
@@ -14,11 +12,6 @@ dependencies = [
     dependency('gtk+-3.0', version: '>=3.22'),
     gtksourceview_dep
 ]
-
-if no_zeitgeist == false
-    dependencies += dependency('zeitgeist-2.0')
-    add_project_arguments(['--define', 'HAVE_ZEITGEIST'], language: 'vala')
-endif
 
 gnome = import('gnome')
 i18n = import('i18n')
@@ -50,7 +43,6 @@ executable(
     'src/Utils/RTFWriter.vala',
     'src/Utils/TextEditor.vala',
     'src/Utils/TextRange.vala',
-    'src/Utils/ZeitgeistLogger.vala',
     'src/Views/EditorView.vala',
     'src/Views/WelcomeView.vala',
     'src/Widgets/Choosers/TableChooser.vala',

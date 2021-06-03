@@ -56,28 +56,6 @@ public class Writer.MainWindow : Gtk.ApplicationWindow {
         set_titlebar (title_bar);
 
         destroy.connect (app.delete_backup);
-
-#if HAVE_ZEITGEIST
-        // Set up the Data Source Registry for Zeitgeist
-        var registry = new Zeitgeist.DataSourceRegistry ();
-
-        var ds_event = new Zeitgeist.Event ();
-        ds_event.actor = "application://" + Constants.PROJECT_NAME + ".desktop";
-        ds_event.add_subject (new Zeitgeist.Subject ());
-        var ds_events = new GenericArray<Zeitgeist.Event> ();
-        ds_events.add (ds_event);
-        var ds = new Zeitgeist.DataSource.full ("writer-logger",
-                                        _("Zeitgeist Datasource for Writer"),
-                                        _("A data source which logs Open, Close, Save and Move Events"),
-                                        ds_events); // FIXME: templates!
-        registry.register_data_source.begin (ds, null, (obj, res) => {
-            try {
-                registry.register_data_source.end (res);
-            } catch (Error reg_err) {
-                warning ("%s", reg_err.message);
-            }
-        });
-#endif
     }
 
     public void show_editor () {
