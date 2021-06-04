@@ -33,6 +33,11 @@ public class Writer.Application : Gtk.Application {
     }
 
     construct {
+        Intl.setlocale (LocaleCategory.ALL, "");
+        GLib.Intl.bindtextdomain (Constants.GETTEXT_PACKAGE, Constants.LOCALEDIR);
+        GLib.Intl.bind_textdomain_codeset (Constants.GETTEXT_PACKAGE, "UTF-8");
+        GLib.Intl.textdomain (Constants.GETTEXT_PACKAGE);
+
         destination = settings.get_string ("destination");
 
         if (destination == "") {
