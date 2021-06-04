@@ -15,8 +15,8 @@ asresources = gnome.compile_resources(
 )
 
 conf_data = configuration_data()
-config_data.set_quoted('LOCALEDIR', join_paths(get_option('prefix'), get_option('localedir')))
-config_data.set_quoted('GETTEXT_PACKAGE', meson.project_name())
+conf_data.set_quoted('LOCALEDIR', join_paths(get_option('prefix'), get_option('localedir')))
+conf_data.set_quoted('GETTEXT_PACKAGE', meson.project_name())
 conf_data.set_quoted('PROJECT_NAME', meson.project_name())
 config_header = configure_file(
     input: 'src/config.vala.in',
