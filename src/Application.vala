@@ -19,6 +19,7 @@ public class Writer.Application : Gtk.Application {
     private MainWindow window;
     public TextEditor editor { get; private set; }
     public static Settings settings;
+    private bool has_open_file;
     private string destination = "";
     private string file_name = "";
     private string path = "";
@@ -207,6 +208,7 @@ public class Writer.Application : Gtk.Application {
     }
 
     private void open_file () {
+        has_open_file = true;
         editor.set_text (new Utils.RTFParser ().read_all (path), -1);
         window.set_header_title (path);
         window.show_editor ();
@@ -267,6 +269,10 @@ public class Writer.Application : Gtk.Application {
     }
 
     public void delete_backup () {
+        if (!has_open_file) {
+            return;
+        }
+
         try {
             backedup_file.delete ();
         } catch (Error err) {
