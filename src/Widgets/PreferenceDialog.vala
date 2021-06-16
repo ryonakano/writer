@@ -15,18 +15,16 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-public class Writer.Widgets.PreferenceWindow : Gtk.Dialog {
+public class Writer.Widgets.PreferenceDialog : Granite.Dialog {
     public MainWindow window { get; construct; }
 
-    public PreferenceWindow (MainWindow parent) {
+    public PreferenceDialog (MainWindow parent) {
         Object (
             window: parent,
+            transient_for: parent,
             resizable: false,
-            deletable: false,
             modal: true,
             title: _("Preferences"),
-            width_request: 420,
-            height_request: 300,
             window_position: Gtk.WindowPosition.CENTER_ON_PARENT
         );
     }

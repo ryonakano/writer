@@ -42,7 +42,7 @@ sources = files(
     'src' / 'Widgets' / 'ToolBars' / 'TextToolBar.vala',
     'src' / 'Widgets' / 'ToolBars' / 'ToolBarImage.vala',
     'src' / 'Widgets' / 'ActionBar.vala',
-    'src' / 'Widgets' / 'PreferenceWindow.vala',
+    'src' / 'Widgets' / 'PreferenceDialog.vala',
     'src' / 'Widgets' / 'TitleBar.vala',
     'src' / 'Widgets' / 'ToolBar.vala',
     'src' / 'Application.vala',
@@ -57,7 +57,7 @@ executable(
     dependencies: [
         dependency('gee-0.8'),
         dependency('glib-2.0'),
-        dependency('granite', version: '>=5.2.0'),
+        dependency('granite', version: '>=6.0.0'),
         dependency('gtk+-3.0', version: '>=3.22'),
         dependency('gtksourceview-4')
     ],
