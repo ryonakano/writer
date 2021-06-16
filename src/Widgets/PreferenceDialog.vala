@@ -15,10 +15,10 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-public class Writer.Widgets.PreferenceWindow : Granite.Dialog {
+public class Writer.Widgets.PreferenceDialog : Granite.Dialog {
     public MainWindow window { get; construct; }
 
-    public PreferenceWindow (MainWindow parent) {
+    public PreferenceDialog (MainWindow parent) {
         Object (
             window: parent,
             transient_for: parent,

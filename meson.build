@@ -42,7 +42,7 @@ sources = files(
     'src' / 'Widgets' / 'ToolBars' / 'TextToolBar.vala',
     'src' / 'Widgets' / 'ToolBars' / 'ToolBarImage.vala',
     'src' / 'Widgets' / 'ActionBar.vala',
-    'src' / 'Widgets' / 'PreferenceWindow.vala',
+    'src' / 'Widgets' / 'PreferenceDialog.vala',
     'src' / 'Widgets' / 'TitleBar.vala',
     'src' / 'Widgets' / 'ToolBar.vala',
     'src' / 'Application.vala',
