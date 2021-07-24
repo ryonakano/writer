@@ -15,7 +15,7 @@ jobs:
     - name: Install Dependencies
       run: |
         apt update
-        apt install -y libgtksourceview-4-dev libzeitgeist-2.0-dev
+        apt install -y libgtksourceview-4-dev
     - name: Build
       env:
         DESTDIR: out
