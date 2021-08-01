@@ -1,0 +1,19 @@
+app-id: com.github.ryonakano.writer
+runtime: io.elementary.Platform
+runtime-version: '6'
+sdk: io.elementary.Sdk
+command: com.github.ryonakano.writer
+finish-args:
+  - '--share=ipc'
+  - '--socket=wayland'
+  - '--socket=fallback-x11'
+  - '--device=dri'
+  - '--filesystem=xdg-documents'
+  # needed for perfers-color-scheme
+  - '--system-talk-name=org.freedesktop.Accounts'
+modules:
+  - name: writer
+    buildsystem: meson
+    sources:
+      - type: dir
+        path: .

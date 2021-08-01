@@ -19,15 +19,12 @@ public class Writer.Application : Gtk.Application {
     private MainWindow window;
     public TextEditor editor { get; private set; }
     public static Settings settings;
+    private bool has_open_file;
     private string destination = "";
     private string file_name = "";
     private string path = "";
     private File? opened_file = null;
     private File? backedup_file = null;
-
-    #if HAVE_ZEITGEIST
-    private Utils.ZeitgeistLogger zg_log = new Utils.ZeitgeistLogger ();
-    #endif
 
     public Application () {
         Object (
@@ -37,6 +34,11 @@ public class Writer.Application : Gtk.Application {
     }
 
     construct {
+        Intl.setlocale (LocaleCategory.ALL, "");
+        GLib.Intl.bindtextdomain (Constants.GETTEXT_PACKAGE, Constants.LOCALEDIR);
+        GLib.Intl.bind_textdomain_codeset (Constants.GETTEXT_PACKAGE, "UTF-8");
+        GLib.Intl.textdomain (Constants.GETTEXT_PACKAGE);
+
         destination = settings.get_string ("destination");
 
         if (destination == "") {
@@ -206,19 +208,11 @@ public class Writer.Application : Gtk.Application {
     }
 
     private void open_file () {
+        has_open_file = true;
         editor.set_text (new Utils.RTFParser ().read_all (path), -1);
         window.set_header_title (path);
         window.show_editor ();
         editor.text_view.grab_focus ();
-
-        #if HAVE_ZEITGEIST
-        try {
-            string uri = GLib.Filename.to_uri (path);
-            zg_log.open_insert (uri, uri.substring (uri.last_index_of (".") + 1));
-        } catch (ConvertError e) {
-            warning (e.message);
-        }
-        #endif
     }
 
     public void open_file_dialog () {
@@ -275,6 +269,10 @@ public class Writer.Application : Gtk.Application {
     }
 
     public void delete_backup () {
+        if (!has_open_file) {
+            return;
+        }
+
         try {
             backedup_file.delete ();
         } catch (Error err) {
@@ -318,15 +316,6 @@ public class Writer.Application : Gtk.Application {
             file_name = filech.get_current_name ();
             save ();
             open_file ();
-
-            #if HAVE_ZEITGEIST
-            try {
-                string uri = GLib.Filename.to_uri (path);
-                zg_log.open_insert (uri, uri.substring (uri.last_index_of (".") + 1));
-            } catch (ConvertError e) {
-                warning (e.message);
-            }
-            #endif
         }
 
         filech.close ();
@@ -392,9 +381,8 @@ public class Writer.Application : Gtk.Application {
     }
 
     public void preferences () {
-        var preference_window = new Widgets.PreferenceWindow (window);
-        preference_window.transient_for = window;
-        preference_window.show_all ();
+        var preference_dialog = new Widgets.PreferenceDialog (window);
+        preference_dialog.show_all ();
     }
 
     public static void main (string [] args) {

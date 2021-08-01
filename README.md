@@ -19,10 +19,9 @@ Arch Linux users can find Writer under the name [writer-git](https://aur.archlin
 You'll need the following dependencies:
 
 * libgtk-3.0-dev (>= 3.22)
-* libgtksourceview-4-dev (or libgtksourceview-3.0-dev)
-* libgranite-dev (>= 5.2.0)
-* libzeitgeist-2.0-dev (use `-Dno_zeitgeist=true` to build without this)
-* meson
+* libgtksourceview-4-dev
+* libgranite-dev (>= 6.0.0)
+* meson (>= 0.49.0)
 * valac
 
 Run `meson build` to configure the build environment. Change to the build directory and run `ninja` to build

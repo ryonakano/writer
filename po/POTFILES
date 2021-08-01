@@ -5,7 +5,7 @@ src/Widgets/ToolBars/ImageToolBar.vala
 src/Widgets/ToolBars/TableToolBar.vala
 src/Widgets/ToolBars/TextToolBar.vala
 src/Widgets/ActionBar.vala
-src/Widgets/PreferenceWindow.vala
+src/Widgets/PreferenceDialog.vala
 src/Widgets/TitleBar.vala
 
 src/Application.vala
