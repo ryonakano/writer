@@ -1,0 +1,361 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the com.github.ryonakano.writer package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: com.github.ryonakano.writer\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2021-06-16 21:39+0900\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Matheus T. Ricci \n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
+
+#: src/Views/WelcomeView.vala:23
+msgid "No Documents Open"
+msgstr "Nenhum documento aberto"
+
+#: src/Views/WelcomeView.vala:24
+msgid "Open a document to begin editing."
+msgstr "Abra um documento para começar a editar."
+
+#: src/Views/WelcomeView.vala:30
+msgid "New File"
+msgstr "Novo arquivo"
+
+#: src/Views/WelcomeView.vala:30
+msgid "Create a new document."
+msgstr "Criar um novo documento."
+
+#: src/Views/WelcomeView.vala:31
+msgid "Open File"
+msgstr "Abrir arquivo"
+
+#: src/Views/WelcomeView.vala:31
+msgid "Open a saved document."
+msgstr "Abrir um documento salvo."
+
+#: src/Widgets/Choosers/TableChooser.vala:35
+msgid "Insert Table"
+msgstr "Inserir tabela"
+
+#: src/Widgets/Choosers/TableChooser.vala:37
+msgid "Table"
+msgstr "Tabela"
+
+#: src/Widgets/Choosers/TableChooser.vala:39
+msgid "Columns:"
+msgstr "Colunas:"
+
+#: src/Widgets/Choosers/TableChooser.vala:41
+msgid "Rows:"
+msgstr "Linhas:"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:34
+msgid "In line of text"
+msgstr "Alinhado com o texto"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:35
+msgid "Float above text"
+msgstr "Flutuar sobre o texto"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:37
+msgid "Set how to wrap text"
+msgstr "Definir como cortar texto"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:39
+msgid "Lock aspect ratio"
+msgstr "Travar proporções"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:43
+msgid "Allow to resize images without changing aspect ratio"
+msgstr "Permitir redimensionar imagens sem mudar proporções"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:49
+msgid "Align image left"
+msgstr "Alinhar imagem à esquerda"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:50
+msgid "Center image"
+msgstr "Centralizar imagem"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:51
+msgid "Align image right"
+msgstr "Alinhar imagem à direita"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:53
+msgid "Crop"
+msgstr "Cortar"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:57
+msgid "Remove unnecessary part of image"
+msgstr "Remover parte desnecessária da imagem"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:59
+msgid "Delete Image"
+msgstr "Deletar imagem"
+
+#: src/Widgets/ToolBars/ImageToolBar.vala:63
+msgid "Delete selected image"
+msgstr "Deletar imagem selecionada"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:31
+msgid "Table Properties"
+msgstr "Propriedades da Tabela"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:34
+msgid "Set properties of selected table"
+msgstr "Definir propriedades da tabela selecionada"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:42
+#: src/Widgets/ToolBars/TextToolBar.vala:58
+msgid "Choose font family and font size"
+msgstr "Escolher estilo e tamanho da fonte"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:49
+#: src/Widgets/ToolBars/TextToolBar.vala:65
+msgid "Choose font color"
+msgstr "Escolher cor da fonte"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:52
+#: src/Widgets/ToolBars/TextToolBar.vala:68
+msgid "Toggle bold"
+msgstr "Negrito"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:56
+#: src/Widgets/ToolBars/TextToolBar.vala:72
+msgid "Toggle italic"
+msgstr "Itálico"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:60
+#: src/Widgets/ToolBars/TextToolBar.vala:76
+msgid "Toggle underline"
+msgstr "Sublinhado"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:64
+#: src/Widgets/ToolBars/TextToolBar.vala:80
+msgid "Toggle strikethrough"
+msgstr "Tachado"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:81
+msgid "Align table left"
+msgstr "Alinhar tabela à esquerda"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:82
+msgid "Center table"
+msgstr "Centralizar tabela"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:83
+msgid "Align table right"
+msgstr "Alinhar tabela à direita"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:84
+msgid "Justify table"
+msgstr "Justificar tabela"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:86
+msgid "Add"
+msgstr "Adicionar"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:90
+msgid "Add a new table"
+msgstr "Adicionar uma nova tabela"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:92
+msgid "Delete"
+msgstr "Deletar"
+
+#: src/Widgets/ToolBars/TableToolBar.vala:96
+msgid "Delete selected table"
+msgstr "Deletar tabela selecionada"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:43
+msgid "Paragraph"
+msgstr "Parágrafo"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:44
+msgid "Title"
+msgstr "Título"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:45
+msgid "Subtitle"
+msgstr "Subtítulo"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:46
+msgid "Bullet List"
+msgstr "Lista pontuada"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:47
+msgid "Numbered List"
+msgstr "Lista numerada"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:48
+msgid "Two-Column"
+msgstr "Duas colunas"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:50
+msgid "Set text style"
+msgstr "Definir estilo do texto"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:97
+msgid "Align text left"
+msgstr "Alinhar texto à esquerda"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:98
+msgid "Center text"
+msgstr "Centralizar texto"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:99
+msgid "Align text right"
+msgstr "Alinhar texto à direita"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:100
+msgid "Justify text"
+msgstr "Justificar texto"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:103
+msgid "Increase indent"
+msgstr "Aumentar recuo"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:105
+msgid "Decrease indent"
+msgstr "Diminuir recuo"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:115
+msgid "Insert text"
+msgstr "Inserir texto"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:117
+msgid "Insert link"
+msgstr "Inserir link"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:119
+msgid "Insert image"
+msgstr "Inserir imagem"
+
+#: src/Widgets/ToolBars/TextToolBar.vala:121
+msgid "Insert table"
+msgstr "Inserir tabela"
+
+#: src/Widgets/ActionBar.vala:47
+#, c-format
+msgid "%d character with spaces"
+msgid_plural "%d characters with spaces"
+msgstr[0] "%d caractere com espaços"
+msgstr[1] "%d caracteres com espaços"
+
+#: src/Widgets/ActionBar.vala:61
+#, c-format
+msgid "%d character without spaces"
+msgid_plural "%d characters without spaces"
+msgstr[0] "caractere sem espaços"
+msgstr[1] "caracteres sem espaços"
+
+#: src/Widgets/PreferenceDialog.vala:27 src/Widgets/TitleBar.vala:62
+#: src/Widgets/TitleBar.vala:68
+msgid "Preferences"
+msgstr "Preferências"
+
+#: src/Widgets/PreferenceDialog.vala:33
+msgid "Document folder location:"
+msgstr "Localização da pasta de Documentos:"
+
+#: src/Widgets/PreferenceDialog.vala:37
+msgid "Select Document Folder…"
+msgstr "Selecionar pasta de Documentos…"
+
+#: src/Widgets/PreferenceDialog.vala:43
+msgid "Include spaces to count characters:"
+msgstr "Incluir espaços na contagem de caracteres:"
+
+#: src/Widgets/PreferenceDialog.vala:64
+msgid "Close"
+msgstr "Fechar"
+
+#. /TRANSLATORS: The string shown in the titlebar. "Writer" is the name of this app.
+#: src/Widgets/TitleBar.vala:31 src/MainWindow.vala:78
+msgid "Writer"
+msgstr "Writer"
+
+#: src/Widgets/TitleBar.vala:38
+msgid "Open a file"
+msgstr "Abrir arquivo"
+
+#: src/Widgets/TitleBar.vala:41
+msgid "Save this file with a different name"
+msgstr "Salvar esse arquivo com outro nome"
+
+#: src/Widgets/TitleBar.vala:44
+msgid "Restore this file"
+msgstr "Restaurar esse arquivo"
+
+#: src/Widgets/TitleBar.vala:47
+msgid "Print this file"
+msgstr "Imprimir esse arquivo"
+
+#: src/Widgets/TitleBar.vala:51
+msgid "Find"
+msgstr "Encontrar"
+
+#: src/Widgets/TitleBar.vala:57
+msgid "Undo"
+msgstr "Desfazer"
+
+#: src/Widgets/TitleBar.vala:60
+msgid "Redo"
+msgstr "Refazer"
+
+#: src/Application.vala:198
+#, c-format
+msgid "Untitled Document %i"
+msgstr "Documento Sem Título %i"
+
+#: src/Application.vala:219
+msgid "Choose a file to open"
+msgstr "Escolher um arquivo para abrir"
+
+#: src/Application.vala:221 src/Application.vala:296
+msgid "Rich Text Format (.rtf)"
+msgstr "Rich Text Format (.rtf)"
+
+#: src/Application.vala:224 src/Application.vala:299
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: src/Application.vala:225
+msgid "Open"
+msgstr "Abrir"
+
+#: src/Application.vala:291
+msgid "Save file with a different name"
+msgstr "Salvar arquivo com outro nome"
+
+#: src/Application.vala:300
+msgid "Save"
+msgstr "Salvar"
+
+#: src/Application.vala:326
+msgid "Are you sure you want to revret this file?"
+msgstr "Você tem certeza que deseja reverter esse arquivo?"
+
+#: src/Application.vala:327
+msgid "Changes you made will be discarded."
+msgstr "As alterações que você fez serão descartadas."
+
+#: src/Application.vala:333
+msgid "Revert"
+msgstr "Reverter"
+
+#. /TRANSLATORS: The string shown in the titlebar. "%s" represents the name of an opened file.
+#. /The latter string "Writer" is the name of this app.
+#: src/MainWindow.vala:75
+#, c-format
+msgid "%s — Writer"
+msgstr "%s — Writer"
