@@ -6,14 +6,6 @@ Writer is a word processor designed for elementary OS that lets you create simpl
 
 **Writer is still in the early development and is not available on AppCenter at the present**, but in the future it may be. If you would like to test it now, you can do by building it.
 
-### Other Platforms
-
-Writer may also available on other platforms by some contributors.
-
-Arch Linux users can find Writer under the name [writer-git](https://aur.archlinux.org/packages/writer-git/) in the AUR (thanks to [btd1337](https://github.com/btd1337)):
-
-    aurman -S writer-git
-
 ## Building and Installation
 
 You'll need the following dependencies:
@@ -41,11 +33,11 @@ There are many ways you can contribute, even if you don't know how to code.
 
 ### Reporting Bugs or Suggesting Improvements
 
-Simply [create a new issue](https://github.com/ryonakano/writer/issues/new) describing your problem and how to reproduce or your suggestion. If you are not used to do, [this section](https://elementary.io/docs/code/reference#reporting-bugs) is for you.
+Simply [create a new issue](https://github.com/ryonakano/writer/issues/new) describing your problem and how to reproduce or your suggestion. If you are not used to do, [this section](https://docs.elementary.io/contributor-guide/feedback/reporting-issues) is for you.
 
 ### Writing Some Code
 
-We follow the [coding style of elementary OS](https://elementary.io/docs/code/reference#code-style) and [its Human Interface Guidelines](https://elementary.io/docs/human-interface-guidelines#human-interface-guidelines), please try to respect them.
+We follow [the coding style of elementary OS](https://docs.elementary.io/develop/writing-apps/code-style) and [its Human Interface Guidelines](https://docs.elementary.io/hig/). Try to respect them.
 
 ### Translating This App
 
