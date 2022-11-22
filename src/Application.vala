@@ -344,8 +344,12 @@ public class Writer.Application : Gtk.Application {
         return false;
     }
 
+    public void page_setup () {
+        PrintManager.get_default ().show_page_setup ();
+    }
+
     public void print_file () {
-        print ("print\n");
+        PrintManager.get_default ().show_print_dialog ();
     }
 
     public void search (string text) {

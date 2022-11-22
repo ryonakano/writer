@@ -46,6 +46,7 @@ sources = files(
     'src' / 'Widgets' / 'TitleBar.vala',
     'src' / 'Widgets' / 'ToolBar.vala',
     'src' / 'Application.vala',
+    'src' / 'PrintManager.vala',
     'src' / 'MainWindow.vala'
 )
 

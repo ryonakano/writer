@@ -20,10 +20,10 @@ public class Writer.Widgets.TitleBar : Gtk.HeaderBar {
     private Gtk.Button open_button;
     private Gtk.Button save_as_button;
     private Gtk.Button revert_button;
-    private Gtk.Button print_button;
     private Gtk.SearchEntry search_field;
     private Gtk.Button undo_button;
     private Gtk.Button redo_button;
+    private Gtk.MenuButton print_menubutton;
 
     public TitleBar (Application app) {
         Object (
@@ -43,9 +43,6 @@ public class Writer.Widgets.TitleBar : Gtk.HeaderBar {
         revert_button = new Gtk.Button.from_icon_name ("document-revert", Gtk.IconSize.LARGE_TOOLBAR);
         revert_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Shift><Ctrl>O"}, _("Restore this file"));
 
-        print_button = new Gtk.Button.from_icon_name ("document-export", Gtk.IconSize.LARGE_TOOLBAR);
-        print_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl>P"}, _("Print this file"));
-
         search_field = new Gtk.SearchEntry ();
         search_field.valign = Gtk.Align.CENTER;
         search_field.placeholder_text = _("Find");
@@ -59,6 +56,17 @@ public class Writer.Widgets.TitleBar : Gtk.HeaderBar {
         redo_button = new Gtk.Button.from_icon_name ("edit-redo", Gtk.IconSize.LARGE_TOOLBAR);
         redo_button.tooltip_markup = Granite.markup_accel_tooltip ({"<Ctrl><Shift>Z"}, _("Redo"));
 
+        var page_setup_item = new Gtk.MenuItem.with_label (_("Page setup"));
+        var print_item = new Gtk.MenuItem.with_label (_("Print"));
+        var print_menu = new Gtk.Menu ();
+        print_menu.add (page_setup_item);
+        print_menu.add (print_item);
+        print_menubutton = new Gtk.MenuButton ();
+        print_menubutton.set_popup (print_menu);
+        print_menubutton.set_image (new Gtk.Image.from_icon_name ("document-print", Gtk.IconSize.LARGE_TOOLBAR));
+        print_menubutton.tooltip_text = _("Print");
+        print_menu.show_all ();
+
         var preferences_item = new Gtk.MenuItem.with_label (_("Preferences"));
         var app_menu_menu = new Gtk.Menu ();
         app_menu_menu.add (preferences_item);
@@ -71,8 +79,8 @@ public class Writer.Widgets.TitleBar : Gtk.HeaderBar {
         pack_start (open_button);
         pack_start (save_as_button);
         pack_start (revert_button);
-        pack_end (print_button);
         pack_end (app_menu);
+        pack_end (print_menubutton);
         pack_end (redo_button);
         pack_end (undo_button);
         pack_end (search_field);
@@ -82,9 +90,11 @@ public class Writer.Widgets.TitleBar : Gtk.HeaderBar {
         revert_button.clicked.connect (() => {
             revert_button.sensitive = !app.revert ();
         });
-        print_button.clicked.connect (app.print_file);
         undo_button.clicked.connect (app.undo);
         redo_button.clicked.connect (app.redo);
+
+        page_setup_item.activate.connect (app.page_setup);
+        print_item.activate.connect (app.print_file);
 
         preferences_item.activate.connect (app.preferences);
 
@@ -98,7 +108,7 @@ public class Writer.Widgets.TitleBar : Gtk.HeaderBar {
     public void set_active (bool active) {
         save_as_button.sensitive = active;
         revert_button.sensitive = false;
-        print_button.sensitive = active;
+        print_menubutton.sensitive = active;
         undo_button.sensitive = active;
         redo_button.sensitive = active;
         search_field.sensitive = active;
