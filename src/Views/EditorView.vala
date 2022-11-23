@@ -35,6 +35,10 @@ public class Writer.Views.EditorView : Gtk.Box {
     construct {
         var toolbar = new Widgets.ToolBar (editor);
 
+        var infobar = new Gtk.InfoBar () {
+            revealed = false
+        };
+
         document_view = new Gtk.Grid ();
         document_view.get_style_context ().add_class ("page-decoration");
         document_view.margin = 24;
@@ -55,6 +59,35 @@ public class Writer.Views.EditorView : Gtk.Box {
 
         pack_end (action_bar, false, false, 0);
         pack_start (toolbar, false, false, 0);
+        pack_start (infobar, false, false, 0);
         pack_start (scrolled_window, true, true, 0);
+
+        PrintManager.get_default ().started.connect (() => {
+            infobar_on_started (infobar);
+        });
+        PrintManager.get_default ().ended.connect (() => {
+            infobar_on_ended (infobar);
+        });
+    }
+
+    private void infobar_on_ended (Gtk.InfoBar infobar) {
+        infobar.revealed = false;
+    }
+
+    private void infobar_on_started (Gtk.InfoBar infobar) {
+        var message = new Gtk.Label (_("Printing started"));
+        infobar.get_content_area ().add (message);
+        infobar.message_type = Gtk.MessageType.INFO;
+
+        infobar.add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
+
+        infobar.response.connect ((response_id) => {
+            if (response_id == Gtk.ResponseType.CANCEL) {
+                PrintManager.get_default ().cancel ();
+            }
+        });
+
+        infobar.revealed = true;
+        infobar.show_all ();
     }
 }
