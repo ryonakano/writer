@@ -2,7 +2,7 @@ project(
     'com.github.ryonakano.writer',
     'vala', 'c',
     version: '0.1.0',
-    meson_version: '>=0.49.0'
+    meson_version: '>=0.57.0'
 )
 
 gnome = import('gnome')
@@ -67,4 +67,7 @@ executable(
 subdir('data')
 subdir('po')
 
-meson.add_install_script('meson' / 'post_install.py')
+gnome.post_install(
+    glib_compile_schemas: true,
+    gtk_update_icon_cache: true
+)

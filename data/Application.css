@@ -14,3 +14,11 @@
         0 3px 3px alpha (#000, 0.22);
     transition: all 150ms ease-in-out;
 }
+
+.page-decoration text {
+    color: #333333;
+}
+
+.page-decoration text selection {
+    color: #444444;
+}

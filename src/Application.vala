@@ -216,25 +216,19 @@ public class Writer.Application : Gtk.Application {
     }
 
     public void open_file_dialog () {
-        var filech = new Gtk.FileChooserDialog (_("Choose a file to open"), window, Gtk.FileChooserAction.OPEN);
         var rtf_files_filter = new Gtk.FileFilter ();
         rtf_files_filter.set_filter_name (_("Rich Text Format (.rtf)"));
         rtf_files_filter.add_mime_type ("text/rtf");
 
-        filech.add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
-        filech.add_button (_("Open"), Gtk.ResponseType.ACCEPT);
-        filech.add_filter (rtf_files_filter);
-        filech.set_default_response (Gtk.ResponseType.ACCEPT);
-        filech.select_multiple = false;
-        filech.filter = rtf_files_filter;
-
-        filech.key_press_event.connect ((event) => {
-            if (Gdk.keyval_name (event.keyval) == "Escape") {
-                filech.destroy ();
-            }
-
-            return false;
-        });
+        var filech = new Gtk.FileChooserNative (
+            _("Choose a file to open"),
+            window,
+            Gtk.FileChooserAction.OPEN,
+            _("Open"), _("Cancel")
+        ) {
+            select_multiple = false,
+            filter = rtf_files_filter
+        };
 
         if (filech.run () == Gtk.ResponseType.ACCEPT) {
             path = filech.get_filename ();
@@ -242,8 +236,6 @@ public class Writer.Application : Gtk.Application {
             open_file ();
             create_backup ();
         }
-
-        filech.close ();
     }
 
     private void close_file () {
@@ -287,38 +279,35 @@ public class Writer.Application : Gtk.Application {
     }
 
     public void save_as () {
-        var filech = new Gtk.FileChooserDialog (
-            _("Save file with a different name"),
-            window,
-            Gtk.FileChooserAction.SAVE
-        );
         var rtf_files_filter = new Gtk.FileFilter ();
         rtf_files_filter.set_filter_name (_("Rich Text Format (.rtf)"));
         rtf_files_filter.add_mime_type ("text/rtf");
 
-        filech.add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
-        filech.add_button (_("Save"), Gtk.ResponseType.ACCEPT);
-        filech.add_filter (rtf_files_filter);
-        filech.set_default_response (Gtk.ResponseType.ACCEPT);
-        filech.select_multiple = false;
-        filech.filter = rtf_files_filter;
-
-        filech.key_press_event.connect ((event) => {
-            if (Gdk.keyval_name (event.keyval) == "Escape") {
-                filech.destroy ();
-            }
-
-            return false;
-        });
+        var filech = new Gtk.FileChooserNative (
+            _("Save file with a different name"),
+            window,
+            Gtk.FileChooserAction.SAVE,
+            _("Save"), _("Cancel")
+        ) {
+            select_multiple = false,
+            filter = rtf_files_filter,
+            do_overwrite_confirmation = true
+        };
 
         if (filech.run () == Gtk.ResponseType.ACCEPT) {
             path = filech.get_filename ();
+            if (!path.has_suffix (".rtf")) {
+                path += ".rtf";
+            }
+
             file_name = filech.get_current_name ();
+            if (!file_name.has_suffix (".rtf")) {
+                file_name += ".rtf";
+            }
+
             save ();
             open_file ();
         }
-
-        filech.close ();
     }
 
     public bool revert () {
