@@ -17,6 +17,7 @@
 
 public class Writer.Widgets.TextToolBar : Gtk.Grid {
     public TextEditor editor { get; construct; }
+    private Gtk.ToggleButton font_color_button;
     private Gtk.ToggleButton bold_button;
     private Gtk.ToggleButton italic_button;
     private Gtk.ToggleButton underline_button;
@@ -25,6 +26,8 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
     private Gtk.Button indent_less_button;
     public Granite.Widgets.ModeButton align_button;
 
+    private Gdk.RGBA font_color;
+
     public TextToolBar (TextEditor editor) {
         Object (
             editor: editor
@@ -32,6 +35,8 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
     }
 
     construct {
+        font_color = { 0, 0, 0, 1};
+
         get_style_context ().add_class ("writer-toolbar");
         get_style_context ().add_class ("frame");
 
@@ -49,20 +54,29 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
         paragraph_combobox.set_active_id ("paragraph");
         paragraph_combobox.tooltip_text = _("Set text style");
 
-        var font_button = new Gtk.FontButton ();
+        var font_button = new Gtk.ToggleButton ();
         font_button.margin = 12;
         font_button.margin_start = 6;
         font_button.margin_end = 6;
-        font_button.use_font = true;
-        font_button.use_size = true;
         font_button.tooltip_text = _("Choose font family and font size");
 
-        var font_color_button = new Gtk.ColorButton ();
+        var font_popover = new Gtk.Popover (font_button);
+        font_popover.border_width = 12;
+        var font_chooser = new Gtk.FontChooserWidget ();
+        // TODO: Allow to set default font in PreferenceWindow
+        font_chooser.set_font ("Open Sans 12");
+        font_popover.add (font_chooser);
+
+        font_button.label = font_chooser.font;
+
+        font_color_button = new Gtk.ToggleButton ();
         font_color_button.margin = 12;
         font_color_button.margin_start = 6;
         font_color_button.margin_end = 6;
-        font_color_button.use_alpha = false;
+        font_color_button.width_request = 42;
         font_color_button.tooltip_text = _("Choose font color");
+
+        create_font_color_popover ();
 
         bold_button = new Gtk.ToggleButton ();
         bold_button.add (new ToolBarImage ("format-text-bold-symbolic", _("Toggle bold"), "<Ctrl>B"));
@@ -140,14 +154,38 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
             change_align (align_button.selected);
         });
 
-        font_button.font_set.connect (() => {
-            editor.set_font_from_string (font_button.font);
+        font_chooser.font_activated.connect (() => {
+            editor.set_font_from_string (font_chooser.font);
+            font_popover.hide ();
+            font_button.label = font_chooser.font;
         });
 
-        font_color_button.color_set.connect (() => {
-            var rgba = Gdk.RGBA ();
-            rgba = font_color_button.rgba;
-            editor.set_font_color (rgba);
+        font_button.toggled.connect (() => {
+            if (font_button.active) {
+                font_popover.show_all ();
+            }
+        });
+
+        font_popover.closed.connect (() => {
+            font_button.active = false;
+        });
+
+        font_color_button.toggled.connect (() => {
+            if (font_color_button.active) {
+                create_font_color_popover ().show_all ();
+            }
+        });
+
+        font_color_button.draw.connect ((cr) => {
+            int width = font_color_button.get_allocated_width ();
+            int height = font_color_button.get_allocated_height ();
+            const int BORDER = 6;
+
+            Gdk.cairo_set_source_rgba (cr, font_color);
+            cr.rectangle (BORDER, BORDER, width - (BORDER * 2), height - (BORDER * 2));
+            cr.fill ();
+
+            return false;
         });
 
         bold_button.button_press_event.connect ((event) => {
@@ -214,5 +252,53 @@ public class Writer.Widgets.TextToolBar : Gtk.Grid {
 
         // TODO
         // Update font and color Gtk.Buttons
+    }
+
+    private Gtk.Popover create_font_color_popover () {
+        var font_color_popover = new Gtk.Popover (font_color_button);
+        var font_color_header = new Granite.HeaderLabel (_("Font Color"));
+        var font_color_chooser = new Gtk.ColorChooserWidget ();
+        font_color_chooser.rgba = font_color;
+        font_color_chooser.show_editor = false;
+
+        var cancel_button = new Gtk.Button.with_label (_("Cancel"));
+        var select_button = new Gtk.Button.with_label (_("Select the Color"));
+        select_button.get_style_context ().add_class (Gtk.STYLE_CLASS_SUGGESTED_ACTION);
+
+        var buttons_grid = new Gtk.Grid ();
+        buttons_grid.margin = 12;
+        buttons_grid.margin_end = 0;
+        buttons_grid.margin_bottom = 0;
+        buttons_grid.column_spacing = 6;
+        buttons_grid.halign = Gtk.Align.END;
+        buttons_grid.attach (cancel_button, 0, 0, 1, 1);
+        buttons_grid.attach (select_button, 1, 0, 1, 1);
+
+        var font_color_grid = new Gtk.Grid ();
+        font_color_grid.margin = 12;
+        font_color_grid.margin_top = 6;
+        font_color_grid.attach (font_color_header, 0, 0, 1, 1);
+        font_color_grid.attach (font_color_chooser, 0, 1, 1, 1);
+        font_color_grid.attach (buttons_grid, 0, 2, 1, 1);
+        font_color_popover.add (font_color_grid);
+
+        cancel_button.clicked.connect (() => {
+            font_color_popover.hide ();
+        });
+
+        font_color_popover.closed.connect (() => {
+            font_color_button.active = false;
+        });
+
+        select_button.clicked.connect (() => {
+            var rgba = Gdk.RGBA ();
+            rgba = font_color_chooser.rgba;
+            editor.set_font_color (rgba);
+            font_color = rgba;
+            font_color_button.queue_draw ();
+            font_color_popover.hide ();
+        });
+
+        return font_color_popover;
     }
 }
