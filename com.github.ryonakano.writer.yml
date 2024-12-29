@@ -1,4 +1,4 @@
-app-id: com.github.ryonakano.writer
+id: com.github.ryonakano.writer
 runtime: io.elementary.Platform
 runtime-version: '7.2'
 sdk: io.elementary.Sdk
