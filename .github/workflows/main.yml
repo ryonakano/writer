@@ -8,15 +8,15 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: ghcr.io/elementary/flatpak-platform/runtime:6
+      image: ghcr.io/elementary/flatpak-platform/runtime:8.1
       options: --privileged
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - name: Build
-        uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v3
+        uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v6.4
         with:
           bundle: writer.flatpak
           manifest-path: com.github.ryonakano.writer.yml
@@ -28,9 +28,13 @@ jobs:
   lint:
     name: Lint
     runs-on: ubuntu-latest
+
     container:
       image: valalang/lint
+
     steps:
-    - uses: actions/checkout@v2
-    - name: Lint
-      run: io.elementary.vala-lint -d .
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Lint
+        run: io.elementary.vala-lint -d .
