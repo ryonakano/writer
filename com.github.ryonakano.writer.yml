@@ -9,6 +9,8 @@ finish-args:
   - '--socket=fallback-x11'
   - '--device=dri'
   - '--filesystem=xdg-documents'
+build-options:
+  libdir: /app/lib
 modules:
   # FIXME Remove when porting to GTK 4
   - name: gtksourceview-4
