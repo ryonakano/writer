@@ -10,6 +10,14 @@ finish-args:
   - '--device=dri'
   - '--filesystem=xdg-documents'
 modules:
+  # FIXME Remove when porting to GTK 4
+  - name: gtksourceview-4
+    buildsystem: meson
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/gtksourceview/4.8/gtksourceview-4.8.4.tar.xz
+        sha256sum: 7ec9d18fb283d1f84a3a3eff3b7a72b09a10c9c006597b3fbabbb5958420a87d
+
   - name: writer
     buildsystem: meson
     sources:
