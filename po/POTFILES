@@ -1,12 +1,10 @@
+src/Application.vala
+src/MainWindow.vala
 src/Views/WelcomeView.vala
-
+src/Widgets/ActionBar.vala
 src/Widgets/Choosers/TableChooser.vala
+src/Widgets/PreferenceDialog.vala
+src/Widgets/TitleBar.vala
 src/Widgets/ToolBars/ImageToolBar.vala
 src/Widgets/ToolBars/TableToolBar.vala
 src/Widgets/ToolBars/TextToolBar.vala
-src/Widgets/ActionBar.vala
-src/Widgets/PreferenceDialog.vala
-src/Widgets/TitleBar.vala
-
-src/Application.vala
-src/MainWindow.vala
