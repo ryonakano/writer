@@ -360,7 +360,6 @@ msgid "Insert image"
 msgstr "Insérer une image"
 
 #: src/Widgets/ToolBars/TextToolBar.vala:121
-#, fuzzy
 msgid "Insert table"
 msgstr "Insérer un tableau"
 
