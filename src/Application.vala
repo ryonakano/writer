@@ -312,7 +312,7 @@ public class Writer.Application : Gtk.Application {
 
     public bool revert () {
         var revert_dialog = new Granite.MessageDialog.with_image_from_icon_name (
-            _("Are you sure you want to revret this file?"),
+            _("Are you sure you want to revert this file?"),
             _("Changes you made will be discarded."),
             "dialog-warning",
             Gtk.ButtonsType.CANCEL
