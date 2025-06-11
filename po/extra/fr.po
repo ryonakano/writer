@@ -24,7 +24,7 @@ msgstr "Writer"
 
 #: data/com.github.ryonakano.writer.desktop.in:4
 msgid "Word Processor"
-msgstr "Logiciel de traitement de texte"
+msgstr "Traitement de texte"
 
 #: data/com.github.ryonakano.writer.desktop.in:5
 #: data/com.github.ryonakano.writer.appdata.xml.in:8
@@ -45,4 +45,4 @@ msgstr ""
 
 #: data/com.github.ryonakano.writer.appdata.xml.in:50
 msgid "Writer Developers"
-msgstr ""
+msgstr "Les développeurs de Writer"
