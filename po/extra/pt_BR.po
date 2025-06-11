@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-16 21:39+0900\n"
+"POT-Creation-Date: 2025-06-11 20:30+0900\n"
 "PO-Revision-Date: 2021-08-18 22:34+0900\n"
 "Last-Translator: Matheus T. Ricci\n"
+"Language-Team: \n"
 "Language:pt_BR \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language-Team: \n"
 
 #: data/com.github.ryonakano.writer.desktop.in:3
 #: data/com.github.ryonakano.writer.appdata.xml.in:7
@@ -31,16 +31,17 @@ msgstr "Editor de Texto"
 msgid "Create simple and beautiful documents"
 msgstr "Criar documentos simples e bonitos"
 
-#: data/com.github.ryonakano.writer.desktop.in:8
-msgid "com.github.ryonakano.writer"
-msgstr "com.github.ryonakano.writer"
-
 #: data/com.github.ryonakano.writer.appdata.xml.in:10
 msgid ""
 "Writer is a word processor designed for elementary OS that lets you create "
 "simple and beautiful documents with ease."
-msgstr "Writer é um editor de texto desenhado para elementary OS que permite que você crie documentos simples e bonitos facilmente."
+msgstr ""
+"Writer é um editor de texto desenhado para elementary OS que permite que "
+"você crie documentos simples e bonitos facilmente."
 
 #: data/com.github.ryonakano.writer.appdata.xml.in:50
 msgid "Writer Developers"
 msgstr "Desenvolvedores do Writer"
+
+#~ msgid "com.github.ryonakano.writer"
+#~ msgstr "com.github.ryonakano.writer"

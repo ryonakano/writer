@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: com.github.ryonakano.writer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-16 21:39+0900\n"
+"POT-Creation-Date: 2025-06-11 20:30+0900\n"
 "PO-Revision-Date: 2019-06-21 17:11+0200\n"
 "Last-Translator: NathanBnm\n"
 "Language-Team: none\n"
@@ -16,6 +16,59 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: src/Application.vala:198
+#, c-format
+msgid "Untitled Document %i"
+msgstr "Document sans titre %i"
+
+#: src/Application.vala:220 src/Application.vala:283
+msgid "Rich Text Format (.rtf)"
+msgstr "Format Rich Text (.rtf)"
+
+#: src/Application.vala:224
+msgid "Choose a file to open"
+msgstr "Choisissez un fichier à ouvrir"
+
+#: src/Application.vala:227
+msgid "Open"
+msgstr "Ouvrir"
+
+#: src/Application.vala:227 src/Application.vala:290
+msgid "Cancel"
+msgstr "Annuler"
+
+#: src/Application.vala:287
+msgid "Save file with a different name"
+msgstr "Enregistrer avec un nom différent"
+
+#: src/Application.vala:290
+msgid "Save"
+msgstr "Enregistrer"
+
+#: src/Application.vala:315
+msgid "Are you sure you want to revert this file?"
+msgstr ""
+
+#: src/Application.vala:316
+msgid "Changes you made will be discarded."
+msgstr ""
+
+#: src/Application.vala:322
+msgid "Revert"
+msgstr ""
+
+#. TRANSLATORS: The string shown in the titlebar. "%s" represents the name of an opened file.
+#. The latter string "Writer" is the name of this app.
+#: src/MainWindow.vala:85
+#, fuzzy, c-format
+msgid "%s — Writer"
+msgstr "Writer"
+
+#. TRANSLATORS: The string shown in the titlebar. "Writer" is the name of this app.
+#: src/MainWindow.vala:88 src/Widgets/TitleBar.vala:31
+msgid "Writer"
+msgstr "Writer"
 
 #: src/Views/WelcomeView.vala:23
 msgid "No Documents Open"
@@ -41,6 +94,20 @@ msgstr "Ouvrir un fichier"
 msgid "Open a saved document."
 msgstr "Ouvrir un document enregistré."
 
+#: src/Widgets/ActionBar.vala:47
+#, c-format
+msgid "%d character with spaces"
+msgid_plural "%d characters with spaces"
+msgstr[0] ""
+msgstr[1] ""
+
+#: src/Widgets/ActionBar.vala:61
+#, c-format
+msgid "%d character without spaces"
+msgid_plural "%d characters without spaces"
+msgstr[0] ""
+msgstr[1] ""
+
 #: src/Widgets/Choosers/TableChooser.vala:35
 msgid "Insert Table"
 msgstr "Insérer un tableau"
@@ -56,6 +123,55 @@ msgstr "Colonnes :"
 #: src/Widgets/Choosers/TableChooser.vala:41
 msgid "Rows:"
 msgstr "Lignes :"
+
+#: src/Widgets/PreferenceDialog.vala:27 src/Widgets/TitleBar.vala:62
+#: src/Widgets/TitleBar.vala:68
+msgid "Preferences"
+msgstr "Préférences"
+
+#: src/Widgets/PreferenceDialog.vala:33
+msgid "Document folder location:"
+msgstr "Emplacement des documents :"
+
+#: src/Widgets/PreferenceDialog.vala:37
+msgid "Select Document Folder…"
+msgstr "Sélectionnez l'emplacement des documents…"
+
+#: src/Widgets/PreferenceDialog.vala:43
+msgid "Include spaces to count characters:"
+msgstr ""
+
+#: src/Widgets/PreferenceDialog.vala:64
+msgid "Close"
+msgstr "Fermer"
+
+#: src/Widgets/TitleBar.vala:38
+msgid "Open a file"
+msgstr "Ouvrir un fichier"
+
+#: src/Widgets/TitleBar.vala:41
+msgid "Save this file with a different name"
+msgstr "Enregistrer ce fichier avec un nom différent"
+
+#: src/Widgets/TitleBar.vala:44
+msgid "Restore this file"
+msgstr "Restaurer ce fichier"
+
+#: src/Widgets/TitleBar.vala:47
+msgid "Print this file"
+msgstr "Imprimer ce fichier"
+
+#: src/Widgets/TitleBar.vala:51
+msgid "Find"
+msgstr "Rechercher"
+
+#: src/Widgets/TitleBar.vala:57
+msgid "Undo"
+msgstr ""
+
+#: src/Widgets/TitleBar.vala:60
+msgid "Redo"
+msgstr ""
 
 #: src/Widgets/ToolBars/ImageToolBar.vala:34
 msgid "In line of text"
@@ -249,122 +365,6 @@ msgstr "Insérer un tableau"
 #, fuzzy
 msgid "Insert table"
 msgstr "Insérer un tableau"
-
-#: src/Widgets/ActionBar.vala:47
-#, c-format
-msgid "%d character with spaces"
-msgid_plural "%d characters with spaces"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/Widgets/ActionBar.vala:61
-#, c-format
-msgid "%d character without spaces"
-msgid_plural "%d characters without spaces"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/Widgets/PreferenceDialog.vala:27 src/Widgets/TitleBar.vala:62
-#: src/Widgets/TitleBar.vala:68
-msgid "Preferences"
-msgstr "Préférences"
-
-#: src/Widgets/PreferenceDialog.vala:33
-msgid "Document folder location:"
-msgstr "Emplacement des documents :"
-
-#: src/Widgets/PreferenceDialog.vala:37
-msgid "Select Document Folder…"
-msgstr "Sélectionnez l'emplacement des documents…"
-
-#: src/Widgets/PreferenceDialog.vala:43
-msgid "Include spaces to count characters:"
-msgstr ""
-
-#: src/Widgets/PreferenceDialog.vala:64
-msgid "Close"
-msgstr "Fermer"
-
-#. /TRANSLATORS: The string shown in the titlebar. "Writer" is the name of this app.
-#: src/Widgets/TitleBar.vala:31 src/MainWindow.vala:78
-msgid "Writer"
-msgstr "Writer"
-
-#: src/Widgets/TitleBar.vala:38
-msgid "Open a file"
-msgstr "Ouvrir un fichier"
-
-#: src/Widgets/TitleBar.vala:41
-msgid "Save this file with a different name"
-msgstr "Enregistrer ce fichier avec un nom différent"
-
-#: src/Widgets/TitleBar.vala:44
-msgid "Restore this file"
-msgstr "Restaurer ce fichier"
-
-#: src/Widgets/TitleBar.vala:47
-msgid "Print this file"
-msgstr "Imprimer ce fichier"
-
-#: src/Widgets/TitleBar.vala:51
-msgid "Find"
-msgstr "Rechercher"
-
-#: src/Widgets/TitleBar.vala:57
-msgid "Undo"
-msgstr ""
-
-#: src/Widgets/TitleBar.vala:60
-msgid "Redo"
-msgstr ""
-
-#: src/Application.vala:198
-#, c-format
-msgid "Untitled Document %i"
-msgstr "Document sans titre %i"
-
-#: src/Application.vala:219
-msgid "Choose a file to open"
-msgstr "Choisissez un fichier à ouvrir"
-
-#: src/Application.vala:221 src/Application.vala:296
-msgid "Rich Text Format (.rtf)"
-msgstr "Format Rich Text (.rtf)"
-
-#: src/Application.vala:224 src/Application.vala:299
-msgid "Cancel"
-msgstr "Annuler"
-
-#: src/Application.vala:225
-msgid "Open"
-msgstr "Ouvrir"
-
-#: src/Application.vala:291
-msgid "Save file with a different name"
-msgstr "Enregistrer avec un nom différent"
-
-#: src/Application.vala:300
-msgid "Save"
-msgstr "Enregistrer"
-
-#: src/Application.vala:326
-msgid "Are you sure you want to revret this file?"
-msgstr ""
-
-#: src/Application.vala:327
-msgid "Changes you made will be discarded."
-msgstr ""
-
-#: src/Application.vala:333
-msgid "Revert"
-msgstr ""
-
-#. /TRANSLATORS: The string shown in the titlebar. "%s" represents the name of an opened file.
-#. /The latter string "Writer" is the name of this app.
-#: src/MainWindow.vala:75
-#, fuzzy, c-format
-msgid "%s — Writer"
-msgstr "Writer"
 
 #~ msgid "Zeitgeist Datasource for Writer"
 #~ msgstr "Source de données Zeitgeist pour Writer"
