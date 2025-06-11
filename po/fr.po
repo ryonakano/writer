@@ -2,6 +2,7 @@
 # Copyright (C) 2019 THE com.github.ryonakano.writer'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the com.github.ryonakano.writer package.
 # NathanBnm, 2019.
+# Stella from Teamcons, 2025.
 #
 msgid ""
 msgstr ""
