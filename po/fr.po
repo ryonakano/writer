@@ -2,14 +2,15 @@
 # Copyright (C) 2019 THE com.github.ryonakano.writer'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the com.github.ryonakano.writer package.
 # NathanBnm, 2019.
+# Stella from Teamcons, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: com.github.ryonakano.writer\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-11 20:30+0900\n"
-"PO-Revision-Date: 2019-06-21 17:11+0200\n"
-"Last-Translator: NathanBnm\n"
+"PO-Revision-Date: 2025-06-11 20:35+0900\n"
+"Last-Translator: Stella from Teamcons\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -48,15 +49,15 @@ msgstr "Enregistrer"
 
 #: src/Application.vala:315
 msgid "Are you sure you want to revert this file?"
-msgstr ""
+msgstr "Êtes vous sûr de vouloir annuler les changements ?"
 
 #: src/Application.vala:316
 msgid "Changes you made will be discarded."
-msgstr ""
+msgstr "Les changements effectués seront abandonnés"
 
 #: src/Application.vala:322
 msgid "Revert"
-msgstr ""
+msgstr "Annuler tous les changements"
 
 #. TRANSLATORS: The string shown in the titlebar. "%s" represents the name of an opened file.
 #. The latter string "Writer" is the name of this app.
@@ -76,7 +77,7 @@ msgstr "Aucun document ouvert"
 
 #: src/Views/WelcomeView.vala:24
 msgid "Open a document to begin editing."
-msgstr "Ouvrir un document pour commencer l'édition."
+msgstr "Ouvrir un document pour commencer à écrire."
 
 #: src/Views/WelcomeView.vala:30
 msgid "New File"
@@ -98,15 +99,15 @@ msgstr "Ouvrir un document enregistré."
 #, c-format
 msgid "%d character with spaces"
 msgid_plural "%d characters with spaces"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d caractère avec espaces"
+msgstr[1] "%d caractères avec espaces"
 
 #: src/Widgets/ActionBar.vala:61
 #, c-format
 msgid "%d character without spaces"
 msgid_plural "%d characters without spaces"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%d caractère sans espaces"
+msgstr[1] "%d caractères sans espaces"
 
 #: src/Widgets/Choosers/TableChooser.vala:35
 msgid "Insert Table"
@@ -139,7 +140,7 @@ msgstr "Sélectionnez l'emplacement des documents…"
 
 #: src/Widgets/PreferenceDialog.vala:43
 msgid "Include spaces to count characters:"
-msgstr ""
+msgstr "Inclure les espaces pour compter le nombre de caractères :"
 
 #: src/Widgets/PreferenceDialog.vala:64
 msgid "Close"
@@ -167,11 +168,11 @@ msgstr "Rechercher"
 
 #: src/Widgets/TitleBar.vala:57
 msgid "Undo"
-msgstr ""
+msgstr "Annuler"
 
 #: src/Widgets/TitleBar.vala:60
 msgid "Redo"
-msgstr ""
+msgstr "Refaire"
 
 #: src/Widgets/ToolBars/ImageToolBar.vala:34
 msgid "In line of text"
@@ -183,19 +184,19 @@ msgstr "Flotter au-dessus du texte"
 
 #: src/Widgets/ToolBars/ImageToolBar.vala:37
 msgid "Set how to wrap text"
-msgstr ""
+msgstr "Définir le mode d'enroulement du texte"
 
 #: src/Widgets/ToolBars/ImageToolBar.vala:39
 msgid "Lock aspect ratio"
-msgstr "Verrouiller le ratio"
+msgstr "Verrouiller le format"
 
 #: src/Widgets/ToolBars/ImageToolBar.vala:43
 msgid "Allow to resize images without changing aspect ratio"
-msgstr ""
+msgstr "Permet de redimensionner les images sans changer le format"
 
 #: src/Widgets/ToolBars/ImageToolBar.vala:49
 msgid "Align image left"
-msgstr ""
+msgstr "Aligner l'image à gauche"
 
 #: src/Widgets/ToolBars/ImageToolBar.vala:50
 #, fuzzy
@@ -204,7 +205,7 @@ msgstr "Supprimer l'image"
 
 #: src/Widgets/ToolBars/ImageToolBar.vala:51
 msgid "Align image right"
-msgstr ""
+msgstr "Aligner l'image à droite"
 
 #: src/Widgets/ToolBars/ImageToolBar.vala:53
 msgid "Crop"
@@ -212,7 +213,7 @@ msgstr "Rogner"
 
 #: src/Widgets/ToolBars/ImageToolBar.vala:57
 msgid "Remove unnecessary part of image"
-msgstr ""
+msgstr "Supprimer les parties non nécessaires de l'image"
 
 #: src/Widgets/ToolBars/ImageToolBar.vala:59
 msgid "Delete Image"
@@ -229,41 +230,41 @@ msgstr "Propriétés du tableau"
 
 #: src/Widgets/ToolBars/TableToolBar.vala:34
 msgid "Set properties of selected table"
-msgstr ""
+msgstr "Définir les propriétés du tableau"
 
 #: src/Widgets/ToolBars/TableToolBar.vala:42
 #: src/Widgets/ToolBars/TextToolBar.vala:58
 msgid "Choose font family and font size"
-msgstr ""
+msgstr "Choisir la police et sa taille"
 
 #: src/Widgets/ToolBars/TableToolBar.vala:49
 #: src/Widgets/ToolBars/TextToolBar.vala:65
 msgid "Choose font color"
-msgstr ""
+msgstr "Choisir la couleur de la police"
 
 #: src/Widgets/ToolBars/TableToolBar.vala:52
 #: src/Widgets/ToolBars/TextToolBar.vala:68
 msgid "Toggle bold"
-msgstr ""
+msgstr "Activer/Désactiver texte en gras"
 
 #: src/Widgets/ToolBars/TableToolBar.vala:56
 #: src/Widgets/ToolBars/TextToolBar.vala:72
 msgid "Toggle italic"
-msgstr ""
+msgstr "Activer/Désactiver texte en italique"
 
 #: src/Widgets/ToolBars/TableToolBar.vala:60
 #: src/Widgets/ToolBars/TextToolBar.vala:76
 msgid "Toggle underline"
-msgstr ""
+msgstr "Activer/Désactiver texte souligné"
 
 #: src/Widgets/ToolBars/TableToolBar.vala:64
 #: src/Widgets/ToolBars/TextToolBar.vala:80
 msgid "Toggle strikethrough"
-msgstr ""
+msgstr "Activer/Désactiver texte barré"
 
 #: src/Widgets/ToolBars/TableToolBar.vala:81
 msgid "Align table left"
-msgstr ""
+msgstr "Aligner le tableau à gauche"
 
 #: src/Widgets/ToolBars/TableToolBar.vala:82
 #, fuzzy
@@ -272,11 +273,11 @@ msgstr "Insérer un tableau"
 
 #: src/Widgets/ToolBars/TableToolBar.vala:83
 msgid "Align table right"
-msgstr ""
+msgstr "Aligner le tableau à droite"
 
 #: src/Widgets/ToolBars/TableToolBar.vala:84
 msgid "Justify table"
-msgstr ""
+msgstr "Justifier le tableau"
 
 #: src/Widgets/ToolBars/TableToolBar.vala:86
 msgid "Add"
@@ -284,7 +285,7 @@ msgstr "Ajouter"
 
 #: src/Widgets/ToolBars/TableToolBar.vala:90
 msgid "Add a new table"
-msgstr ""
+msgstr "Ajouter un nouveau tableau"
 
 #: src/Widgets/ToolBars/TableToolBar.vala:92
 msgid "Delete"
@@ -292,7 +293,7 @@ msgstr "Supprimer"
 
 #: src/Widgets/ToolBars/TableToolBar.vala:96
 msgid "Delete selected table"
-msgstr ""
+msgstr "Supprimer le tableau"
 
 #: src/Widgets/ToolBars/TextToolBar.vala:43
 msgid "Paragraph"
@@ -320,49 +321,45 @@ msgstr "Deux colonnes"
 
 #: src/Widgets/ToolBars/TextToolBar.vala:50
 msgid "Set text style"
-msgstr ""
+msgstr "Définir le style de texte"
 
 #: src/Widgets/ToolBars/TextToolBar.vala:97
 msgid "Align text left"
-msgstr ""
+msgstr "Aligner le texte à gauche"
 
 #: src/Widgets/ToolBars/TextToolBar.vala:98
 msgid "Center text"
-msgstr ""
+msgstr "Centrer le text"
 
 #: src/Widgets/ToolBars/TextToolBar.vala:99
 msgid "Align text right"
-msgstr ""
+msgstr "Aligner le texte à droite"
 
 #: src/Widgets/ToolBars/TextToolBar.vala:100
 msgid "Justify text"
-msgstr ""
+msgstr "Justifier le texte"
 
 #: src/Widgets/ToolBars/TextToolBar.vala:103
 msgid "Increase indent"
-msgstr ""
+msgstr "Augmenter l'indentation"
 
 #: src/Widgets/ToolBars/TextToolBar.vala:105
 msgid "Decrease indent"
-msgstr ""
+msgstr "Réduire l'indentation"
 
 #: src/Widgets/ToolBars/TextToolBar.vala:115
-#, fuzzy
 msgid "Insert text"
-msgstr "Insérer un tableau"
+msgstr "Insérer du texte"
 
 #: src/Widgets/ToolBars/TextToolBar.vala:117
-#, fuzzy
 msgid "Insert link"
-msgstr "Insérer un tableau"
+msgstr "Insérer un lien"
 
 #: src/Widgets/ToolBars/TextToolBar.vala:119
-#, fuzzy
 msgid "Insert image"
-msgstr "Insérer un tableau"
+msgstr "Insérer une image"
 
 #: src/Widgets/ToolBars/TextToolBar.vala:121
-#, fuzzy
 msgid "Insert table"
 msgstr "Insérer un tableau"
 

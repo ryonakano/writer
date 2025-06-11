@@ -2,14 +2,15 @@
 # Copyright (C) 2019 THE extra'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the extra package.
 # NathanBnm, 2019.
+# Stella from Teamcons, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-11 20:30+0900\n"
-"PO-Revision-Date: 2019-06-21 17:11+0200\n"
-"Last-Translator: NathanBnm\n"
+"PO-Revision-Date: 2025-06-11 20:34+0900\n"
+"Last-Translator: Stella from Teamcons\n"
 "Language-Team: none\n"
 "Language: fr\n"
 "MIME-Version: 1.0\n"
@@ -24,7 +25,7 @@ msgstr "Writer"
 
 #: data/com.github.ryonakano.writer.desktop.in:4
 msgid "Word Processor"
-msgstr "Logiciel de traitement de texte"
+msgstr "Traitement de texte"
 
 #: data/com.github.ryonakano.writer.desktop.in:5
 #: data/com.github.ryonakano.writer.appdata.xml.in:8
@@ -41,7 +42,7 @@ msgstr ""
 
 #: data/com.github.ryonakano.writer.appdata.xml.in:50
 msgid "Writer Developers"
-msgstr ""
+msgstr "Les développeurs de Writer"
 
 #~ msgid "com.github.ryonakano.writer"
 #~ msgstr "com.github.ryonakano.writer"
