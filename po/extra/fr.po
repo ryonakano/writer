@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-16 21:39+0900\n"
-"PO-Revision-Date: 2025-06-11 17:11+0200\n"
+"POT-Creation-Date: 2025-06-11 20:30+0900\n"
+"PO-Revision-Date: 2025-06-11 20:34+0900\n"
 "Last-Translator: Stella from Teamcons\n"
 "Language-Team: none\n"
 "Language: fr\n"
@@ -31,10 +31,6 @@ msgstr "Traitement de texte"
 msgid "Create simple and beautiful documents"
 msgstr "Créez des documents simples et beaux"
 
-#: data/com.github.ryonakano.writer.desktop.in:8
-msgid "com.github.ryonakano.writer"
-msgstr "com.github.ryonakano.writer"
-
 #: data/com.github.ryonakano.writer.appdata.xml.in:10
 msgid ""
 "Writer is a word processor designed for elementary OS that lets you create "
@@ -46,3 +42,6 @@ msgstr ""
 #: data/com.github.ryonakano.writer.appdata.xml.in:50
 msgid "Writer Developers"
 msgstr "Les développeurs de Writer"
+
+#~ msgid "com.github.ryonakano.writer"
+#~ msgstr "com.github.ryonakano.writer"
