@@ -355,7 +355,6 @@ msgid "Insert link"
 msgstr "Insérer un lien"
 
 #: src/Widgets/ToolBars/TextToolBar.vala:119
-#, fuzzy
 msgid "Insert image"
 msgstr "Insérer une image"
 
