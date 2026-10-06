@@ -1,5 +1,5 @@
 project(
-  'com.github.ryonakano.writer',
+  'io.github.elework.writer',
   'vala', 'c',
   version: '0.1.0',
   meson_version: '>= 0.57.0',

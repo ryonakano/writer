@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <schemalist>
-  <schema path="/com/github/ryonakano/writer/" id="com.github.ryonakano.writer">
+  <schema path="/io/github/elework/writer/" id="io.github.elework.writer">
     <key name="destination" type="s">
       <default>''</default>
       <summary>File destination</summary>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- Copyright 2014-2020 Writer Developers -->
 <component type="desktop">
-  <id>com.github.ryonakano.writer</id>
+  <id>io.github.elework.writer</id>
   <metadata_license>CC0</metadata_license>
   <project_license>GPL-3.0</project_license>
   <name>Writer</name>

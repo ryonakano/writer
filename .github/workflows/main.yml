@@ -19,7 +19,7 @@ jobs:
         uses: bilelmoussaoui/flatpak-github-actions/flatpak-builder@v6.4
         with:
           bundle: writer.flatpak
-          manifest-path: com.github.ryonakano.writer.yml
+          manifest-path: io.github.elework.writer.yml
           run-tests: true
           repository-name: appcenter
           repository-url: https://flatpak.elementary.io/repo.flatpakrepo

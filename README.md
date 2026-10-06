@@ -22,10 +22,10 @@ Run `meson build` to configure the build environment. Change to the build direct
     cd build
     ninja
 
-To install, use `ninja install`, then execute with `com.github.ryonakano.writer`
+To install, use `ninja install`, then execute with `io.github.elework.writer`
 
     ninja install
-    com.github.ryonakano.writer
+    io.github.elework.writer
 
 ## Contributing
 
