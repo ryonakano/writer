@@ -1,14 +1,14 @@
-# French translations for com.github.ryonakano.writer package.
-# Copyright (C) 2019 THE com.github.ryonakano.writer'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the com.github.ryonakano.writer package.
+# French translations for io.github.elework.writer package.
+# Copyright (C) 2019 THE io.github.elework.writer'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the io.github.elework.writer package.
 # NathanBnm, 2019.
 # Stella from Teamcons, 2025.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: com.github.ryonakano.writer\n"
+"Project-Id-Version: io.github.elework.writer\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-11 20:30+0900\n"
+"POT-Creation-Date: 2026-10-06 23:11+0900\n"
 "PO-Revision-Date: 2025-06-11 20:35+0900\n"
 "Last-Translator: Stella from Teamcons\n"
 "Language-Team: none\n"

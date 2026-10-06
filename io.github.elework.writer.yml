@@ -1,8 +1,8 @@
-id: com.github.ryonakano.writer
+id: io.github.elework.writer
 runtime: io.elementary.Platform
 runtime-version: '9.1'
 sdk: io.elementary.Sdk
-command: com.github.ryonakano.writer
+command: io.github.elework.writer
 finish-args:
   - '--share=ipc'
   - '--socket=wayland'

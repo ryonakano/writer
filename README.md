@@ -22,10 +22,10 @@ Run `meson build` to configure the build environment. Change to the build direct
     cd build
     ninja
 
-To install, use `ninja install`, then execute with `com.github.ryonakano.writer`
+To install, use `ninja install`, then execute with `io.github.elework.writer`
 
     ninja install
-    com.github.ryonakano.writer
+    io.github.elework.writer
 
 ## Contributing
 
@@ -33,7 +33,7 @@ There are many ways you can contribute, even if you don't know how to code.
 
 ### Reporting Bugs or Suggesting Improvements
 
-Simply [create a new issue](https://github.com/ryonakano/writer/issues/new) describing your problem and how to reproduce or your suggestion. If you are not used to do, [this section](https://docs.elementary.io/contributor-guide/feedback/reporting-issues) is for you.
+Simply [create a new issue](https://github.com/elework/writer/issues/new) describing your problem and how to reproduce or your suggestion. If you are not used to do, [this section](https://docs.elementary.io/contributor-guide/feedback/reporting-issues) is for you.
 
 ### Writing Some Code
 

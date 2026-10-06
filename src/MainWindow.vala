@@ -34,7 +34,7 @@ public class Writer.MainWindow : Gtk.ApplicationWindow {
     construct {
         // Import CSS
         var cssprovider = new Gtk.CssProvider ();
-        cssprovider.load_from_resource ("/com/github/ryonakano/writer/Application.css");
+        cssprovider.load_from_resource ("/io/github/elework/writer/Application.css");
         Gtk.StyleContext.add_provider_for_screen (Gdk.Screen.get_default (),
                                                     cssprovider,
                                                     Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION);
