@@ -13,7 +13,7 @@
   </description>
   <screenshots>
     <screenshot type="default">
-      <image>https://raw.githubusercontent.com/ryonakano/writer/master/data/Screenshot.png</image>
+      <image>https://raw.githubusercontent.com/elework/writer/master/data/Screenshot.png</image>
     </screenshot>
   </screenshots>
 
@@ -48,8 +48,8 @@
   </content_rating>
 
   <developer_name>Writer Developers</developer_name>
-  <url type="homepage">https://github.com/ryonakano/writer</url>
-  <url type="bugtracker">https://github.com/ryonakano/writer/issues</url>
+  <url type="homepage">https://github.com/elework/writer</url>
+  <url type="bugtracker">https://github.com/elework/writer/issues</url>
   
   <custom>
     <value key="x-appcenter-color-primary">#50a4f4</value>
