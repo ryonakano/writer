@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2014-2020 Writer Developers -->
+<component type="desktop-application">
+  <id>io.github.elework.writer</id>
+
+  <name>Writer</name>
+  <summary>Create simple and beautiful documents</summary>
+
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0-or-later</project_license>
+
+  <supports>
+    <control>pointing</control>
+    <control>keyboard</control>
+  </supports>
+
+  <description>
+    <p>
+      Writer is a word processor designed for elementary OS that lets you create simple and beautiful documents with ease.
+    </p>
+  </description>
+
+  <content_rating type="oars-1.1" />
+
+  <developer id="io.github.elework">
+    <name>The elework Community</name>
+  </developer>
+
+  <url type="homepage">https://github.com/elework</url>
+  <url type="bugtracker">https://github.com/elework/writer/issues</url>
+  <url type="help">https://github.com/elework/writer/discussions</url>
+  <url type="vcs-browser">https://github.com/elework/writer</url>
+  <url type="translate">https://github.com/elework/writer/tree/main/po</url>
+
+  <branding>
+    <color type="primary" scheme_preference="light">#64baff</color>
+    <color type="primary" scheme_preference="dark">#8cd5ff</color>
+  </branding>
+
+  <launchable type="desktop-id">io.github.elework.writer.desktop</launchable>
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/elework/writer/main/data/screenshot.png</image>
+    </screenshot>
+  </screenshots>
+</component>
