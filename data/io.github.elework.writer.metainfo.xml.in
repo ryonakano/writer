@@ -38,6 +38,7 @@
   </branding>
 
   <launchable type="desktop-id">io.github.elework.writer.desktop</launchable>
+  <translation type="gettext">io.github.elework.writer</translation>
   <screenshots>
     <screenshot type="default">
       <image>https://raw.githubusercontent.com/elework/writer/main/data/screenshot.png</image>
