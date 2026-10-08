@@ -1,9 +1,11 @@
 [Desktop Entry]
+Version=1.0
+Type=Application
+
 Name=Writer
-GenericName=Word Processor
 Comment=Create simple and beautiful documents
 Categories=Office;WordProcessor;
+
 Exec=io.github.elework.writer %U
 Icon=io.github.elework.writer
 Terminal=false
-Type=Application
